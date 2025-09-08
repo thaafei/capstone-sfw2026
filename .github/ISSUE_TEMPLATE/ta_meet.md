@@ -13,10 +13,10 @@ assignees: ''
 
 **Attendance**
 
-- [ ] Fei
-- [ ] Haniye
-- [ ] Ghena
 - [ ] Awurama
+- [ ] Fei (Fiona)
+- [ ] Ghena
+- [ ] Haniye (Fatemeh)
 
 **Questions to Ask**
 
