@@ -2,6 +2,8 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{outlines}
+
 
 \title{Development Plan\\\progname}
 
@@ -31,47 +33,61 @@ September 17, 2025 & Fei Xie & Created first draft of document\\
 This document outlines the development plan for the project. Covering details on Intellectual Property, team roles and expectations, workflow plan, and project scheduling.
 With additional sections that include the expected technologies and coding standards. This document will help ensure all members are aware of the expectations on the team, and help provide a roadmap for the project.
 
-\section{Confidential Information?}
+\section{Confidential Information}
 This project will be open-source, no confidential information to protect.
 
 \section{IP to Protect}
-This project has no IP to protect.
+This software and associated documentation files for this project are protected by copywrite as dictated by the \href{https://github.com/thaafei/capstone-sfw2026/blob/main/LICENSE}{MIT License}.
 
 \section{Copyright License}
-This project use's the MIT license, located in the \href{../../LICENSE}{LICENSE} file.
+This project use's the MIT License, located in the \href{https://github.com/thaafei/capstone-sfw2026/blob/main/LICENSE}{LICENSE} file.
 
 \section{Team Meeting Plan}
+Meeting minutes and attendence will be taken for all meetings as their related issue in the project's Github. Each member is responsible for verifying their own attendence in the related Github issue.
 \subsection{Lectures}
-  Members are expected to attend every *lecture* for Software Engineering Students *in-person* (maximum 3/week).
+  Members are expected to attend every \textbf{lecture} for Software Engineering Students \textbf{in-person} (maximum 3/week).
 \subsection{Tutorials}
-  Members are expected to attend all TA-lead tutorials
-  For tutorials without a pre-designated lesson plan, the team will decide whether to use the time to have a check-in, or have it as a virtual drop-in working session.
+  Members are expected to attend all TA-lead tutorials. For tutorials without a pre-designated lesson plan, the team will decide what to do, such as having a check-in, working session, and etc.
 \subsection{Team Meetings}
-  Weekly team meetings are held every Thursday 2:30-3:30pm virtually. All members are expected to attend, provide updates or blockers, and collaborate on the next steps.
+  Weekly team meetings are held every \textbf{Thursday 2:30-3:30pm virtually}.
+  All members are expected to attend and it is up to the responsibility of the individual to inform the rest of the team why they cannot make the weekly meeting, and provide their updates asynchronously.
+  Meetings will be structured as follows:
+  \begin{enumerate}
+    \item Each member will give a short recap of the work they've done since the previous meeting
+    \item Each member has the oppurtunity to bring up any blockers, concerns, or issues they are facing
+    \item Group will discuss and determine action items for the project that are to be done by the next meeting, and assign them to member(s).
+    \item Meeting minutes will be taken and recorded as a corresponding Github Issue.
+  \end{enumerate}
 \subsection{Supervisor and Domain Expert Meetings}
+  Supervisor meetings are scheduled when needed. Meeting topics must be prepared beforehand. One team member will be designated as the \textbf{main meeting coordinator} for each requested meeting.
+  They are responsible for coordinating the meeting between the supervisor/domain expert and the rest of the team, including sending the meeting invite on Microsoft Calendar.
 
-\section{Team Communication Plan}
-
-\wss{Issues on GitHub should be part of your communication plan.}
-
+  \section{Team Communication Plan}
+\begin{itemize}
+  \item \textbf{Microsoft Teams:} Main way of communication between team members, both through the chat and online team meetings.
+  \item \textbf{Github} Tracking of the project process and meeting minutes. Github issues will be created for all meetings (Lecture, Peer Review, Supervisor Meeting, etc) and code tasks.
+  \item \textbf{Email:} Communication with the supervisor and domain expert, will all team members cc-ed.
+\end{itemize}
 \section{Team Member Roles}
 \begin{table}[hp]
-\caption{Team Members and Associated Roles} \label{TblMilestones}
-\begin{tabular}{l l l}
-\hline
-\textbf{Name} & \textbf{Role} & \textbf{Description} \\
-\hline
+\caption{Team Roles} \label{TblTeamRoles}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Name} & \textbf{Role(s)} & \textbf{Description}\\
+\midrule
 Awurama Nyarko & Research Lead & \\
-\hline
-Ghena Hatoum & Tech Lead &\\
-\hline
-Fei Xie & Scrum Master and Devops Lead & \\
-\hline
-Fatemeh Hamidizadeh &  Backend and Database Lead & \\
-\hline
-\end{tabular}
-\end{table}
+\midrule
 
+Fatemeh Hamidizadeh &  Backend and Database Lead & \\
+
+\midrule
+Fei Xie & Scrum Master and Devops Lead & \\
+\midrule
+
+Ghena Hatoum & Tech Lead &\\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \wss{You should identify the types of roles you anticipate, like notetaker,
 leader, meeting chair, reviewer.  Assigning specific people to those roles is
@@ -79,20 +95,35 @@ not necessary at this stage.  In a student team the role of the individuals will
 likely change throughout the year.}
 
 \section{Workflow Plan}
-
-\begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classification, etc.?
-  \item Use of CI/CD
-\end{itemize}
+The main branch of the project is protected. Meaning it cannot be directly committed into, all changes must be merged in via a pull request.
+Following are the general steps of what development should look like:
+\begin{outline}[itemize]
+ \1 Create a new \textbf{Project Work} issue, ensure the following are assigned:
+  \2 Assignees: Who is working on the project, multiple members can be assigned
+  \2 Label: Assign the appropriate label for the issue:
+    \3 feature: Adding new functionality
+    \3 refactor: Updating existing code without altering functionality
+    \3 bug: Error found in code
+    \3 documentation: Updating documents, no code changes
+  \2 Milestone: Assign to the related project deliverable
+  \2 Projects: This should be automatically set to DomainX, if the Project Work issue template was use
+    \3 If not, add the project label to the issue and set the project to DomainX if not done automatically by the workflow action.
+\1 Create a branch from the issue, branch name should include the issue number. 
+  \2 By default, the issue branch should be created from main, but can also use other feature branches as the head
+  \2 Branch naming format: \textbf{\{Issue \#\}}-name-of-branch
+\1 Commit changes with descriptive names
+\1 Add tests
+  \2 \textbf{Unit tests} must be created for feature, refactoring, and bug issues
+  \2 \textbf{Integration tests} must be created for feature issues, optional for refactoring and bug
+\1 Create pull request
+  \2 All Github Actions need to partnerships
+  \2 At least one approval from a teammate
+\1 Merge changes into main branch
+\end{outline}
 
 \section{Project Decomposition and Scheduling}
 
-\begin{itemize}
-  \item How will you be using GitHub projects?
-  \item Include a link to your GitHub project
-\end{itemize}
+The team's Github Project, \href{https://github.com/users/thaafei/projects/6}{DomainX}, will be used to organize project-related work (non-meeting issues).
 
 \wss{How will the project be scheduled?  This is the big picture schedule, not
 details. You will need to reproduce information that is in the course outline
