@@ -7,7 +7,7 @@
 
 \author{\authname}
 
-\date{}
+\date{September 20, 2025}
 
 \input{../Comments}
 \input{../Common}
@@ -22,34 +22,123 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+2025-09-20 & Awurama Nyarko, Fiona Xie, Ghena Hatoum, Fatemeh Hamidizadeh & Initial draft of Problem Statement (Problem, Inputs/Outputs, Stakeholders, Environment, Goals, Stretch, Extras)\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Problem Statement}
 
-\wss{You should check your problem statement with the
-\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
-{problem statement checklist}.} 
+% \wss{You should check your problem statement with the
+% \href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
+% {problem statement checklist}.} 
 
-\wss{You can change the section headings, as long as you include the required
-information.}
+% \wss{You can change the section headings, as long as you include the required
+% information.}
 
 \subsection{Problem}
+Open-source neural network (NN) libraries---including training frameworks
+(e.g., PyTorch, TensorFlow), inference frameworks (e.g., ONNX Runtime),
+and companion tooling (e.g., data loaders, visualization utilities)---are central
+to academic research and production AI systems. Despite their importance,
+there is currently no transparent, reproducible, and domain-tailored way to
+assess the state of software-development practice across these libraries.
+
+Existing assessments are typically ad hoc: spreadsheet-based scoring and
+manual pairwise comparisons (e.g., AHP) that are difficult to trace, with
+evidence scattered across READMEs, documentation, tests, and CI
+pipelines. This creates challenges for: (1) users (researchers and engineers)
+who cannot easily compare libraries on qualities such as installability,
+maintainability, understandability, usability, transparency, robustness,
+reliability, and reproducibility; (2) maintainers, who lack cross-project
+feedback on practice gaps; and (3) researchers, who lack a consistent
+methodology and artifact trail suitable for replication or meta-analysis.
+
+This project addresses these issues by adapting and applying a rigorous,
+repeatable state-of-practice methodology to the NN-library domain, and
+replacing fragile spreadsheets with a more traceable, auditable toolset that
+streamlines evidence collection, scoring, and ranking. The outcome will be a
+defensible comparison across software-engineering qualities and actionable
+recommendations for practitioners and maintainers.
+
 
 \subsection{Inputs and Outputs}
+\paragraph{Inputs}
+\begin{itemize}
+  \item Curated set of open-source NN libraries that meet inclusion criteria
+  (public repositories with source, installation docs, runnable examples/tutorials).
+  \item Public artifacts: source code, documentation, tutorials, tests, CI configs,
+  issue trackers, release notes.
+  \item Repository measures: commit/issue activity, language breakdown,
+  lines-of-code counts, collected via automated scripts.
+  \item Measurement template responses: structured question bank per quality,
+  completed via automation and human inspection.
+  \item Decision-model configuration: weights over qualities (installability,
+  maintainability, etc.) using a method such as AHP for reproducible rankings.
+  \item Optional practitioner/maintainer interviews, if time permits.
+\end{itemize}
 
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+\paragraph{Outputs}
+\begin{itemize}
+  \item Traceable dataset: structured table recording evidence and normalized
+  scores per software quality.
+  \item Rankings and sensitivity analyses: transparent results with full evidence trail,
+  plus stability testing under weight changes.
+  \item Domain insights: summarized patterns, practice gaps, correlations across projects.
+  \item Recommendations: prioritized, evidence-backed suggestions for maintainers and users.
+  \item Lightweight toolset: simple replacement for spreadsheets to collect evidence,
+  apply scoring, and export results (CSV/PDF).
+  \item Research deliverables: (i) an academic-style report documenting methods,
+  dataset, findings; (ii) an open data/software package (versioned with changelog)
+  for reproducibility and reuse.
+\end{itemize}
+
+% \wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
+% Use abstraction so that you can avoid details.}
 
 \subsection{Stakeholders}
+\begin{itemize}
+  \item Supervisors and domain experts (primary): define scope, validate inclusion criteria,
+  review methodology, and vet results.
+  \item NN library maintainers and contributors (primary): benefit from diagnostics
+  and recommendations; possible interview participants.
+  \item Practitioners (researchers, engineers, data scientists) (primary): need trustworthy
+  comparisons to select or advocate for libraries.
+  \item Software engineering and RSE research community (secondary): gains reusable
+  methodology, dataset, and toolset.
+  \item Course instruction team (secondary): evaluates rigor, scope fit, and completeness
+  of methodology and reporting.
+\end{itemize}
+
 
 \subsection{Environment}
 
 \wss{Hardware and Software Environment}
+
+\paragraph{Assumptions}
+\begin{itemize}
+  \item Target libraries expose public repositories with source code.
+  \item Installation documentation is available.
+  \item Software qualities can be evaluated from surface artifacts within the project timeline.
+  \item Stakeholders are available for periodic reviews.
+\end{itemize}
+
+\paragraph{Constraints}
+\begin{itemize}
+  \item Fixed academic timeline.
+  \item Limited GPU access.
+  \item Private or internal artifacts excluded.
+  \item Interviews optional and subject to limited availability.
+  \item Rapid upstream changes mitigated via timestamped data collection.
+\end{itemize}
+
+\paragraph{Out of Scope}
+\begin{itemize}
+  \item Benchmarking model accuracy.
+  \item Benchmarking runtime or throughput performance.
+  \item Domain-specific fitness evaluations beyond software-engineering qualities.
+\end{itemize}
+
 
 \section{Goals}
 
@@ -57,33 +146,50 @@ Use abstraction so that you can avoid details.}
 
 \section{Extras}
 
-\wss{For CAS 741: State whether the project is a research project. This
-designation, with the approval (or request) of the instructor, can be modified
-over the course of the term.}
+% \wss{For CAS 741: State whether the project is a research project. This
+% designation, with the approval (or request) of the instructor, can be modified
+% over the course of the term.}
 
-\wss{For SE Capstone: List your extras.  Potential extras include usability
-testing, code walkthroughs, user documentation, formal proof, GenderMag
-personas, Design Thinking, etc.  (The full list is on the course outline and in
-Lecture 02.) Normally the number of extras will be two.  Approval of the extras
-will be part of the discussion with the instructor for approving the project.
-The extras, with the approval (or request) of the instructor, can be modified
-over the course of the term.}
+% \wss{For SE Capstone: List your extras.  Potential extras include usability
+% testing, code walkthroughs, user documentation, formal proof, GenderMag
+% personas, Design Thinking, etc.  (The full list is on the course outline and in
+% Lecture 02.) Normally the number of extras will be two.  Approval of the extras
+% will be part of the discussion with the instructor for approving the project.
+% The extras, with the approval (or request) of the instructor, can be modified
+% over the course of the term.}
 
 \newpage{}
 
 \section*{Appendix --- Reflection}
 
-\wss{Not required for CAS 741}
+% \wss{Not required for CAS 741}
 
 \input{../Reflection.tex}
 
 \begin{enumerate}
     \item What went well while writing this deliverable? 
+    
+    \textbf{Awurama:} I found that structuring the problem into the four subsections 
+    (Problem, Inputs/Outputs, Stakeholders, Environment) went smoothly. Having my 
+    draft already written in a google doc made it much easier to adapt to LaTeX. 
+    
     \item What pain points did you experience during this deliverable, and how
     did you resolve them?
+
+    \textbf{Awurama:} My main challenge was getting familiar with the LaTeX template 
+    and re-adjusting to the GitHub workflow after not using it for a while. I overcame this 
+    by researching LaTeX best practices and following the problem statement writing checklist 
+    to make sure I stayed on track.  
+
     \item How did you and your team adjust the scope of your goals to ensure
     they are suitable for a Capstone project (not overly ambitious but also of
     appropriate complexity for a senior design project)?
+
+    \textbf{Awurama:} As a team, we agreed to keep the project focused on assessing 
+    software-engineering practices of neural network libraries, and to exclude accuracy 
+    and performance benchmarking. This adjustment kept the scope realistic for the 
+    Capstone timeline and ensured it matched the course expectations.  
+
 \end{enumerate}  
 
 \end{document}
