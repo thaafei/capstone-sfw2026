@@ -22,7 +22,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
+2025-09-20 & Ghena Hatoum & Added Environment, Goals, Extras, and Reflection\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
@@ -48,15 +48,54 @@ Use abstraction so that you can avoid details.}
 \subsection{Stakeholders}
 
 \subsection{Environment}
-
-\wss{Hardware and Software Environment}
+subsection{Hardware & Execution Environment}
+\begin{itemize}
+    \item Storage: A SSD for fast data access
+    \item CPU: Multi-core processor to handle user requests
+    \item Web Server: Used to store, process, deliver content
+    \item Operating System: Linux to follow industry standards for web pages
+end{itemize}
+subsection{Software & Tooling}
+\begin{itemize}
+    \item Frontend: HTML, CSS, JavaScript, and React, to build user interface
+    \item Backend: Python and Django, to handle back-end logic and data processing
+    \item Database: MySQL to store and manage data
+    \item APIs: GitHub API, to automatically fill in data
+    \item Libraries: Data visualization and AHP libraries
+    \item Version Control: Git to manage the project codebase
+end{itemize}
+% \wss{Hardware and Software Environment}
 
 \section{Goals}
+\subsection{Research}
+At the end of our research we will have developed a research paper evaluate and understand the state of development practices within the NN libraries. Through this research paper we are aiming answer the questions mentioned in the Methodology for Assessing the State of the Practice for Domain X paper, which are as follows:
+\begin{itemize}
+    \item Development and Technical Stack: What are the common tools and methodologies used to build and manage these software packages?
+    \item Developer Experience: What are the main challenges that developer face and how could they be resolved to improve development process and software quality?
+    \item Quality and Best Practices: What actions are developers taking to ensure key software quality (e.g. usability, maintainability, and reproducibility)?
+    \item Quality Comparison: How does a library's technical quality, as designed by this research methodology, compare to it's reputation within the broader developer community?
+\end{itemize}
+\subsection{Web Application}
+To enhance the efficiency of this research, we will develop a web application with several key features to minimize manual effort and improve data management.
+\begin{itemize}
+    \item Interactive Data Table: This feature will provide a visually appealing and intuitive web-based table, allowing researchers to directly edit and manage the database with a user-friendly interface.
+    \item Automated Data Collection: We will automate the collection of specific data points using APIs to reduce manual work and the chance of errors. While some metrics like installability and sustainability will still require manual expert ranking, the tool will automatically gather data such as number of commits and issue counts.
+    \item Automate Analytical Hierarchy Process: The web app will implement an automated AHP on the web app to compare libraries, guiding users through a series of pairwise comparisons to weigh criteria and evaluate libraries against each other.
+    \item Data Visualization and Download: The tool will enable researchers to view and filter results as graphs. Users will be able to download these graphs in various formats, including PNG files for presentations and LaTeX code for direct use in papers. It will also allow researchers to download the entire database for any scope as either an Excel or JSON file, providing greater flexibility and control over the data.
+    \item Collaboration: This methodology requires close collaboration between software and domain experts. The tool will facilitate this by allowing domain experts to vet software lists and provide feedback on the results. To support simultaneous data entry, the user interface will be designed to allow up to two people to update the database concurrently.
+\end{itemize}
 
 \section{Stretch Goals}
-
+The following are possible features that can be added to the web app however are not the focus.
+\begin{itemize}
+    \item Traceability: Currently, the use of Excel sheets makes it difficult to track who made what changes and when. Our web app will include a feature that logs all updates, creating a clear history of changes and improving the accountability of the database.
+    \item Research Paper Generation: This feature will allow researchers to write up their findings directly on the web app. It will automatically compile important graphs and tables and format the final document in a user's preferred style, eliminating the need for manual formatting or direct use of LaTeX.
+    \item Increase Library Features: While the current methodology focuses on evaluating development practices, we will expand our data collection to include information on a library's specific features and capabilities. This will add a new level of functionality, ensuring the tool can recommend a library that not only follows best practices but also aligns with a user's specific needs.
+    \item Interactive Dashboard: This dashboard will provide a centralized, real-time overview of the project's progress. It will visually highlight key milestones, identify the next steps, and clearly show any missing data or required feedback from domain experts.
+\end{itemize}
 \section{Extras}
-
+Following a discussion with our supervisor, Dr. Smith, it confirmed that a research paper will serve as our extra and that there will be no need to have another.
+For more information on the paper's scope and purpose, please refer to Section 2.1 Research.
 % \wss{For CAS 741: State whether the project is a research project. This
 % designation, with the approval (or request) of the instructor, can be modified
 % over the course of the term.}
@@ -76,17 +115,26 @@ Use abstraction so that you can avoid details.}
 
 \section*{Appendix --- Reflection}
 
-\wss{Not required for CAS 741}
+% \wss{Not required for CAS 741}
 
-\input{../Reflection.tex}
+% \input{../Reflection.tex}
 
 \begin{enumerate}
-    \item What went well while writing this deliverable? 
+    \item What went well while writing this deliverable?
+    \begin{itemize}
+        \item Ghena:  I was able to shift my perspective on the problem after having a meeting with our supervisor, which lead to a more accurate understanding of the PS and goals.
+    \end{itemize} 
     \item What pain points did you experience during this deliverable, and how
     did you resolve them?
+    \begin{itemize}
+        \item Ghena: Initially, my understanding of the problem statement was centered on the operational challenges faced by researchers, rather than the foundational importance of the research itself. A clarifying discussion with Dr. Smith provided the crucial insight needed to reframe my thinking, enabling me to grasp the project's broader significance. This adjustment allowed me to understand the problem statement and goals that was much more aligned with the supervisor's expectations and the project's core purpose. Need to get better at taking meeting notes.
+    \end{itemize} 
     \item How did you and your team adjust the scope of your goals to ensure
     they are suitable for a Capstone project (not overly ambitious but also of
     appropriate complexity for a senior design project)?
+    \begin{itemize}
+        \item Ghena: Through our meeting with our supervisor, we were able to adjust the scope of our goals to ensure they are suitable for a Capstone project. We discussed what the expected results are and what would be possible add-ons is we had time.
+    \end{itemize} 
 \end{enumerate}  
 
 \end{document}
