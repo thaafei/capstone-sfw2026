@@ -2,6 +2,8 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{outlines}
+
 
 \title{Development Plan\\\progname}
 
@@ -22,81 +24,92 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+September 17, 2025 & Fei and Haniye & Created first draft of document\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \newpage{}
+This document outlines the development plan for the project. Covering details on Intellectual Property, team roles and expectations, workflow plan, and project scheduling.
+With additional sections that include the expected technologies and coding standards. This document will help ensure all members are aware of the expectations on the team, and help provide a roadmap for the project.
 
-\wss{Put your introductory blurb here.  Often the blurb is a brief roadmap of
-what is contained in the report.}
+\section{Confidential Information}
+This project will be open-source, no confidential information to protect.
 
-\wss{Additional information on the development plan can be found in the
-\href{https://gitlab.cas.mcmaster.ca/courses/capstone/-/blob/main/Lectures/L02b_POCAndDevPlan/POCAndDevPlan.pdf?ref_type=heads}
-{lecture slides}.}
-
-\section{Confidential Information?}
-
-\wss{State whether your project has confidential information from industry, or
-not.  If there is confidential information, point to the agreement you have in
-place.}
-
-\wss{For most teams this section will just state that there is no confidential
-information to protect.}
 \section{IP to Protect}
-
-\wss{State whether there is IP to protect.  If there is, point to the agreement.
-All students who are working on a project that requires an IP agreement are also
-required to sign the ``Intellectual Property Guide Acknowledgement.''}
+This software and associated documentation files for this project are protected by copywrite as dictated by the \href{https://github.com/thaafei/capstone-sfw2026/blob/main/LICENSE}{MIT License}.
 
 \section{Copyright License}
-
-\wss{What copyright license is your team adopting.  Point to the license in your
-repo.}
+This project use's the MIT License, located in the \href{https://github.com/thaafei/capstone-sfw2026/blob/main/LICENSE}{LICENSE} file.
 
 \section{Team Meeting Plan}
+Meeting minutes and attendence will be taken for all meetings as their related issue in the project's Github. Each member is responsible for verifying their own attendence in the related Github issue.
+\subsection{Lectures}
+  Members are expected to attend every \textbf{lecture} for Software Engineering Students \textbf{in-person} (maximum 3/week).
+\subsection{Tutorials}
+  Members are expected to attend all TA-lead tutorials. For tutorials without a pre-designated lesson plan, the team will decide what to do, such as having a check-in, working session, and etc.
+\subsection{Team Meetings}
+  Weekly team meetings are held every \textbf{Monday 10:30-11:20pm virtually}.
+  All members are expected to attend and it is up to the responsibility of the individual to inform the rest of the team why they cannot make the weekly meeting, and provide their updates asynchronously.
+  Meetings will be structured as follows:
+  \begin{enumerate}
+    \item Each member will give a short recap of the work they've done since the previous meeting
+    \item Each member has the oppurtunity to bring up any blockers, concerns, or issues they are facing
+    \item Group will discuss and determine action items for the project that are to be done by the next meeting, and assign them to member(s).
+    \item Meeting minutes will be taken and recorded as a corresponding Github Issue.
+  \end{enumerate}
+\subsection{Supervisor and Domain Expert Meetings}
+  Weekly superviosr meetings are held every \textbf{Thursday 2:30-3:30pm in-person}, unless otherwise stated.
+  Meeting topics must be prepared beforehand. One team member will be designated as the \textbf{meeting chair} for the meeting.
+  They are responsible for coordinating the meeting between the supervisor/domain expert and the rest of the team, including sending the meeting invite on Microsoft Calendar.
 
-\wss{How often will you meet? where?}
-
-\wss{If the meeting is a physical location (not virtual), out of an abundance of
-caution for safety reasons you shouldn't put the location online}
-
-\wss{How often will you meet with your industry advisor?  when?  where?}
-
-\wss{Will meetings be virtual?  At least some meetings should likely be
-in-person.}
-
-\wss{How will the meetings be structured?  There should be a chair for all meetings.  There should be an agenda for all meetings.}
-
-\section{Team Communication Plan}
-
-\wss{Issues on GitHub should be part of your communication plan.}
-
-\section{Team Member Roles}
-
-\wss{You should identify the types of roles you anticipate, like notetaker,
-leader, meeting chair, reviewer.  Assigning specific people to those roles is
-not necessary at this stage.  In a student team the role of the individuals will
-likely change throughout the year.}
-
-\section{Workflow Plan}
-
+  \section{Team Communication Plan}
 \begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classification, etc.?
-  \item Use of CI/CD
+  \item \textbf{Microsoft Teams:} Main way of communication between team members, both through the chat and online team meetings.
+  \item \textbf{Github:} Tracking of the project process and meeting minutes. Github issues will be created for all meetings (Lecture, Peer Review, Supervisor Meeting, etc) and code tasks.
+  \item \textbf{Email:} Communication with the supervisor and domain expert, will all team members cc-ed.
+  \item \textbf{Notion:} Where rough drafts of documentation will be stored, prior to being transferred into latex format in the Github
 \end{itemize}
+\section{Team Member Roles}
+\begin{itemize}
+  \item \textbf{Devops Lead:} Responsible for maintaining the github respository to properly track the development process. Updating and maintaining the Github Project Board, and ensuring issues are properly assigned the the correct milestone and project.
+  \item \textbf{Team Leader:} Oversees the overall process of the whole project. Ensures both subteams are on track, and coordinates meetings between team members and all stakeholders. This includes scheduling the meeting time on all member's calendars.
+  \item \textbf{Research Lead:} Main lead for the research subteam. Responsible for coordinating and identifying work required for the research paper portion of the project.
+  \item \textbf{Tech Lead:} Main lead for the tool subteam. Responsible for coordinating and identifying work required for the tool creation of the project.
+  \item \textbf{Note Taker:} In charge of creating issues for all meeting types. Takes meeting minutes for the team during meetings.
+  \item \textbf{Meeting Chair:} Chair for meetings involving stakeholders. Resposible for creating the agenda before each meeting, leading the meeting and guiding discussion topics.
+\end{itemize}
+\section{Workflow Plan}
+The main branch of the project should be protected. Meaning it should not be directly committed into, all changes must be merged in via a pull request.
+Following are the general steps of what development should look like:
+\begin{outline}[itemize]
+ \1 Create a new \textbf{Project Work} issue, ensure the following are assigned:
+  \2 Assignees: Who is working on the project, multiple members can be assigned.
+  \2 Label: Assign the appropriate label for the issue:
+    \3 \textit{feature:} Adding new functionality.
+    \3 \textit{refactor:} Updating existing code without altering functionality.
+    \3 \textit{bug:} Error found in code.
+    \3 \textit{documentation:} Updating documents, no code changes.
+  \2 Milestone: Assign to the related project deliverable.
+  \2 Projects: This should be automatically set to DomainX, if the Project Work issue template was used.
+    \3 If not, add the project label to the issue and set the project to DomainX if not done automatically by the workflow action.
+\1 Create a branch from the issue, branch name should include the issue number. 
+  \2 By default, the issue branch should be created from the epic branch, usually related to the milestone.
+  \2 For bug type issues, the branch can be created directly from the main branch.
+  \2 Branch naming format: \textbf{\{Issue \#\}}-name-of-branch
+\1 Commit changes with descriptive names.
+\1 Add tests:
+  \2 \textbf{Unit tests} must be created for feature, refactoring, and bug issues.
+  \2 \textbf{Integration tests} must be created for feature issues, optional for refactoring and bug.
+\1 Create pull request
+  \2 All Github Actions need to partnerships
+  \2 At least one approval from a teammate
+\1 Once the epic branch contains the related issues, the epic branch can be merged into main branch.
+\end{outline}
 
 \section{Project Decomposition and Scheduling}
 
-\begin{itemize}
-  \item How will you be using GitHub projects?
-  \item Include a link to your GitHub project
-\end{itemize}
+The team's Github Project Board, \href{https://github.com/users/thaafei/projects/6}{DomainX}, will be used to organize project-related work (non-meeting issues). 
 
 \wss{How will the project be scheduled?  This is the big picture schedule, not
 details. You will need to reproduce information that is in the course outline
@@ -150,29 +163,28 @@ Topics to discuss include the following:
 
 \section*{Appendix --- Reflection}
 
-\wss{Not required for CAS 741}
-
 \input{../Reflection.tex}
 
 \begin{enumerate}
     \item Why is it important to create a development plan prior to starting the
     project?
-
+    \textbf{Fei:} To consolidate the team’s expectation before the project starts, allowing for everyone to start at the same level of understanding of what the expectations are. This also allows for better accountablility, having a pre-determined development plan beforehand implies that everyone is aware of the expectations before the project even starts.
     \textbf{Awurama:} It ensures that roles, deliverables, and timelines are clearly defined 
     from the beginning. This prevents misunderstandings and helps the team stay aligned 
     on expectations.
 
     \item In your opinion, what are the advantages and disadvantages of using
     CI/CD?
-
+    \textbf{Fei:} As projects get bigger with bigger moving components, having a well documented CI/CD process reduces the paranoria involved when a user releases new features. Thus CI/CD allows for faster iterations of the design/development process, and potentially reducing downtime. Some obvious disadvantage is that due to the faster development cycle, developers can feel more stressed, constantly having to work sprint by sprint. Another disadvantage is the initial setup phase, where moving process and change how people are used to working can take some time, which can slow down the development cycle during the initial stages.
      \textbf{Awurama:} CI/CD improves consistency and reduces integration errors by 
     automating builds and tests. However, it can introduce overhead if the setup is 
     complex or if the team has limited experience maintaining pipelines.  
 
     \item What disagreements did your group have in this deliverable, if any,
     and how did you resolve them?
+    \textbf{Fei:} N/A
 
-     \textbf{Awurama:} Our group did not have major disagreements, but we had 
+    \textbf{Awurama:} Our group did not have major disagreements, but we had 
     different preferences for tool usage and formatting. We resolved these by reviewing 
     the course checklists together and aligning on a standard approach.
     
@@ -188,68 +200,206 @@ Topics to discuss include the following:
 
 \subsection*{External Goals}
 
-\wss{What are your team's external goals for this project? These are not the
-goals related to the functionality or quality fo the project.  These are the
-goals on what the team wishes to achieve with the project.  Potential goals are
-to win a prize at the Capstone EXPO, or to have something to talk about in
-interviews, or to get an A+, etc.}
+Our team expects at a minimum to get a good grade for capstone, aiming for A+. Additionally, to write and publish a research paper with our name on it, and hopefully have it cited within academia.
+And the tool itself will hopefully be used by future students working on other State Of Practice assessments for future domains.
 
 \subsection*{Attendance}
 
 \subsubsection*{Expectations}
 
-\wss{What are your team's expectations regarding meeting attendance (being on
-time, leaving early, missing meetings, etc.)?}
+Our team expects full commitment to all scheduled meetings, with everyone arriving on team and staying for the entire duration. It is up to the responsiblity of the individual to identify if they cannot make a meeting, and inform the team beforehand.
+If it is an important meeting, it is the responsibility of the individual to suggest an alternative time that all members can attend. Missing meetings frequently without prior notice will be addressed by the team and escalated to the supervisor if necessary.
 
 \subsubsection*{Acceptable Excuse}
 
-\wss{What constitutes an acceptable excuse for missing a meeting or a deadline?
-What types of excuses will not be considered acceptable?}
+Acceptable excuses includes unforeseen emergencies, personal illness, family matters, or other significant personal oligations. Unacceptable excuses include vague, or last-minute reasons such as forgetting and conflicting non-essential plans.
 
 \subsubsection*{In Case of Emergency}
 
-\wss{What process will team members follow if they have an emergency and cannot
-attend a team meeting or complete their individual work promised for a team
-deliverable?}
+In the event of an emergency that prevents a team member from attending a meeting or completing
+their assigned work for a deliverable, the team member must inform the team as soon as possible
+through the team's designated communication channel (Microsoft Teams). This will
+allow for adjustments to be made, such as redistributing tasks or rescheduling the meeting if necessary.
+For deliverables, if the emergency impacts a deadline, the team member should notify both the team and the professor promptly to ensure that any necessary
+arrangements are made without affecting the team's progress/grades.
 
 \subsection*{Accountability and Teamwork}
 
 \subsubsection*{Quality} 
+Our team has the following expectations regarding the quality of preparation for meetings and the deliverables brought to the team:
 
-\wss{What are your team's expectations regarding the quality
-of team members' preparation for team meetings and the quality of the
-deliverables that members bring to the team?}
+\begin{itemize}
+  \item \textbf{Meeting Preparation}:
+    \begin{itemize}
+      \item Team members are expected to arrive at meetings fully prepared, having reviewed relevant materials and the agenda for the meeting.
+      \item Each member should come ready to discuss their progress, share insights, and address any challenges they are facing.
+      \item Members should ensure that their updates are clear and concise, allowing meetings to stay focused and productive.
+      \item For online meetings, members should also turn on their camera's to promote team cohesion.
+    \end{itemize}
+
+  \item \textbf{Deliverables Quality}:
+    \begin{itemize}
+      \item All deliverables must meet the team’s agreed-upon standards, demonstrating a high level of accuracy, thoroughness, and attention to detail.
+      \item Each deliverable should be carefully reviewed by each member before submission to avoid any errors or incomplete work.
+      \item Deliverables must align with the project's requirements and deadlines, ensuring they are both functional and meet the expected quality criteria.
+    \end{itemize}
+
+  \item \textbf{Accountability and Feedback}:
+    \begin{itemize}
+        \item Team members are responsible for completing their work to a high standard, communicating any issues early if they need assistance or more time.
+        \item Feedback on deliverables should be welcomed by all members, and revisions should be made within 7 days to improve the overall quality of the team’s output.
+    \end{itemize}
+
+\end{itemize}
 
 \subsubsection*{Attitude}
 
-\wss{What are your team's expectations regarding team members' ideas,
-interactions with the team, cooperation, attitudes, and anything else regarding
-team member contributions?  Do you want to introduce a code of conduct?  Do you
-want a conflict resolution plan?  Can adopt existing codes of conduct.}
+Our team has established the following \textbf{expectations} for team
+members' contributions, interactions, and cooperation to ensure a
+productive and respectful working environment:
+
+\begin{itemize}
+  \item \textbf{Respectful Communication}: All team members are
+    expected to listen to each other’s ideas and provide constructive
+    feedback. Communication should remain respectful, even in cases
+    of disagreement.
+  \item \textbf{Open Collaboration}: Each member is encouraged to
+    share their ideas openly. Everyone should be willing to
+    collaborate and help each other achieve team goals.
+  \item \textbf{Accountability}: Team members are responsible for
+    completing their tasks by the agreed-upon deadlines. If a member
+    is struggling, they are expected to ask for help or communicate early.
+  \item \textbf{Positive Attitude}: Maintaining a positive attitude,
+    especially in challenging moments, is essential for team morale.
+    Each member should encourage and support their teammates.
+  \item \textbf{Commitment to Quality}: Every team member is expected
+    to contribute to the project with their best effort, ensuring
+    that the final product reflects high standards of quality.
+\end{itemize}
+
+\noindent
+We adopt the following \textbf{code of conduct} to guide behavior and
+interaction among team members:
+
+\begin{itemize}
+  \item \textbf{Inclusivity}: Our team values diversity and is
+    committed to creating an inclusive environment where everyone
+    feels welcome and valued, regardless of background, experience, or opinion.
+  \item \textbf{Professionalism}: Members will engage professionally,
+    refraining from any inappropriate or offensive language or
+    behavior. This applies to both in-person and online interactions.
+  \item \textbf{Collaboration and Feedback}: We encourage
+    constructive feedback and expect team members to accept and
+    provide feedback in a way that helps everyone grow. Criticism
+    should be focused on the work, not the individual.
+  \item \textbf{No Tolerance for Harassment}: Harassment of any kind
+    will not be tolerated. Any issues will be reported immediately
+    and addressed in a structured manner.
+\end{itemize}
+
+\noindent
+To manage conflicts or disagreements that may arise during the
+project, we have a \textbf{conflict resolution plan} in place:
+
+\begin{enumerate}
+  \item \textbf{Address the Issue Directly}: If a conflict arises,
+    the involved members should first try to resolve the issue
+    directly through a respectful discussion.
+  \item \textbf{Mediation by a Neutral Member}: If the conflict
+    cannot be resolved, the team will appoint a neutral team member
+    to act as a mediator to facilitate a discussion and find common ground.
+  \item \textbf{Escalation to Instructor/TA}: In the event that the
+    conflict cannot be resolved within the team, the issue will be
+    escalated to the instructor or TA for further guidance and resolution.
+  \item \textbf{Follow-Up and Monitoring}: After resolving the
+    conflict, the team will continue to monitor the situation to
+    ensure that the issue does not resurface and that team dynamics
+    remain positive.
+\end{enumerate}
+
+By adhering to these expectations, the code of conduct, and our
+conflict resolution plan, we aim to maintain a positive,
+collaborative, and respectful team environment.
 
 \subsubsection*{Stay on Track}
 
-\wss{What methods will be used to keep the team on track? How will your team
-ensure that members contribute as expected to the team and that the team
-performs as expected? How will your team reward members who do well and manage
-members whose performance is below expectations?  What are the consequences for
-someone not contributing their fair share?}
 
-\wss{You may wish to use the project management metrics collected for the TA and
-instructor for this.}
+To keep our team on track, we will implement the following methods:
 
-\wss{You can set target metrics for attendance, commits, etc.  What are the
-consequences if someone doesn't hit their targets?  Do they need to bring the
-coffee to the next team meeting?  Does the team need to make an appointment with
-their TA, or the instructor?  Are there incentives for reaching targets early?}
+\begin{enumerate}
+  \item \textbf{Regular Check-ins and Progress Updates}: We will hold
+    \textit{weekly meetings} where each member will
+    provide an update on their tasks and progress and any concerns or
+    troubles they faced. These updates will help us identify issues
+    early and adjust accordingly to stay on schedule.
+  \item \textbf{Performance Metrics}: We will track the following key metrics:
+    \begin{itemize}
+      \item \textit{Attendance} at meetings and check-ins will be
+        documented through Issues on GitHub.
+      \item \textit{Commits to the repository}, ensuring steady contributions.
+      \item \textit{Task completion rates}, ensuring deadlines are met.
+    \end{itemize}
+    \item \textbf{Rewards for High Performers}: To encourage good performance, we will recognize and celebrate team members who meet or exceed expectations (completing more than the agreed upon work for the week, taking charge in organizing, planning, leading discussions in order to further the project process).
+    Informal rewards may include public recognition during meetings and can choose the next activity for the team bonding activity.
+    \item \textbf{Managing Under performance}: If a team member's performance is below expectations (not completing the same amount of work as every other team member for more than 3 weeks):
+    \begin{itemize}
+      \item We will start with a \textit{team conversation} to
+        understand any obstacles and offer support.
+      \item If under performance continues, consequences may include
+        \textit{more tasks} for milestone or in severe cases, a meeting with
+        the TA or instructor.
+    \end{itemize}
+  \item \textbf{Consequences for Not Contributing}: If a team member
+    does not contribute their fair share:
+    \begin{itemize}
+      \item They may be assigned additional \textit{tasks} to balance
+        the workload.
+      \item In serious cases, the issue will be brought up to the TA
+        or instructor.
+    \end{itemize}
+  \item \textbf{Incentives for Meeting Targets Early}: Members who
+    consistently meet or exceed their targets will be rewarded with more
+    desirable tasks as per their wants, such as leadership roles in
+    key project components, helping to build their leadership experience. They
+    will get first pick on tasks for the next team milestone.
+
+\end{enumerate}
 
 \subsubsection*{Team Building}
 
-\wss{How will you build team cohesion (fun time, group rituals, etc.)? }
-
+For team building, we will have a bi-weekly hangout session, where the team can get together to grab food, drinks or other activites. As decided by the team.
 \subsubsection*{Decision Making} 
 
-\wss{How will you make decisions in your group? Consensus?  Vote? How will you
-handle disagreements? }
+In our group, our primary way of making decisions will be through
+consensus. We believe that it is important
+to include everyone in the decision-making process so it can lead to
+better outcomes and strong group work.
+In certain situations where consensus cannot be reached, the group
+will take a vote and each member will have
+equal say and the decision will be based on the majority rule. We
+will make sure all group members had a chance
+to voice their opinions before making the final decision through
+consensus or a vote.
+
+\vspace{10pt}
+\textit{To Handle disagreements: The team will address each
+disagreement directly and respectfully.}
+
+\begin{enumerate}
+  \item Allow all team members to express their concerns and opinions
+    without interruption, ensuring everyone
+    feels heard.
+  \item Keep the focus of the discussion on the topic at hand rather
+    than personal feelings.
+  \item When necessary, we may appoint a neutral party to facilitate
+    the discussion and help guide it to a resolution.
+  \item If a resolution is not found or the disagreement persists
+    after the resolution is found, we will aim to
+    revisit our project goals and objectives to ensure that our
+    decisions align with our common purpose.
+\end{enumerate}
+By following these strategies, we aim to maintain a collaborative and
+positive team environment while effectively
+managing decisions and conflicts.
 
 \end{document}
