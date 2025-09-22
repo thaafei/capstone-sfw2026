@@ -153,8 +153,14 @@ As with most projects, there are certain risks that could affect how successful 
 One of the risks in our project is accessing the correct data through APIs. We may face challenges finding an API that provides the information we need in the way we require. In addition, the API we choose could be unreliable or return data in a format that is hard to process, such as poorly structured JSON or XML. There may also be restrictions, such as requiring special keys or authentication, and many APIs limit how many requests can be made within a given time. Any of these issues could make it difficult to collect enough usable data for our tool.
 \subsubsection*{Integration Risk}\vspace{-0.5em}
 Another risk is that even if each component works individually, combining them into one complete workflow could cause unexpected issues. For instance, data collected from the API might not store properly in the database, or the way the data is structured in the database may not connect smoothly with the visualization tool. These kinds of problems could lead to delays and require extra adjustments during development.
-\subsubsection*{Expert Access \& Library Packages}\vspace{-0.5em}
-Some packages may not be easy to access, as they could be private, outdated, or require a paid license that we do not have. Even if the package is available, the documentation may be very limited, which makes it harder to understand or use correctly. There is also the chance that these packages have complicated dependencies that are difficult to install or set up in the right environment. These challenges could slow down the evaluation process or limit what experts are able to review.
+
+\subsubsection*{Lack of open-source packages or hard to find source codes}\vspace{-0.5em}
+As we are non-Domain Experts for the domain of Neural Network Libraries, it's hard to gauge the available packages accurately. We may come to find that only a small subset of library/packages commonly used
+are open-sourced or have accessible source code. This could hinder data gathering as we work with our supervisor and domain expert to find alternatives or obtain the appropriate licensing.
+
+\subsection*{Difficulty communicating with the Domain Expert}\vspace{-0.5em}
+Due to the busy schedule of both the team and the domain expert, it may be hard to coordinate and plan meetings. This could result in longer than desired breaks between meetings to catch up with the domain expert.
+With the risk of a small misaligned spiraling larger between the meetings.
 
 \subsubsection*{Data Management \& Database Integration}\vspace{-0.5em}
 Databases are widely used, but there are still risks when applying them to our specific case. One challenge is designing a schema that fits the data we collect from APIs, since the structure may not align well with a relational database. There is also the possibility of data integrity issues, such as duplicate or missing values, which could lead to an unreliable dataset. In addition, if the amount of data grows larger than expected, the database may struggle with performance and make queries too slow for our application.
@@ -167,7 +173,7 @@ Another risk is related to how we present the final results. If the data cannot 
 \noindent
 To address these risks, our proof of concept will focus on showing that the main components of the system can work together in practice. \\\\
 or the risk of data access and API limitations, we will build a small script that connects to the intended API endpoint, displays the raw response, and then parses the data into a structured format such as a Python dictionary. The parsed data will then be inserted into a database and used to generate a simple visualization, confirming that the entire pipeline from retrieving external data to processing, storing, and displaying it functions as expected. \\\\
-To address the risk of library packages, we will test the installation of the suggested packages in our local environment to confirm they are accessible and usable. We will also review their documentation in advance, and if issues arise, discuss alternatives with our supervisor. \\\\
+To address the risk of library packages, we will coordinate with the domain expert as early as possible. In additon to scheduling meeting at minimum a week in advance, allowing for adequate time for both the team and the domain expert to determine our availability.\\
 Finally, for the risks around database and graphing, we will demonstrate that parsed data can be stored in a suitable schema, retrieved through simple queries, and displayed in a basic graph using our chosen visualization tool.
 \section{Expected Technology}
 
@@ -196,7 +202,7 @@ On the frontend, we’ll use React with TypeScript. For this, we’ll rely on th
     \\\textbf{Awurama:} It ensures that roles, deliverables, and timelines are clearly defined 
     from the beginning. This prevents misunderstandings and helps the team stay aligned 
     on expectations.
-\textbf{Haniye:} Having a development plan is important because it makes sure we’ve thought through every part of the project. It helps us set deadlines, check if the project is actually doable, and plan for any risks with a response in mind. It also gives us a chance to see which parts should stay, change, or be dropped. It’s also easier to know how to handle client meetings and decide what requests we can accept or which ones we should say no to.
+    \\\textbf{Haniye:} Having a development plan is important because it makes sure we’ve thought through every part of the project. It helps us set deadlines, check if the project is actually doable, and plan for any risks with a response in mind. It also gives us a chance to see which parts should stay, change, or be dropped. It’s also easier to know how to handle client meetings and decide what requests we can accept or which ones we should say no to.
 
     \item In your opinion, what are the advantages and disadvantages of using
     CI/CD? \\
@@ -205,7 +211,7 @@ On the frontend, we’ll use React with TypeScript. For this, we’ll rely on th
      \\\textbf{Awurama:} CI/CD improves consistency and reduces integration errors by 
     automating builds and tests. However, it can introduce overhead if the setup is 
     complex or if the team has limited experience maintaining pipelines.  
-\textbf{Haniye:} The biggest advantage of CI/CD is that it keeps us on track with what the client needs. Since we test and confirm features at each step, we know we’ll have a working project by the end. It also helps us stick to deadlines and avoid last minute rushing. It lets us build the final solution little by little, so we can improve along the way. But on the downside, deadlines can feel tighter and more stressful. Clients might also change their minds after seeing part of the work done, or they might ask for more features. That means we’d have to adjust the old part while still working on the next step, which can put a lot of pressure on the team.
+    \\\textbf{Haniye:} The biggest advantage of CI/CD is that it keeps us on track with what the client needs. Since we test and confirm features at each step, we know we’ll have a working project by the end. It also helps us stick to deadlines and avoid last minute rushing. It lets us build the final solution little by little, so we can improve along the way. But on the downside, deadlines can feel tighter and more stressful. Clients might also change their minds after seeing part of the work done, or they might ask for more features. That means we’d have to adjust the old part while still working on the next step, which can put a lot of pressure on the team.
     \item What disagreements did your group have in this deliverable, if any,
     and how did you resolve them? \\
     \textbf{Ghena:} N/A
@@ -213,17 +219,13 @@ On the frontend, we’ll use React with TypeScript. For this, we’ll rely on th
     \\\textbf{Awurama:} Our group did not have major disagreements, but we had 
     different preferences for tool usage and formatting. We resolved these by reviewing 
     the course checklists together and aligning on a standard approach.
-    \textbf{Haniye:} N/A
+    \\\textbf{Haniye:} N/A
     
 \end{enumerate}
 
 \newpage{}
 
 \section*{Appendix --- Team Charter}
-
-\wss{borrows from
-\href{https://engineering.up.edu/industry_partnerships/files/team-charter.pdf}
-{University of Portland Team Charter}}
 
 \subsection*{External Goals}
 
