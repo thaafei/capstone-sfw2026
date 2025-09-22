@@ -119,9 +119,32 @@ for deadlines.}
 
 \section{Proof of Concept Demonstration Plan}
 
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
+As with most projects, there are certain risks that could affect how successful ours will be. Below are the main risks we have identified and plan to address:
+
+\subsubsection*{Data Access \& API Limitations}\vspace{-0.5em}
+One of the risks in our project is accessing the correct data through APIs. We may face challenges finding an API that provides the information we need in the way we require. In addition, the API we choose could be unreliable or return data in a format that is hard to process, such as poorly structured JSON or XML. There may also be restrictions, such as requiring special keys or authentication, and many APIs limit how many requests can be made within a given time. Any of these issues could make it difficult to collect enough usable data for our tool.
+\subsubsection*{Integration Risk}\vspace{-0.5em}
+Another risk is that even if each component works individually, combining them into one complete workflow could cause unexpected issues. For instance, data collected from the API might not store properly in the database, or the way the data is structured in the database may not connect smoothly with the visualization tool. These kinds of problems could lead to delays and require extra adjustments during development.
+\subsubsection*{Expert Access \& Library Packages}\vspace{-0.5em}
+Some packages may not be easy to access, as they could be private, outdated, or require a paid license that we do not have. Even if the package is available, the documentation may be very limited, which makes it harder to understand or use correctly. There is also the chance that these packages have complicated dependencies that are difficult to install or set up in the right environment. These challenges could slow down the evaluation process or limit what experts are able to review.
+
+\subsubsection*{Data Management \& Database Integration}\vspace{-0.5em}
+Databases are widely used, but there are still risks when applying them to our specific case. One challenge is designing a schema that fits the data we collect from APIs, since the structure may not align well with a relational database. There is also the possibility of data integrity issues, such as duplicate or missing values, which could lead to an unreliable dataset. In addition, if the amount of data grows larger than expected, the database may struggle with performance and make queries too slow for our application.
+
+\subsubsection*{Visualization \& Graphing}\vspace{-0.5em}
+Another risk is related to how we present the final results. If the data cannot be shown in a clear and effective way, the value of the tool is greatly reduced. The graphing library we choose might not fully support our data structure or may not integrate well with the rest of the system. There is also the chance that creating complex graphs with larger datasets could affect performance and make the tool slow to use. Finally, the library we select may not provide the types of charts or visualizations that best highlight the comparisons we need to show.
+
+\subsubsection*{Lack of Prior Research}\vspace{-0.5em}
+Another risk is the limited amount of prior research in this area. Without established methodologies to follow, we could end up spending extra time figuring out approaches from scratch. There is also the chance that we develop a tool or process that turns out to be very similar to something that already exists but is not well documented. This could reduce the originality of our work and make it harder to show the unique value of our project.
+\subsubsection*{Subjectivity of Evaluation Criteria}\vspace{-0.5em}
+Some evaluation criteria may rely too much on human judgment. Qualities such as usability, understandability, or maintainability are difficult to measure in a purely objective way, and different evaluators may score them differently. This could reduce the reproducibility and reliability of our results, especially if the tool is later applied in other contexts or by different teams.
+
+\subsubsection*{Poor Data Quality}\vspace{-0.5em}
+The data from public repositories may be incomplete, inconsistent, or outdated. This could make evaluation harder and lead to unreliable results, reducing the overall usefulness of our tool.
+
+\vspace{1em} %
+\noindent
+To address these risks, our proof of concept will focus on showing that the main components of the system can work together in practice. For the risk of data access and API limitations, we will build a small script that connects to the intended API endpoint, displays the raw response, and then parses the data into a structured format such as a Python dictionary. The parsed data will then be inserted into a database and used to generate a simple visualization, confirming that the entire pipeline from retrieving external data to processing, storing, and displaying it functions as expected. To address the risk of library packages, we will test the installation of the suggested packages in our local environment to confirm they are accessible and usable. We will also review their documentation in advance, and if issues arise, discuss alternatives with our supervisor. For the risks around database and graphing, we will demonstrate that parsed data can be stored in a suitable schema, retrieved through simple queries, and displayed in a basic graph using our chosen visualization tool. To address the risk of limited prior research, we will review existing academic work, tools, and evaluation methods early in the project to ensure our approach is original and provides clear value, while confirming our direction with the supervisors. For the risk of subjectivity in evaluation criteria, we will design clear rubrics for factors such as usability or maintainability and test them by having multiple team members score the same library during the PoC. We will compare results for consistency, keep short notes to explain each score, and confirm our method with the supervisor before applying it more broadly. Finally, to address the risk of poor data quality, we will test the pipeline with a small sample of incomplete or inconsistent data to confirm that the system can detect missing or unreliable fields and either process or flag them instead of failing silently.
 
 \section{Expected Technology}
 
