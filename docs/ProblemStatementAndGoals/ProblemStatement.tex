@@ -37,9 +37,9 @@
 % information.}
 
 \subsection{Problem}
-Open-source neural network (NN) libraries---including training frameworks
+Open-source neural network (NN) libraries, including training frameworks
 (e.g., PyTorch, TensorFlow), inference frameworks (e.g., ONNX Runtime),
-and companion tooling (e.g., data loaders, visualization utilities)---are central
+and companion tooling (e.g., data loaders, visualization utilities), are central
 to academic research and production AI systems. Despite their importance,
 there is currently no transparent, reproducible, and domain-tailored way to
 assess the state of software-development practice across these libraries.
@@ -47,12 +47,19 @@ assess the state of software-development practice across these libraries.
 Existing assessments are typically ad hoc: spreadsheet-based scoring and
 manual pairwise comparisons (e.g., AHP) that are difficult to trace, with
 evidence scattered across READMEs, documentation, tests, and CI
-pipelines. This creates challenges for: (1) users (researchers and engineers)
-who cannot easily compare libraries on qualities such as installability,
-maintainability, understandability, usability, transparency, robustness,
-reliability, and reproducibility; (2) maintainers, who lack cross-project
-feedback on practice gaps; and (3) researchers, who lack a consistent
-methodology and artifact trail suitable for replication or meta-analysis.
+pipelines. This creates challenges for:
+
+\begin{enumerate}
+  \item Users (researchers and engineers), who cannot easily compare libraries 
+  on qualities such as installability, maintainability, understandability, usability, 
+  transparency, robustness, reliability, and reproducibility.
+  
+  \item Maintainers, who lack cross-project feedback on practice gaps and 
+  improvement opportunities.
+  
+  \item Researchers, who lack a consistent methodology and artifact trail 
+  suitable for replication or meta-analysis.
+\end{enumerate}
 
 This project addresses these issues by adapting and applying a rigorous,
 repeatable state-of-practice methodology to the NN-library domain, and
