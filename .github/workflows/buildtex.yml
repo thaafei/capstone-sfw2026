@@ -11,6 +11,9 @@ on:
 permissions:
   contents: write
 
+env:
+ BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 jobs:
   compile-latex:
     runs-on: ubuntu-latest
@@ -50,4 +53,4 @@ jobs:
         with:
           commit_message: 'Add/Update PDF${{ env.PLURAL_S }} for changed LaTeX file${{ env.PLURAL_S }}: ${{ env.CHANGED_FILENAMES }}'
           file_pattern: 'docs/*.pdf'
-          branch: main
+          branch: ${{env.BRANCH_NAME}}
