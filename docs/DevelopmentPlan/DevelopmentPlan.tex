@@ -83,6 +83,21 @@ Meeting minutes and attendence will be taken for all meetings as their related i
   \item \textbf{Note Taker:} In charge of creating issues for all meeting types. Takes meeting minutes for the team during meetings.
   \item \textbf{Meeting Chair:} Chair for meetings involving stakeholders. Resposible for creating the agenda before each meeting, leading the meeting and guiding discussion topics.
 \end{itemize}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Role} & \textbf{Assigned To} \\
+\hline
+DevOps Lead & Fei \\
+Team Leader & Ghena \\
+Research Lead & Awurama \\
+Tech Lead & Haniye \\
+Note Taker & Ghena and Fei \textit{(rotating every few weeks with Haniye and Awurama)} \\
+Meeting Chair & Fei and Ghena \textit{(may rotate to Haniye or Awurama if needed)} \\
+\hline
+\end{tabular}
+\end{center}
+
 \section{Workflow Plan}
 The main branch of the project should be protected. Meaning it should not be directly committed into, all changes must be merged in via a pull request.
 Following are the general steps of what development should look like:
@@ -105,6 +120,7 @@ Following are the general steps of what development should look like:
 \1 Add tests:
   \2 \textbf{Unit tests} must be created for feature, refactoring, and bug issues.
   \2 \textbf{Integration tests} must be created for feature issues, optional for refactoring and bug.
+\2 A \textbf{coverage tool}, such as \texttt{coverage.py}, will be used to track which parts of the code are tested and to identify any untested code paths.
 \1 Create pull request
   \2 All Github Actions need to pass
   \2 At least one approval from a teammate
@@ -172,12 +188,12 @@ Another risk is related to how we present the final results. If the data cannot 
 \vspace{1em} %
 \noindent
 To address these risks, our proof of concept will focus on showing that the main components of the system can work together in practice. \\\\
-or the risk of data access and API limitations, we will build a small script that connects to the intended API endpoint, displays the raw response, and then parses the data into a structured format such as a Python dictionary. The parsed data will then be inserted into a database and used to generate a simple visualization, confirming that the entire pipeline from retrieving external data to processing, storing, and displaying it functions as expected. \\\\
+For the risk of data access and API limitations, we will build a small script that connects to the intended API endpoint, displays the raw response, and then parses the data into a structured format such as a Python dictionary. The parsed data will then be inserted into a database and used to generate a simple visualization, confirming that the entire pipeline from retrieving external data to processing, storing, and displaying it functions as expected. \\\\
 To address the risk of library packages, we will coordinate with the domain expert as early as possible. In additon to scheduling meeting at minimum a week in advance, allowing for adequate time for both the team and the domain expert to determine our availability.\\
-Finally, for the risks around database and graphing, we will demonstrate that parsed data can be stored in a suitable schema, retrieved through simple queries, and displayed in a basic graph using our chosen visualization tool.
+Finally, for the risks around database and graphing, we will demonstrate that parsed data can be stored in a suitable schema, retrieved through simple queries, and displayed in a basic graph using our chosen visualization tool. If we find during the PoC that the relational database struggles with large datasets or that the schema design limits flexibility, we will consider exploring a NoSQL option such as MongoDB as a backup to reduce these risks.
 \section{Expected Technology}
 
-Our project will be a web-based application with a React frontend to handle interaction and show graphs, a Flask(Python backend) to process data and manage requests, and a MySQL database to store the results. We may also deploy it on a cloud service to make it easier for collaboration.\\ \\
+Our project will be a web-based application with a React frontend to handle interaction and show graphs, a Flask(Python backend) to process data and manage requests, and a MySQL database to store the results. We plan to explore deploying the application on a cloud platform such as AWS or Google Cloud later in the project to make collaboration and access easier for the team and supervisors.\\ \\
 We plan to use Requests for making API calls and Pandas to organize and clean the data before saving it on the backend. NumPy might also be used for simple calculations.On the frontend, we expect to use a library like Chart.js to build the graphs and comparisons.\\ \\
 We will use Git and GitHub for version control. Our workflow will be based on creating GitHub issues for tasks, linking the related work to those issues, and developing each feature or fix on a separate branch. Once the work is ready, it will be merged into the main codebase through a pull request. We will also use GitHub Projects to track tasks and progress.\\ \\
 For testing, we plan to start with simple manual tests to confirm that each part of the system works as expected and later explore automated testing as the project grows.\\ \\
