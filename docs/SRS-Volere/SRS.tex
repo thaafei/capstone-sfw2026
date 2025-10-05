@@ -17,7 +17,7 @@
     filecolor=magenta,      % color of file links
     urlcolor=cyan           % color of external links
 }
-
+\usepackage{enumitem}
 \newcommand{\lips}{\textit{Insert your content here.}}
 
 \input{../Comments}
@@ -170,16 +170,63 @@ involved in the Project}
 
 \section{Operational and Environmental Requirements}
 \subsection{Expected Physical Environment}
-\lips
-\subsection{Wider Environment Requirements}
-\lips
-\subsection{Requirements for Interfacing with Adjacent Systems}
-\lips
-\subsection{Productization Requirements}
-\lips
-\subsection{Release Requirements}
-\lips
 
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item The tool is a web-based application that will be used mainly by our team, supervisors, and potentially other researchers or domain experts.
+\item It is expected to run on a standard desktop or laptop computer with a reliable internet connection, in a normal indoor setting such as an office, lab, or home workspace.
+\item No specialized hardware or rugged equipment is required. A keyboard, mouse, or touchpad, and a modern web browser (e.g., Chrome, Firefox, Edge) are sufficient.
+\end{enumerate}
+
+\subsection{Wider Environment Requirements}
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item The application depends on a stable internet connection for retrieving data from public repositories (e.g., GitHub) and for loading the hosted web interface if deployed to the cloud.
+\item It does not rely on any dedicated on-premises hardware.
+\item The tool should work on the latest two to three major versions of common browsers such as Chrome, Firefox, and Edge. No special environmental conditions (lighting, noise, temperature) are expected to affect usability.
+\end{enumerate}
+\subsection{Requirements for Interfacing with Adjacent Systems}
+The tool must be able to communicate with a few external systems and internal components to collect, store, and visualize data.
+
+\begin{enumerate}[label=\thesubsection-\arabic*]
+
+  \item Public Repository APIs (e.g., GitHub API): The tool must communicate with external repository services to automatically collect information about the selected neural-network libraries. For example, it needs to retrieve details such as how often the code is updated, the number of open or closed issues and pull requests, and the main programming languages used. This data will help evaluate qualities like maintainability, transparency, and overall project activity. The information must be received in a standard machine-readable format (e.g., JSON over HTTPS) whenever a user triggers a scan or during scheduled updates.
+
+  \item Database (MySQL): The backend must store scores, rankings, and evidence collected from repositories.
+
+  \item Visualization Component: The frontend must render charts and comparisons (e.g., using Chart.js) from the data served by the backend.
+
+  \item All connections must use standard web technologies (HTTP/HTTPS, JSON) and require only basic authentication methods such as API tokens for secure access to external repository APIs.
+
+\end{enumerate}
+
+\subsection{Productization Requirements}
+The tool will be delivered as an open-source web application hosted in the team’s public GitHub repository.
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item A clear README file must explain how to set up the backend (Python + Flask) and the frontend (React) using common package managers such as pip and npm.
+\item For developers running the tool locally, the repository must include a requirements.txt file for Python packages and a database schema file so they can create the required tables.
+\item When deployed on a cloud platform such as AWS or Google Cloud, users must be able to access the tool directly through a web URL without installing anything.
+\item The application must also provide options to export results in formats such as CSV for data tables and PNG/PDF for visualizations.
+\end{enumerate}
+\subsection{Release Requirements}
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item The project should follow the official capstone timeline: an internal test release before the Proof-of-Concept (PoC) demonstration in \textbf{November}, a Revision~0 Demonstration in \textbf{Weeks~18--19}, and the Final Release (Revision~1) at \textbf{Week~26} along with the research paper and final dataset.
+\item The Final Release (Revision 1) must incorporate feedback collected during the Revision 0 Demonstration, including usability improvements, bug fixes, and supervisor/TA-requested changes.
+\item All releases must be published as GitHub Releases and include a short changelog describing the changes in each version.
+
+  \item Releases must use a clear, descriptive version tag such as the \texttt{MAJOR.MINOR.PATCH} format (or an equally descriptive format):
+    \begin{itemize}
+        \item \textbf{MAJOR:} Increased only when a change breaks backward compatibility (e.g., a database schema change that makes older data unusable).
+        \item \textbf{MINOR:} Increased when adding new features that remain fully compatible with previous versions.
+        \item \textbf{PATCH:} Increased for bug fixes or small improvements that do not affect existing features.
+    \end{itemize}
+
+  Example version tags:
+    \begin{itemize}
+        \item \texttt{v0.1.0} → first working prototype for the Revision~0 Demonstration
+        \item \texttt{v0.2.0} → adds a new feature such as exporting the table to a CSV file
+        \item \texttt{v0.2.1} → fixes a small bug in the export feature (patch)
+        \item \texttt{v1.0.0} → stable Final Release for Revision~1
+    \end{itemize}
+\end{enumerate}
 \section{Maintainability and Support Requirements}
 \subsection{Maintenance Requirements}
 \lips
