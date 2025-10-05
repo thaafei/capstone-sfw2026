@@ -229,12 +229,33 @@ The tool will be delivered as an open-source web application hosted in the team�
 \end{enumerate}
 \section{Maintainability and Support Requirements}
 \subsection{Maintenance Requirements}
-\lips
+The tool is an open-source web application that will need occasional updates to fix bugs and to adapt if external APIs change.
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item All code must follow the project’s coding standards (PEP 8 for the Python backend; React + TypeScript style guide for the frontend).
+\item Automated tools (such as Black, Flake8, and Pylint) must remain part of the workflow so new contributors can easily read and update the code.
+\item Unit tests must be written for all new features and bug fixes. Developers should also run basic integration tests to make sure the full pipeline (API → database → visualization) still works after changes.
+\item Test coverage must be tracked and reported to ensure that critical parts of the backend are being tested.
+\item All Python and frontend packages must be listed in requirements.txt and package.json, with pinned versions so the same build can be reproduced.
+\item The dependency list must be reviewed and updated at least once each semester to keep it current and secure.
+\item Any changes to the dataset made through the interactive data table must be logged with a timestamp and the username so there is always a clear audit trail.
+\item Most routine fixes, such as small UI tweaks or bug fixes, should be finished within a couple of days. Larger updates, such as adding a new metric or a new visualization, are expected to take about one to two weeks.
+\end{enumerate}
 \subsection{Supportability Requirements}
-\lips
+The tool is intended to be mostly self-supporting since it will be used primarily by our team, the supervisors, and potentially other researchers in the future.
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item The README file must include step-by-step instructions so that a new developer can set up the backend (Flask + MySQL) and frontend (React) locally, or deploy it to a cloud platform (such as AWS or Google Cloud), in a consistent and repeatable way. A new developer should be able to follow these instructions and have the application running within about two hours.
+\item The repository must always include an up-to-date guide for installation, setup, the data-collection workflow, using the interactive data table, visualization, and exporting results.
+\item The backend must include logging to record API failures (such as rate-limit errors or unexpected data formats), database issues, and runtime exceptions so that maintainers can troubleshoot problems quickly.
+\item Users should use the GitHub Issues page to report bugs or ask questions. No printed manual will be needed; all documentation will remain online in the repository.
+\end{enumerate}
 \subsection{Adaptability Requirements}
-\lips
-
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item The tool must remain flexible so it can grow with the project and adapt to future needs.
+\item The MySQL database must be set up so that if a new quality criterion needs to be tracked, it can be added by creating a new column, updating the data-collection script, and adjusting the UI without having to redesign the whole system.
+\item The data-collection module must allow new data sources (for example, another code-hosting site or a different metrics service) to be added with minimal extra code and without disrupting the existing GitHub integration.
+\item The tool must be able to run on standard operating systems(Windows, macOS, and Linux) by using widely supported technologies (such as Python, Node.js, and MySQL), and by avoiding any system-specific code.
+\item The system must be designed in a modular way so that parts like data collection, storage, and visualization remain separate. This makes it easier to add new features or update one part without affecting the rest of the tool.
+\end{enumerate}
 \section{Security Requirements}
 \subsection{Access Requirements}
 \lips
