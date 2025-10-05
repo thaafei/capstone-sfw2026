@@ -258,15 +258,58 @@ The tool is intended to be mostly self-supporting since it will be used primaril
 \end{enumerate}
 \section{Security Requirements}
 \subsection{Access Requirements}
-\lips
+
+
+\begin{enumerate}[label=\thesubsection-\arabic*]
+
+  \item The tool must be open for anyone to view results, but only approved team members or domain experts may modify the data.
+
+  \item The system must support two user roles:
+    \begin{itemize}
+        \item \textbf{Viewer:} Can view all interactive data tables that list the libraries, their scores, and rankings, along with all visualizations.
+        \item \textbf{Contributor:} Has all Viewer permissions plus the ability to edit data in the interactive table.
+    \end{itemize}
+
+  \item Editing or any other administrative actions must be available only to logged-in users with the \textbf{Contributor} role.
+
+  \item User roles (Viewer / Contributor) must be assigned and updated correctly at signup or by an admin so that permissions always reflect the intended access level.
+
+  \item The system must display clear error messages for login failures (e.g., invalid credentials, network errors) and provide a secure way for users to recover or reset their account credentials.
+
+  \item API credentials such as keys or tokens for external services (e.g., repository APIs) must be stored securely outside the source code (e.g., in environment variables) and must never be exposed in the frontend or version control.
+
+\end{enumerate}
+
 \subsection{Integrity Requirements}
-\lips
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item To ensure the accuracy and reliability of the collected data, all manually entered information into the interactive table must be checked before it is saved. For example, numbers must fall within valid ranges, and text must be cleaned so that it cannot be treated as code or scripts.
+\item The database must include safeguards so that if two users edit the same record at the same time, no changes are lost or overwritten.
+\item The system must detect simultaneous edits and either block one save or notify the users to resolve the conflict.
+\item When automated data updates conflict with a user’s manual edits (if any are updated automatically), the system must warn the user or request confirmation before replacing existing data.
+\item The system must also store the raw evidence, calculated scores, and final rankings in separate fields so that the original data and results cannot be accidentally modified.
+\item Publishing visualizations must not occur at the same time as data edits or automated refreshes. The system must either block publishing or enforce downtime until updates are complete.
+\item If an export (e.g., CSV, PNG) fails or produces a corrupted file, the tool must alert the user and allow them to retry the download.
+\end{enumerate}
 \subsection{Privacy Requirements}
-\lips
+The tool mainly works with open-source repository data, so there is very little personal data involved.
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item If basic user details are collected for login (such as name or email), they must be kept private and stored securely using widely accepted security standards.
+\item User passwords must be stored only in hashed form using a secure one-way hashing algorithm so that the actual password is never saved.
+\end{enumerate}
+No other personal or confidential information will be collected or stored.
 \subsection{Audit Requirements}
-\lips
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item The system must keep a record of all important activity for accountability and troubleshooting. Every time a Contributor adds, edits, or deletes data in the interactive table, the system must save a log entry showing the user’s ID, the time of the action, the type of action, and the fields that were changed.
+\item The system must also log key events such as login attempts (successful and failed), scheduled API-collection runs, and major errors so that they can be reviewed later.
+\item Access to these logs must be restricted to authorized project admins only.
+\end{enumerate}
 \subsection{Immunity Requirements}
-\lips
+\begin{enumerate}[label=\thesubsection-\arabic*]
+\item The backend must prevent SQL-injection attacks by using the safe query methods provided by the database library instead of building raw SQL strings with user input.
+\item The frontend must display any text entered by users as plain text only and never allow it to run as code. For example, React’s built-in escaping already takes care of this.
+\item The automated data-collection scripts must respect the rate limits of external repository APIs (e.g., GitHub). If a limit is reached, the scripts should pause and retry later rather than keep sending requests and risk overloading the service.
+\item All Python and React libraries must be kept up to date, so the project does not rely on outdated packages with known security issues. There should also be a tool in place to regularly check for known vulnerabilities in these libraries, such as GitHub Dependabot.
+\end{enumerate}
 
 \section{Cultural Requirements}
 \subsection{Cultural Requirements}
