@@ -113,8 +113,25 @@ If an export (CSV, PNG, etc.) fails or the file is corrupted, the tool must aler
 
 \section{Roadmap}
 
-\wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+\section{Roadmap}
+
+For the Capstone timeline, we will focus on the safety features that are needed to make the tool work properly:
+
+\begin{itemize}
+    \item Login with account recovery so that users can sign in securely.
+    \item Correct role assignment (Viewer / Contributor) so only authorized users can edit data.
+    \item A basic warning when automated updates might overwrite manual edits.
+    \item Reliable downloads for tables and charts, with a simple error message if something goes wrong.
+\end{itemize}
+
+Some features will be added later as future improvements:
+
+\begin{itemize}
+    \item A better system to prevent publishing visualizations while edits are happening (for example, temporary downtime or blocking the publish button).
+    \item A stronger solution for conflicting edits, such as proper locking or live conflict warnings.
+    \item More advanced error handling for things like failed downloads or export retries.
+\end{itemize}
+
 
 \newpage{}
 
