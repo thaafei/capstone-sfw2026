@@ -190,131 +190,120 @@ this potential failure mode.}
       \item Automated data input failure
   \end{enumerate} & 
   \begin{enumerate}[leftmargin=*]
-      \item Audio-based analysis is incomplete or fails, impacting the overall data analysis outcome.
-      \item Missed events or actions during analysis.
+      \item Refer to H2-1.a, H2-1.b.
+      \item Refer to H2-1.a, H2-1.b.
+      \item Refer to H2-1.a, H2-1.b 
+      \begin{enumerate}
+        \item[a)] Loss of user trust towards the tool
+    \end{enumerate}
+      \item Refer to H2-1.a, H2-1.b,
+      \begin{enumerate}
+        \item[a)] User has to manually input data, reducing usefulness of the tool
+    \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item File corruption, incorrect file format, or lack of access permissions.
-       \item Inadequate training on diverse audio samples or background noise interference.
+       \item Refer to H1-1.a
+       \begin{enumerate}
+            \item[a)] Network issues
+            \item[b)] Save conflict occuring when multiple users are trying to edit the same datapoint
+        \end{enumerate}
+       \item Refer to H1-1.a, H3-1.a, H3-1.b
+       \item 
+       \begin{enumerate}
+            \item[a)] Lack of user training on how automated datapoints work
+            \item[b)] Inadequate user feedback user during system processes
+        \end{enumerate}
+       \item Refer to H3-1.a.
+       \begin{enumerate}
+            \item[a)] Integration issues with external systems
+        \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item Validate audio files before analysis, provide user guidelines for supported formats, and log access errors.
-       \item Use noise reduction preprocessing, retrain the model with varied audio data.
+    \item Refer to H1-1.a, H1-1.b.
+    \begin{enumerate}
+        \item[a)] Explicit visual block on datapoints that other users are editing
+    \end{enumerate}
+    \item Refer to H1-1.a, H1-1.b, H3-1.a.
+    \item Refer to H1-1.a, H1-1.b
+    \begin{enumerate}
+        \item[a)] Provide explict user controls for manual inputs
+        \item[b)] Provide training on key features to user
+        \item[c)] Implement confirmation system for automated sections
+    \end{enumerate}
+    \item Refer to H1-1.a, H1-1.b, H3-1.a.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item FR-VADA1
-       \item FR-VADA3
+    \item TODO
+    \item TODO
+    \item TODO
+    \item TODO
+
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item HA-AAM1
-       \item HA-AAM2
+    \item H3-1
+    \item H3-2
+    \item H3-3
+    \item H3-4
   \end{enumerate} \\
   \hline
-  Video Recording & 
+ Data Visualization & 
   \begin{enumerate}[leftmargin=*]
-      \item Video recording is blurry
-      \item User is not fully visible in the video
+      \item Visualization method does not match datapoints
   \end{enumerate} & 
   \begin{enumerate}[leftmargin=*]
-      \item The video analysis model may miss critical details, leading to inaccurate analysis.
-      \item System may be unable to track bias detection accurately if the user is not fully in the camera frame.
+      \item Refer to H2-1.b, H3-3.a.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item Poor lighting, low-resolution recording settings, or motion blur, camera lens is dirty or obstructed.
-       \item User is unaware of proper framing or positioning guidelines.
+    \item Refer to H1-1.a
+    \begin{enumerate}
+        \item[a)] External system used for visualization not properly configured/working
+        \item[b)] Another user is editing the datapoints while current user is trying to visualize
+    \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item Prompt the user to clean their camera lens and verify camera settings and apply post-processing filters.
-       \item Provide a camera testing checkpoint to let the user see if they are in frame before starting the assessment
+    \item Refer to H1-1.A
+    \begin{enumerate}
+        \item[a)] Require user to lock the domain when editing, with visualization functionality being available only on un-locked domains.
+    \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item FR-SS3, FR-SS4
+       \item TODO
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item HA-VR1, HA-VR2
+       \item H4-1
   \end{enumerate} \\
   \hline
-  Audio Recording  & 
+ Download Data  & 
   \begin{enumerate}[leftmargin=*]
-      \item Audio recording has background noise interference
+    \item User unable to download the data/visuals of a domain
+    \item Downloaded data/visuals of a domain are corrupted and unusable
   \end{enumerate} & 
   \begin{enumerate}[leftmargin=*]
-      \item Poor quality audio makes it difficult for the model to detect speech or audio events accurately.
+      \item Refer to H2-1.b.
+      \item Refer to H2-1.b, H3-3.a.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item Faulty recording equipment, interference, or poor recording environment.
+    \item Refer to H1-1.a, H2.1.a, H3-1.a, H4-1.a.
+    \item Refer to H1-1.a, H3-1.a, H4-1.a.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item Filter noise using software tools, and provide best practices for recording.
+       \item Refer tp H1-1.a, H1-1.b.
+       \begin{enumerate}
+        \item[a)] Provide multiple methods for downloading or sharing
+    \end{enumerate}
+       \item Refer tp H1-1.a, H1-1.b.
+       \begin{enumerate}
+        \item[a)] Implement proper error handling in code to catch exceptions
+    \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item FR-SS2
+       \item TODO
+       \item TODO
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item HA-AR1
+       \item H5-1
+       \item H5-2
   \end{enumerate} \\
-  \hline
-  Backend Server & 
-  \begin{enumerate}[leftmargin=*]
-      \item Data loss during processing
-      \item Server crashes due to user overload
-  \end{enumerate} & 
-  \begin{enumerate}[leftmargin=*]
-      \item Partial or complete loss of data during video/audio processing could result in incomplete analysis
-      \item Users may be unable to complete the assessment, or the server crashing could destroy user data.
-  \end{enumerate} &
-  \begin{enumerate}[leftmargin=*]
-       \item Server overload or incorrect handling of data transfer.
-       \item High traffic overload, memory leaks, or unhandled exceptions.
-  \end{enumerate} &
-  \begin{enumerate}[leftmargin=*]
-       \item Use robust data storage solutions such as a temporary cache before saving or transaction-based logging.
-       \item Monitor server health and enable automatic failover mechanisms.
-  \end{enumerate} &
-  \begin{enumerate}[leftmargin=*]
-       \item FR-DSC1, FR-DSC2
-       \item PR-CR1, PR-CR2, PR-CR3
-  \end{enumerate} &
-  \begin{enumerate}[leftmargin=*]
-       \item HA-BS1
-       \item HA-BS2
-  \end{enumerate} \\
-  \hline
-  User-Facing Application & 
-  \begin{enumerate}[leftmargin=*]
-      \item Error in navigation structure/flow
-      \item Button components aren't clickable across all devices
-  \end{enumerate} & 
-  \begin{minipage}[t]{\linewidth}
-  \begin{enumerate}[leftmargin=*]
-      \item Users cannot move through the application smoothly, leading to frustration and a poor user experience.
-      \item Users cannot complete quizzes or interact with the UI, preventing task completion and blocking progression.
-  \end{enumerate}
-  \end{minipage} &
-  \begin{minipage}[t]{\linewidth}
-  \begin{enumerate}[leftmargin=*]
-       \item Incorrect or missing routing logic, broken links, or unhandled navigation events.
-       \item UI components not rendering correctly due to screen size, device-specific compatibility issues, or missing accessibility focus states.
-  \end{enumerate}
-  \end{minipage} &
-  \begin{minipage}[t]{\linewidth}
-  \begin{enumerate}[leftmargin=*]
-       \item Conduct usability testing and implement fallback paths or error boundaries for broken flows.
-       \item Validate responsiveness using tools like Chrome DevTools, test across common screen sizes and OS/browser combinations, and implement accessibility-friendly controls.
-  \end{enumerate}
-  \end{minipage} &
-  \begin{minipage}[t]{\linewidth}
-  \begin{enumerate}[leftmargin=*]
-       \item LF-AR2, LF-AR5
-       \item UH-AR1, LF-AR4, MS-AR1
-  \end{enumerate}
-  \end{minipage} &
-  \begin{minipage}[t]{\linewidth}
-  \begin{enumerate}[leftmargin=*]
-       \item HA-UI1
-       \item HA-UI2
-  \end{enumerate}
-  \end{minipage} \\
   \hline
   \end{longtable}
 \end{landscape}
