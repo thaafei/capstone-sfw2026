@@ -36,7 +36,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
+2025-10-06 & Ghena Hatoum & Added the components\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
@@ -64,11 +64,21 @@ hazards.}
 
 \section{System Boundaries and Components}
 
-\wss{Dividing the system into components will help you brainstorm the hazards.
-You shouldn't do a full design of the components, just get a feel for the major
-ones.  For projects that involve hardware, the components will typically include
-each individual piece of hardware.  If your software will have a database, or an
-important library, these are also potential components.}
+The following explin the System Components:
+\begin{itemize}
+    \item Admin UI: Handles invitation, domain creation, and user management views.
+    \item Researcher UI: Handles data input, updte, and visualization controls.
+    \item User Managment: Handles logic for invite/signup, login, roles, and password reset.
+    \item Domain Data Service: Handles read and write operations for Domains, Libraries, and Metrics.
+    \item AHP Ranking: Handles the Analytical Hierarchy Process (AHP) calculation.
+    \item Visualization: Handles graph generation.
+    \item Export: Handles data downloads (JSON/Excel)
+    \item Security: Handles Access Control, validation, encrypt password, and manages audit trails.
+    \item Persistence: Handles storage and retrieval for all data entities.
+    \item System DB: The underlying data store.
+\end{itemize}
+
+
 
 \section{Critical Assumptions}
 
