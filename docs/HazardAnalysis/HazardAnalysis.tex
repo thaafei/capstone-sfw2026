@@ -3,6 +3,22 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{comment}
+\usepackage{enumerate}
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[shortlabels]{enumitem}
+\usepackage{float}
+\usepackage{array}
+\usepackage{pdflscape}
+\usepackage{tabularx,ragged2e,booktabs,caption}
+\usepackage{longtable}
+\usepackage{ulem}
+\usepackage{ltablex}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -26,8 +42,6 @@
 \maketitle
 \thispagestyle{empty}
 
-~\newpage
-
 \pagenumbering{roman}
 
 \begin{table}[hp]
@@ -36,7 +50,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
+October 6, 2025 & Fei Xie & Added FMEA table\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
@@ -49,7 +63,6 @@ Date2 & Name(s) & Description of changes\\
 
 ~\newpage
 
-\pagenumbering{arabic}
 
 \wss{You are free to modify this template.}
 
@@ -79,14 +92,234 @@ this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here. This is the most important part of this document.}
-\wss{The safety requirements in the table do not have to have the prefix SR.
-The most important thing is to show traceability to your SRS. You might trace to
-requirements you have already written, or you might need to add new
-requirements.}
-\wss{If no safety requirement can be devised, other mitigation strategies can be
-entered in the table, including strategies involving providing additional
-documentation, and/or test cases.}
+\newgeometry{margin=0.5in}
+\begin{landscape}
+  \begin{longtable}{|p{3cm}|p{3cm}|p{4cm}|p{4cm}|p{3cm}|p{2cm}|p{3cm}|}
+  \caption{Failure Mode and Effect Analysis} \label{FMEA}\\
+  \hline
+   Component & Failure Modes & Effects of Failure & Causes of Failure & Recommended Action & SR & Ref.  \\ 
+  \hline
+  \endfirsthead
+  \multicolumn{7}{r}{Table \thetable\ Continued from previous page}\\ 
+  \hline
+   Design Function & Failure Modes & Effects of Failure & Causes of Failure & Recommended Action & SR & Ref.  \\ 
+  \hline
+  \endhead
+  \multicolumn{7}{r}{{Continued on next page}}\\
+  \endfoot
+  \multicolumn{7}{r}{{Concluded}}\\
+  \endlastfoot
+  \multirow{7}{*}{User account} & 
+  \begin{enumerate}[leftmargin=*]
+    \item User can't login/signup.
+    \item Cannot set correct role for user.
+    \item User account information is leaked.
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+    \item User cannot access their work.
+    \item Refer to H1-1.
+    \item User credentials are exposed, exposing them to cyber attack or data scrapers.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item
+    \begin{enumerate}
+        \item[a)] Integration with database failure.
+        \item[b)] User entered incorrect credentials.
+    \end{enumerate}
+    \item Refer to H1-1.a.
+    \item Weak access controls, lack of encryption, or insecure credentials.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item 
+    \begin{enumerate}
+        \item[a)] Implement automated daily system integration testing.
+        \item[b)] Provide user feedback during user actions.
+    \end{enumerate}
+    \item Refer to H1-1.a, H1-1.b.
+    \item Implement Multi-factor authentication and follow industry best practices for security.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item TODO
+    \item TODO
+    \item TODO
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item H1-1
+    \item H1-2
+    \item H1-3
+  \end{enumerate} \\
+  \hline
+    Domain Creation & 
+  \begin{enumerate}[leftmargin=*]
+      \item Cannot create new domains
+      \item Cannot edit existing domain
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+    \item
+    \begin{enumerate}
+        \item[a)] User cannot continue their work on the domain
+        \item[b)] User will be delayed when writing their anaylsis
+    \end{enumerate}
+    \item Refer to H2-1.a, H2-1.b.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item  Refer to H1-1.a
+    \begin{enumerate}
+        \item[a)] User has incorrect role credentials
+    \end{enumerate}
+    \item Refer to H1-1.a, H2-1.a.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Refer to H1-1.a, H1-1.b.
+       \item  Refer to H1-1.a, H1-1.b.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item TODO
+       \item TODO
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item H2-1
+       \item H2-2
+  \end{enumerate} \\
+  \hline
+  Adding Data to Domain & 
+  \begin{enumerate}[leftmargin=*]
+      \item User cannot add new datapoint
+      \item User cannot update existing datapoint
+      \item Automated process overwriting user data unknowningly
+      \item Automated data input failure
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+      \item Audio-based analysis is incomplete or fails, impacting the overall data analysis outcome.
+      \item Missed events or actions during analysis.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item File corruption, incorrect file format, or lack of access permissions.
+       \item Inadequate training on diverse audio samples or background noise interference.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Validate audio files before analysis, provide user guidelines for supported formats, and log access errors.
+       \item Use noise reduction preprocessing, retrain the model with varied audio data.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item FR-VADA1
+       \item FR-VADA3
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item HA-AAM1
+       \item HA-AAM2
+  \end{enumerate} \\
+  \hline
+  Video Recording & 
+  \begin{enumerate}[leftmargin=*]
+      \item Video recording is blurry
+      \item User is not fully visible in the video
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+      \item The video analysis model may miss critical details, leading to inaccurate analysis.
+      \item System may be unable to track bias detection accurately if the user is not fully in the camera frame.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Poor lighting, low-resolution recording settings, or motion blur, camera lens is dirty or obstructed.
+       \item User is unaware of proper framing or positioning guidelines.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Prompt the user to clean their camera lens and verify camera settings and apply post-processing filters.
+       \item Provide a camera testing checkpoint to let the user see if they are in frame before starting the assessment
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item FR-SS3, FR-SS4
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item HA-VR1, HA-VR2
+  \end{enumerate} \\
+  \hline
+  Audio Recording  & 
+  \begin{enumerate}[leftmargin=*]
+      \item Audio recording has background noise interference
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+      \item Poor quality audio makes it difficult for the model to detect speech or audio events accurately.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Faulty recording equipment, interference, or poor recording environment.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Filter noise using software tools, and provide best practices for recording.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item FR-SS2
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item HA-AR1
+  \end{enumerate} \\
+  \hline
+  Backend Server & 
+  \begin{enumerate}[leftmargin=*]
+      \item Data loss during processing
+      \item Server crashes due to user overload
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+      \item Partial or complete loss of data during video/audio processing could result in incomplete analysis
+      \item Users may be unable to complete the assessment, or the server crashing could destroy user data.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Server overload or incorrect handling of data transfer.
+       \item High traffic overload, memory leaks, or unhandled exceptions.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Use robust data storage solutions such as a temporary cache before saving or transaction-based logging.
+       \item Monitor server health and enable automatic failover mechanisms.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item FR-DSC1, FR-DSC2
+       \item PR-CR1, PR-CR2, PR-CR3
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item HA-BS1
+       \item HA-BS2
+  \end{enumerate} \\
+  \hline
+  User-Facing Application & 
+  \begin{enumerate}[leftmargin=*]
+      \item Error in navigation structure/flow
+      \item Button components aren't clickable across all devices
+  \end{enumerate} & 
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[leftmargin=*]
+      \item Users cannot move through the application smoothly, leading to frustration and a poor user experience.
+      \item Users cannot complete quizzes or interact with the UI, preventing task completion and blocking progression.
+  \end{enumerate}
+  \end{minipage} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[leftmargin=*]
+       \item Incorrect or missing routing logic, broken links, or unhandled navigation events.
+       \item UI components not rendering correctly due to screen size, device-specific compatibility issues, or missing accessibility focus states.
+  \end{enumerate}
+  \end{minipage} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[leftmargin=*]
+       \item Conduct usability testing and implement fallback paths or error boundaries for broken flows.
+       \item Validate responsiveness using tools like Chrome DevTools, test across common screen sizes and OS/browser combinations, and implement accessibility-friendly controls.
+  \end{enumerate}
+  \end{minipage} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[leftmargin=*]
+       \item LF-AR2, LF-AR5
+       \item UH-AR1, LF-AR4, MS-AR1
+  \end{enumerate}
+  \end{minipage} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[leftmargin=*]
+       \item HA-UI1
+       \item HA-UI2
+  \end{enumerate}
+  \end{minipage} \\
+  \hline
+  \end{longtable}
+\end{landscape}
+\restoregeometry
+
 
 \section{Safety and Security Requirements}
 
