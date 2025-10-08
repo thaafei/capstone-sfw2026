@@ -5,7 +5,7 @@
 %
 % Risks are removed because they are covered by the Hazard Analysis
 \documentclass[12pt]{article}
-
+\usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -31,25 +31,23 @@
 	
 \maketitle
 
-~\newpage
-
 \pagenumbering{roman}
-
-\tableofcontents
-
-~\newpage
-
-\section*{Revision History}
-
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+October 6, 2025 & Fei Xie & First Draft of Sections: Cost to Ideas for Solution\\
+Date2 & Name(s) & Description of changes\\
+... & ... & ...\\
 \bottomrule
 \end{tabularx}
+\end{table}
 
-~\\
+~\newpage
+
+\tableofcontents
 
 ~\newpage
 \section{Purpose of the Project}
@@ -247,19 +245,59 @@ Inhibit the New Product}
 \lips
 
 \section{Costs}
-\lips
+There is no development cost for this project, due to the nature of this being a capstone project. 
+\\
+The costs of hosting the required services, such as the database and the web application will depend on McMaster University's existing infrastructure.
+\\
+However, estimating using a common cloud provider such as Amazon Web Services (AWS). \\
+Using the Relational Database Service (RDS) for database and the Elastic Cloud Computing (EC2) service for hosting.
+Assuming around a maximum usage of 20 Hours/Month, the total cost of hosting is 11.63 CAD per month, as shown in Table~\ref{tab:price_table}.
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth}{@{} X X X c @{}}
+\toprule
+\textbf{Name} & \textbf{Configuration} & \textbf{Estimated Usage} & \textbf{Total Cost} \\
+\midrule
+RDS for MySQL & Two vCPU and 8GB of Memory & 20 Hours/Month & 9.76 CAD/Month \\ 
+EC2 & t4g.large Instance & 20 Hours/Month & 1.87 USD/Month \\
+\bottomrule
+\end{tabularx}
+\caption{Price estimates and total costs for two AWS services.}
+\label{tab:price_table}
+\end{table}
+
 \section{User Documentation and Training}
 \subsection{User Documentation Requirements}
-\lips
-\subsection{Training Requirements}
-\lips
+\subsubsection{User Manual}
+The user manual will highlight the key features of the product, and provide additional details for installing, setup and usage that wasn't previously covered in the project's \href{https://github.com/thaafei/DomainX/blob/main/README.md}{README}. \\
+\\The maintenance of this document will be the responsibility of the development team. Changes to the product's features, such as adding new features or altering existing features must be reflected in the user manual upon release of the update.
 
+\subsubsection{Release Manual}
+The release manual will cover the release process required for future releases of the product, found in the \href{https://github.com/thaafei/DomainX/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}. It should include the whole CI/CD lifecycle, including team standards, release labelling, and more.\\
+\\The maintenance of this document will be the responsibility of the development team. Changes to the CI/CD process, either from the development team or the broader McMaster University infrastructure team should be reflected before the next release.
+
+\subsection{Training Requirements}
+\textbf{1. Users should be able to use the tool and utilize key features immediately after following the tutorial} \\ \\
+\textbf{2. Users should be able to find key features without consulting additional documentation 95\% of the time.} \\ \\
+The responsibilty of the training will first fall towards the development team of the tool. They must ensure the provided in-tool tutorial is up-to-date and sufficient to help a user understand all key features.
+\\ Additional training will be provided to the supervisor, hosted by the development team.
+Subsequent training will be the responsibility of the supervisor, if needed to train future users of the tool, in the format that the supervisor chooses.
 \section{Waiting Room}
-\lips
+\textbf{1. Comparing across Domains}\\
+The user should be able to compare two (or more) completed domain analysis against each other. \\\\
+\textbf{2. Versioning of Domains}\\
+Users can revist and update completed domains, adding new data or editing existing ones. Allowing users to view the evolution of the state of best practice for the domain.
 
 \section{Ideas for Solution}
-\lips
-
+The following is the development team's idea for the user interface of the tool. Figure~\ref{fig:domainx_ui} shows the initial concept, drawing inspiration from \href{https://octave-online.net/}{Octave Online}, the cloud IDE for Matlab.
+\\ The main section of the tool will be where the data is displayed and gathered for each domain. With the sections that can be automatically gathered differentiated using a different colour, such as the gray shown in Figure~\ref{fig:domainx_ui}.
+\\ The left sidebar will contain all the domains, with indications on whether it's completed or not. As well as providing a filter to quickly search for a specific domain.
+\begin{figure}
+\centering
+  \includegraphics[totalheight=8cm]{images/DomainX-UI.png}
+  \caption{DomainX UI, inspired by Octave Online}
+  \label{fig:domainx_ui}
+\end{figure}
 \newpage{}
 \section*{Appendix --- Reflection}
 
