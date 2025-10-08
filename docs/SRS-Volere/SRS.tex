@@ -197,15 +197,15 @@ Visualize \& Export Results & General User / Researcher / Admin & System & Allow
 \subsection{Individual Product Use Cases (PUC's)}
 Important things to keep in mind when looking at the at the Use Case Diagram:
 \begin{itemize}
-  \item Include: A - include -> B means, if A is executed that means B will be executed as well. 
+  \item Include: A  include B means, if A is executed that means B will be executed as well. 
   \begin{itemize}
-    \item Update Data - include -> Login, if user wanted to Update Data they must Login.
-    \item Login - include -> Verify Account, when user tries login the system will verify account.
+    \item Update Data include Login, if user wanted to Update Data they must Login.
+    \item Login include Verify Account, when user tries login the system will verify account.
   \end{itemize}
-  \item Extend: A <- extends - B means, if A is executed that means that B could be executed as well but not in all cases.
+  \item Extend: A extends B means, if A is executed that means that B could be executed as well but not in all cases.
   \begin{itemize}
-    \item Create New Domain <- extends - Mass Data Upload:Create New Domain could also mean that the user wants to upload previous work, which would need a mass data upload, but not in all cases.
-    \item Login <- extends - Failed Login: When trying to login the user might fail to do so, however it's not always the case.
+    \item Create New Domain extends Mass Data Upload:Create New Domain could also mean that the user wants to upload previous work, which would need a mass data upload, but not in all cases.
+    \item Login extends Failed Login: When trying to login the user might fail to do so, however it's not always the case.
   \end{itemize}
 \end{itemize}
 \begin{figure}[H]
