@@ -164,13 +164,115 @@ McMaster University will provide the infrastructure required to host the applica
 
 \section{The Scope of the Work}
 \subsection{The Current Situation}
-\lips
+Following the methodology listed:
+
+\begin{enumerate}
+    \item Domain is identified
+    \item Research team gathers a preliminary list of packages fitting the domain
+    \item Domain expert is consulted and helps determine if the packages fit the domain
+    \item Data gathering commences for the finalized packages used
+        \begin{enumerate}
+            \item Optional: Interviewing or surveying industry users of the packages
+        \end{enumerate}
+    \item Research paper is written, with visuals generated from the data
+\end{enumerate}
+
+Current ways to consult the domain experts or industry users are done non-systematically, left to the discretion of the research team. The most common method is through email, but this can be difficult to track when multiple messages are sent or several people are being contacted simultaneously.
+
+The data gathering process is performed using Excel spreadsheets, with each entry manually typed. This introduces inefficiencies and potential errors, motivating the need for an automated solution to streamline data collection, improve traceability, and reduce manual workload.
+
 \subsection{The Context of the Work}
-\lips
+The Neural Network Libraries (NNL) Assessment Tool is a web-based application designed to automate the collection, evaluation, and visualization of data for comparing open-source deep learning libraries. It operationalizes an existing research methodology developed to assess the state of practice in software engineering, applying it specifically to neural network libraries (NNLs).
+
+There is currently no automated system performing this type of assessment; existing workflows rely on manual data collection and Excel-based analyses. The tool introduces automation, consistency, and traceability across data gathering, scoring, and visualization activities.
+
+The tool operates within McMaster University’s research environment and interacts with multiple adjacent systems for data input, authentication, hosting, and output management. These interactions define the boundaries and environment in which the tool functions.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{context-diagram.png}
+    \caption{Work Context Diagram for the NNL Assessment Tool}
+    \label{fig:context-diagram}
+\end{figure}
+
+\noindent
+\textbf{Adjacent Systems:}
+\begin{itemize}
+    \item \textbf{Data Sources (APIs)} – GitHub, PyPI, and official library documentation, providing metadata, repository statistics, and release history.
+    \item \textbf{Research Subteam} – Defines evaluation criteria and pairwise weights, initiates analyses, and reviews dashboards.
+    \item \textbf{Supervisor / Domain Expert} – Reviews and validates library selections and output reports.
+    \item \textbf{University Infrastructure} – Provides authentication services, hosting, and performance monitoring.
+    \item \textbf{File Systems (Excel/CSV)} – Enables importing of legacy spreadsheets and exporting reports for offline review or publication.
+\end{itemize}
+
+\noindent
+Each interface between the tool and adjacent systems represents an exchange of data or actions, as shown in Figure~\ref{fig:context-diagram}. Inputs include user-defined criteria and API data; outputs include processed datasets, analytical dashboards, and reports.
+
+All data interfaces will align with the definitions in the Data Dictionary (Section~7).
+
 \subsection{Work Partitioning}
-\lips
+\begin{table}[H]
+\centering
+\caption{Work Partitioning and Business Use Cases}
+\begin{tabularx}{\textwidth}{|p{3.5cm}|X|X|}
+\hline
+\textbf{Event Name} & \textbf{Input \& Output} & \textbf{Summary of BUC} \\ \hline
+
+New Library/Package Added for Assessment &
+\textbf{Input:} Research subteam enters GitHub link or package name.  
+\textbf{Output:} Tool retrieves metadata (stars, forks, releases, last commit) via API. &
+System automatically fetches repository metrics from GitHub and stores them in the database for analysis and visualization. \\ \hline
+
+Library Becomes Archived / Deleted / Restricted &
+\textbf{Input:} API request fails or returns error.  
+\textbf{Output:} Error log generated; library flagged for manual review. &
+System detects inaccessible data and notifies research team to investigate and update records. \\ \hline
+
+Domain Expert Revises Library List &
+\textbf{Input:} Feedback from domain expert on selected packages.  
+\textbf{Output:} Updated list of libraries for assessment. &
+System allows easy modification of included libraries; re-runs analysis with updated list. \\ \hline
+
+Assessment Cycle Completed &
+\textbf{Input:} All data collected and validated.  
+\textbf{Output:} Generated dashboards, ranking reports, and exportable visualizations. &
+System computes AHP-based scores and produces comparative visualizations and reports for research publication. \\ \hline
+
+\end{tabularx}
+\end{table}
+
 \subsection{Specifying a Business Use Case (BUC)}
-\lips
+Below is an example of a Business Use Case for a key event in the NNL Assessment Tool workflow.
+
+\begin{table}[H]
+\caption{Business Use Case Example – New Package Added to Domain}
+\centering
+\begin{tabularx}{\textwidth}{|p{3cm}|X|}
+\hline
+\textbf{Business Event} & New library/package created for domain usage \\ \hline
+\textbf{Input(s)} & GitHub repository link and metadata retrieved from public API \\ \hline
+\textbf{Output(s)} & Stored library record in database; automated metrics collected (stars, forks, releases) \\ \hline
+\textbf{Trigger} & Researcher adds new library or detects a new public repository \\ \hline
+\textbf{Primary Actor(s)} & Researcher \\ \hline
+\textbf{Secondary Actor(s)} & Domain Expert, System APIs \\ \hline
+\textbf{Preconditions} & API access is available; library URL is valid \\ \hline
+\textbf{Postconditions} & Library and metadata stored successfully; flagged for domain expert review \\ \hline
+\textbf{Main Flow} &  
+1. Researcher inputs new repository link. \newline
+2. Tool fetches metadata from GitHub and related APIs. \newline
+3. Data is validated and stored in the system database. \newline
+4. Confirmation and logs generated. \\ \hline
+\textbf{Alternative Flow(s)} &  
+- If API call fails, tool logs error and prompts user for manual data entry. \newline
+- If duplicate record detected, tool alerts user and prevents duplication. \\ \hline
+\textbf{Business Rules} &  
+- All repositories must belong to open-source libraries under the defined domain. \newline
+- Collected metrics must be timestamped for version tracking. \\ \hline
+\textbf{Exceptions} &  
+- API rate limits reached. \newline
+- Network outage during data retrieval. \\ \hline
+\end{tabularx}
+\end{table}
 
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
