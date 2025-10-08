@@ -3,8 +3,22 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{comment}
+\usepackage{enumerate}
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{geometry}
 \usepackage{graphicx}
+\usepackage[shortlabels]{enumitem}
 \usepackage{float}
+\usepackage{array}
+\usepackage{pdflscape}
+\usepackage{tabularx,ragged2e,booktabs,caption}
+\usepackage{longtable}
+\usepackage{ulem}
+\usepackage{ltablex}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -28,8 +42,6 @@
 \maketitle
 \thispagestyle{empty}
 
-~\newpage
-
 \pagenumbering{roman}
 
 \begin{table}[hp]
@@ -38,8 +50,9 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-2025-10-06 & Ghena Hatoum & Added the components\\
-2025-10-06 & Ghena Hatoum & Added the Components Diagram\\
+October 6, 2025  & Ghena Hatoum & Added the components\\
+October 6, 2025  & Ghena Hatoum & Added the Components Diagram\\
+October 6, 2025 & Fei Xie & Added FMEA table\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -51,7 +64,6 @@
 
 ~\newpage
 
-\pagenumbering{arabic}
 
 \wss{You are free to modify this template.}
 
@@ -93,15 +105,224 @@ you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
+The following contain our Failure Mode and Effect Analysis table is a breakdown of the hazards that could occur within the system, along with recommanded actions to mitigate them.
+\newgeometry{margin=0.5in}
+\begin{landscape}
+  \begin{longtable}{|p{3cm}|p{3cm}|p{4cm}|p{4cm}|p{3cm}|p{2cm}|p{3cm}|}
+  \caption{Failure Mode and Effect Analysis} \label{FMEA}\\
+  \hline
+   Component & Failure Modes & Effects of Failure & Causes of Failure & Recommended Action & SR & Ref.  \\ 
+  \hline
+  \endfirsthead
+  \multicolumn{7}{r}{Table \thetable\ Continued from previous page}\\ 
+  \hline
+   Design Function & Failure Modes & Effects of Failure & Causes of Failure & Recommended Action & SR & Ref.  \\ 
+  \hline
+  \endhead
+  \multicolumn{7}{r}{{Continued on next page}}\\
+  \endfoot
+  \multicolumn{7}{r}{{Concluded}}\\
+  \endlastfoot
+  \multirow{7}{*}{User account} & 
+  \begin{enumerate}[leftmargin=*]
+    \item User can't login/signup.
+    \item Cannot set correct role for user.
+    \item User account information is leaked.
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+    \item User cannot access their work.
+    \item Refer to H1-1.
+    \item User credentials are exposed, exposing them to cyber attack or data scrapers.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item
+    \begin{enumerate}
+        \item[a)] Integration with database failure.
+        \item[b)] User entered incorrect credentials.
+    \end{enumerate}
+    \item Refer to H1-1.a.
+    \item Weak access controls, lack of encryption, or insecure credentials.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item 
+    \begin{enumerate}
+        \item[a)] Implement automated daily system integration testing.
+        \item[b)] Provide user feedback during user actions.
+    \end{enumerate}
+    \item Refer to H1-1.a, H1-1.b.
+    \item Implement Multi-factor authentication and follow industry best practices for security.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item TODO
+    \item TODO
+    \item TODO
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item H1-1
+    \item H1-2
+    \item H1-3
+  \end{enumerate} \\
+  \hline
+    Domain Creation & 
+  \begin{enumerate}[leftmargin=*]
+      \item Cannot create new domains
+      \item Cannot edit existing domain
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+    \item
+    \begin{enumerate}
+        \item[a)] User cannot continue their work on the domain
+        \item[b)] User will be delayed when writing their anaylsis
+    \end{enumerate}
+    \item Refer to H2-1.a, H2-1.b.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item  Refer to H1-1.a
+    \begin{enumerate}
+        \item[a)] User has incorrect role credentials
+    \end{enumerate}
+    \item Refer to H1-1.a, H2-1.a.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Refer to H1-1.a, H1-1.b.
+       \item  Refer to H1-1.a, H1-1.b.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item TODO
+       \item TODO
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item H2-1
+       \item H2-2
+  \end{enumerate} \\
+  \hline
+  Adding Data to Domain & 
+  \begin{enumerate}[leftmargin=*]
+      \item User cannot add new datapoint
+      \item User cannot update existing datapoint
+      \item Automated process overwriting user data unknowningly
+      \item Automated data input failure
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+      \item Refer to H2-1.a, H2-1.b.
+      \item Refer to H2-1.a, H2-1.b.
+      \item Refer to H2-1.a, H2-1.b 
+      \begin{enumerate}
+        \item[a)] Loss of user trust towards the tool
+    \end{enumerate}
+      \item Refer to H2-1.a, H2-1.b,
+      \begin{enumerate}
+        \item[a)] User has to manually input data, reducing usefulness of the tool
+    \end{enumerate}
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Refer to H1-1.a
+       \begin{enumerate}
+            \item[a)] Network issues
+            \item[b)] Save conflict occuring when multiple users are trying to edit the same datapoint
+        \end{enumerate}
+       \item Refer to H1-1.a, H3-1.a, H3-1.b
+       \item 
+       \begin{enumerate}
+            \item[a)] Lack of user training on how automated datapoints work
+            \item[b)] Inadequate user feedback user during system processes
+        \end{enumerate}
+       \item Refer to H3-1.a.
+       \begin{enumerate}
+            \item[a)] Integration issues with external systems
+        \end{enumerate}
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item Refer to H1-1.a, H1-1.b.
+    \begin{enumerate}
+        \item[a)] Explicit visual block on datapoints that other users are editing
+    \end{enumerate}
+    \item Refer to H1-1.a, H1-1.b, H3-1.a.
+    \item Refer to H1-1.a, H1-1.b
+    \begin{enumerate}
+        \item[a)] Provide explict user controls for manual inputs
+        \item[b)] Provide training on key features to user
+        \item[c)] Implement confirmation system for automated sections
+    \end{enumerate}
+    \item Refer to H1-1.a, H1-1.b, H3-1.a.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item TODO
+    \item TODO
+    \item TODO
+    \item TODO
 
-\wss{Include your FMEA table here. This is the most important part of this document.}
-\wss{The safety requirements in the table do not have to have the prefix SR.
-The most important thing is to show traceability to your SRS. You might trace to
-requirements you have already written, or you might need to add new
-requirements.}
-\wss{If no safety requirement can be devised, other mitigation strategies can be
-entered in the table, including strategies involving providing additional
-documentation, and/or test cases.}
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item H3-1
+    \item H3-2
+    \item H3-3
+    \item H3-4
+  \end{enumerate} \\
+  \hline
+ Data Visualization & 
+  \begin{enumerate}[leftmargin=*]
+      \item Visualization method does not match datapoints
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+      \item Refer to H2-1.b, H3-3.a.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item Refer to H1-1.a
+    \begin{enumerate}
+        \item[a)] External system used for visualization not properly configured/working
+        \item[b)] Another user is editing the datapoints while current user is trying to visualize
+    \end{enumerate}
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item Refer to H1-1.A
+    \begin{enumerate}
+        \item[a)] Require user to lock the domain when editing, with visualization functionality being available only on un-locked domains.
+    \end{enumerate}
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item TODO
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item H4-1
+  \end{enumerate} \\
+  \hline
+ Download Data  & 
+  \begin{enumerate}[leftmargin=*]
+    \item User unable to download the data/visuals of a domain
+    \item Downloaded data/visuals of a domain are corrupted and unusable
+  \end{enumerate} & 
+  \begin{enumerate}[leftmargin=*]
+      \item Refer to H2-1.b.
+      \item Refer to H2-1.b, H3-3.a.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+    \item Refer to H1-1.a, H2.1.a, H3-1.a, H4-1.a.
+    \item Refer to H1-1.a, H3-1.a, H4-1.a.
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item Refer tp H1-1.a, H1-1.b.
+       \begin{enumerate}
+        \item[a)] Provide multiple methods for downloading or sharing
+    \end{enumerate}
+       \item Refer tp H1-1.a, H1-1.b.
+       \begin{enumerate}
+        \item[a)] Implement proper error handling in code to catch exceptions
+    \end{enumerate}
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item TODO
+       \item TODO
+  \end{enumerate} &
+  \begin{enumerate}[leftmargin=*]
+       \item H5-1
+       \item H5-2
+  \end{enumerate} \\
+  \hline
+  \end{longtable}
+\end{landscape}
+\restoregeometry
+
 
 \section{Safety and Security Requirements}
 
