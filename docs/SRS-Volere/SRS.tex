@@ -41,13 +41,9 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-October 5, 2025 & Ghena Hatoum & Added Product Boundary \\
-October 5, 2025 & Ghena Hatoum & Added Product Use Case Table \\
-October 5, 2025 & Ghena Hatoum & Added Individual Product Use Cases (PUC's) \\
-October 5, 2025 & Ghena Hatoum & Added Functional Requirements \\
-October 5, 2025 & Ghena Hatoum & Added Look and Feel Requirements \\
-October 5, 2025 & Ghena Hatoum & Added Usability and Performance Requirements \\
-October 6, 2025 & Fei Xie & First Draft of Sections: Cost to Ideas for Solution\\
+October 5, 2025 & Ghena Hatoum & Added Sections: Product Boundary to Usability and Performance Requirements\\
+October 6, 2025 & Fei Xie & Added Sections: Cost to Ideas for Solution\\
+October 8, 2025 & Fei Xie & Added Sections: Purpose of the Project to Naming Conventions and Terms\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -59,27 +55,68 @@ October 6, 2025 & Fei Xie & First Draft of Sections: Cost to Ideas for Solution\
 ~\newpage
 \section{Purpose of the Project}
 \subsection{User Business}
-\lips
+With the recent advancements in LLM, AI, and ML in general. There has been more interest in the ML area. Focusing on the Neural Network domain, it can feel like a wild west of software tools and packages available. Dealing with “bad” software can be frustating, it can be hard to install, lacking in documentation, or being outdated. 
+This can take precious times away from the actual research and development of the software the user wants, with the time spent on debugging the libraries used.
+\\Following the “Methdology to assess the state of best practice for Domain X” paper, we will apply the methdology to the Neural Network Libary domain. 
+To assist in the creation of this paper, we will also create a tool, whose main purpose is to simplify the process of gathering, visualizing and storing the data. This tool will than be reusable for future domains. 
 \subsection{Goals of the Project}
-\lips
+The completion of this tool will make the data gathering process faster and more efficient for the current paper used to pilot the project. Future papers will than be able to use the tool to assist in their own data gathering for their domain.\\
+We'll measure the success of the goals listed in the \href{https://github.com/thaafei/DomainX/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem Statement and Goals} document by the research subteam's experience while using the tool. \\
+A summary of the goals is provided below, for more information, please visit the above hyperlink.
+\begin{enumerate}
+  \item Interactive Data Table
+  \item Automated Data Collection
+  \item Automated Analytic Hierarchy Process (AHP)
+  \item Data Visualization and Download
+  \item Collaboration
+\end{enumerate}
 \section{Stakeholders}
+The following includes stakeholders of our project, 
 \subsection{Client}
-\lips
+\textbf{CAS Supervisor}: The CAS Supervisor is the main product owner of the tool. They are responsible for providing the main features requested, as well has having the final say in the presentation and features of the tool. When the tool is live, they will also have administrative access.
+\\\\\textbf{Research Subteam}\label{research_subteam_client}: The research subteam will be actively using the tool. They are responsible for providing feedback to the product subteam on any pain points experienced while using the tool.
+As well as accessing if the tool makes the current data gathering process easier, as compared to the previous ad-hoc method of using excel.
 \subsection{Customer}
-\lips
+\textbf{Research Subteam/Future Students}: See \hyperref[research_subteam_client]{Research Subteam}.\\
+\\\textbf{Future Students}\label{future_students}: Future students who interested in accessing the state of best practice for their specific domain. They have the same responsiblities as the Research Subteam.
 \subsection{Other Stakeholders}
-\lips
+\textbf{Domain Expert}: The consultant for the research subteam during their work on the paper. This person has deep domain knowledge but won't necessarily know the technical software aspects of the domain.
 \subsection{Hands-On Users of the Project}
-\lips
+\textbf{Research Subteam/Future Students}: See \hyperref[research_subteam_client]{Research Subteam}.\\\\
+\textbf{Future Students}: See \hyperref[future_students]{Future Students}.\\\\
+\textbf{Researchers/Industry Workers}: These are people who are interested in seeing the results of the research results for a domain. They are responsible for accessing the usability of the tool in the context of a read-only experience, and provide feedback to the product subteam.
 \subsection{Personas}
-\lips
-\subsection{Priorities Assigned to Users}
-\lips
-\subsection{User Participation}
-\lips
-\subsection{Maintenance Users and Service Technicians}
-\lips
+\subsubsection{Kevin - Master's Student at McMaster University}
+I’m Kevin, a master student at McMaster University currently working on the state of best practice for Domain X. I am extremely busy so I don’t want to spend too much time so i want to use a tool to decrease the amount of manual data inputting I need to do. I am adequately familiar with software, such as using the terminal and version control. However, my interests are more in the science aspect of computer science, so I don’t want to spent too long setting things up.
+\subsubsection{Ashley - Research Scientist at X company}
+I’m Ashley, a research scientist currently working in the ML/AI field. During my work, I need access to varies tools to assist me. I don’t want to create all the tools myself, preferring to use off-the-shelve, pre-existing libraries so I can focus on what actually matters. I’ve read through several tech blogs but they all rank the libraries differently, or don’t consider a big enough variety, and sometimes the libraries mentioned are outdated. I would like to have a consolidated source that can measure varying aspects of the library since as a researcher, I haven’t had as much experience with the DevOps process of the software lifecycle. I like to use packages and libraries that are easy to learn, install, and use.
 
+\subsection{Priorities Assigned to Users}
+\textbf{Key Users}:
+\begin{itemize}
+\item Research Subteam
+\item Domain Expert
+\end{itemize}
+\textbf{Secondary Users}:
+\begin{itemize}
+\item CAS Supervisor
+\item Researchers/Industry Workers
+\end{itemize}
+
+\subsection{User Participation}
+\textbf{Research Subteam} \\
+Actively using the tool during the writing of the paper. They should provide honest feedbacks on the experience when using the tool. Including any shortfalls, UI disagreements, and bugs.\\\\
+\textbf{Domain Expert} \\
+Has knowledge of the NN domain, will provide feedback on the research subteam’s list of libraries to access, as well as help verify the conclusions during the research process, to see if it is similiar from what they have personally experienced. Estimated participation time of: 1-2 hours.
+\\\\\textbf{CAS Supervisor} \\
+During the user acceptance testing phase of the product. The CASE Supervisor should provide their honest feedback on their experience while using the tool, as they are the main administrator of the tool once it's live.
+
+\subsection{Maintenance Users and Service Technicians}
+\textbf{Project Maintainer} \\
+The person responsible for updating the tool with new features, or fixing any existing bugs once the initial creators of the tool leaves. They were not present during the development of the tool, and will most likely be the future students who uses the tool for their domain research.
+\\\\
+\textbf{Infrastructure Team} \\
+The infrastructure team at McMaster University will be responsible for hosting the project, and should ensure that the application is available for use and maintains data integrity of their database servers.
 \section{Mandated Constraints}
 \subsection{Solution Constraints}
 \lips
