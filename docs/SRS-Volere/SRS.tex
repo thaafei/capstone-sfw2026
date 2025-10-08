@@ -47,6 +47,11 @@ October 5, 2025 & Ghena Hatoum & Added Individual Product Use Cases (PUC's) \\
 October 5, 2025 & Ghena Hatoum & Added Functional Requirements \\
 October 5, 2025 & Ghena Hatoum & Added Look and Feel Requirements \\
 October 5, 2025 & Ghena Hatoum & Added Usability and Performance Requirements \\
+October 5, 2025 & Haniye Hamidizadeh & Added Operational and Environmental Requirements \\
+October 5, 2025 & Haniye Hamidizadeh & Added Maintainability and Support Requirements \\
+October 5, 2025 & Haniye Hamidizadeh & Added Security Requirements \\
+October 5, 2025 & Haniye Hamidizadeh & Added Cultural Requirements \\
+October 5, 2025 & Haniye Hamidizadeh & Added Compliance Requirements \\
 October 6, 2025 & Fei Xie & First Draft of Sections: Cost to Ideas for Solution\\
 \bottomrule
 \end{tabularx}
@@ -123,9 +128,38 @@ involved in the Project}
 
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
-\lips
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{BusinessDataModel.png}
+  \caption{Business Data Model}
+  \label{fig:business-data-model}
+\end{figure}
 \subsection{Data Dictionary}
-\lips
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|l|}
+\hline
+\textbf{Name} & \textbf{Content} & \textbf{Type} \\ \hline
+Paper & Paper Version + Paper Id + Paper Name & Class \\ \hline
+Author/Contributor & Author Name, MacID & Class \\ \hline
+Domain & Domain Name & Class \\ \hline
+Packages/Library & Package Name + Github URL & Class \\ \hline
+Data & Data description, Data Value & Class \\ \hline
+Developer Platform & Package URL, Type, API Information & Class \\ \hline
+Paper Version & \textit{See Paper} & Attribute/Element \\ \hline
+Paper Id & \textit{See Paper} & Attribute/Element \\ \hline
+Paper Name & \textit{See Paper} & Attribute/Element \\ \hline
+Package Name & \textit{See Package} & Attribute/Element \\ \hline
+Package URL & \textit{See Package} & Reference \\ \hline
+Data Description & \textit{See Data} & Attribute/Element \\ \hline
+Data Value & \textit{See Data} & Attribute/Element \\ \hline
+Package URL & \textit{See Developer Platform} & Attribute/Element \\ \hline
+Type & \textit{See Developer Platform} & Attribute/Element \\ \hline
+API Information & \textit{See Developer Platform} & Attribute/Element \\ \hline
+\end{tabularx}
+\caption{Business Data Model Elements}
+\end{table}
+
 
 \section{The Scope of the Product}
 \subsection{Product Boundary}
