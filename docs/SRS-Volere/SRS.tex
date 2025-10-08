@@ -10,6 +10,7 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{graphicx}
 \usepackage{enumitem}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
@@ -133,7 +134,8 @@ involved in the Project}
 This system aims to simplify and streamline the process of collecting, managing, and analyzing data to assess the state of the practice for various research domains. It replaces the existing, manual process (currently managed via Excel sheets) and formalizes the methodology outlined in the \href{https://arxiv.org/abs/2110.11575}{Methodology for Assessing the State of the Practice for Domain X paper}. The final system will be a secure, accessible, data management and analysis tool.
 
 The system will provide the following core functionality:
-\item \textbf{Security and User Management:}
+\begin{itemize}
+  \item \textbf{Security and User Management:}
   \begin{itemize}
     \item Securely manage user accounts (login, password changes).
     \item Accounts can only be created by an administrator invitation.
@@ -206,8 +208,12 @@ Important things to keep in mind when looking at the at the Use Case Diagram:
   \begin{itemize}
     \item Create New Domain <- extends - Mass Data Upload:Create New Domain could also mean that the user wants to upload previous work, which would need a mass data upload, but not in all cases.
     \item Login <- extends - Failed Login: When trying to login the user might fail to do so, however it's not always the case.
+  \end{itemize}
 \end{itemize}
-\includegraphics{usecase.png}
+\includegraphics{usecase.png}\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45] {usecase.png}
+\end{figure}
 
 
 \section{Functional Requirements}
