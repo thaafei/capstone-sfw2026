@@ -42,6 +42,7 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 October 5, 2025 & Ghena Hatoum & Added Sections: Product Boundary to Usability and Performance Requirements\\
+October 5, 2025 & Haniye Hamidizadeh & Added Sections: Operational and Environmental Requirements to Compliance Requirements\\
 October 6, 2025 & Fei Xie & Added Sections: Cost to Ideas for Solution\\
 October 8, 2025 & Fei Xie & Added Sections: Purpose of the Project to Naming Conventions and Terms\\
 \bottomrule
@@ -142,11 +143,11 @@ involved in the Project}
 
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
-\lips
+The existing workflow relies on Excel sheets and bash scripts, which do not support automated data gathering.
 \subsection{Business Rules}
-\lips
+Domain experts generally work Monday to Friday, 9 AM – 5 PM, and are unlikely to respond outside these hours.
 \subsection{Assumptions}
-\lips
+McMaster University will provide the infrastructure required to host the application and make the necessary databases available for use.
 
 \section{The Scope of the Work}
 \subsection{The Current Situation}
@@ -160,9 +161,38 @@ involved in the Project}
 
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
-\lips
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{BusinessDataModel.png}
+  \caption{Business Data Model}
+  \label{fig:business-data-model}
+\end{figure}
 \subsection{Data Dictionary}
-\lips
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|l|}
+\hline
+\textbf{Name} & \textbf{Content} & \textbf{Type} \\ \hline
+Paper & Paper Version + Paper Id + Paper Name & Class \\ \hline
+Author/Contributor & Author Name, MacID & Class \\ \hline
+Domain & Domain Name & Class \\ \hline
+Packages/Library & Package Name + Github URL & Class \\ \hline
+Data & Data description, Data Value & Class \\ \hline
+Developer Platform & Package URL, Type, API Information & Class \\ \hline
+Paper Version & \textit{See Paper} & Attribute/Element \\ \hline
+Paper Id & \textit{See Paper} & Attribute/Element \\ \hline
+Paper Name & \textit{See Paper} & Attribute/Element \\ \hline
+Package Name & \textit{See Package} & Attribute/Element \\ \hline
+Package URL & \textit{See Package} & Reference \\ \hline
+Data Description & \textit{See Data} & Attribute/Element \\ \hline
+Data Value & \textit{See Data} & Attribute/Element \\ \hline
+Package URL & \textit{See Developer Platform} & Attribute/Element \\ \hline
+Type & \textit{See Developer Platform} & Attribute/Element \\ \hline
+API Information & \textit{See Developer Platform} & Attribute/Element \\ \hline
+\end{tabularx}
+\caption{Business Data Model Elements}
+\end{table}
+
 
 \section{The Scope of the Product}
 \subsection{Product Boundary}
@@ -234,15 +264,15 @@ Visualize \& Export Results & General User / Researcher / Admin & System & Allow
 \subsection{Individual Product Use Cases (PUC's)}
 Important things to keep in mind when looking at the at the Use Case Diagram:
 \begin{itemize}
-  \item Include: A - include -> B means, if A is executed that means B will be executed as well. 
+  \item Include: A  include B means, if A is executed that means B will be executed as well. 
   \begin{itemize}
-    \item Update Data - include -> Login, if user wanted to Update Data they must Login.
-    \item Login - include -> Verify Account, when user tries login the system will verify account.
+    \item Update Data include Login, if user wanted to Update Data they must Login.
+    \item Login include Verify Account, when user tries login the system will verify account.
   \end{itemize}
-  \item Extend: A <- extends - B means, if A is executed that means that B could be executed as well but not in all cases.
+  \item Extend: A extends B means, if A is executed that means that B could be executed as well but not in all cases.
   \begin{itemize}
-    \item Create New Domain <- extends - Mass Data Upload:Create New Domain could also mean that the user wants to upload previous work, which would need a mass data upload, but not in all cases.
-    \item Login <- extends - Failed Login: When trying to login the user might fail to do so, however it's not always the case.
+    \item Create New Domain extends Mass Data Upload:Create New Domain could also mean that the user wants to upload previous work, which would need a mass data upload, but not in all cases.
+    \item Login extends Failed Login: When trying to login the user might fail to do so, however it's not always the case.
   \end{itemize}
 \end{itemize}
 \begin{figure}[H]
@@ -253,7 +283,7 @@ Important things to keep in mind when looking at the at the Use Case Diagram:
 
 \section{Functional Requirements}
 \subsection{Functional Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=FR\arabic*]
   \item The Admin will be able to extend an invitation to new researchers via the website, using the researcher's email address.
   \item Researchers will be able to sign up using their invited email. The process requires email validation and the creation of a unique username and password.
   \item The system will allow Admin and Researchers to securely log in using their email and password.
@@ -273,7 +303,7 @@ Important things to keep in mind when looking at the at the Use Case Diagram:
 
 \section{Look and Feel Requirements}
 \subsection{Appearance Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=LF-AR\arabic*]
   \item The application will maintain a consistent visual hierarchy where primary action buttons (e.g., "Save," "Create New Domain") are visually distinct.
   \item The system must be fully responsive and function correctly on standard desktop monitors and laptops.
   \item Data visualization and editing displays must prioritize information density while remaining readable. Tables should have alternating row colors (zebra striping) to help tracking.
@@ -282,7 +312,7 @@ Important things to keep in mind when looking at the at the Use Case Diagram:
   \item All error messages (system errors, validation problems) must be clear, short, and contain practical guidance for resolving the problem.
 \end{enumerate}
 \subsection{Style Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=LF-SR\arabic*]
   \item The system must use a single, consistent style of icons (e.g., solid, outline, or filled) for all navigational elements, actions, and status indicators.
   \item Graphs must use minimalist design to prioritize data readability. Axes and labels must be clear and legible.
   \item Font sizing must follow a defined scale (e.g., large for titles, medium for body text, small for captions) and remain consistent on all screens.
@@ -290,7 +320,7 @@ Important things to keep in mind when looking at the at the Use Case Diagram:
 
 \section{Usability and Humanity Requirements}
 \subsection{Ease of Use Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=UH-EU\arabic*]
   \item The primary navigational structure should be clearly defined and constantly available, with no prior training required for basic data viewing and download.
   \item Each library metric must have help icon that would tell the user what data type would be accepted.
   \item All errors will give clear and concise explanation.
@@ -298,54 +328,54 @@ Important things to keep in mind when looking at the at the Use Case Diagram:
 \subsection{Personalization and Internationalization Requirements}
 N/A
 \subsection{Learning Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=UH-LR\arabic*]
   \item The system must contain a brief lesson or guide that explains the precise steps for Bulk Data Upload and the AHP Ranking process and is available from the appropriate screens.
   \item All words referring to research entities (Domain, Library, Metric) must be used consistently across the interface and documentation.
 \end{enumerate}
 \subsection{Understandability and Politeness Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=UH-UP\arabic*]
   \item The system must contain a brief lesson or guide that explains the precise steps for Bulk Data Upload and the AHP Ranking process and is available from the appropriate screens.
   \item All words referring to research entities (Domain, Library, Metric) must be used consistently across the interface and documentation.
   \item All system-generated error messages will be clear, use non-technical language, and suggest a simple course of corrective action
 \end{enumerate}
 \subsection{Accessibility Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=UH-AR\arabic*]
   \item Critical status indicators and data visualizations must convey meaning through patterns or text labels in addition to color.
   \item Users must be able to change font size using regular browser options (up to 200\%) without losing information or functionality.
 \end{enumerate}
 
 \section{Performance Requirements}
 \subsection{Speed and Latency Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=PR-SL\arabic*]
   \item All key data viewing and dashboard pages must load completely and become interactive within 3 seconds.
   \item The system must finish the AHP ranking calculation for a standard domain in less than ten seconds.
 \end{enumerate}
 \subsection{Safety-Critical Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=PR-SC\arabic*]
   \item The system will encrypt all user passwords.
   \item If there have been multiple failed attempts to login to an existing account the user must be notified and lock account.
   \item The system will ensure that only researchers modify data.
 \end{enumerate}\subsection{Precision or Accuracy Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=PR-PA\arabic*]
   \item All data  that the system automatically filled out, must be 100\% accurate.
 \end{enumerate}
 \subsection{Robustness or Fault-Tolerance Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=PR-RFT\arabic*]
   \item The system must implement graceful error handling, ensuring that a failure in one function (e.g., a failed GitHub API call) does not crash the entire application or disrupt other users.
   \item The system must use database transactions to ensure that data modifications are atomic, if an update operation fails in the middle, the data must be returned to its last validated state.
 \end{enumerate}
 \subsection{Capacity Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=PR-CR\arabic*]
   \item The system must be able to accommodate up to 20 concurrent active users (logged in and doing operations) with no visible performance decrease.
   \item The database must be constructed to accommodate at least 10 different study domains.
 \end{enumerate}
 \subsection{Scalability or Extensibility Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=PR-SE\arabic*]
   \item The system architecture must clearly divide the Data Management/Storage layer from the Analysis/Visualization layer so that either component may be improved or replaced independently.
   \item The authentication and authorization system must be adaptable enough to accommodate additional user roles (e.g., "Guest Analyst") and specialized rights without requiring code changes to core operations.
 \end{enumerate}
 \subsection{Longevity Requirements}
-\begin{enumerate}[label=\thesubsection-\arabic*]
+\begin{enumerate}[label=PR-LR\arabic*]
   \item The system must be capable of running without the requirement for maintenance for two years. 
 \end{enumerate}
 
