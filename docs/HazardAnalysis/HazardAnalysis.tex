@@ -50,6 +50,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
+October 4, 2025 & Awurama Nyarko & Introduction, Scope, Critical Assumptions\\
 October 6, 2025 & Fei Xie & Added FMEA table\\
 ... & ... & ...\\
 \bottomrule
@@ -67,12 +68,48 @@ October 6, 2025 & Fei Xie & Added FMEA table\\
 
 \section{Introduction}
 
-\wss{You can include your definition of what a hazard is here.}
+
+This Hazard Analysis identifies and evaluates potential risks associated with
+the Neural Network Libraries (NNL) Assessment Tool, a web-based application that
+automates evidence collection, data storage, and visualization for assessing
+open-source neural network libraries. 
+
+In this context, a hazard is defined as any condition, event, or design
+decision that could lead to loss of data integrity, software malfunction,
+degraded performance, or failure to meet stakeholder requirements.
+
+The tool integrates React (frontend), Flask (backend), a relational database
+(e.g., MySQL), and public Application Programming Interfaces (APIs), such as the
+GitHub API, to support automated data gathering, Analytic Hierarchy Process
+(AHP)--based ranking, and visualization of software-quality metrics.
+
+Because the system involves data integration, user interaction, and deployment
+on university infrastructure, it faces technical and operational hazards (for
+example, integration errors, API limits, or performance bottlenecks). This
+document identifies such risks early in the lifecycle to protect software
+reliability, data integrity, and user experience.
 
 \section{Scope and Purpose of Hazard Analysis}
 
-\wss{You should say what \textbf{loss} could be incurred because of the
-hazards.}
+The purpose of this hazard analysis is to systematically identify potential
+risks that could impact the reliability, usability, and delivery of the NNL
+Assessment Tool.
+
+Although the tool is non-safety-critical, losses could still occur through:
+
+\begin{itemize}
+    \item Data loss or corruption, affecting research integrity.
+    \item System downtime, delaying project milestones or access for the research team.
+    \item Inaccurate visualizations or metrics, leading to incorrect conclusions in research outputs.
+    \item Security breaches, risking exposure of user accounts or evaluation data.
+    \item Integration failures, which could prevent essential automation and data collection.
+\end{itemize}
+
+These losses would directly reduce the tool’s credibility, hinder academic
+progress, and compromise user trust.
+
+The analysis focuses on identifying, classifying, and mitigating these hazards
+early to minimize risks and ensure project success.
 
 \section{System Boundaries and Components}
 
@@ -84,10 +121,34 @@ important library, these are also potential components.}
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+The following assumptions support hazard identification and mitigation:
+
+\begin{itemize}
+    \item \textbf{Access to Public APIs:} It is assumed that GitHub API and other
+    data sources will remain stable; however, if access limits or outages occur,
+    fallback mechanisms (e.g., cached data, manual upload) will be implemented.
+    
+    \item \textbf{McMaster Infrastructure Availability:} University servers will
+    host the tool; if unavailable, contingency hosting (local or alternative
+    cloud) will be explored.
+    
+    \item \textbf{Stable Development Team:} All members remain active; if a
+    member becomes unavailable, roles and documentation ensure continuity.
+    
+    \item \textbf{Non-Safety-Critical Context:} Hazards relate to data and
+    usability, not physical harm, but errors could still cause loss of
+    credibility or project delays.
+    
+    \item \textbf{Defined Scope and Requirements:} Requirements remain stable;
+    changes will trigger re-assessment of risks.
+    
+    \item \textbf{Version Control and Standards:} Git workflow reduces
+    integration errors, though merge conflicts remain possible; peer reviews
+    mitigate these.
+    
+    \item \textbf{User Feedback Availability:} Testing feedback will be
+    accessible; if delayed, internal testing will substitute temporarily.
+\end{itemize}
 
 \section{Failure Mode and Effect Analysis}
 The following contain our Failure Mode and Effect Analysis table is a breakdown of the hazards that could occur within the system, along with recommanded actions to mitigate them.
