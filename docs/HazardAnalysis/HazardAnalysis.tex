@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -78,7 +80,10 @@ The following explain the System Components:
     \item System DB: The underlying data store.
 \end{itemize}
 
-\includegraphics{component.png}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5] {component.png}
+\end{figure}
 
 \section{Critical Assumptions}
 
