@@ -1,0 +1,48 @@
+on:
+  workflow_dispatch:
+    inputs:
+        pdf_path:
+            description: "The path to the pdf, not including the docs/ and file extension. For Example to update SRS: SRS-Volere/SRS" 
+            required: true
+            type: string
+env:
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
+
+jobs:
+  update-pdfs:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.pdf_path }} 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Commit message
+        id: commit-message
+        env:
+            file: ${{ inputs.pdf_path }}
+        run: |
+            COMMIT_MESSAGE="Removing pdf $file"
+            echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
+            echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
+      - name: Delete PDF
+        id: delete-pdf
+        env:
+          file: ${{ inputs.pdf_path }}
+        run: |
+          set -e
+          target="docs/${file}.pdf"
+          echo "Target to remove: $target"
+          if [ -f "$target" ]; then
+            git rm "$target"
+            echo "Deleted $target"
+          else
+            echo "File not found: $target"
+            # exit 0 so the workflow can still commit (no-op) if desired
+          fi
+      - name: Commit and push PDFs
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+            commit_message: ${{ steps.commit-message.outputs.COMMIT_MESSAGE }}
+            file_pattern: 'docs/**/*.pdf'
+            branch: ${{ github.head_ref || github.ref_name }}
