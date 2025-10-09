@@ -35,7 +35,7 @@ jobs:
         texlive_version: 2024
         run: |
           apk add make
-          cd docs
+          cd /github/workspace/docs
           file="${{ env.file }}"
           dir=$(dirname "$file" | cut -d'/' -f2-)
           make -B "$dir/$(basename "$file" .tex).pdf"
