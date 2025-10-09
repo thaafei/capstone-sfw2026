@@ -9,10 +9,14 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
-\usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumitem}
+\usepackage{booktabs,tabularx,makecell}
 \usepackage{caption}
+\usepackage{xcolor,colortbl}
+\captionsetup{font=small,labelfont=bf}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} 
+\newcolumntype{Z}{>{\centering\arraybackslash}p{1.6cm}}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -683,20 +687,31 @@ The purpose of identifying these open issues is to ensure they are tracked, mana
 
 \subsection{List of Open Issues}
 
-\begin{table}[H]
-\caption{Open Issues to Track and Resolve}
-\centering
-\begin{tabularx}{\textwidth}{|p{1.2cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{2cm}|}
+\begin{tabularx}{\textwidth}{Z Y Y Y Y Z}
+\toprule
+\makecell{\textbf{Issue}\\\textbf{\#}} &
+\textbf{Summary} &
+\textbf{Cross-Reference} &
+\textbf{Stakeholders Involved} &
+\textbf{Action Required} &
+\textbf{Status} \\
+\midrule
+\arrayrulecolor[gray]{0.8} % light grey lines
+
+OI-01 & Finalization of hosting environment (e.g., internal server) & Section 13 -- Operational Requirements & CAS Supervisor, Infra Team & Confirm approved infrastructure with McMaster IT & Pending \\
 \hline
-\textbf{Issue \#} & \textbf{Summary} & \textbf{Cross-Reference} & \textbf{Stakeholders Involved} & \textbf{Action Required} & \textbf{Status} \\ \hline
-OI-01 & Finalization of hosting environment (e.g., internal server) & Section 13 – Operational Requirements & CAS Supervisor, Infra Team & Confirm approved infrastructure with McMaster IT & Pending \\ \hline
-OI-02 & Confirmation of the final list of Neural Network Libraries & Section 6 – Scope of Work & Research Subteam, Domain Expert & Schedule review meeting with domain expert & Pending \\ \hline
-OI-03 & Selection of UI framework and visualization library & Section 9 – Functional Requirements & Development Team & Evaluate and finalize tech stack & In Progress \\ \hline
-OI-04 & Clarification of Excel integration level (import/export vs live sync) & Section 9 – Functional Requirements & Research Subteam, Developers & Define required use cases and confirm feasibility & Pending \\ \hline
-OI-05 & Decision on authentication method (SSO vs custom login) & Section 9 – Functional Requirements & CAS Supervisor, Development Team & Meet with IT to assess SSO feasibility & Pending \\ \hline
-OI-06 & Confirmation of data storage architecture (SQL vs cloud) & Section 13 – Operational Requirements & Developers, Infra Team & Evaluate hosting options and finalize design & Pending \\ \hline
+OI-02 & Confirmation of the final list of Neural Network Libraries & Section 6 -- Scope of Work & Research Subteam, Domain Expert & Schedule review meeting with domain expert & Pending \\
+\hline
+OI-03 & Selection of UI framework and visualization library & Section 9 -- Functional Requirements & Development Team & Evaluate and finalize tech stack & In Progress \\
+\hline
+OI-04 & Clarification of Excel integration level (import/export vs live sync) & Section 9 -- Functional Requirements & Research Subteam, Developers & Define required use cases and confirm feasibility & Pending \\
+\hline
+OI-05 & Decision on authentication method (SSO vs custom login) & Section 9 -- Functional Requirements & CAS Supervisor, Development Team & Meet with IT to assess SSO feasibility & Pending \\
+\hline
+OI-06 & Confirmation of data storage architecture (SQL vs cloud) & Section 13 -- Operational Requirements & Developers, Infra Team & Evaluate hosting options and finalize design & Pending \\
+\bottomrule
 \end{tabularx}
-\end{table}
+
 
 
 
