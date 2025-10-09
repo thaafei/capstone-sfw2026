@@ -9,10 +9,14 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
-\usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumitem}
+\usepackage{booktabs,tabularx,makecell}
 \usepackage{caption}
+\usepackage{xcolor,colortbl}
+\captionsetup{font=small,labelfont=bf}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} 
+\newcolumntype{Z}{>{\centering\arraybackslash}p{1.6cm}}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -169,7 +173,27 @@ N/A
 \section{Naming Conventions and Terminology}
 \subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
 involved in the Project}
-\lips
+
+The following terms and acronyms are used throughout this document and among project stakeholders.
+
+\begin{description}[leftmargin=2.5cm, style=nextline]
+  \item[NNL:] Neural Network Libraries.
+  \item[ML:] Machine Learning.
+  \item[AI:] Artificial Intelligence.
+  \item[LLM:] Large Language Model.
+  \item[CAS:] Computing and Software Department (McMaster University).
+  \item[Methodology:] The structured process used to assess the state of best practice within a software domain.
+  \item[Tool:] The software being developed to automate data collection, visualization, and storage.
+  \item[Research Subteam:] The student group using the tool to apply the methodology and write the research paper.
+  \item[Domain Expert:] An individual with specialized knowledge in neural networks who provides feedback and validation.
+  \item[Supervisor:] The CAS faculty member overseeing the project.
+  \item[State of Best Practice Paper:] The research paper summarizing findings from applying the methodology.
+  \item[Infrastructure:] University-provided resources (hosting, databases, servers).
+  \item[Excel Sheets:] Existing manual tools used for data collection.
+  \item[Ad Hoc Method:] Informal, unstructured approach previously used for data gathering.
+  \item[Stakeholders:] All individuals involved in or affected by the project (e.g., supervisor, researchers, domain expert).
+\end{description}
+
 
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
@@ -262,34 +286,52 @@ System computes AHP-based scores and produces comparative visualizations and rep
 Below is an example of a Business Use Case for a key event in the NNL Assessment Tool workflow.
 
 \begin{table}[H]
-\caption{Business Use Case Example – New Package Added to Domain}
 \centering
-\begin{tabularx}{\textwidth}{|p{3cm}|X|}
+\caption{Business Use Case Example – New Package Added to Domain}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{p{3cm} Y}
+\toprule
+\textbf{Business Event} & New library/package created for domain usage. \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+\textbf{Input(s)} & GitHub repository link and metadata retrieved from public API. \\
 \hline
-\textbf{Business Event} & New library/package created for domain usage \\ \hline
-\textbf{Input(s)} & GitHub repository link and metadata retrieved from public API \\ \hline
-\textbf{Output(s)} & Stored library record in database; automated metrics collected (stars, forks, releases) \\ \hline
-\textbf{Trigger} & Researcher adds new library or detects a new public repository \\ \hline
-\textbf{Primary Actor(s)} & Researcher \\ \hline
-\textbf{Secondary Actor(s)} & Domain Expert, System APIs \\ \hline
-\textbf{Preconditions} & API access is available; library URL is valid \\ \hline
-\textbf{Postconditions} & Library and metadata stored successfully; flagged for domain expert review \\ \hline
-\textbf{Main Flow} &  
+\textbf{Output(s)} & Stored library record in database; automated metrics collected (stars, forks, releases). \\
+\hline
+\textbf{Trigger} & Researcher adds new library or detects a new public repository. \\
+\hline
+\textbf{Primary Actor(s)} & Researcher. \\
+\hline
+\textbf{Secondary Actor(s)} & Domain Expert, System APIs. \\
+\hline
+\textbf{Preconditions} & API access is available; library URL is valid. \\
+\hline
+\textbf{Postconditions} & Library and metadata stored successfully; flagged for domain expert review. \\
+\hline
+\textbf{Main Flow} &
 1. Researcher inputs new repository link. \newline
 2. Tool fetches metadata from GitHub and related APIs. \newline
 3. Data is validated and stored in the system database. \newline
-4. Confirmation and logs generated. \\ \hline
-\textbf{Alternative Flow(s)} &  
-- If API call fails, tool logs error and prompts user for manual data entry. \newline
-- If duplicate record detected, tool alerts user and prevents duplication. \\ \hline
-\textbf{Business Rules} &  
-- All repositories must belong to open-source libraries under the defined domain. \newline
-- Collected metrics must be timestamped for version tracking. \\ \hline
-\textbf{Exceptions} &  
-- API rate limits reached. \newline
-- Network outage during data retrieval. \\ \hline
+4. Confirmation and logs generated. \\
+\hline
+\textbf{Alternative Flow(s)} &
+– If API call fails, tool logs error and prompts user for manual data entry. \newline
+– If duplicate record detected, tool alerts user and prevents duplication. \\
+\hline
+\textbf{Business Rules} &
+– All repositories must belong to open-source libraries under the defined domain. \newline
+– Collected metrics must be timestamped for version tracking. \\
+\hline
+\textbf{Exceptions} &
+– API rate limits reached. \newline
+– Network outage during data retrieval. \\
+\bottomrule
 \end{tabularx}
 \end{table}
+
 
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
@@ -682,21 +724,40 @@ Below is a list of factors and questions that remain unresolved and could signif
 The purpose of identifying these open issues is to ensure they are tracked, managed, and resolved in a timely manner. Maintaining visibility of these uncertainties supports effective risk management and informed decision-making throughout the development lifecycle.
 
 \subsection{List of Open Issues}
-
 \begin{table}[H]
-\caption{Open Issues to Track and Resolve}
 \centering
-\begin{tabularx}{\textwidth}{|p{1.2cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{2cm}|}
+\caption{Open Issues to Track and Resolve}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{Z Y Y Y Y Z}
+\toprule
+\makecell{\textbf{Issue}\\\textbf{\#}} &
+\textbf{Summary} &
+\textbf{Cross-Reference} &
+\textbf{Stakeholders Involved} &
+\textbf{Action Required} &
+\textbf{Status} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+
+OI-01 & Finalization of hosting environment (e.g., internal server) & Section 13 -- Operational Requirements & CAS Supervisor, Infra Team & Confirm approved infrastructure with McMaster IT & Pending \\
 \hline
-\textbf{Issue \#} & \textbf{Summary} & \textbf{Cross-Reference} & \textbf{Stakeholders Involved} & \textbf{Action Required} & \textbf{Status} \\ \hline
-OI-01 & Finalization of hosting environment (e.g., internal server) & Section 13 – Operational Requirements & CAS Supervisor, Infra Team & Confirm approved infrastructure with McMaster IT & Pending \\ \hline
-OI-02 & Confirmation of the final list of Neural Network Libraries & Section 6 – Scope of Work & Research Subteam, Domain Expert & Schedule review meeting with domain expert & Pending \\ \hline
-OI-03 & Selection of UI framework and visualization library & Section 9 – Functional Requirements & Development Team & Evaluate and finalize tech stack & In Progress \\ \hline
-OI-04 & Clarification of Excel integration level (import/export vs live sync) & Section 9 – Functional Requirements & Research Subteam, Developers & Define required use cases and confirm feasibility & Pending \\ \hline
-OI-05 & Decision on authentication method (SSO vs custom login) & Section 9 – Functional Requirements & CAS Supervisor, Development Team & Meet with IT to assess SSO feasibility & Pending \\ \hline
-OI-06 & Confirmation of data storage architecture (SQL vs cloud) & Section 13 – Operational Requirements & Developers, Infra Team & Evaluate hosting options and finalize design & Pending \\ \hline
+OI-02 & Confirmation of the final list of Neural Network Libraries & Section 6 -- Scope of Work & Research Subteam, Domain Expert & Schedule review meeting with domain expert & Pending \\
+\hline
+OI-03 & Selection of UI framework and visualization library & Section 9 -- Functional Requirements & Development Team & Evaluate and finalize tech stack & In Progress \\
+\hline
+OI-04 & Clarification of Excel integration level (import/export vs live sync) & Section 9 -- Functional Requirements & Research Subteam, Developers & Define required use cases and confirm feasibility & Pending \\
+\hline
+OI-05 & Decision on authentication method (SSO vs custom login) & Section 9 -- Functional Requirements & CAS Supervisor, Development Team & Meet with IT to assess SSO feasibility & Pending \\
+\hline
+OI-06 & Confirmation of data storage architecture (SQL vs cloud) & Section 13 -- Operational Requirements & Developers, Infra Team & Evaluate hosting options and finalize design & Pending \\
+\bottomrule
 \end{tabularx}
 \end{table}
+
+
 
 
 
@@ -711,17 +772,40 @@ The goal is to reuse proven, reliable components and avoid reinventing existing 
 Several existing platforms provide partial functionality aligned with the tool’s goals, particularly in data visualization, analytics, and automation. However, none fully satisfy the requirement for automated data gathering, Analytic Hierarchy Process (AHP) analysis, and integrated visualization.
 
 \begin{table}[H]
-\caption{Ready-Made Products Relevant to the NNL Assessment Tool}
 \centering
-\begin{tabularx}{\textwidth}{|p{2.5cm}|X|X|X|}
+\caption{Ready-Made Products Relevant to the NNL Assessment Tool}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{p{3cm} Y Y Y}
+\toprule
+\textbf{Product} & \textbf{Description} & \textbf{Relevance to Project} & \textbf{Limitations} \\
+\midrule
+Microsoft Excel &
+Spreadsheet with storage, formulas, and charts. &
+Used as baseline for current manual process. &
+Lacks automation, scalability, and centralized access. \\
+\arrayrulecolor[gray]{0.8}\hline
+Google Sheets &
+Cloud-based collaborative spreadsheet. &
+Enables multi-user editing and sharing. &
+Limited automation; manual data import. \\
 \hline
-\textbf{Product} & \textbf{Description} & \textbf{Relevance to Project} & \textbf{Limitations} \\ \hline
-Microsoft Excel & Spreadsheet with storage, formulas, and charts. & Used as baseline for current manual process. & Lacks automation, scalability, and centralized access. \\ \hline
-Google Sheets & Cloud-based collaborative spreadsheet. & Enables multi-user editing and sharing. & Limited automation; manual data import. \\ \hline
-Power BI / Tableau & Advanced analytics and visualization tools. & Suitable for dashboards and comparative graphs. & Licensing cost; limited AHP customization. \\ \hline
-SurveyMonkey / Google Forms & Online data collection tools. & Useful for gathering expert feedback. & No direct database or analytics integration. \\ \hline
+Power BI / Tableau &
+Advanced analytics and visualization tools. &
+Suitable for dashboards and comparative graphs. &
+Licensing cost; limited AHP customization. \\
+\hline
+SurveyMonkey / Google Forms &
+Online data collection tools. &
+Useful for gathering expert feedback. &
+No direct database or analytics integration. \\
+\bottomrule
 \end{tabularx}
 \end{table}
+
+
 
 These products may serve as inspiration or integration points (e.g., Excel import/export) but cannot replace the custom automation and analysis required by the NNL Assessment Tool.
 
@@ -730,20 +814,55 @@ These products may serve as inspiration or integration points (e.g., Excel impor
 The following open-source libraries and frameworks will be incorporated to support data collection, analysis, and visualization.
 
 \begin{table}[H]
-\caption{Reusable Components}
 \centering
-\begin{tabularx}{\textwidth}{|p{2.5cm}|X|X|X|}
+\caption{Reusable Components}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{p{2.7cm} Y Y Y}
+\toprule
+\textbf{Component} & \textbf{Purpose} & \textbf{Source} & \textbf{Justification} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+Python Pandas &
+Data manipulation and analysis. &
+Open-source &
+Handles tabular data and transformations efficiently. \\
 \hline
-\textbf{Component} & \textbf{Purpose} & \textbf{Source} & \textbf{Justification} \\ \hline
-Python Pandas & Data manipulation and analysis. & Open-source & Handles tabular data and transformations efficiently. \\ \hline
-Requests (Python) & Retrieve data from GitHub / PyPI APIs. & Open-source & Automates collection of repository metrics. \\ \hline
-Matplotlib / Plotly / Chart.js & Visualization libraries. & Open-source & Create interactive and exportable graphs for dashboards. \\ \hline
-AHPy / ahpy & Analytic Hierarchy Process implementation. & Open-source & Automates pairwise comparison scoring. \\ \hline
-Flask & Backend web framework. & Open-source & Manages API integration and data handling. \\ \hline
-React & Frontend user interface framework. & Open-source & Enables responsive dashboards and visualization. \\ \hline
-MySQL / SQLite & Database systems. & Open-source & Store collected data and evaluation results. \\ \hline
+Requests (Python) &
+Retrieve data from GitHub / PyPI APIs. &
+Open-source &
+Automates collection of repository metrics. \\
+\hline
+Matplotlib / Plotly / Chart.js &
+Visualization libraries. &
+Open-source &
+Create interactive and exportable graphs for dashboards. \\
+\hline
+AHPy / ahpy &
+Analytic Hierarchy Process implementation. &
+Open-source &
+Automates pairwise comparison scoring. \\
+\hline
+Flask &
+Backend web framework. &
+Open-source &
+Manages API integration and data handling. \\
+\hline
+React &
+Frontend user interface framework. &
+Open-source &
+Enables responsive dashboards and visualization. \\
+\hline
+MySQL / SQLite &
+Database systems. &
+Open-source &
+Store collected data and evaluation results. \\
+\bottomrule
 \end{tabularx}
 \end{table}
+
 
 Reusing these components ensures consistency, leverages reliability, and minimizes custom development effort.
 
@@ -752,15 +871,28 @@ Reusing these components ensures consistency, leverages reliability, and minimiz
 Some open-source or academic research dashboards share functional similarities with the NNL Assessment Tool and may inform design or architecture.
 
 \begin{table}[H]
-\caption{Products That Can Be Copied or Adapted}
 \centering
-\begin{tabularx}{\textwidth}{|p{3cm}|X|X|}
+\caption{Products That Can Be Copied or Adapted}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{p{3cm} Y Y}
+\toprule
+\textbf{Product} & \textbf{Description} & \textbf{Adaptation Potential} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+Software Assessment Dashboards &
+Tools that analyze open-source software metrics. &
+Their structure can guide data collection, evaluation, and dashboard layout. \\
 \hline
-\textbf{Product} & \textbf{Description} & \textbf{Adaptation Potential} \\ \hline
-Software Assessment Dashboards & Tools that analyze open-source software metrics. & Their structure can guide data collection, evaluation, and dashboard layout. \\ \hline
-University Research Repositories & Academic dashboards for research analytics. & Useful for UI patterns, visualization approaches, and data categorization strategies. \\ \hline
+University Research Repositories &
+Academic dashboards for research analytics. &
+Useful for UI patterns, visualization approaches, and data categorization strategies. \\
+\bottomrule
 \end{tabularx}
 \end{table}
+
 
 Adaptation saves design time and provides validated frameworks for implementation while maintaining legal compliance.
 
@@ -877,17 +1009,48 @@ The tool will be hosted on McMaster’s internal infrastructure or an approved e
 \begin{table}[H]
 \centering
 \caption{Project Planning Phases}
-\begin{tabularx}{\textwidth}{|p{2.2cm}|X|X|X|}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{p{2.5cm} Y Y Y}
+\toprule
+\textbf{Phase} & \textbf{Description} & \textbf{Key Activities} & \textbf{Deliverables} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+Initiation &
+Define problem, scope, and objectives. &
+Document review, team formation, feasibility assessment. &
+Problem Statement, POC Plan, Development Plan. \\
 \hline
-\textbf{Phase} & \textbf{Description} & \textbf{Key Activities} & \textbf{Deliverables} \\ \hline
-Initiation & Define problem, scope, and objectives & Document review, team formation, feasibility assessment & Problem Statement, POC Plan, Development Plan \\ \hline
-Requirements & Gather and formalize system requirements & Stakeholder interviews, drafting of SRS and Hazard Analysis & SRS Document, Hazard Analysis \\ \hline
-Design & Establish system architecture and interfaces & UI mockups, data flow diagrams, schema design & Design Document \\ \hline
-Implementation & Build core tool functionality & Develop modules, integrate APIs, implement Excel import/export & Proof of Concept Demo \\ \hline
-Validation \& Verification & Test and evaluate system performance & Unit and integration testing, review sessions, issue resolution & V\&V Plan, V\&V Report \\ \hline
-Deployment & Deliver hosted solution & Deploy tool, prepare documentation, conduct final demo & Final Hosted Tool, Presentation, Final Report \\ \hline
+Requirements &
+Gather and formalize system requirements. &
+Stakeholder interviews, drafting of SRS and Hazard Analysis. &
+SRS Document, Hazard Analysis. \\
+\hline
+Design &
+Establish system architecture and interfaces. &
+UI mockups, data flow diagrams, schema design. &
+Design Document. \\
+\hline
+Implementation &
+Build core tool functionality. &
+Develop modules, integrate APIs, implement Excel import/export. &
+Proof of Concept Demo. \\
+\hline
+Validation \& Verification &
+Test and evaluate system performance. &
+Unit and integration testing, review sessions, issue resolution. &
+V\&V Plan, V\&V Report. \\
+\hline
+Deployment &
+Deliver hosted solution. &
+Deploy tool, prepare documentation, conduct final demo. &
+Final Hosted Tool, Presentation, Final Report. \\
+\bottomrule
 \end{tabularx}
 \end{table}
+
 
 \subsection{Planning of the Development Phases}
 
@@ -896,16 +1059,56 @@ Each phase contributes to the development of a usable and reliable product. Feed
 \begin{table}[H]
 \centering
 \caption{Development Phase Plan}
-\begin{tabularx}{\textwidth}{|p{2.5cm}|X|p{2cm}|X|X|X|}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{p{2.5cm} Y p{2cm} Y Y Y}
+\toprule
+\textbf{Phase Name} & \textbf{Benefit to User} & \textbf{Operational Date} &
+\textbf{Operating Components} & \textbf{Functional Requirements} &
+\textbf{Non-Functional Requirements} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+
+Requirements \& Analysis &
+Clarifies system objectives and constraints. &
+Week 1–6 &
+GitHub, LaTeX &
+Requirements documentation. &
+Accuracy, clarity. \\
 \hline
-\textbf{Phase Name} & \textbf{Benefit to User} & \textbf{Operational Date} & \textbf{Operating Components} & \textbf{Functional Requirements} & \textbf{Non-Functional Requirements} \\ \hline
-Requirements \& Analysis & Clarifies system objectives and constraints & Week 1–6 & GitHub, LaTeX & Requirements documentation & Accuracy, clarity \\ \hline
-Design & Defines architecture and interfaces & Week 10–16 & UML tools, wire-framing software & UI and backend design & Maintainability \\ \hline
-Implementation & Delivers core product functionality & Week 16–19 & IDE, databases, APIs & Tool modules, automation scripts & Reliability, usability \\ \hline
-Testing \& Validation & Ensures product meets all criteria & Week 17–22 & Test suites, CI/CD & Verification of features & Performance \\ \hline
-Deployment & Provides accessible hosted tool & Week 22–26 & Hosting platform, documentation & Hosted application & Security, accessibility \\ \hline
+Design &
+Defines architecture and interfaces. &
+Week 10–16 &
+UML tools, wireframing software. &
+UI and backend design. &
+Maintainability. \\
+\hline
+Implementation &
+Delivers core product functionality. &
+Week 16–19 &
+IDE, databases, APIs. &
+Tool modules, automation scripts. &
+Reliability, usability. \\
+\hline
+Testing \& Validation &
+Ensures product meets all criteria. &
+Week 17–22 &
+Test suites, CI/CD. &
+Verification of features. &
+Performance. \\
+\hline
+Deployment &
+Provides accessible hosted tool. &
+Week 22–26 &
+Hosting platform, documentation. &
+Hosted application. &
+Security, accessibility. \\
+\bottomrule
 \end{tabularx}
 \end{table}
+
 
 
 %\section{Migration to the New Product}
