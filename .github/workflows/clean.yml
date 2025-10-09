@@ -1,3 +1,4 @@
+name: Manually Delete PDF
 on:
   workflow_dispatch:
     inputs:

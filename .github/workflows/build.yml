@@ -1,3 +1,4 @@
+name: Manually Build PDF
 on:
   workflow_dispatch:
     inputs:
