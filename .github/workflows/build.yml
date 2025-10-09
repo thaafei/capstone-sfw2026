@@ -26,16 +26,20 @@ jobs:
         COMMIT_MESSAGE="Add/Update pdf $file"
         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
-    - name: Compile LaTeX Files
+    - uses: xu-cheng/texlive-action@v2
+      name: Compile LaTeX Files
       env:
         file: ${{ inputs.pdf_path }}
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y make texlive-full
-        cd docs
-        file="${{ env.file }}"
-        dir=$(dirname "$file" | cut -d'/' -f2-)
-        make -B "$dir/$(basename "$file" .tex).pdf"
+      with:
+        scheme: full
+        texlive_version: 2024
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y make texlive-full
+          cd docs
+          file="${{ env.file }}"
+          dir=$(dirname "$file" | cut -d'/' -f2-)
+          make -B "$dir/$(basename "$file" .tex).pdf"
     - name: Commit and push PDFs
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
