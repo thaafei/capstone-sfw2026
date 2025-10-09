@@ -34,8 +34,7 @@ jobs:
         scheme: full
         texlive_version: 2024
         run: |
-          sudo apt-get update
-          sudo apt-get install -y make texlive-full
+          apk add make
           cd docs
           file="${{ env.file }}"
           dir=$(dirname "$file" | cut -d'/' -f2-)
