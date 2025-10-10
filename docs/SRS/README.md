@@ -1,6 +1,12 @@
-# Software Requirements and Specifications
+# Software Requirements Specification (SRS)
+
+<The SRS is for a single product, not a family of products. A Commonality Analysis is
+more appropriate for a family of products.>
+
+<The template in this folder is suited to Scientific Computing (also known as 
+Research Software) projects>
+
 The folders and files for this folder are as follows:
 
-1. SRS.tex: The latex file containing our requirements specification, following the Volere's template found here: https://www.cs.uic.edu/~i440/VolereMaterials/templateArchive16/c%20Volere%20template16.pdf
-2. SRS.pdf: The compiled latex file of SRS.tex
-3. images: The subfolder containing all the images used for the SRS document.
+Describe ...
+

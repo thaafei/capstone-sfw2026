@@ -1,14 +1,10 @@
-DomainX
+# Project Name
 
 Developer Names:
-Fei Xie
-Awurama Nyarko
-Ghena Hatoum
-Haniye Hamidizadeh
 
-Date of project start: September 8, 2025
+Date of project start:
 
-This project contains a Domain assessment tool used to access the state of best practice for any domain.
+This project is ...
 
 The folders and files for this project are as follows:
 
