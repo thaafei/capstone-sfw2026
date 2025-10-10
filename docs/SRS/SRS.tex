@@ -182,6 +182,7 @@ involved in the Project}
 The following terms and acronyms are used throughout this document and among project stakeholders.
 
 \begin{description}[leftmargin=2.5cm, style=nextline]
+  \item[NN:] Neural Network.
   \item[NNL:] Neural Network Libraries.
   \item[ML:] Machine Learning.
   \item[AI:] Artificial Intelligence.
@@ -197,6 +198,8 @@ The following terms and acronyms are used throughout this document and among pro
   \item[Excel Sheets:] Existing manual tools used for data collection.
   \item[Ad Hoc Method:] Informal, unstructured approach previously used for data gathering.
   \item[Stakeholders:] All individuals involved in or affected by the project (e.g., supervisor, researchers, domain expert).
+  \item[API]: Application Programming Interfaces.
+  \item[AHP]:  Analytic Hierarchy Process
 \end{description}
 
 
@@ -340,7 +343,7 @@ Below is an example of a Business Use Case for a key event in the NNL Assessment
 
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
-\begin{figure}[H]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/BusinessDataModel.png}
   \caption{Business Data Model}
@@ -441,9 +444,9 @@ Visualize \& Export Results & General User / Researcher / Admin & System & Allow
 \end{tabularx}
 
 \subsection{Individual Product Use Cases (PUC's)}
-Important things to keep in mind when looking at the at the Use Case Diagram:
+Important things to keep in mind when looking at the Use Case Diagram:
 \begin{itemize}
-  \item Include: A  include B means, if A is executed that means B will be executed as well. 
+  \item Include: A include B means, if A is executed that means B will be executed as well. 
   \begin{itemize}
     \item Update Data include Login, if user wanted to Update Data they must Login.
     \item Login include Verify Account, when user tries login the system will verify account.
@@ -465,7 +468,7 @@ Important things to keep in mind when looking at the at the Use Case Diagram:
 \begin{enumerate}[label=FR\arabic*]
   \item The Admin will be able to extend an invitation to new researchers via the website, using the researcher's email address.
   \item Researchers will be able to sign up using their invited email. The process requires email validation and the creation of a unique username and password.
-  \item The system will allow Admin and Researchers to securely log in using their email and password.
+  \item The system will allow Admin and Researchers to securely login using their email and password.
   \item Users will be able to reset their password after validating their email address.
   \item Admin can create domains, using a unique domain name and optionally a short description.
   \item Admin can publish a domain, once research is completed, for anyone to see and download data collected.
@@ -1086,7 +1089,7 @@ Accuracy, clarity. \\
 Design &
 Defines architecture and interfaces. &
 Week 10–16 &
-UML tools, wireframing software. &
+UML tools, wire framing software. &
 UI and backend design. &
 Maintainability. \\
 \hline
