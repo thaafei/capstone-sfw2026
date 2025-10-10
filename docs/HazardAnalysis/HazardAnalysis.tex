@@ -496,4 +496,22 @@ Some features will be added later as future improvements:
     One of the risks is security, ensuring that only the people permitted to change the database are able to do so,  otherwise there would be no integrity and the project will be null.
     Another risk is system crashing, this would mean that the system would not be available and in some cases it could mean losing a lot of data. 
   \end{enumerate}
+
+\subsection*{Awurama}
+\begin{enumerate}
+    \item \textbf{What went well while writing this deliverable?}\\
+    The Hazard Analysis helped me understand how system-level reliability, data integrity, and user experience are tightly connected. What went well was the process of breaking down each part of the system into components and identifying the possible failure modes that could arise from them. 
+    \item \textbf{What pain points did you experience during this deliverable, and how
+    did you resolve them?}\\
+    One challenge we faced was ensuring that each hazard was clearly differentiated, some issues such as API downtime or incorrect data imports, could easily overlap between design and operational hazards. We resolved this by mapping each hazard to its related system component and referring back to our FMEA table structure for consistency.
+    \item \textbf{Which of your listed risks had your team thought of before this
+    deliverable, and which did you think of while doing this deliverable? For
+    the latter ones (ones you thought of while doing the Hazard Analysis), how
+    did they come about?}\\
+    Before starting this deliverable, we had already identified high-level risks such as user login failures, incorrect role assignment, and GitHub API limits. But while completing the Hazard Analysis, we realized that data overwriting during automation and corrupted exports could also cause serious integrity issues. 
+    \item \textbf{Other than the risk of physical harm (some projects may not have any
+    appreciable risks of this form), list at least 2 other types of risk in
+    software products. Why are they important to consider?} \\
+    Data integrity risks occur when data is lost, corrupted, or overwritten due to system or user errors, this is critical because it undermines the reliability of research outcomes. Security risks involve unauthorized access or data breaches, which can expose user credentials or evaluation data. Both are important to consider because they directly affect user trust, research validity, and system stability, even in non-safety-critical software like ours.\\
+  \end{enumerate}
 \end{document}
