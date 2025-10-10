@@ -215,8 +215,8 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-    \item SR-AC5, MS-MR4
-    \item SR-AC2, SR-AC4
+    \item SR-AC5, MS-MR4, PR-RFT3.
+    \item SR-AC2, SR-AC4.
     \item SR-P1, SR-P2, SR-IM1, SR-IM2, PR-SC1, PR-SC2.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
@@ -343,7 +343,7 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
   \begin{enumerate}[leftmargin=*]
     \item Refer to H1-1.A
     \begin{enumerate}
-        \item[a)] Require user to lock the domain when editing, with visualization functionality being available only on un-locked domains.
+        \item[a)] Require user to lock the domain when editing, with visualization functionality being available only on unlocked domains.
     \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
@@ -412,6 +412,9 @@ The system should either block publishing during edits or enforce a short downti
 
 \subsection*{Reliable Download of Data and Visuals}
 If an export (CSV, PNG, etc.) fails or the file is corrupted, the tool must alert the user and, where possible, let them retry the download. \textit{(Added to SRS as Requirement SR-INT7.)}
+
+\subsection*{Implement Backups of the Database}
+The system should have a protocol in place to take backups of the database, to restore data at max within the timeframe of an hour. \textit{(Added to SRS as Requirement PR-RFT3.)}
 
 \section{Roadmap}
 

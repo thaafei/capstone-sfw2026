@@ -543,6 +543,7 @@ N/A
 \begin{enumerate}[label=PR-RFT\arabic*]
   \item The system must implement graceful error handling, ensuring that a failure in one function (e.g., a failed GitHub API call) does not crash the entire application or disrupt other users.
   \item The system must use database transactions to ensure that data modifications are atomic, if an update operation fails in the middle, the data must be returned to its last validated state.
+  \item The system should have a protocol in place to take backups of the database, to restore data at max within the timeframe of an hour.
 \end{enumerate}
 \subsection{Capacity Requirements}
 \begin{enumerate}[label=PR-CR\arabic*]
