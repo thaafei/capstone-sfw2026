@@ -54,7 +54,6 @@ October 6, 2025  & Ghena Hatoum & Added the components\\
 October 6, 2025  & Ghena Hatoum & Added the Components Diagram\\
 October 4, 2025 & Awurama Nyarko & Introduction, Scope, Critical Assumptions\\
 October 6, 2025 & Fei Xie & Added FMEA table\\
-... & ... & ...\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -129,7 +128,7 @@ The following explain the System Components:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5] {component.png}
+    \includegraphics[scale=0.5] {images/component.png}
 \end{figure}
 
 \section{Critical Assumptions}
@@ -209,12 +208,16 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
         \item[b)] Provide user feedback during user actions.
     \end{enumerate}
     \item Refer to H1-1.a, H1-1.b.
-    \item Implement Multi-factor authentication and follow industry best practices for security.
+    \item 
+    \begin{enumerate}
+        \item[a)] Implement Multi-factor authentication and follow industry best practices for security.
+        \item[b)] Validate inputs for common security vulnerabilities, such as SQL injections.
+    \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-    \item TODO
-    \item TODO
-    \item TODO
+    \item SR-AC5, MS-MR4
+    \item SR-AC2, SR-AC4
+    \item SR-P1, SR-P2, SR-IM1, SR-IM2 
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
     \item H1-1
@@ -247,8 +250,8 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
        \item  Refer to H1-1.a, H1-1.b.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item TODO
-       \item TODO
+       \item SR-AC3, SR-AC4
+       \item SR-AC2, SR-AC3, SR-AC4
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
        \item H2-1
@@ -306,10 +309,10 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \item Refer to H1-1.a, H1-1.b, H3-1.a.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-    \item TODO
-    \item TODO
-    \item TODO
-    \item TODO
+    \item SR-INT1, SR-INT2, SR-INT3
+    \item SR-INT1, SR-INT2, SR-INT3
+    \item SR-INT4, SR-INT5 
+    \item SR-INT1, SR-AC6, SR-IM3, SR-IM4
 
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
@@ -340,7 +343,7 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item TODO
+       \item SR-INT6
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
        \item H4-1
@@ -370,8 +373,8 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item TODO
-       \item TODO
+       \item SR-AC1, SR-AC2, SR-INT7
+       \item SR-INT7
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
        \item H5-1
@@ -433,22 +436,41 @@ Some features will be added later as future improvements:
 \wss{Not required for CAS 741}
 
 \input{../Reflection.tex}
-
+\subsection*{Haniye}
 \begin{enumerate}
-    \item What went well while writing this deliverable?
-    \\\textbf{Haniye:} One thing that went well was that looking at the hazards helped us spot requirements we hadn’t considered before. Thinking through the risks made certain scenarios much clearer, like what happens if login fails or downloaded file is corrupted.
-    \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
-    \\\textbf{Haniye:} One challenge was figuring out which safety features to prioritize for the Capstone demo and which to leave for later. After looking at the project scope, we agreed to focus on the most essential features that would keep the tool stable and reliable for the demo.
-    \item Which of your listed risks had your team thought of before this
+    \item \textbf{What went well while writing this deliverable?}\\
+    One thing that went well was that looking at the hazards helped us spot requirements we hadn’t considered before. Thinking through the risks made certain scenarios much clearer, like what happens if login fails or downloaded file is corrupted.
+    \item \textbf{What pain points did you experience during this deliverable, and how
+    did you resolve them?}\\
+    One challenge was figuring out which safety features to prioritize for the Capstone demo and which to leave for later. After looking at the project scope, we agreed to focus on the most essential features that would keep the tool stable and reliable for the demo.
+    \item \textbf{Which of your listed risks had your team thought of before this
     deliverable, and which did you think of while doing this deliverable? For
     the latter ones (ones you thought of while doing the Hazard Analysis), how
-    did they come about?
-    \\\textbf{Haniye:} Some hazards were already on our radar but only partially covered in the original requirements. For example, we had noted the risk of conflicting edits and planned to keep a record of changes, but we hadn’t considered that the system should also block or warn other users editing the same record. Similarly, we knew we’d have different user roles, but we overlooked the need to handle role assignment correctly in the database. Other risks, like login failures or charts showing incomplete data, only came up as we worked through the hazard analysis and FMEA table.
-    \item Other than the risk of physical harm (some projects may not have any
+    did they come about?}\\
+    Some hazards were already on our radar but only partially covered in the original requirements. For example, we had noted the risk of conflicting edits and planned to keep a record of changes, but we hadn’t considered that the system should also block or warn other users editing the same record. Similarly, we knew we’d have different user roles, but we overlooked the need to handle role assignment correctly in the database. Other risks, like login failures or charts showing incomplete data, only came up as we worked through the hazard analysis and FMEA table.
+    \item \textbf{Other than the risk of physical harm (some projects may not have any
     appreciable risks of this form), list at least 2 other types of risk in
-    software products. Why are they important to consider?
-    \\\textbf{Haniye:} N/A
+    software products. Why are they important to consider?} \\
+    N/A
 \end{enumerate}
-
+\subsection*{Fei}
+\begin{enumerate}
+    \item \textbf{What went well while writing this deliverable?}\\
+    Thinking of the FMEA table and the possible failure modes, effects and causes of failures was fun to do. As well as thinking of ways to mitigate through recommended actions.
+    \item \textbf{What pain points did you experience during this deliverable, and how
+    did you resolve them?}\\
+    Formatting the table was definitely a hard challenge. Also since I finished the FMEA table before the SRS related requirements were written, it was a little harder to match each component's SR with an existing requirement.
+    \item \textbf{Which of your listed risks had your team thought of before this
+    deliverable, and which did you think of while doing this deliverable? For
+    the latter ones (ones you thought of while doing the Hazard Analysis), how
+    did they come about?}\\
+    One key thing was the risks associated with user roles and access. Since this will be hosted online and should be visible to anyone, we didn't want just anyone to go in and edit the data unknowingly. The risk of the automated sections being unintuitive to users was a new risk
+    that we thought about during this section. Leading us to think more about the interaction with the automation and the user, and how to design it more intuitively. Another one would also be risks associated when multiple users try to edit the same data point.
+    Since we learned about databases in 3DB3, it was good to consider and semi-relates to the risk of automation, how do we ensure that data isn't overwritten unknowingly?
+    \item \textbf{Other than the risk of physical harm (some projects may not have any
+    appreciable risks of this form), list at least 2 other types of risk in
+    software products. Why are they important to consider?} \\
+    Security risk, although having a user's username and password get leaked can't directly get them hurt using our product. There are numerous unexpected consequences. We can't guarantee that the user doesn't use the same login information for all their websites, meaning that their compromised information can potentially impact their banking, social media, and other higher-risk applications, due to our breach.\\
+    Another risk is operational, we don't have all the time in the world (or money) to work on the project. That is why we need to consider what are the most important features, or more pressing user issues. Not properly mitigating this risk can mean losing customers and outside of a capstone project, potentially losing your job.
+  \end{enumerate}
 \end{document}
