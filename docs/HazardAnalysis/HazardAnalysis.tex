@@ -19,6 +19,8 @@
 \usepackage{longtable}
 \usepackage{ulem}
 \usepackage{ltablex}
+\usepackage{nicematrix}
+\usepackage{makecell}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -50,12 +52,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-October 6, 2025  & Ghena Hatoum & Added the components\\
-October 6, 2025  & Ghena Hatoum & Added the Components Diagram\\
-October 4, 2025 & Awurama Nyarko & Introduction, Scope, Critical Assumptions\\
-October 6, 2025 & Fei Xie & Added FMEA table\\
-October 6, 2025 & Haniye Hamidizadeh & Added Safety and Security Requirements\\
-October 6, 2025 & Haniye Hamidizadeh & Added RoadMap\\
+October 6, 2025  & Whole team & Initial v0 Draft\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -168,7 +165,7 @@ The following assumptions support hazard identification and mitigation:
 The following contain our Failure Mode and Effect Analysis table is a breakdown of the hazards that could occur within the system, along with recommended actions to mitigate them.
 \newgeometry{margin=0.5in}
 \begin{landscape}
-  \begin{longtable}{|p{3cm}|p{3cm}|p{4cm}|p{4cm}|p{3cm}|p{2cm}|p{3cm}|}
+  \begin{longtable}{|p{2cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|p{2cm}|p{2cm}|}
   \caption{Failure Mode and Effect Analysis} \label{FMEA}\\
   \hline
    Component & Failure Modes & Effects of Failure & Causes of Failure & Recommended Action & SR & Ref.  \\ 
@@ -208,18 +205,19 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \begin{enumerate}
         \item[a)] Implement automated daily system integration testing.
         \item[b)] Provide user feedback during user actions.
+        \item[c)] Provide option for resetting credentials.
     \end{enumerate}
-    \item Refer to H1-1.a, H1-1.b.
+    \item Refer to H1-1.a, H1-1.b, H1-1.c.
     \item 
     \begin{enumerate}
-        \item[a)] Implement Multi-factor authentication and follow industry best practices for security.
+        \item[a)] Implement authentication techniques and follow industry best practices for security.
         \item[b)] Validate inputs for common security vulnerabilities, such as SQL injections.
     \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
     \item SR-AC5, MS-MR4
     \item SR-AC2, SR-AC4
-    \item SR-P1, SR-P2, SR-IM1, SR-IM2 
+    \item SR-P1, SR-P2, SR-IM1, SR-IM2, PR-SC1, PR-SC2.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
     \item H1-1
@@ -227,7 +225,7 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \item H1-3
   \end{enumerate} \\
   \hline
-    Domain Creation & 
+  \multirow{7}{*}{\makecell{Domain\\Creation}} & 
   \begin{enumerate}[leftmargin=*]
       \item Cannot create new domains
       \item Cannot edit existing domain
@@ -243,16 +241,20 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
   \begin{enumerate}[leftmargin=*]
     \item  Refer to H1-1.a
     \begin{enumerate}
-        \item[a)] User has incorrect role credentials
+        \item[a)] User has incorrect access control level
+        \item[b)] Database failure, all data on the database removed
     \end{enumerate}
-    \item Refer to H1-1.a, H2-1.a.
+    \item Refer to H1-1.a, H2-1.a, H2-1.b.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
        \item Refer to H1-1.a, H1-1.b.
+       \begin{enumerate}
+        \item[a)] Implement backup databases and backup protocols
+    \end{enumerate}
        \item  Refer to H1-1.a, H1-1.b.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item SR-AC3, SR-AC4
+       \item SR-AC3, SR-AC4, PR-RFT2
        \item SR-AC2, SR-AC3, SR-AC4
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
@@ -260,7 +262,7 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
        \item H2-2
   \end{enumerate} \\
   \hline
-  Adding Data to Domain & 
+  \multirow{7}{*}{\makecell{Adding Data\\to a Domain}} & 
   \begin{enumerate}[leftmargin=*]
       \item User cannot add new data point
       \item User cannot update existing data point
@@ -311,10 +313,10 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \item Refer to H1-1.a, H1-1.b, H3-1.a.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-    \item SR-INT1, SR-INT2, SR-INT3
-    \item SR-INT1, SR-INT2, SR-INT3
-    \item SR-INT4, SR-INT5 
-    \item SR-INT1, SR-AC6, SR-IM3, SR-IM4
+    \item SR-INT1, SR-INT2, SR-INT3, PR-RFT2.
+    \item SR-INT1, SR-INT2, SR-INT3, PR-RFT2.
+    \item SR-INT4, SR-INT5, PR-RFT2.
+    \item SR-INT1, SR-AC6, SR-IM3, SR-IM4, PR-RFT2.
 
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
@@ -324,7 +326,7 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \item H3-4
   \end{enumerate} \\
   \hline
- Data Visualization & 
+  \multirow{7}{*}{\makecell{Data\\Visualization}} & 
   \begin{enumerate}[leftmargin=*]
       \item Visualization method does not match data points
   \end{enumerate} & 
@@ -351,7 +353,7 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
        \item H4-1
   \end{enumerate} \\
   \hline
- Download Data  & 
+  \multirow{7}{*}{\makecell{Download\\Data}} & 
   \begin{enumerate}[leftmargin=*]
     \item User unable to download the data/visuals of a domain
     \item Downloaded data/visuals of a domain are corrupted and unusable
@@ -365,18 +367,18 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
     \item Refer to H1-1.a, H3-1.a, H4-1.a.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item Refer tp H1-1.a, H1-1.b.
+       \item Refer to H1-1.a, H1-1.b.
        \begin{enumerate}
         \item[a)] Provide multiple methods for downloading or sharing
     \end{enumerate}
-       \item Refer tp H1-1.a, H1-1.b.
+       \item Refer to H1-1.a, H1-1.b.
        \begin{enumerate}
         \item[a)] Implement proper error handling in code to catch exceptions
     \end{enumerate}
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
-       \item SR-AC1, SR-AC2, SR-INT7
-       \item SR-INT7
+       \item SR-AC1, SR-AC2, SR-INT7.
+       \item SR-INT7.
   \end{enumerate} &
   \begin{enumerate}[leftmargin=*]
        \item H5-1
