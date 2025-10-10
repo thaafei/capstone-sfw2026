@@ -57,11 +57,16 @@ October 5, 2025 & Ghena Hatoum & Added Functional Requirements \\
 October 5, 2025 & Ghena Hatoum & Added Look and Feel Requirements \\
 October 5, 2025 & Ghena Hatoum & Added Usability and Performance Requirements \\
 October 5, 2025 & Ghena Hatoum & Added Sections: Product Boundary to Usability and Performance Requirements\\
-October 5, 2025 & Haniye Hamidizadeh & Added Sections: Operational and Environmental Requirements to Compliance Requirements\\
+October 5, 2025 & Haniye Hamidizadeh & Added Operational and Environmental Requirements \\
+October 5, 2025 & Haniye Hamidizadeh & Added Maintainability and Support Requirements\\
+October 5, 2025 & Haniye Hamidizadeh & Added Security Requirements\\
+October 5, 2025 & Haniye Hamidizadeh & Added Cultural Requirements\\
+October 5, 2025 & Haniye Hamidizadeh & Added Compliance Requirements\\
 October 6, 2025 & Fei Xie & Added Sections: Cost to Ideas for Solution\\
 October 6, 2025 & Fei Xie & First Draft of Sections: Cost to Ideas for Solution\\
 October 8, 2025 & Fei Xie & Added Sections: Purpose of the Project to Naming Conventions and Terms\\
 October 8, 2025 & Awurama Nyarko & Fixing Tables\\
+October 9, 2025 & Haniye Hamidizadeh & Updated label\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -657,9 +662,9 @@ The tool is intended to be mostly self-supporting since it will be used primaril
 
   \item Editing or any other administrative actions must be available only to logged-in users with the \textbf{Contributor} role.
 
-  \item User roles (Viewer / Contributor) must be assigned and updated correctly at sign-up or by an admin so that permissions always reflect the intended access level.
+  \item User roles (Viewer / Contributor) must be assigned and updated correctly at sign-up or by an admin so that permissions always reflect the intended access level. \textit{(From FMEA table, Hazard Analysis.)}
 
-  \item The system must display clear error messages for login failures (e.g., invalid credentials, network errors) and provide a secure way for users to recover or reset their account credentials.
+  \item The system must display clear error messages for login failures (e.g., invalid credentials, network errors) and provide a secure way for users to recover or reset their account credentials. \textit{(From FMEA table, Hazard Analysis.)}
 
   \item API credentials such as keys or tokens for external services (e.g., repository APIs) must be stored securely outside the source code (e.g., in environment variables) and must never be exposed in the frontend or version control.
 
@@ -669,11 +674,11 @@ The tool is intended to be mostly self-supporting since it will be used primaril
 \begin{enumerate}[label=SR-INT\arabic*]
 \item To ensure the accuracy and reliability of the collected data, all manually entered information into the interactive table must be checked before it is saved. For example, numbers must fall within valid ranges, and text must be cleaned so that it cannot be treated as code or scripts.
 \item The database must include safeguards so that if two users edit the same record at the same time, no changes are lost or overwritten.
-\item The system must detect simultaneous edits and either block one save or notify the users to resolve the conflict.
-\item When automated data updates conflict with a user’s manual edits (if any are updated automatically), the system must warn the user or request confirmation before replacing existing data.
+\item The system must detect simultaneous edits and either block one save or notify the users to resolve the conflict. \textit{(From FMEA table, Hazard Analysis.)}
+\item When automated data updates conflict with a user’s manual edits (if any are updated automatically), the system must warn the user or request confirmation before replacing existing data. \textit{(From FMEA table, Hazard Analysis.)}
 \item The system must also store the raw evidence, calculated scores, and final rankings in separate fields so that the original data and results cannot be accidentally modified.
-\item Publishing visualizations must not occur at the same time as data edits or automated refreshes. The system must either block publishing or enforce downtime until updates are complete.
-\item If an export (e.g., CSV, PNG) fails or produces a corrupted file, the tool must alert the user and allow them to retry the download.
+\item Publishing visualizations must not occur at the same time as data edits or automated refreshes. The system must either block publishing or enforce downtime until updates are complete. \textit{(From FMEA table, Hazard Analysis.)}
+\item If an export (e.g., CSV, PNG) fails or produces a corrupted file, the tool must alert the user and allow them to retry the download. \textit{(From FMEA table, Hazard Analysis.)}
 \end{enumerate}
 \subsection{Privacy Requirements}
 The tool mainly works with open-source repository data, so there is very little personal data involved.
