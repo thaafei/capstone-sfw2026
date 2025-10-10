@@ -54,6 +54,9 @@ October 6, 2025  & Ghena Hatoum & Added the components\\
 October 6, 2025  & Ghena Hatoum & Added the Components Diagram\\
 October 4, 2025 & Awurama Nyarko & Introduction, Scope, Critical Assumptions\\
 October 6, 2025 & Fei Xie & Added FMEA table\\
+October 6, 2025 & Haniye Hamidizadeh & Added Safety and Security Requirements\\
+October 6, 2025 & Haniye Hamidizadeh & Added RoadMap\\
+October 9, 2025 & Haniye Hamidizadeh & Added labels to Safety and Security Requirements\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -389,33 +392,33 @@ The following contain our Failure Mode and Effect Analysis table is a breakdown 
 \section{Safety and Security Requirements}
 The hazard analysis revealed several safety-related requirements that were not fully covered in the SRS.
 These requirements aim to prevent data loss, improve user experience during failures, and keep the tool reliable.
+\subsection*{Correct Role Assignment}
+User roles (Viewer / Contributor) must be assigned and saved correctly at sign-up or when updated by an admin so that permissions are always accurate.\textit{(Added to SRS as Requirement SR-AC4.)}
 
 \subsection*{Clear Error Feedback and Account Recovery}
-The system must show clear error messages (e.g., wrong password, network failure) and give users a way to reset their credentials if they forget them.
-
-\subsection*{Correct Role Assignment}
-User roles (Viewer / Contributor) must be assigned and saved correctly at sign-up or when updated by an admin so that permissions are always accurate.
-
-\subsection*{Protecting Manual Edits from Automated Updates}
-If automated data refreshes could overwrite a user’s manual entry, the system must warn the user or ask for confirmation before replacing the data.
+The system must show clear error messages (e.g., wrong password, network failure) and give users a way to reset their credentials if they forget them. \textit{(Added to SRS as Requirement SR-AC5.)}
 
 \subsection*{Preventing Conflicting Edits}
-When two people try to edit the same record at the same time, the tool must either block one of the saves or clearly warn the users to avoid losing data.
+When two people try to edit the same record at the same time, the tool must either block one of the saves or clearly warn the users to avoid losing data. \textit{(Added to SRS as Requirement SR-INT3.)}
+
+\subsection*{Protecting Manual Edits from Automated Updates}
+If automated data refreshes could overwrite a user’s manual entry, the system must warn the user or ask for confirmation before replacing the data. \textit{(Added to SRS as Requirement SR-INT4.)}
+
 
 \subsection*{Consistent Visualization}
 Publishing visualizations must not happen at the same time as ongoing data edits.
-The system should either block publishing during edits or enforce a short downtime so charts and scores always reflect a stable dataset.
+The system should either block publishing during edits or enforce a short downtime so charts and scores always reflect a stable dataset. \textit{(Added to SRS as Requirement SR-INT6.)}
 
 \subsection*{Reliable Download of Data and Visuals}
-If an export (CSV, PNG, etc.) fails or the file is corrupted, the tool must alert the user and, where possible, let them retry the download.
+If an export (CSV, PNG, etc.) fails or the file is corrupted, the tool must alert the user and, where possible, let them retry the download. \textit{(Added to SRS as Requirement SR-INT7.)}
 
 \section{Roadmap}
 
 For the Capstone timeline, we will focus on the safety features that are needed to make the tool work properly:
 
 \begin{itemize}
-    \item Login with account recovery so that users can sign in securely.
     \item Correct role assignment (Viewer / Contributor) so only authorized users can edit data.
+    \item Login with account recovery so that users can sign in securely.
     \item A basic warning when automated updates might overwrite manual edits.
     \item Reliable downloads for tables and charts, with a simple error message if something goes wrong.
 \end{itemize}
