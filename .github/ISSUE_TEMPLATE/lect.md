@@ -14,7 +14,7 @@ assignees: ''
 **Attendance**
 
 - [ ] Awurama
-- [ ] Fei (Fiona)
+- [ ] Fei
 - [ ] Ghena
 - [ ] Haniye (Fatemeh)
 

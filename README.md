@@ -4,11 +4,11 @@ Developer Names:
 Fei Xie
 Awurama Nyarko
 Ghena Hatoum
-Fatemeh Hamidizadeh
+Haniye Hamidizadeh
 
 Date of project start: September 8, 2025
 
-This project contains a Domain accessment tool used to access the state of best practice for any domain.
+This project contains a Domain assessment tool used to access the state of best practice for any domain.
 
 The folders and files for this project are as follows:
 
