@@ -136,7 +136,7 @@ During the user acceptance testing phase of the product. The CASE Supervisor sho
 
 \subsection{Maintenance Users and Service Technicians}
 \textbf{Project Maintainer} \\
-The person responsible for updating the tool with new features, or fixing any existing bugs once the initial creators of the tool leaves. They were not present during the development of the tool, and will most likely be the future students who uses the tool for their domain research.
+The person responsible for updating the tool with new features, or fixing any existing bugs once the initial creators of the tool leaves. They were not present during the development of the tool, and will most likely be the future students who use the tool for their domain research.
 \\\\
 \textbf{Infrastructure Team} \\
 The infrastructure team at McMaster University will be responsible for hosting the project, and should ensure that the application is available for use and maintains data integrity of their database servers.
@@ -163,7 +163,7 @@ N/A
 \end{itemize}
 \subsection{Schedule Constraints}
 \begin{itemize}
-  \item Tool must be built by Febuary 2, 2026
+  \item Tool must be built by February 2, 2026
   \item Research paper must be written and submitted by April 6, 2026
 \end{itemize}
 \subsection{Budget Constraints}
@@ -171,9 +171,7 @@ N/A
   \item The project cannot cost more than \$125.
 \end{itemize}
 \subsection{Enterprise Constraints}
-\begin{itemize}
-  N/A
-\end{itemize}
+N/A
 
 \section{Naming Conventions and Terminology}
 \subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
@@ -229,7 +227,7 @@ Current ways to consult the domain experts or industry users are done non-system
 The data gathering process is performed using Excel spreadsheets, with each entry manually typed. This introduces inefficiencies and potential errors, motivating the need for an automated solution to streamline data collection, improve traceability, and reduce manual workload.
 
 \subsection{The Context of the Work}
-The Neural Network Libraries (NNL) Assessment Tool is a web-based application designed to automate the collection, evaluation, and visualization of data for comparing open-source deep learning libraries. It operationalizes an existing research methodology developed to assess the state of practice in software engineering, applying it specifically to neural network libraries (NNLs).
+The DomainX Assessment Tool is a web-based application designed to automate the collection, evaluation, and visualization of data for comparing open-source libraries relating to a specific domain. It operationalizes an existing research methodology developed to assess the state of practice in software engineering for a specific domain.
 
 There is currently no automated system performing this type of assessment; existing workflows rely on manual data collection and Excel-based analyses. The tool introduces automation, consistency, and traceability across data gathering, scoring, and visualization activities.
 
@@ -543,6 +541,7 @@ N/A
 \begin{enumerate}[label=PR-RFT\arabic*]
   \item The system must implement graceful error handling, ensuring that a failure in one function (e.g., a failed GitHub API call) does not crash the entire application or disrupt other users.
   \item The system must use database transactions to ensure that data modifications are atomic, if an update operation fails in the middle, the data must be returned to its last validated state.
+  \item The system should have a protocol in place to take backups of the database, to restore data at max within the timeframe of an hour.
 \end{enumerate}
 \subsection{Capacity Requirements}
 \begin{enumerate}[label=PR-CR\arabic*]

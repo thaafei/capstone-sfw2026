@@ -1,1 +1,4 @@
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QRefer to H1-1.a, H1-1.b.\\E$"}
+{"rule":"EN_UNPAIRED_BRACKETS","sentence":"^\\Q[a)] Provide multiple methods for downloading or sharing Refer to H1-1.a, H1-1.b.\\E$"}
+{"rule":"HYPOTHESIS_TYPOGRAPHY","sentence":"^\\QRefer to H1-1.a, H2.1.a, H3-1.a, H4-1.a.\\E$"}
 {"rule":"TO_NON_BASE","sentence":"^\\QDuring my work, I need access to varies tools to assist me.\\E$"}
