@@ -1,0 +1,1 @@
+{"rule":"TO_NON_BASE","sentence":"^\\QDuring my work, I need access to varies tools to assist me.\\E$"}
