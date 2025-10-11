@@ -592,9 +592,9 @@ The tool must be able to communicate with a few external systems and internal co
 \subsection{Productization Requirements}
 The tool will be delivered as an open-source web application hosted in the team’s public GitHub repository.
 \begin{enumerate}[label=OE-PR\arabic*]
-\item A clear README file must explain how to set up the backend (Python + Flask) and the frontend (React) using common package managers such as pip and npm.
+\item The tool must include clear setup instructions in a README file so that developers can easily install dependencies, configure the environment, and run both the backend and frontend.
 \item For developers running the tool locally, the repository must include a requirements.txt file for Python packages and a database schema file so they can create the required tables.
-\item When deployed on a cloud platform such as AWS or Google Cloud, users must be able to access the tool directly through a web URL without installing anything.
+\item The system should be deployable on a standard cloud or web-hosting platform, allowing users to access it directly through a web interface without local installation.
 \item The application must also provide options to export results in formats such as CSV for data tables and PNG/PDF for visualizations.
 \end{enumerate}
 \subsection{Release Requirements}
@@ -623,7 +623,7 @@ The tool will be delivered as an open-source web application hosted in the team�
 The tool is an open-source web application that will need occasional updates to fix bugs and to adapt if external APIs change.
 \begin{enumerate}[label=MS-MR\arabic*]
 \item All code must follow the project’s coding standards (PEP 8 for the Python backend; React + TypeScript style guide for the frontend).
-\item Automated tools (such as Black, Flake8, and Pylint) must remain part of the workflow so new contributors can easily read and update the code.
+\item Automated linting tools must remain part of the workflow so that new contributors can easily read, maintain, and update the code.
 \item Unit tests must be written for all new features and bug fixes. Developers should also run basic integration tests to make sure the full pipeline (API → database → visualization) still works after changes.
 \item Test coverage must be tracked and reported to ensure that critical parts of the backend are being tested.
 \item All Python and frontend packages must be listed in requirements.txt and package.json, with pinned versions so the same build can be reproduced.
