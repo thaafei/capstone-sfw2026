@@ -163,8 +163,8 @@ N/A
 \end{itemize}
 \subsection{Schedule Constraints}
 \begin{itemize}
-  \item Tool must be built by April 6, 2026
-  \item Research paper must be written and published by April 6, 2026
+  \item Tool must be built by Febuary 2, 2026
+  \item Research paper must be written and submitted by April 6, 2026
 \end{itemize}
 \subsection{Budget Constraints}
 \begin{itemize}
@@ -172,7 +172,7 @@ N/A
 \end{itemize}
 \subsection{Enterprise Constraints}
 \begin{itemize}
-  \item Project will be built using Microsoft related services.
+  N/A
 \end{itemize}
 
 \section{Naming Conventions and Terminology}
@@ -386,6 +386,7 @@ The system will provide the following core functionality:
     \item Accounts can only be created by an administrator invitation.
     \item Enforce Role-Based Access Control (RBAC).
     \item Ensure only authenticated users can modify data.
+    \item Anyone should be able to view available data.
   \end{itemize}
   \item \textbf{Data Integrity and Auditing:} Maintain an audit trail for all data entries, logging when a change is made.
   \item \textbf{Core Data Operations:} Facilitate the storing, updating, and retrieving of all core research entities: research domains, libraries, and collected metrics.
@@ -501,9 +502,9 @@ Important things to keep in mind when looking at the Use Case Diagram:
 \section{Usability and Humanity Requirements}
 \subsection{Ease of Use Requirements}
 \begin{enumerate}[label=UH-EU\arabic*]
-  \item The primary navigational structure should be clearly defined and constantly available, with no prior training required for basic data viewing and download.
-  \item Each library metric must have help icon that would tell the user what data type would be accepted.
-  \item All errors will give clear and concise explanation.
+  \item The primary navigation menu must be persistently available on the left side or top of every screen, and basic actions (e.g., viewing data, downloading reports) must be achievable within a maximum of three clicks/steps for new users.
+  \item All data input fields for library metrics must include a tooltip (activated on hover) that explicitly states the required data type and format (e.g., "Numeric value, max 3 decimal places" or "Date in YYYY-MM-DD format").
+  \item All system error messages (validation failures, access denied) must be written in plain language, avoid technical jargon, and provide explicit instructions on how the user can resolve the issue (e.g., "Error: Please verify your username and try again" instead of "401 unauthorized").
 \end{enumerate}
 \subsection{Personalization and Internationalization Requirements}
 N/A
@@ -527,7 +528,6 @@ N/A
 \section{Performance Requirements}
 \subsection{Speed and Latency Requirements}
 \begin{enumerate}[label=PR-SL\arabic*]
-  \item All key data viewing and dashboard pages must load completely and become interactive within 3 seconds.
   \item The system must finish the AHP ranking calculation for a standard domain in less than ten seconds.
 \end{enumerate}
 \subsection{Safety-Critical Requirements}
@@ -547,7 +547,8 @@ N/A
 \subsection{Capacity Requirements}
 \begin{enumerate}[label=PR-CR\arabic*]
   \item The system must be able to accommodate up to 20 concurrent active users (logged in and doing operations) with no visible performance decrease.
-  \item The database must be constructed to accommodate at least 10 different study domains.
+  \item The database must be able to store at least 70 different study domains.
+  \item The system's architecture must support increasing the underlying database size (up to the maximum capacity defined by the Capacity Requirements) without resulting in database connection errors, timeouts, or data integrity issues.
 \end{enumerate}
 \subsection{Scalability or Extensibility Requirements}
 \begin{enumerate}[label=PR-SE\arabic*]
@@ -556,7 +557,8 @@ N/A
 \end{enumerate}
 \subsection{Longevity Requirements}
 \begin{enumerate}[label=PR-LR\arabic*]
-  \item The system must be capable of running without the requirement for maintenance for two years. 
+  \item The system must be capable of running without the requirement for maintenance for two years.
+  \item Database scaling operations (e.g. migrating to a larger server instance) must be achievable entirely by modifying the system's infrastructure configuration. Such scaling operations must not require any changes to the core application code base.
 \end{enumerate}
 
 \section{Operational and Environmental Requirements}
