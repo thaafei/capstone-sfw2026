@@ -3,6 +3,11 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{booktabs,tabularx,makecell}
+\usepackage{caption}
+\usepackage{xcolor,colortbl}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -30,54 +35,87 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Oct 17 2025 & 1.0 & Initial Draft\\
+% Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
 
 ~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
+% \wss{The intention of the VnV plan is to increase confidence in the software.
+% However, this does not mean listing every verification and validation technique
+% that has ever been devised.  The VnV plan should also be a \textbf{feasible}
+% plan. Execution of the plan should be possible with the time and team available.
+% If the full plan cannot be completed during the time available, it can either be
+% modified to ``fake it'', or a better solution is to add a section describing
+% what work has been completed and what work is still planned for the future.}
 
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
+% \wss{The VnV plan is typically started after the requirements stage, but before
+% the design stage.  This means that the sections related to unit testing cannot
+% initially be completed.  The sections will be filled in after the design stage
+% is complete.  the final version of the VnV plan should have all sections filled
+% in.}
 
 \newpage
 
 \tableofcontents
 
-\listoftables
-\wss{Remove this section if it isn't needed}
+% \listoftables
+% \wss{Remove this section if it isn't needed}
 
-\listoffigures
-\wss{Remove this section if it isn't needed}
+% \listoffigures
+% \wss{Remove this section if it isn't needed}
 
 \newpage
 
 \section{Symbols, Abbreviations, and Acronyms}
 
+% \renewcommand{\arraystretch}{1.2}
+% \begin{tabular}{l l} 
+%   \toprule		
+%   \textbf{symbol} & \textbf{description}\\
+%   \midrule 
+%   T & Test\\
+%   \bottomrule
+% \end{tabular}\\
+
+% \wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
+%   \citep{SRS} tables, if appropriate}
+
+% \wss{Remove this section if it isn't needed}
+\begin{table}[H]
+\centering
+\caption{Symbols, Abbreviations, and Acronyms}
+\setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
+\footnotesize
 
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Symbol / Acronym} & \textbf{Description} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+API & Application Programming Interface – mechanism for data retrieval (e.g., GitHub API, PyPI API). \\
+\hline
+AHP & Analytic Hierarchy Process – method for pairwise comparison and ranking of libraries. \\
+\hline
+CSV & Comma-Separated Values – export format for datasets. \\
+\hline
+DB & Database – MySQL instance used for persistent data storage. \\
+\hline
+UI & User Interface – front-end component built with React. \\
+\hline
+NNL & Neural Network Libraries – the domain being analyzed (e.g., PyTorch, TensorFlow). \\
+\hline
+PoC & Proof of Concept – initial demonstration validating workflow integration. \\
+\hline
+VnV & Verification and Validation – process of ensuring correctness and meeting stakeholder needs. \\
+\hline
+CI/CD & Continuous Integration / Continuous Deployment – automated testing and deployment pipeline used in GitHub Actions. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\wss{Remove this section if it isn't needed}
-
+\noindent\textit{All additional terms conform to those defined in the SRS Glossary (Section~4.1).}
 \newpage
 
 \pagenumbering{arabic}
