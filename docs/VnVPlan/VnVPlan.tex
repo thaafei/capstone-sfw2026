@@ -292,96 +292,316 @@ Section~\ref{sec:unit-tests}. \\
 \end{table}
 
 \section{Plan}
+\label{sec:plan}
+% \wss{Introduce this section.  You can provide a roadmap of the sections to
+%   come.}
+This section defines the overall verification and validation (V\&V) strategy for
+the Neural Network Libraries (NNL) Assessment Tool.
 
-\wss{Introduce this section.  You can provide a roadmap of the sections to
-  come.}
+It outlines the V\&V team structure, review methods for each lifecycle artifact,
+verification tools, and validation activities that will be conducted to ensure
+functional and non-functional compliance with the SRS.
+
+The plan follows both static reviews and dynamic execution-based testing,
+combining automated pipelines with peer-driven inspections.
 
 \subsection{Verification and Validation Team}
+\label{subsec:vnv-team}
+% \wss{Your teammates.  Maybe your supervisor.
+%   You should do more than list names.  You should say what each person's role is
+%   for the project's verification.  A table is a good way to summarize this information.}
+\begin{table}[H]
+\centering
+\caption{Verification and Validation Team Responsibilities}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Team Member} & \textbf{Role} & \textbf{Verification and Validation Responsibilities} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+Awurama Nyarko &
+\textit{Research Lead / Usability \& Validation Analyst / Project Coordinator} &
+Coordinates all V\&V activities, including scheduling artifact reviews and
+maintaining traceability between requirements, hazards, and test cases.
+Oversees usability validation and ensures survey design, accessibility, and
+user feedback are integrated into validation outcomes. Consolidates peer
+feedback and manages version control of testing artifacts. \\
+\hline
+Fei Xie &
+\textit{Scrum Master / Developer / Automation Engineer} &
+Oversees the implementation and automation of unit and integration tests.
+Maintains the CI workflow via GitHub Actions, configures coverage reporting
+tools (\texttt{pytest-cov}, \texttt{flake8}), and ensures regression tests are
+triggered on each pull request. Facilitates sprint reviews and ensures
+verification tasks are completed within iteration schedules. \\
+\hline
+Haniye Hamidizadeh &
+\textit{SRS Verification Lead / Backend Expert / Developer} &
+Ensures the correctness, consistency, and testability of requirements. Leads
+peer inspection of the SRS, verifies traceability between functional and
+non-functional requirements and their corresponding tests, and validates that
+hazard-related mitigations are represented in the final design. Supports backend
+API verification and database validation. \\
+\hline
+Ghena Hatoum &
+\textit{QA Lead / Backend Expert / Developer} &
+Designs and executes the formal testing plan, maintains the defect log, and
+coordinates peer reviews of test cases and results. Responsible for system-level
+validation, including black-box testing and regression verification. Oversees
+backend integration testing, verifies data-storage reliability, and ensures
+acceptance criteria are met before supervisor review. \\
+\hline
+Dr.~Spencer Smith &
+\textit{Supervisor / External Reviewer} &
+Provides independent oversight of all verification artifacts (SRS, Design
+Document, and V\&V Plan). Reviews and approves testing procedures for alignment
+with course expectations and ensures documentation quality meets 4G06 capstone
+standards. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \subsection{SRS Verification}
+\label{subsec:srs-verification}
+% \wss{List any approaches you intend to use for SRS verification.  This may
+%   include ad hoc feedback from reviewers, like your classmates (like your
+%   primary reviewer), or you may plan for something more rigorous/systematic.}
 
-\wss{List any approaches you intend to use for SRS verification.  This may
-  include ad hoc feedback from reviewers, like your classmates (like your
-  primary reviewer), or you may plan for something more rigorous/systematic.}
+% \wss{If you have a supervisor for the project, you shouldn't just say they will
+% read over the SRS.  You should explain your structured approach to the review.
+% Will you have a meeting?  What will you present?  What questions will you ask?
+% Will you give them instructions for a task-based inspection?  Will you use your
+% issue tracker?}
 
-\wss{If you have a supervisor for the project, you shouldn't just say they will
-read over the SRS.  You should explain your structured approach to the review.
-Will you have a meeting?  What will you present?  What questions will you ask?
-Will you give them instructions for a task-based inspection?  Will you use your
-issue tracker?}
+% \wss{Maybe create an SRS checklist?}
+Verification of the Software Requirements Specification (SRS) ensures that all
+requirements are consistent, unambiguous, complete, and testable.
 
-\wss{Maybe create an SRS checklist?}
+The team will use a combination of peer inspection, supervisor walkthrough, and
+structured checklist verification to confirm requirement quality and
+traceability.
+
+Each requirement identified in the SRS (e.g., SR-AC1, SR-INT2, SR-IM4) will be
+reviewed using a checklist based on the IEEE~29148 standard, evaluating criteria
+such as correctness, completeness, consistency, verifiability, and
+traceability.
+
+During the scheduled peer inspection session, team members will mark any
+ambiguous or unverifiable requirements for revision through the GitHub issue
+tracker under the label ``SRS Review.''
+
+Feedback from the assigned primary reviewer team will also be incorporated to
+ensure external validation of requirement clarity.
+
+Following the peer inspection, a structured 30-minute walkthrough will be
+conducted with the supervisor.
+
+In this meeting, the team will present the SRS structure, explain traceability
+between requirement identifiers and their planned test cases, and clarify any
+areas of uncertainty.
+
+All decisions, clarifications, and follow-up actions from the session will be
+logged in the repository’s issue tracker to maintain a transparent audit trail
+of SRS verification outcomes.
 
 \subsection{Design Verification}
+\label{subsec:design-verification}
+% \wss{Plans for design verification}
+% \wss{The review will include reviews by your classmates}
+% \wss{Create a checklists?}
+The design verification process ensures that the software architecture and
+module interfaces correctly realize all functional and non-functional
+requirements defined in the SRS.
 
-\wss{Plans for design verification}
+A structured design review will be conducted after completion of the Module
+Guide (MG) and Module Interface Specification (MIS) documents.
 
-\wss{The review will include reviews by your classmates}
+The team will:
 
-\wss{Create a checklists?}
+\begin{itemize}
+  \item Perform checklist-based inspections of class diagrams, API schemas, and
+  data-flow diagrams to confirm interface correctness, modularity, and
+  traceability to SRS requirements.
+
+  \item Use the issue tracker to document any inconsistencies or missing
+  data-flow connections.
+
+  \item Review database and API integration points to verify that the design
+  addresses identified hazards such as data loss and synchronization errors.
+
+  \item Hold a design walkthrough with the supervisor, during which reviewers
+  will ask task-based questions (e.g., ``trace the path of a data update
+  request'') to confirm the design supports required behaviour.
+\end{itemize}
+
+The checklist will evaluate design completeness, consistency, interface
+clarity, and maintainability.
 
 \subsection{Verification and Validation Plan Verification}
+\label{subsec:vnv-plan-verification}
+% \wss{The verification and validation plan is an artifact that should also be
+% verified.  Techniques for this include review and mutation testing.}
+% \wss{The review will include reviews by your classmates}
+% \wss{Create a checklists?}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
+The V\&V Plan itself will be verified to ensure internal consistency and
+feasibility.
 
-\wss{The review will include reviews by your classmates}
+Planned activities include:
 
-\wss{Create a checklists?}
+\begin{itemize}
+  \item \textbf{Peer review session:} each team member will inspect the document
+  against the V\&V Plan template and rubric, checking for section completeness,
+  alignment, and internal traceability.
+
+  \item \textbf{Supervisor feedback:} Dr.~Smith will review the plan draft and
+  provide comments prior to submission.
+
+  \item \textbf{Version control:} changes and responses will be tracked in
+  GitHub using pull-request comments and a ``VnV Plan Review'' label.
+
+  \item \textbf{Mutation check:} minor edits (for example, changing requirement
+  identifiers) will be tested to confirm that traceability references remain
+  correct.
+\end{itemize}
 
 \subsection{Implementation Verification}
+\label{subsec:implementation-verification}
+% \wss{You should at least point to the tests listed in this document and the unit
+%   testing plan.}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+% \wss{In this section you would also give any details of any plans for static
+%   verification of the implementation.  Potential techniques include code
+%   walkthroughs, code inspection, static analyzers, etc.}
 
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+% \wss{The final class presentation in CAS 741 could be used as a code
+% walkthrough.  There is also a possibility of using the final presentation (in
+% CAS741) for a partial usability survey.}
+Implementation verification ensures that each software component is correctly
+realized and adheres to design and coding standards.
 
-\wss{The final class presentation in CAS 741 could be used as a code
-walkthrough.  There is also a possibility of using the final presentation (in
-CAS741) for a partial usability survey.}
+\begin{itemize}
+  \item \textbf{Static verification:} code reviews will be conducted for all pull
+  requests. Linters (\texttt{flake8}, \texttt{black} for Python, \texttt{ESLint}
+  for JavaScript) will enforce syntax and style compliance
+  (see~\textit{Development Plan}, Section~2).
+
+  \item \textbf{Dynamic verification:} unit and integration tests written in
+  PyTest will confirm correct module behaviour and interface compatibility.
+
+  \item \textbf{Continuous integration:} GitHub Actions will automatically
+  execute all tests on commit and generate coverage reports (target $\geq$ 80\%).
+
+  \item \textbf{Regression testing:} test suites will rerun automatically whenever
+  code is merged to detect unexpected changes in functionality.
+
+  \item \textbf{Code walkthroughs:} conducted at major milestones to compare
+  implementation decisions with design diagrams and hazard mitigations.
+\end{itemize}
 
 \subsection{Automated Testing and Verification Tools}
+\label{subsec:testing-tools}
+% \wss{What tools are you using for automated testing.  Likely a unit testing
+%   framework and maybe a profiling tool, like ValGrind.  Other possible tools
+%   include a static analyzer, make, continuous integration tools, test coverage
+%   tools, etc.  Explain your plans for summarizing code coverage metrics.
+%   Linters are another important class of tools.  For the programming language
+%   you select, you should look at the available linters.  There may also be tools
+%   that verify that coding standards have been respected, like flake9 for
+%   Python.}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+% \wss{If you have already done this in the development plan, you can point to
+% that document.}
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
+% \wss{The details of this section will likely evolve as you get closer to the
+%   implementation.}
+Automated verification will rely on the toolchain defined in the Development
+Plan.
 
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+\begin{table}[H]
+\centering
+\caption{Automated Testing and Verification Tools}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Tool / Framework} & \textbf{Purpose} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+PyTest + \texttt{coverage.py} &
+Unit and integration testing with code-coverage metrics. \\
+\hline
+GitHub Actions CI/CD &
+Executes automated tests and generates build reports for every push or pull
+request. \\
+\hline
+\texttt{flake8} / \texttt{black} / \texttt{ESLint} &
+Static analysis and style enforcement for Python and JavaScript. \\
+\hline
+Selenium or Playwright &
+Automated front-end UI testing of key user workflows (domain creation and
+visualization). \\
+\hline
+Postman or \texttt{pytest-requests} &
+API endpoint validation and response-code checking. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Coverage summaries and logs will be archived in \texttt{/test/reports/} within
+the repository.
 
 \subsection{Software Validation}
+\label{subsec:software-validation}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+% \wss{If there is any external data that can be used for validation, you should
+%   point to it here.  If there are no plans for validation, you should state that
+%   here.}
 
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+% \wss{You might want to use review sessions with the stakeholder to check that
+% the requirements document captures the right requirements.  Maybe task based
+% inspection?}
 
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
+% \wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
+% be used as an opportunity to validate the requirements.  You should plan on 
+% demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
+% The feedback from your supervisor will be very useful for improving your project.}
 
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
+% \wss{For teams without an external supervisor, user testing can serve the same purpose 
+% as a Rev 0 demo for the supervisor.}
 
-\wss{This section might reference back to the SRS verification section.}
+% \wss{This section might reference back to the SRS verification section.}
+Software validation confirms that the delivered NNL Assessment Tool satisfies
+stakeholder expectations and performs reliably under normal operating
+conditions.
+
+Validation will combine functional scenario testing, usability evaluation, and
+non-functional performance checks:
+
+\begin{itemize}
+  \item \textbf{End-to-end validation:} execute representative workflows, from
+  data collection through AHP ranking and visualization, to confirm system
+  integrity.
+
+  \item \textbf{Usability assessment:} conducted with internal research users
+  using short post-demo surveys (questions provided in Appendix~6.2).
+
+  \item \textbf{Performance validation:} stress-test database operations and API
+  response times to verify thresholds stated in SRS Section~4.3.
+
+  \item \textbf{Security validation:} attempt invalid inputs and authentication
+  edge cases to ensure protection against hazards such as data leakage and
+  unauthorized access.
+
+  \item \textbf{Supervisor review:} a final demonstration and feedback session
+  with Dr.~Smith will confirm that the implemented system meets project
+  objectives and research goals.
+\end{itemize}
 
 \section{System Tests}
 
