@@ -120,63 +120,175 @@ CI/CD & Continuous Integration / Continuous Deployment – automated testing and
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+% This document ... \wss{provide an introductory blurb and roadmap of the
+%   Verification and Validation plan}
+This document outlines the Verification and Validation (V\&V) strategy for the
+Neural Network Libraries (NNL) Assessment Tool capstone project. It defines how
+the team will confirm that the implemented system satisfies its specified
+requirements, performs reliably, and aligns with the objectives stated in the
+Software Requirements Specification (SRS), Development Plan, and Hazard
+Analysis.
+
+The V\&V Plan provides a structured roadmap covering requirement reviews,
+system and nonfunctional testing, and traceability between test cases and
+requirements. It also establishes the methods, responsibilities, tools, and
+metrics that ensure all deliverables are verified for correctness and validated
+against user and research expectations.
 
 \section{General Information}
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+% \wss{Say what software is being tested.  Give its name and a brief overview of
+%   its general functions.}
+The Neural Network Libraries (NNL) Assessment Tool is a web-based application
+that automates evidence collection, analysis, and visualization for assessing
+open-source neural-network libraries such as PyTorch and TensorFlow.
+
+The tool replaces spreadsheet-based scoring with a traceable, auditable system
+that integrates the following automated features:
+
+\begin{itemize}
+  \item \textbf{Automated Data Collection:} retrieval of repository metrics
+  (commits, issues, languages, and lines of code) through the GitHub API and
+  PyPI metadata.
+
+  \item \textbf{Interactive Data Table:} centralized, editable interface for
+  entering and verifying measurements.
+
+  \item \textbf{Automated Analytic Hierarchy Process (AHP):} automated
+  computation of pairwise comparisons for reproducible rankings.
+
+  \item \textbf{Visualization and Export:} generation of graphs and reports in
+  PNG and \LaTeX{} formats for research use.
+\end{itemize}
+
+The V\&V Plan defines how the software’s correctness, reliability, and usability
+will be verified and validated throughout its lifecycle.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+% \wss{State what is intended to be accomplished.  The objective will be around
+%   the qualities that are most important for your project.  You might have
+%   something like: ``build confidence in the software correctness,''
+%   ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
+%   just those that are most important.}
 
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
+% \wss{You should also list the objectives that are out of scope.  You don't have 
+% the resources to do everything, so what will you be leaving out.  For instance, 
+% if you are not going to verify the quality of usability, state this.  It is also 
+% worthwhile to justify why the objectives are left out.}
 
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+% \wss{The objectives are important because they highlight that you are aware of 
+% limitations in your resources for verification and validation.  You can't do everything, 
+% so what are you going to prioritize?  As an example, if your system depends on an 
+% external library, you can explicitly state that you will assume that external library 
+% has already been verified by its implementation team.}
+The objectives of this V\&V Plan are to:
+
+\begin{enumerate}
+  \item Build confidence in software correctness by verifying that each
+  functional requirement in the SRS (e.g., automated AHP calculation, data
+  retrieval, visualization, and multi-user collaboration) is fully implemented
+  and traceable to its tests.
+
+  \item Ensure system reliability and data integrity, particularly for automated
+  data collection and storage operations identified as high-risk in the Hazard
+  Analysis.
+
+  \item Validate usability and accessibility through internal surveys and
+  pilot-user feedback from the Research Sub-team and Dr.~Smith.
+
+  \item Confirm performance and security non-functional requirements, such as
+  load handling and access-control validation.
+\end{enumerate}
+
+\textbf{Out of Scope:}
+\begin{itemize}
+  \item Third-party API correctness (GitHub, PyPI); assumed verified by their
+  respective providers.
+
+  \item Formal proof techniques and hardware-level testing; outside academic
+  scope.
+
+  \item Multi-browser performance optimization beyond the core compatibility
+  tests specified in the SRS (Chrome, Firefox, Safari, Edge).
+\end{itemize}
 
 \subsection{Challenge Level and Extras}
 
-\wss{State the challenge level (advanced, general, basic) for your project.
-Your challenge level should exactly match what is included in your problem
-statement.  This should be the challenge level agreed on between you and the
-course instructor.  You can use a pull request to update your challenge level
-(in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
-VnV planning exercise.}
+% \wss{State the challenge level (advanced, general, basic) for your project.
+% Your challenge level should exactly match what is included in your problem
+% statement.  This should be the challenge level agreed on between you and the
+% course instructor.  You can use a pull request to update your challenge level
+% (in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
+% VnV planning exercise.}
 
-\wss{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.
-You can use a pull request to update your extras (in TeamComposition.csv or
-Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+% \wss{Summarize the extras (if any) that were tackled by this project.  Extras
+% can include usability testing, code walkthroughs, user documentation, formal
+% proof, GenderMag personas, Design Thinking, etc.  Extras should have already
+% been approved by the course instructor as included in your problem statement.
+% You can use a pull request to update your extras (in TeamComposition.csv or
+% Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+\textbf{Challenge Level:} Advanced. Per the Problem Statement, the project
+integrates a custom software tool that automates data gathering, analysis, and
+visualization for neural-network libraries.
+
+Although the broader capstone includes a research study on software-quality
+assessment, the scope of this V\&V Plan pertains only to the verification and
+validation of the software tool itself, not to the accompanying research
+methodology or paper.
+
+\textbf{Extras (Approved by Supervisor):} Usability Testing and Peer Code
+Reviews, conducted through structured user surveys and GitHub-based peer
+inspection checklists as defined in the Development Plan workflow.
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.  You can create BibTeX entries for your
-  documents and within those entries include a hyperlink to the documents.}
+% \wss{Reference relevant documentation.  This will definitely include your SRS
+%   and your other project documents (design documents, like MG, MIS, etc).  You
+%   can include these even before they are written, since by the time the project
+%   is done, they will be written.  You can create BibTeX entries for your
+%   documents and within those entries include a hyperlink to the documents.}
 
-\citet{SRS}
+% \citet{SRS}
 
-\wss{Don't just list the other documents.  You should explain why they are relevant and 
-how they relate to your VnV efforts.}
+% \wss{Don't just list the other documents.  You should explain why they are relevant and 
+% how they relate to your VnV efforts.}
+\begin{table}[H]
+\centering
+\caption{Relevant Documentation and Their Relevance to V\&V Activities}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Document} & \textbf{Relevance to V\&V Activities} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+Software Requirements Specification (SRS) &
+Defines functional and non-functional requirements that form the basis for
+test derivation and traceability. \\
+\hline
+Development Plan &
+Describes test environments, toolchains (PyTest, coverage.py, GitHub Actions),
+and team responsibilities used for verification automation. \\
+\hline
+Hazard Analysis &
+Identifies potential failures (e.g., data loss, access control errors, API
+failures) that inform stress and reliability tests. \\
+\hline
+Problem Statement \& Goals &
+Clarifies project scope, stakeholders, and intended outputs to align validation
+activities with research objectives. \\
+\hline
+Design Document (MG/MIS – future) &
+Will provide module interfaces and algorithms for unit test mapping in
+Section~\ref{sec:unit-tests}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \section{Plan}
 
