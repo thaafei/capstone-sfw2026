@@ -1,14 +1,20 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage[table]{xcolor}
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{array}
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{booktabs,tabularx,makecell}
 \usepackage{caption}
 \usepackage{xcolor,colortbl}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{6pt}
+\setlength\LTpre{6pt}
+\setlength\LTpost{6pt}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -311,44 +317,57 @@ combining automated pipelines with peer-driven inspections.
 % \wss{Your teammates.  Maybe your supervisor.
 %   You should do more than list names.  You should say what each person's role is
 %   for the project's verification.  A table is a good way to summarize this information.}
-\begin{table}[H]
-\caption{Verification and Validation Team Responsibilities}
-\begin{tabularx}{\textwidth}{l l >{\raggedright\arraybackslash}X}
-\toprule
+\begin{center}
+\footnotesize 
+\rowcolors{3}{white}{white}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{0.24\textwidth}|
+                    >{\raggedright\arraybackslash}p{0.28\textwidth}|
+                    >{\raggedright\arraybackslash}p{0.40\textwidth}|}
+\caption{Verification and Validation Team Responsibilities} \\
+\hline
+\rowcolor{gray!15}
 \textbf{Team Member} & \textbf{Role} & \textbf{Verification and Validation Responsibilities} \\
-\midrule
+\hline
+\endfirsthead
 
-Awurama Nyarko &
+\hline
+\rowcolor{gray!15}
+\textbf{Team Member} & \textbf{Role} & \textbf{Verification and Validation Responsibilities} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+\textbf{Awurama Konadu Nyarko} &
 \textit{Research Lead / Usability \& Validation Analyst / Project Coordinator} &
-Coordinates all V\&V activities and schedules artifact reviews (SRS, Design, VnV Plan). Maintains end-to-end traceability between requirements, hazards, and test cases. Leads usability validation (tasks, Likert survey) and documentation consistency checks. \\
+Coordinates all V\&V activities, including scheduling artifact reviews and maintaining traceability between requirements, hazards, and test cases. Oversees usability validation and ensures survey design, accessibility, and user feedback are integrated into validation outcomes. Consolidates peer feedback and manages version control of testing artifacts. \\
+\hline
 
-\addlinespace[0.4em]
-
-Fei &
+\textbf{Fei Xie} &
 \textit{Scrum Master / Developer / Automation Engineer} &
-Owns CI automation for tests and reports (pytest, coverage, regression, performance jobs). Enforces Definition of Done for tests, monitors flakiness, and maintains regression suites and coverage dashboards. Facilitates stand-ups focused on verification risks and blockers. \\
+Oversees the implementation and automation of unit and integration tests. Maintains the CI workflow via GitHub Actions, configures coverage reporting tools (pytest-cov, flake8), and ensures regression testing is triggered on each pull request. Facilitates sprint reviews and ensures verification tasks are completed within iteration schedules. \\
+\hline
 
-\addlinespace[0.4em]
+\textbf{Haniye Hamidizadeh} &
+\textit{SRS Verification Lead / Backend Expert / Developer} &
+Ensures the correctness, consistency, and testability of requirements. Leads peer inspection of the SRS, verifies traceability between functional and nonfunctional requirements and their corresponding tests, and validates that hazard-related mitigations are represented in the final design. Supports backend API verification and database validation. \\
+\hline
 
-Haniye &
-\textit{SRS Verification Lead / Backend Developer} &
-Leads structured SRS inspections using the checklist; drives requirement clarifications and updates to the traceability matrix. Designs/implements unit and integration tests for backend data collection/validation and AHP computation paths. \\
+\textbf{Ghena Hatoum} &
+\textit{QA Lead / Backend Expert / Developer} &
+Designs and executes the formal testing plan, maintains the defect log, and coordinates peer reviews of test cases and results. Responsible for system-level validation, including black-box testing and regression verification. Oversees backend integration testing, verifies data-storage reliability, and ensures acceptance criteria are met before supervisor review. \\
+\hline
 
-\addlinespace[0.4em]
+\textbf{Dr.\ Spencer Smith} &
+\textit{Supervisor / External Reviewer} &
+Provides independent oversight of all verification artifacts (SRS, Design Document, and VnV Plan). Reviews and approves testing procedures for alignment with course expectations and ensures documentation quality meets 4G06 capstone standards. \\
+\end{longtable}
+\end{center}
 
-Ghena Hatoum &
-\textit{QA Lead / Developer} &
-Owns the defect log and test plan. Executes system tests for reliability/fault-tolerance and export integrity; verifies hazard mitigations (rollback, cache fallback, audit logging). Coordinates regression testing before milestones and reviews results. \\
 
-\addlinespace[0.4em]
-
-Dr.\ Spencer Smith &
-\textit{External Reviewer / Supervisor} &
-Provides independent reviews of SRS, Design, and VnV Plan; conducts milestone inspections (PoC, Rev0, Final) and gives acceptance feedback for verification completeness and validation quality. \\
-
-\bottomrule
-\end{tabularx}
-\end{table}
 
 \subsection{SRS Verification}
 \label{subsec:srs-verification}
@@ -575,7 +594,7 @@ non-functional performance checks:
   integrity.
 
   \item \textbf{Usability assessment:} conducted with internal research users
-  using short post-demo surveys (questions provided in Appendix~6.2).
+  using short post-demo surveys (questions provided in Appendix~7.2).
 
   \item \textbf{Performance validation:} stress-test database operations and API
   response times to verify thresholds stated in SRS Section~4.3.
@@ -786,9 +805,9 @@ N/a
   (tool computation accuracy $\neq$ ML model accuracy).
 \end{enumerate}
 
-\bibliographystyle{plainnat}
+% \bibliographystyle{plainnat}
 
-\bibliography{../../refs/References}
+% \bibliography{../../refs/References}
 
 \newpage
 
@@ -798,25 +817,47 @@ N/a
 
 \subsection{Symbolic Parameters}
 \label{sec:symbolic-parameters}
-% The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-% Their values are defined in this section for easy maintenance.
+
 The following symbolic parameters are referenced throughout this document and
-may be updated centrally for consistency across all tests and scripts.
+may be updated centrally for consistency across all tests and scripts. Values
+marked as *team targets* are not defined in the SRS but used for validation
+thresholds.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{@{}lll@{}}
+\begin{tabularx}{\textwidth}{@{}l X X@{}}
 \toprule
-\textbf{Symbolic Constant} & \textbf{Description} & \textbf{Current Value / Note} \\ 
+\textbf{Symbolic Constant} & \textbf{Description} & \textbf{Value / Traceability} \\
 \midrule
-\texttt{MAX\_LOGIN\_ATTEMPTS} & Number of consecutive failed login attempts before account lockout. & 5 \\
-\texttt{AHP\_ERROR\_THRESHOLD} & Maximum acceptable relative error between manual and tool-calculated AHP scores. & 2\% \\
-\texttt{USABILITY\_TARGET\_SCORE} & Minimum average usability rating required for success. & 4.0 / 5.0 \\
-\texttt{PERF\_TEST\_DATASETS} & Dataset sizes used for performance benchmarking. & [5, 10, 20, 40 libraries] \\
-\texttt{CI\_COVERAGE\_TARGET} & Minimum required automated test coverage. & $\geq$ 80\% \\
+
+\texttt{MAX\_LOGIN\_ATTEMPTS} &
+Number of consecutive failed login attempts before account lockout. &
+\textbf{Team target: 5}.\par
+Linked to \textbf{PR--SC2} (lockout after failed attempts). \\
+
+\texttt{AHP\_ERROR\_THRESHOLD} &
+Maximum acceptable relative error between manual and tool-calculated AHP scores. &
+\textbf{Team target: $\leq$ 2\%}.\par
+Related to \textbf{FR12} (AHP computation). \\
+
+\texttt{USABILITY\_TARGET\_SCORE} &
+Minimum average usability rating required for success. &
+\textbf{Team target: $\geq$ 4.0 / 5.0}.\par
+Based on \textbf{UH--EU1} and \textbf{UH--UP3}. \\
+
+\texttt{PERF\_TEST\_DATASETS} &
+Dataset sizes used for performance benchmarking. &
+\textbf{[5, 10, 20, 40] libraries}.\par
+From \textbf{PR--SL1} (speed/latency). \\
+
+\texttt{CI\_COVERAGE\_TARGET} &
+Minimum required automated test coverage in CI pipeline. &
+\textbf{Team target: $\geq$ 80\%}.\par
+Supports \textbf{MS--MR3}–\textbf{MS--MR4}. \\
+
 \bottomrule
-\end{tabular}
-\caption{Symbolic constants used in validation and verification tests.}
+\end{tabularx}
+\caption{Symbolic constants used in validation and verification tests. Values marked “team target” are not fixed by the SRS.}
 \end{table}
 
 \subsection{Usability Survey Questions?}
