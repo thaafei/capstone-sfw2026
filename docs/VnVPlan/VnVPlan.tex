@@ -329,6 +329,7 @@ combining automated pipelines with peer-driven inspections.
                     >{\raggedright\arraybackslash}p{0.28\textwidth}|
                     >{\raggedright\arraybackslash}p{0.40\textwidth}|}
 \caption{Verification and Validation Team Responsibilities} \\
+\label{tab:vvteamresponsibilities} \\
 \hline
 \rowcolor{gray!15}
 \textbf{Team Member} & \textbf{Role} & \textbf{Verification and Validation Responsibilities} \\
@@ -405,6 +406,16 @@ tracker under the label ``SRS Review.''
 
 Feedback from the assigned primary reviewer team will also be incorporated to
 ensure external validation of requirement clarity.
+
+As detailed in Table~\ref{tab:vvteamresponsibilities}, each team member and the
+supervisor has a defined role in the verification process. Awurama Konadu Nyarko
+coordinates overall V\&V scheduling and documentation; Haniye Hamidizadeh leads
+SRS verification and requirement traceability checks; Fei Xie manages automated
+testing workflows; Ghena Hatoum oversees system-level validation and defect
+tracking; and Dr.~Spencer Smith provides supervisory review and approval. This
+structure ensures that all SRS verification activities—from peer inspection to
+supervisor walkthrough—are aligned with the team’s assigned responsibilities and
+maintain traceability across all artifacts.
 
 Following the peer inspection, a structured 30-minute walkthrough will be
 conducted with the supervisor.
@@ -485,12 +496,24 @@ Planned activities include:
   \item \textbf{Supervisor feedback:} Dr.~Smith will review the plan draft and
   provide comments prior to submission.
 
+  \item \textbf{TA feedback:} the course TA will review the document for clarity,
+  completeness, and adherence to course expectations, providing early feedback
+  for improvement before final submission.
+
   \item \textbf{Version control:} changes and responses will be tracked in
   GitHub using pull-request comments and a ``VnV Plan Review'' label.
 
   \item \textbf{Mutation check:} minor edits (for example, changing requirement
   identifiers) will be tested to confirm that traceability references remain
   correct.
+
+  \item \textbf{Issue tracking and resolution:} the team will review and update
+  open GitHub issues related to verification and validation activities on a
+  weekly basis. Each issue will be categorized by type (documentation,
+  requirements, testing, or design), assigned to the responsible member from
+  Table~\ref{tab:vvteamresponsibilities}, and tracked to closure. This process
+  ensures continuous improvement and accountability throughout the project’s
+  lifecycle.
 \end{itemize}
 
 The following checklist can be used:
