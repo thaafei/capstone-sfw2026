@@ -7,10 +7,11 @@
 \usepackage{hyperref}
 \usepackage{array}
 \usepackage{float}
-\usepackage{enumitem}
 \usepackage{booktabs,tabularx,makecell}
 \usepackage{caption}
 \usepackage{xcolor,colortbl}
+\usepackage{enumitem,amssymb}
+
 \renewcommand{\arraystretch}{1.15}
 \setlength{\tabcolsep}{6pt}
 \setlength\LTpre{6pt}
@@ -22,6 +23,9 @@
     linkcolor=red,
     urlcolor=blue
 }
+
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 \usepackage[round]{natbib}
 
 \input{../Comments}
@@ -413,6 +417,16 @@ All decisions, clarifications, and follow-up actions from the session will be
 logged in the repository’s issue tracker to maintain a transparent audit trail
 of SRS verification outcomes.
 
+The following checklist can be used:
+\begin{todolist}
+  \item Are all major functions required for the web application (interface, backend, database) covered?
+  \item Are requirements written with consistent terminology and layout?
+  \item Do any requirements conflict with another one?
+  \item Are requirements unambiguous and verifiable, is the fit criterion understandable?
+  \item Are assumptions and constraints about user and system behaviours clearly stated?
+  \item Is there a process to track the status of SRS Verification changes, are issues related to thee SRS Verification traceable?
+\end{todolist}
+
 \subsection{Design Verification}
 \label{subsec:design-verification}
 % \wss{Plans for design verification}
@@ -444,8 +458,13 @@ The team will:
 \end{itemize}
 
 The checklist will evaluate design completeness, consistency, interface
-clarity, and maintainability.
-
+clarity, and maintainability:
+\begin{todolist}
+  \item Are features traceable to at least one requirement from the SRS?
+  \item Do UML diagrams follow convention?
+  \item Are all updates and features traceable through the issue tracker in team's github repository?
+  \item Are inputs and outputs of the system components clearly identified and correct?
+\end{todolist}
 \subsection{Verification and Validation Plan Verification}
 \label{subsec:vnv-plan-verification}
 % \wss{The verification and validation plan is an artifact that should also be
@@ -473,6 +492,18 @@ Planned activities include:
   identifiers) will be tested to confirm that traceability references remain
   correct.
 \end{itemize}
+
+The following checklist can be used:
+\begin{todolist}
+  \item Does VnV Plan verify all functional requirements are met?
+  \item Does VnV Plan verify all non-functional requirements are met?
+  \item Have all peer-review issues been addressed and closed?
+  \item Have all members of the team peer-reviewed the document prior to approval?
+  \item Did test cases detect mutations and give desired outputs?
+  \item Did test cases expected output match actual output?
+  \item Is there a process for documenting and resolving incorrectness?
+  \item Is there a process to track the status of VnV Plan changes, are issues related to thee VnV plan traceable?
+\end{todolist}
 
 \subsection{Implementation Verification}
 \label{subsec:implementation-verification}
