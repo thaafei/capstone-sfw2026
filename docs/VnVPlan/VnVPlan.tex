@@ -39,13 +39,16 @@
 
 \section*{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\begin{table}[hp]
+\caption{Revision History} \label{VnVPlanRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Oct 17 2025 & 1.0 & Initial Draft\\
-% Date 2 & 1.1 & Notes\\
+October 17, 2025  & Awurama, Fei & Initial v0 Draft\\
 \bottomrule
 \end{tabularx}
+\end{table}
 
 ~\\
 % \wss{The intention of the VnV plan is to increase confidence in the software.
@@ -111,8 +114,6 @@ DB & Database – MySQL instance used for persistent data storage. \\
 \hline
 UI & User Interface – front-end component built with React. \\
 \hline
-NNL & Neural Network Libraries – the domain being analyzed (e.g., PyTorch, TensorFlow). \\
-\hline
 PoC & Proof of Concept – initial demonstration validating workflow integration. \\
 \hline
 VnV & Verification and Validation – process of ensuring correctness and meeting stakeholder needs. \\
@@ -130,7 +131,7 @@ CI/CD & Continuous Integration / Continuous Deployment – automated testing and
 % This document ... \wss{provide an introductory blurb and roadmap of the
 %   Verification and Validation plan}
 This document outlines the Verification and Validation (V\&V) strategy for the
-Neural Network Libraries (NNL) Assessment Tool capstone project. It defines how
+Domain Assessment Tool capstone project. It defines how
 the team will confirm that the implemented system satisfies its specified
 requirements, performs reliably, and aligns with the objectives stated in the
 Software Requirements Specification (SRS), Development Plan, and Hazard
@@ -148,9 +149,9 @@ against user and research expectations.
 \label{subsec:summary}
 % \wss{Say what software is being tested.  Give its name and a brief overview of
 %   its general functions.}
-The Neural Network Libraries (NNL) Assessment Tool is a web-based application
+The Domain Assessment Tool is a web-based application
 that automates evidence collection, analysis, and visualization for assessing
-open-source neural-network libraries such as PyTorch and TensorFlow.
+open-source libraries of various domains.
 
 The tool replaces spreadsheet-based scoring with a traceable, auditable system
 that integrates the following automated features:
@@ -239,7 +240,7 @@ The objectives of this V\&V Plan are to:
 % Repos.csv) if your plan changes as a result of the VnV planning exercise.}
 \textbf{Challenge Level:} Advanced. Per the Problem Statement, the project
 integrates a custom software tool that automates data gathering, analysis, and
-visualization for neural-network libraries.
+visualization for various domains.
 
 Although the broader capstone includes a research study on software-quality
 assessment, the scope of this V\&V Plan pertains only to the verification and
@@ -303,7 +304,7 @@ Section~\ref{sec:unit-tests}. \\
 % \wss{Introduce this section.  You can provide a roadmap of the sections to
 %   come.}
 This section defines the overall verification and validation (V\&V) strategy for
-the Neural Network Libraries (NNL) Assessment Tool.
+the Domain Assessment Tool.
 
 It outlines the V\&V team structure, review methods for each lifecycle artifact,
 verification tools, and validation activities that will be conducted to ensure
@@ -581,7 +582,7 @@ the repository.
 % as a Rev 0 demo for the supervisor.}
 
 % \wss{This section might reference back to the SRS verification section.}
-Software validation confirms that the delivered NNL Assessment Tool satisfies
+Software validation confirms that the delivered Domain Assessment Tool satisfies
 stakeholder expectations and performs reliably under normal operating
 conditions.
 
@@ -807,7 +808,7 @@ Export and publishing workflows validated through integration testing and file-i
 % be involved? Be specific.}
 \label{sec:nfr-tests}
 
-This section specifies execution-based experiments (with summaries or plots rather than simple pass/fail where appropriate) and structured static reviews for the NNL Assessment Tool. The scope aligns with the SRS’s nonfunctional sections (Usability, Performance, Robustness/Fault-Tolerance, Maintainability, Security) and with hazards identified in the Hazard Analysis.
+This section specifies execution-based experiments (with summaries or plots rather than simple pass/fail where appropriate) and structured static reviews for the Domain Assessment Tool. The scope aligns with the SRS’s nonfunctional sections (Usability, Performance, Robustness/Fault-Tolerance, Maintainability, Security) and with hazards identified in the Hazard Analysis.
 
 \textit{Note on accuracy:} For this project, ``accuracy'' concerns tool computations and outputs (e.g., AHP ranking consistency), not machine-learning model accuracy (explicitly out of scope). Relative error will be reported against a manual baseline as per the fit criterion.
 
