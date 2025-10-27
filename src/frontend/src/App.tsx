@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
 function App() {
-  const [backendStatus, setBackendStatus] = useState('Checking...');
-
-  useEffect(() => {
-    //to forward the request to http://localhost:8000/api/status/
-    axios.get('/api/status/')
-      .then(response => {
-        setBackendStatus(response.data.message);
-      })
-      .catch(error => {
-        console.error("API Connection Error:", error);
-        setBackendStatus('Connection Failed: Check Django server or CORS settings.');
-      });
-  }, []);
-
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>DomainX Frontend Application</h1>
-      <h2>Backend Status: <strong>{backendStatus}</strong></h2>
-      <p>If you see "Django backend is successfully connected," your setup is perfect.</p>
-    </div>
+    <Router>
+      {/* navigation bar */}
+      <nav style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
+        <Link to="/" style={{ marginRight: '15px' }}>Home</Link>
+        <Link to="/login">Login</Link>
+      </nav>
+
+      {/* pages based on url */}
+      <div style={{ padding: '20px' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          {/* other pages */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
