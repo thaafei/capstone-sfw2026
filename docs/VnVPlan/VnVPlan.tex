@@ -1,8 +1,21 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage[table]{xcolor}
+\usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{array}
+\usepackage{float}
+\usepackage{booktabs,tabularx,makecell}
+\usepackage{caption}
+\usepackage{xcolor,colortbl}
+\usepackage{enumitem,amssymb}
+
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{6pt}
+\setlength\LTpre{6pt}
+\setlength\LTpost{6pt}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -10,6 +23,9 @@
     linkcolor=red,
     urlcolor=blue
 }
+
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 \usepackage[round]{natbib}
 
 \input{../Comments}
@@ -27,479 +43,1245 @@
 
 \section*{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\begin{table}[hp]
+\caption{Revision History} \label{VnVPlanRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+October 17, 2025  & Awurama, Fei & Initial v0 Draft\\
 \bottomrule
 \end{tabularx}
+\end{table}
 
 ~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
+% \wss{The intention of the VnV plan is to increase confidence in the software.
+% However, this does not mean listing every verification and validation technique
+% that has ever been devised.  The VnV plan should also be a \textbf{feasible}
+% plan. Execution of the plan should be possible with the time and team available.
+% If the full plan cannot be completed during the time available, it can either be
+% modified to ``fake it'', or a better solution is to add a section describing
+% what work has been completed and what work is still planned for the future.}
 
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
+% \wss{The VnV plan is typically started after the requirements stage, but before
+% the design stage.  This means that the sections related to unit testing cannot
+% initially be completed.  The sections will be filled in after the design stage
+% is complete.  the final version of the VnV plan should have all sections filled
+% in.}
 
 \newpage
 
 \tableofcontents
 
-\listoftables
-\wss{Remove this section if it isn't needed}
+% \listoftables
+% \wss{Remove this section if it isn't needed}
 
-\listoffigures
-\wss{Remove this section if it isn't needed}
+% \listoffigures
+% \wss{Remove this section if it isn't needed}
 
 \newpage
 
 \section{Symbols, Abbreviations, and Acronyms}
 
+% \renewcommand{\arraystretch}{1.2}
+% \begin{tabular}{l l} 
+%   \toprule		
+%   \textbf{symbol} & \textbf{description}\\
+%   \midrule 
+%   T & Test\\
+%   \bottomrule
+% \end{tabular}\\
+
+% \wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
+%   \citep{SRS} tables, if appropriate}
+
+% \wss{Remove this section if it isn't needed}
+\begin{table}[H]
+\centering
+\caption{Symbols, Abbreviations, and Acronyms}
+\setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
+\footnotesize
 
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Symbol / Acronym} & \textbf{Description} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+API & Application Programming Interface – mechanism for data retrieval (e.g., GitHub API, PyPI API). \\
+\hline
+AHP & Analytic Hierarchy Process – method for pairwise comparison and ranking of libraries. \\
+\hline
+CSV & Comma-Separated Values – export format for datasets. \\
+\hline
+DB & Database – \href{https://www.mysql.com/}{MySQL} instance used for persistent data storage. \\
+\hline
+UI & User Interface – front-end component built with \href{https://react.dev/}{React}. \\
+\hline
+PoC & Proof of Concept – initial demonstration validating workflow integration. \\
+\hline
+VnV & Verification and Validation – process of ensuring correctness and meeting stakeholder needs. \\
+\hline
+CI/CD & Continuous Integration / Continuous Deployment – automated testing and deployment pipeline used in GitHub Actions. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\wss{Remove this section if it isn't needed}
-
+\noindent\textit{All additional terms conform to those defined in the \href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{SRS} Glossary (Section~4.1).}
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+% This document ... \wss{provide an introductory blurb and roadmap of the
+%   Verification and Validation plan}
+This document outlines the Verification and Validation (V\&V) strategy for the
+Domain Assessment Tool capstone project. It defines how
+the team will confirm that the implemented system satisfies its specified
+requirements, performs reliably, and aligns with the objectives stated in the
+\href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} (SRS), \href{https://github.com/thaafei/DomainX/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}, and \href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard
+Analysis}.
+
+The V\&V Plan provides a structured roadmap covering requirement reviews,
+system and nonfunctional testing, and traceability between test cases and
+requirements. It also establishes the methods, responsibilities, tools, and
+metrics that ensure all deliverables are verified for correctness and validated
+against user and research expectations.
 
 \section{General Information}
-
+\label{sec:general-info}
 \subsection{Summary}
+\label{subsec:summary}
+% \wss{Say what software is being tested.  Give its name and a brief overview of
+%   its general functions.}
+The Domain Assessment Tool is a web-based application
+that automates evidence collection, analysis, and visualization for assessing
+open-source libraries of various domains.
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+The tool replaces spreadsheet-based scoring with a traceable, auditable system
+that integrates the following automated features:
+
+\begin{itemize}
+  \item \textbf{Automated Data Collection:} retrieval of repository metrics
+  (commits, issues, languages, and lines of code) through the GitHub API and
+  PyPI metadata.
+
+  \item \textbf{Interactive Data Table:} centralized, editable interface for
+  entering and verifying measurements.
+
+  \item \textbf{Automated Analytic Hierarchy Process (AHP):} automated
+  computation of pairwise comparisons for reproducible rankings.
+
+  \item \textbf{Visualization and Export:} generation of graphs and reports in
+  PNG and \LaTeX{} formats for research use.
+\end{itemize}
+
+The V\&V Plan defines how the software’s correctness, reliability, and usability
+will be verified and validated throughout its lifecycle.
 
 \subsection{Objectives}
+\label{subsec:objectives}
+% \wss{State what is intended to be accomplished.  The objective will be around
+%   the qualities that are most important for your project.  You might have
+%   something like: ``build confidence in the software correctness,''
+%   ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
+%   just those that are most important.}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+% \wss{You should also list the objectives that are out of scope.  You don't have 
+% the resources to do everything, so what will you be leaving out.  For instance, 
+% if you are not going to verify the quality of usability, state this.  It is also 
+% worthwhile to justify why the objectives are left out.}
 
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
+% \wss{The objectives are important because they highlight that you are aware of 
+% limitations in your resources for verification and validation.  You can't do everything, 
+% so what are you going to prioritize?  As an example, if your system depends on an 
+% external library, you can explicitly state that you will assume that external library 
+% has already been verified by its implementation team.}
+The objectives of this V\&V Plan are to:
 
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+\begin{enumerate}
+  \item Build confidence in software correctness by verifying that each
+  functional requirement in the SRS (e.g., automated AHP calculation, data
+  retrieval, visualization, and multi-user collaboration) is fully implemented
+  and traceable to its tests.
+
+  \item Ensure system reliability and data integrity, particularly for automated
+  data collection and storage operations identified as high-risk in the Hazard
+  Analysis.
+
+  \item Validate usability and accessibility through internal surveys and
+  pilot-user feedback from the Research Sub-team and Dr.~Smith.
+
+  \item Confirm performance and security non-functional requirements, such as
+  load handling and access-control validation.
+\end{enumerate}
+
+\textbf{Out of Scope:}
+\begin{itemize}
+  \item Third-party API correctness (\href{https://docs.github.com/en}{GitHub}, \href{https://pypi.org/}{PyPI}); assumed verified by their
+  respective providers.
+
+  \item Formal proof techniques and hardware-level testing; outside academic
+  scope.
+
+  \item Multi-browser performance optimization beyond the core compatibility
+  tests specified in the SRS (Chrome, Firefox, Safari, Edge).
+\end{itemize}
 
 \subsection{Challenge Level and Extras}
+\label{subsec:challenge-level}
+% \wss{State the challenge level (advanced, general, basic) for your project.
+% Your challenge level should exactly match what is included in your problem
+% statement.  This should be the challenge level agreed on between you and the
+% course instructor.  You can use a pull request to update your challenge level
+% (in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
+% VnV planning exercise.}
 
-\wss{State the challenge level (advanced, general, basic) for your project.
-Your challenge level should exactly match what is included in your problem
-statement.  This should be the challenge level agreed on between you and the
-course instructor.  You can use a pull request to update your challenge level
-(in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
-VnV planning exercise.}
+% \wss{Summarize the extras (if any) that were tackled by this project.  Extras
+% can include usability testing, code walkthroughs, user documentation, formal
+% proof, GenderMag personas, Design Thinking, etc.  Extras should have already
+% been approved by the course instructor as included in your problem statement.
+% You can use a pull request to update your extras (in TeamComposition.csv or
+% Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+\textbf{Challenge Level:} Advanced. Per the Problem Statement, the project
+integrates a custom software tool that automates data gathering, analysis, and
+visualization for various domains.
 
-\wss{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.
-You can use a pull request to update your extras (in TeamComposition.csv or
-Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+Although the broader capstone includes a research study on software-quality
+assessment, the scope of this V\&V Plan pertains only to the verification and
+validation of the software tool itself, not to the accompanying research
+methodology or paper.
+
+
+\textbf{Extras (Approved by Supervisor):} Usability Testing and Peer Code
+Reviews, conducted through structured user surveys and GitHub-based peer
+inspection checklists as defined in the \href{https://github.com/thaafei/DomainX/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} workflow.
 
 \subsection{Relevant Documentation}
+\label{subsec:relevant-docs}
+% \wss{Reference relevant documentation.  This will definitely include your SRS
+%   and your other project documents (design documents, like MG, MIS, etc).  You
+%   can include these even before they are written, since by the time the project
+%   is done, they will be written.  You can create BibTeX entries for your
+%   documents and within those entries include a hyperlink to the documents.}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.  You can create BibTeX entries for your
-  documents and within those entries include a hyperlink to the documents.}
+% \citet{SRS}
 
-\citet{SRS}
+% \wss{Don't just list the other documents.  You should explain why they are relevant and 
+% how they relate to your VnV efforts.}
+\begin{table}[H]
+\centering
+\caption{Relevant Documentation and Their Relevance to V\&V Activities}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
 
-\wss{Don't just list the other documents.  You should explain why they are relevant and 
-how they relate to your VnV efforts.}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Document} & \textbf{Relevance to V\&V Activities} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+\href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} (SRS) &
+Defines functional and non-functional requirements that form the basis for
+test derivation and traceability. \\
+\hline
+\href{https://github.com/thaafei/DomainX/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} &
+Describes test environments, toolchains (PyTest, coverage.py, GitHub Actions),
+and team responsibilities used for verification automation. \\
+\hline
+\href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} &
+Identifies potential failures (e.g., data loss, access control errors, API
+failures) that inform stress and reliability tests. \\
+\hline
+\href{https://github.com/thaafei/DomainX/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem Statement \& Goals} &
+Clarifies project scope, stakeholders, and intended outputs to align validation
+activities with research objectives. \\
+\hline
+Design Document (MG/MIS – future) &
+Will provide module interfaces and algorithms for unit test mapping in
+Section~\ref{sec:unit-tests}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \section{Plan}
+\label{sec:plan}
+% \wss{Introduce this section.  You can provide a roadmap of the sections to
+%   come.}
+This section defines the overall verification and validation (V\&V) strategy for
+the Domain Assessment Tool.
 
-\wss{Introduce this section.  You can provide a roadmap of the sections to
-  come.}
+It outlines the V\&V team structure, review methods for each lifecycle artifact,
+verification tools, and validation activities that will be conducted to ensure
+functional and non-functional compliance with the SRS.
+
+The plan follows both static reviews and dynamic execution-based testing,
+combining automated pipelines with peer-driven inspections.
 
 \subsection{Verification and Validation Team}
+\label{subsec:vnv-team}
+% \wss{Your teammates.  Maybe your supervisor.
+%   You should do more than list names.  You should say what each person's role is
+%   for the project's verification.  A table is a good way to summarize this information.}
+\begin{center}
+\footnotesize 
+\rowcolors{3}{white}{white}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{0.24\textwidth}|
+                    >{\raggedright\arraybackslash}p{0.28\textwidth}|
+                    >{\raggedright\arraybackslash}p{0.40\textwidth}|}
+\caption{Verification and Validation Team Responsibilities} \\
+\label{tab:vvteamresponsibilities} \\
+\hline
+\rowcolor{gray!15}
+\textbf{Team Member} & \textbf{Role} & \textbf{Verification and Validation Responsibilities} \\
+\hline
+\endfirsthead
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\hline
+\rowcolor{gray!15}
+\textbf{Team Member} & \textbf{Role} & \textbf{Verification and Validation Responsibilities} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+\textbf{Awurama Konadu Nyarko} &
+\textit{Research Lead / Usability \& Validation Analyst / Project Coordinator} &
+Coordinates all V\&V activities, including scheduling artifact reviews and maintaining traceability between requirements, hazards, and test cases. Oversees usability validation and ensures survey design, accessibility, and user feedback are integrated into validation outcomes. Consolidates peer feedback and manages version control of testing artifacts. \\
+\hline
+
+\textbf{Fei Xie} &
+\textit{Scrum Master / Developer / Automation Engineer} &
+Oversees the implementation and automation of unit and integration tests. Maintains the CI workflow via GitHub Actions, configures coverage reporting tools (pytest-cov, flake8), and ensures regression testing is triggered on each pull request. Facilitates sprint reviews and ensures verification tasks are completed within iteration schedules. \\
+\hline
+
+\textbf{Haniye Hamidizadeh} &
+\textit{SRS Verification Lead / Backend Expert / Developer} &
+Ensures the correctness, consistency, and testability of requirements. Leads peer inspection of the SRS, verifies traceability between functional and nonfunctional requirements and their corresponding tests, and validates that hazard-related mitigations are represented in the final design. Supports backend API verification and database validation. \\
+\hline
+
+\textbf{Ghena Hatoum} &
+\textit{QA Lead / Backend Expert / Developer} &
+Designs and executes the formal testing plan, maintains the defect log, and coordinates peer reviews of test cases and results. Responsible for system-level validation, including black-box testing and regression verification. Oversees backend integration testing, verifies data-storage reliability, and ensures acceptance criteria are met before supervisor review. \\
+\hline
+
+\textbf{Dr.\ Spencer Smith} &
+\textit{Supervisor / External Reviewer} &
+Provides independent oversight of all verification artifacts (SRS, Design Document, and VnV Plan). Reviews and approves testing procedures for alignment with course expectations and ensures documentation quality meets 4G06 capstone standards. \\
+\end{longtable}
+\end{center}
+
+
 
 \subsection{SRS Verification}
+\label{subsec:srs-verification}
+% \wss{List any approaches you intend to use for SRS verification.  This may
+%   include ad hoc feedback from reviewers, like your classmates (like your
+%   primary reviewer), or you may plan for something more rigorous/systematic.}
 
-\wss{List any approaches you intend to use for SRS verification.  This may
-  include ad hoc feedback from reviewers, like your classmates (like your
-  primary reviewer), or you may plan for something more rigorous/systematic.}
+% \wss{If you have a supervisor for the project, you shouldn't just say they will
+% read over the SRS.  You should explain your structured approach to the review.
+% Will you have a meeting?  What will you present?  What questions will you ask?
+% Will you give them instructions for a task-based inspection?  Will you use your
+% issue tracker?}
 
-\wss{If you have a supervisor for the project, you shouldn't just say they will
-read over the SRS.  You should explain your structured approach to the review.
-Will you have a meeting?  What will you present?  What questions will you ask?
-Will you give them instructions for a task-based inspection?  Will you use your
-issue tracker?}
+% \wss{Maybe create an SRS checklist?}
+Verification of the Software Requirements Specification (SRS) ensures that all
+requirements are consistent, unambiguous, complete, and testable.
 
-\wss{Maybe create an SRS checklist?}
+The team will use a combination of peer inspection, supervisor walkthrough, and
+structured checklist verification to confirm requirement quality and
+traceability.
+
+Each requirement identified in the \href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{SRS} (e.g., SR-AC1, SR-INT2, SR-IM4) will be
+reviewed using a checklist based on the \href{https://standards.ieee.org/ieee/29148/6937/}{IEEE~29148 standard}, evaluating criteria
+such as correctness, completeness, consistency, verifiability, and
+traceability.
+
+During the scheduled peer inspection session, team members will mark any
+ambiguous or unverifiable requirements for revision through the GitHub issue
+tracker under the label ``SRS Review.''
+
+Feedback from the assigned primary reviewer team will also be incorporated to
+ensure external validation of requirement clarity.
+
+As detailed in Table~\ref{tab:vvteamresponsibilities}, each team member and the
+supervisor has a defined role in the verification process. Awurama Konadu Nyarko
+coordinates overall V\&V scheduling and documentation; Haniye Hamidizadeh leads
+SRS verification and requirement traceability checks; Fei Xie manages automated
+testing workflows; Ghena Hatoum oversees system-level validation and defect
+tracking; and Dr.~Spencer Smith provides supervisory review and approval. This
+structure ensures that all SRS verification activities—from peer inspection to
+supervisor walkthrough—are aligned with the team’s assigned responsibilities and
+maintain traceability across all artifacts.
+
+Following the peer inspection, a structured 30-minute walkthrough will be
+conducted with the supervisor.
+
+In this meeting, the team will present the SRS structure, explain traceability
+between requirement identifiers and their planned test cases, and clarify any
+areas of uncertainty.
+
+All decisions, clarifications, and follow-up actions from the session will be
+logged in the repository’s issue tracker to maintain a transparent audit trail
+of SRS verification outcomes.
+
+The following checklist can be used:
+\begin{todolist}
+  \item Are all major functions required for the web application (interface, backend, database) covered?
+  \item Are requirements written with consistent terminology and layout?
+  \item Do any requirements conflict with another one?
+  \item Are requirements unambiguous and verifiable, is the fit criterion understandable?
+  \item Are assumptions and constraints about user and system behaviours clearly stated?
+  \item Is there a process to track the status of SRS Verification changes, are issues related to thee SRS Verification traceable?
+\end{todolist}
 
 \subsection{Design Verification}
+\label{subsec:design-verification}
+% \wss{Plans for design verification}
+% \wss{The review will include reviews by your classmates}
+% \wss{Create a checklists?}
+The design verification process ensures that the software architecture and
+module interfaces correctly realize all functional and non-functional
+requirements defined in the \href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{SRS}.
 
-\wss{Plans for design verification}
+A structured design review will be conducted after completion of the Module
+Guide (MG) and Module Interface Specification (MIS) documents.
 
-\wss{The review will include reviews by your classmates}
+The team will:
 
-\wss{Create a checklists?}
+\begin{itemize}
+  \item Perform checklist-based inspections of class diagrams, API schemas, and
+  data-flow diagrams to confirm interface correctness, modularity, and
+  traceability to \href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{SRS} requirements.
 
+  \item Use the issue tracker to document any inconsistencies or missing
+  data-flow connections.
+
+  \item Review database and API integration points to verify that the design
+  addresses identified hazards such as data loss and synchronization errors.
+
+  \item Hold a design walkthrough with the supervisor, during which reviewers
+  will ask task-based questions (e.g., ``trace the path of a data update
+  request'') to confirm the design supports required behaviour.
+\end{itemize}
+
+The checklist will evaluate design completeness, consistency, interface
+clarity, and maintainability:
+\begin{todolist}
+  \item Are features traceable to at least one requirement from the SRS?
+  \item Do UML diagrams follow convention?
+  \item Are all updates and features traceable through the issue tracker in team's github repository?
+  \item Are inputs and outputs of the system components clearly identified and correct?
+\end{todolist}
 \subsection{Verification and Validation Plan Verification}
+\label{subsec:vnv-plan-verification}
+% \wss{The verification and validation plan is an artifact that should also be
+% verified.  Techniques for this include review and mutation testing.}
+% \wss{The review will include reviews by your classmates}
+% \wss{Create a checklists?}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
+The V\&V Plan itself will be verified to ensure internal consistency and
+feasibility.
 
-\wss{The review will include reviews by your classmates}
+Planned activities include:
 
-\wss{Create a checklists?}
+\begin{itemize}
+  \item \textbf{Peer review session:} each team member will inspect the document
+  against the V\&V Plan template and rubric, checking for section completeness,
+  alignment, and internal traceability.
+
+  \item \textbf{Supervisor feedback:} Dr.~Smith will review the plan draft and
+  provide comments prior to submission.
+
+  \item \textbf{TA feedback:} the course TA will review the document for clarity,
+  completeness, and adherence to course expectations, providing early feedback
+  for improvement before final submission.
+
+  \item \textbf{Version control:} changes and responses will be tracked in
+  GitHub using pull-request comments and a ``VnV Plan Review'' label.
+
+  \item \textbf{Mutation check:} minor edits (for example, changing requirement
+  identifiers) will be tested to confirm that traceability references remain
+  correct.
+
+  \item \textbf{Issue tracking and resolution:} the team will review and update
+  open GitHub issues related to verification and validation activities on a
+  weekly basis. Each issue will be categorized by type (documentation,
+  requirements, testing, or design), assigned to the responsible member from
+  Table~\ref{tab:vvteamresponsibilities}, and tracked to closure. This process
+  ensures continuous improvement and accountability throughout the project’s
+  lifecycle.
+\end{itemize}
+
+The following checklist can be used:
+\begin{todolist}
+  \item Does VnV Plan verify all functional requirements are met?
+  \item Does VnV Plan verify all non-functional requirements are met?
+  \item Have all peer-review issues been addressed and closed?
+  \item Have all members of the team peer-reviewed the document prior to approval?
+  \item Did test cases detect mutations and give desired outputs?
+  \item Did test cases expected output match actual output?
+  \item Is there a process for documenting and resolving incorrectness?
+  \item Is there a process to track the status of VnV Plan changes, are issues related to thee VnV plan traceable?
+\end{todolist}
 
 \subsection{Implementation Verification}
+\label{subsec:implementation-verification}
+% \wss{You should at least point to the tests listed in this document and the unit
+%   testing plan.}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+% \wss{In this section you would also give any details of any plans for static
+%   verification of the implementation.  Potential techniques include code
+%   walkthroughs, code inspection, static analyzers, etc.}
 
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+% \wss{The final class presentation in CAS 741 could be used as a code
+% walkthrough.  There is also a possibility of using the final presentation (in
+% CAS741) for a partial usability survey.}
+Implementation verification ensures that each software component is correctly
+realized and adheres to design and coding standards.
 
-\wss{The final class presentation in CAS 741 could be used as a code
-walkthrough.  There is also a possibility of using the final presentation (in
-CAS741) for a partial usability survey.}
+\begin{itemize}
+  \item \textbf{Static verification:} code reviews will be conducted for all pull
+  requests. Linters (\texttt{\href{https://flake8.pycqa.org/en/latest/}{flake8}}, \texttt{\href{https://github.com/psf/black}{black}} for \href{https://www.python.org/}{Python}, \texttt{\href{https://eslint.org/}{ESLint}}
+  for \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript}{JavaScript}) will enforce syntax and style compliance
+  (see~\textit{\href{https://github.com/thaafei/DomainX/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}}, Section~2).
+
+  \item \textbf{Dynamic verification:} unit and integration tests written in
+  PyTest will confirm correct module behaviour and interface compatibility.
+
+  \item \textbf{Continuous integration:} \href{https://github.com/thaafei/DomainX/actions}{GitHub Actions} will automatically
+  execute all tests on commit and generate coverage reports (target $\geq$ 80\%).
+
+  \item \textbf{Regression testing:} test suites will rerun automatically whenever
+  code is merged to detect unexpected changes in functionality.
+
+  \item \textbf{Code walkthroughs:} conducted at major milestones to compare
+  implementation decisions with design diagrams and hazard mitigations.
+\end{itemize}
 
 \subsection{Automated Testing and Verification Tools}
+\label{subsec:testing-tools}
+% \wss{What tools are you using for automated testing.  Likely a unit testing
+%   framework and maybe a profiling tool, like ValGrind.  Other possible tools
+%   include a static analyzer, make, continuous integration tools, test coverage
+%   tools, etc.  Explain your plans for summarizing code coverage metrics.
+%   Linters are another important class of tools.  For the programming language
+%   you select, you should look at the available linters.  There may also be tools
+%   that verify that coding standards have been respected, like flake9 for
+%   Python.}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+% \wss{If you have already done this in the development plan, you can point to
+% that document.}
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
+% \wss{The details of this section will likely evolve as you get closer to the
+%   implementation.}
+Automated verification will rely on the toolchain defined in the \href{https://github.com/thaafei/DomainX/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development
+Plan}.
 
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+\begin{table}[H]
+\centering
+\caption{Automated Testing and Verification Tools}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Tool / Framework} & \textbf{Purpose} \\
+\midrule
+\arrayrulecolor[gray]{0.8}
+\href{https://docs.pytest.org/en/stable/}{PyTest} + \texttt{coverage.py} &
+Unit and integration testing with code-coverage metrics. \\
+\hline
+\href{https://github.com/thaafei/DomainX/actions}{GitHub Actions CI/CD} &
+Executes automated tests and generates build reports for every push or pull
+request. \\
+\hline
+\texttt{\href{https://flake8.pycqa.org/en/latest/}{flake8}} / \texttt{\href{https://github.com/psf/black}{black}} / \texttt{\href{https://eslint.org/}{ESLint}} &
+Static analysis and style enforcement for Python and JavaScript. \\
+\hline
+\href{https://www.selenium.dev/}{Selenium} or \href{https://playwright.dev/}{Playwright} &
+Automated front-end UI testing of key user workflows (domain creation and visualization). \\
+\hline
+\href{https://www.postman.com/}{Postman} or \texttt{\href{https://requests-mock.readthedocs.io/en/latest/pytest.html}{pytest-requests}} &
+API endpoint validation and response-code checking. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Coverage summaries and logs will be archived in \texttt{\href{https://github.com/thaafei/DomainX/tree/main/test}{/test/reports/}} within
+the repository.
 
 \subsection{Software Validation}
+\label{subsec:software-validation}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+% \wss{If there is any external data that can be used for validation, you should
+%   point to it here.  If there are no plans for validation, you should state that
+%   here.}
 
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+% \wss{You might want to use review sessions with the stakeholder to check that
+% the requirements document captures the right requirements.  Maybe task based
+% inspection?}
 
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
+% \wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
+% be used as an opportunity to validate the requirements.  You should plan on 
+% demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
+% The feedback from your supervisor will be very useful for improving your project.}
 
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
+% \wss{For teams without an external supervisor, user testing can serve the same purpose 
+% as a Rev 0 demo for the supervisor.}
 
-\wss{This section might reference back to the SRS verification section.}
+% \wss{This section might reference back to the SRS verification section.}
+Software validation confirms that the delivered Domain Assessment Tool satisfies
+stakeholder expectations and performs reliably under normal operating
+conditions.
+
+Validation will combine functional scenario testing, usability evaluation, and
+non-functional performance checks:
+
+\begin{itemize}
+  \item \textbf{End-to-end validation:} execute representative workflows, from
+  data collection through AHP ranking and visualization, to confirm system
+  integrity.
+
+  \item \textbf{Usability assessment:} conducted with internal research users
+  using short post-demo surveys (questions provided in Appendix~7.2).
+
+  \item \textbf{Performance validation:} stress-test database operations and API
+  response times to verify thresholds stated in SRS Section~4.3.
+
+  \item \textbf{Security validation:} attempt invalid inputs and authentication
+  edge cases to ensure protection against hazards such as data leakage and
+  unauthorized access.
+
+  \item \textbf{Supervisor review:} a final demonstration and feedback session
+  with Dr.~Smith will confirm that the implemented system meets project
+  objectives and research goals.
+\end{itemize}
 
 \section{System Tests}
-
-\wss{There should be text between all headings, even if it is just a roadmap of
-the contents of the subsections.}
+\label{sec:system-tests}
+% \wss{There should be text between all headings, even if it is just a roadmap of
+% the contents of the subsections.}
+Test IDs follow the pattern \texttt{T-XX-\#} where \texttt{XX} denotes the
+subsystem (AC = Access Control, DM = Domain Management, VR = Visualization,
+NF = Non-Functional).
 
 \subsection{Tests for Functional Requirements}
+\label{subsec:functional-tests}
+% \wss{Subsets of the tests may be in related, so this section is divided into
+%   different areas.  If there are no identifiable subsets for the tests, this
+%   level of document structure can be removed.}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
+% \wss{Include a blurb here to explain why the subsections below
+%   cover the requirements.  References to the SRS would be good here.}
+This section describes the dynamic verification activities that will confirm the implemented system meets all functional requirements in the SRS.
 
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
+Functional tests are grouped by feature areas that reflect the system’s major use cases.
+All tests will be executed after integration and will rely on automated CI pipelines
+(\texttt{\href{https://requests-mock.readthedocs.io/en/latest/overview.html}{pytest}}, \href{https://github.com/thaafei/DomainX/actions}{GitHub Actions}) supplemented by manual UI verification for user-facing features.
 
-\subsubsection{Area of Testing1}
+Each test case references the corresponding \textbf{SRS requirement identifier (SR--xx)} to maintain full traceability (see Section~\ref{sec:traceability}).
 
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
+\subsubsection{Area of Testing 1: User Management and Access Control}
+\textbf{Objective:} Verify that user account creation, login, role assignment, and authentication operate correctly and protect system integrity.
 
-\begin{enumerate}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|X|}
+\hline
+\textbf{Test ID} & \textbf{Description / Procedure} & \textbf{Expected Outcome} & \textbf{SRS Refs} \\
+\hline
+\textbf{T--AC--1} &
+Attempt sign-up and login with valid credentials through the UI and API. &
+Account created successfully; user redirected to dashboard; session token generated. &
+\textbf{SR--AC1, SR--AC2, FR2, FR3} \\
+\hline
+\textbf{T--AC--2} &
+Attempt login with invalid password or unregistered email. &
+Access denied; error message displayed; no session token created. &
+\textbf{SR--AC5, UH--UP3, LF--AR6} \\
+\hline
+\textbf{T--AC--3} &
+Update user role (Viewer → Contributor) and verify access rights. &
+Role change saved; UI options update to reflect new permissions. &
+\textbf{SR--AC4, PR--SC3, FR7} \\
+\hline
+\textbf{T--AC--4} &
+Attempt unauthorized API call (e.g., delete domain without privilege). &
+HTTP 403 Forbidden returned; audit entry recorded in logs. &
+\textbf{SR--AC6, SR--AU1, SR--IM1} \\
+\hline
+\textbf{T--AC--5} &
+Verify password reset workflow (email token, form validation). &
+Token expires after one use; password updated securely. &
+\textbf{FR4, SR--AC5, PR--SC1} \\
+\hline
+\end{tabularx}
+\caption{Functional test cases for user management and access control.}
+\end{table}
 
-\item{test-id1\\}
+\noindent\textbf{Verification Approach:}\\
+White-box unit tests (\texttt{\href{https://requests-mock.readthedocs.io/en/latest/overview.html}{pytest}}) will validate authentication and token logic.\\
+Black-box UI tests (\texttt{\href{https://www.selenium.dev/}{Selenium}}/\texttt{\href{https://playwright.dev/}{Playwright}}) will simulate login, logout, and password reset flows.\\
+Manual security validation will include injection and privilege-escalation attempts, referencing hazards identified in the \href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} (e.g., credential exposure, improper access).\\[0.5em]
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs.  Output is not how you
-are going to return the results of the test.  The output is the expected
-result.}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+\subsubsection{Area of Testing 2: Domain and Data Management}
+\textbf{Objective:} Verify that domains, libraries, and metrics can be created, modified, and retrieved accurately, and that automated data collection and AHP ranking behave as specified.
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|X|}
+\hline
+\textbf{Test ID} & \textbf{Description / Procedure} & \textbf{Expected Outcome} & \textbf{SRS Refs} \\
+\hline
+\textbf{T--DM--1} &
+Create a new domain and confirm database record created. &
+Domain visible in UI and persisted in database with unique ID. &
+\textbf{FR5, SR--INT1, SR--AC3} \\
+\hline
+\textbf{T--DM--2} &
+Add libraries to a domain and retrieve metadata from GitHub API. &
+Repository data (commits, issues, LOC) auto-populated without error. &
+\textbf{FR7, FR10, OE--IA1, SR--INT2, SR--INT3} \\
+\hline
+\textbf{T--DM--3} &
+Manually edit a metric and verify changes saved and reflected in AHP ranking. &
+Updated metric value stored and reflected in new ranking scores. &
+\textbf{FR7, FR12, SR--INT4, SR--IM2} \\
+\hline
+\textbf{T--DM--4} &
+Simulate API failure (limit exceeded) and verify fallback mechanism. &
+System uses cached data and issues warning to user. &
+\textbf{PR--RFT1, PR--RFT2, SR--INT5} \\
+\hline
+\textbf{T--DM--5} &
+Export domain data (JSON / Excel) and verify file integrity. &
+Downloaded file contains complete, uncorrupted records. &
+\textbf{FR14, SR--INT7, OE--PR4} \\
+\hline
+\textbf{T--DM--6} &
+Bulk upload data using Excel template and validate schema. &
+Valid rows imported; invalid entries flagged with detailed error messages. &
+\textbf{FR9, SR--INT1, UH--EU2} \\
+\hline
+\textbf{T--DM--7} &
+Publish a completed domain for public view/download. &
+Domain becomes visible to all users; data available for download. &
+\textbf{FR6, OE--PR3, FR14} \\
+\hline
+\end{tabularx}
+\caption{Functional test cases for domain and data management.}
+\end{table}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\noindent\textbf{Verification Approach:}\\
+Dynamic system tests executed using \texttt{\href{https://docs.pytest.org/en/stable/}{pytest-requests}} for API and database verification.\\
+Automated UI tests confirm front-end state updates and form validation.\\
+Error handling (rate limits, invalid uploads) tested manually and automatically, referencing hazards from the \href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} (data loss, API outage, invalid input).\\
+Export and publishing workflows validated through integration testing and file-integrity checks.\\[0.5em]
 
-How test will be performed: 
+\subsubsection{Area of Testing 3: Visualization and Reporting}
+\textbf{Objective:} Verify that visualization components and export functionalities correctly display and summarize the analyzed data, ensuring results are accurate, interactive, and consistent with underlying datasets.
 
-\end{enumerate}
+\begin{longtable}{|p{0.12\textwidth}|p{0.30\textwidth}|p{0.30\textwidth}|p{0.10\textwidth}|p{0.14\textwidth}|}
+\caption{Functional test cases for visualization and reporting.}
+\label{tab:vr-tests}\\
+\hline
+\textbf{Test ID} & \textbf{Description / Procedure} & \textbf{Expected Outcome} & \textbf{Control} & \textbf{SRS Refs} \\
+\hline
+\endfirsthead
 
-\subsubsection{Area of Testing2}
+\multicolumn{5}{l}{\small\emph{Table \thetable\ (continued)}}\\
+\hline
+\textbf{Test ID} & \textbf{Description / Procedure} & \textbf{Expected Outcome} & \textbf{Control} & \textbf{SRS Refs} \\
+\hline
+\endhead
 
-...
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+\textbf{T--VR--1} & Generate comparison dashboard for at least 3 libraries after data import. & All metrics (stars, issues, commits, LOC, performance) accurately represented in graphs; no missing or mislabeled values. & Auto & \textbf{FR13, FR12, SR--VIS1, SR--IM1} \\
+\hline
+
+\textbf{T--VR--2} & Change visualization filter (e.g., date range, metric type). & Dashboard updates dynamically within 2 seconds; graphs reflect new filters correctly. & Auto & \textbf{FR13, SR--VIS2, PR--SL1} \\
+\hline
+
+\textbf{T--VR--3} & Export visualized data to PDF/PNG via “Export” button. & File generated successfully; exported data matches visible chart; correct title and timestamp shown. & Manual & \textbf{FR15, OE--PR4, SR--INT7} \\
+\hline
+
+\textbf{T--VR--4} & Resize browser window or test on different screen resolutions. & Graphs remain legible; UI maintains layout integrity; no overlapping elements. & Manual & \textbf{LF--AR2, LF--SR2, UH--AR1} \\
+\hline
+
+\textbf{T--VR--5} & Simulate missing metric value in one library record. & Visualization renders gracefully (e.g., empty bar or greyed-out field); no runtime errors. & Auto & \textbf{PR--RFT1, SR--INT5} \\
+\hline
+
+\textbf{T--VR--6} & Display complete metric definitions list for the selected domain. & Each metric label includes definition tooltip or help text; matches repository data fields. & Manual & \textbf{FR11, UH--LR2, LF--AR3} \\
+\hline
+
+\end{longtable}
+
+\noindent\textbf{Verification Approach}
+
+\begin{itemize}
+  \item \textbf{Dynamic Tests:} Executed using \texttt{\href{https://docs.pytest.org/en/stable/}{pytest-dash}} for back-end data verification and \href{https://playwright.dev/}{Playwright} or \href{https://www.selenium.dev/}{Selenium} for front-end UI rendering.
+  \item \textbf{Static Verification:} Visual inspection by the project team and supervisor to confirm readability, legend accuracy, and chart-type selection alignment with research goals.
+  \item \textbf{Cross-Validation:} Exported results are compared with raw dataset values to ensure visual outputs match actual AHP scores.
+  \item \textbf{Failure Handling:} UI behaviour under missing data and network interruptions is verified against \href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} controls (e.g., safe-state notifications).
+\end{itemize}
+
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy.}
+% \wss{The nonfunctional requirements for accuracy will likely just reference the
+%   appropriate functional tests from above.  The test cases should mention
+%   reporting the relative error for these tests.  Not all projects will
+%   necessarily have nonfunctional requirements related to accuracy.}
 
-\wss{For some nonfunctional tests, you won't be setting a target threshold for
-passing the test, but rather describing the experiment you will do to measure
-the quality for different inputs.  For instance, you could measure speed versus
-the problem size.  The output of the test isn't pass/fail, but rather a summary
-table or graph.}
+% \wss{For some nonfunctional tests, you won't be setting a target threshold for
+% passing the test, but rather describing the experiment you will do to measure
+% the quality for different inputs.  For instance, you could measure speed versus
+% the problem size.  The output of the test isn't pass/fail, but rather a summary
+% table or graph.}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
+% \wss{Tests related to usability could include conducting a usability test and
+%   survey.  The survey will be in the Appendix.}
 
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
+% \wss{Static tests, review, inspections, and walkthroughs, will not follow the
+% format for the tests given below.}
 
-\wss{If you introduce static tests in your plan, you need to provide details.
-How will they be done?  In cases like code (or document) walkthroughs, who will
-be involved? Be specific.}
+% \wss{If you introduce static tests in your plan, you need to provide details.
+% How will they be done?  In cases like code (or document) walkthroughs, who will
+% be involved? Be specific.}
+\label{sec:nfr-tests}
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+This section specifies execution-based experiments (with summaries or plots rather than simple pass/fail where appropriate) and structured static reviews for the Domain Assessment Tool. The scope aligns with the \href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{SRS’s} nonfunctional sections (Usability, Performance, Robustness/Fault-Tolerance, Maintainability, Security) and with hazards identified in the \href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis}.
 
-\begin{enumerate}
+\textit{Note on accuracy:} For this project, ``accuracy'' concerns tool computations and outputs (e.g., AHP ranking consistency), not machine-learning model accuracy (explicitly out of scope). Relative error will be reported against a manual baseline as per the fit criterion.
 
-\item{test-id1\\}
+% ------------------------------------------------------
+\subsubsection{Performance \& Scalability Experiments}
+\label{subsubsec:performance}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+\textbf{Goal:} Measure how quickly the tool responds as the number of libraries and metrics increases.
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+\textbf{Method (Automated Test):}
+\begin{itemize}
+  \item Record the time to load dashboards, apply filters, recalculate AHP scores, and export results.
+  \item Run tests on datasets of 5, 10, 20, and 40 libraries.
+  \item Save the median and 95th-percentile response times and plot them against dataset size.
+\end{itemize}
 
-\end{enumerate}
+\textbf{Expected Output:} A table and graph showing how response time grows with dataset size; any slowdowns will be noted for optimization.
 
-\subsubsection{Area of Testing2}
+\textbf{Traceability:} PR-SL1 (Speed and Latency Requirement).\\
+\textbf{Development Plan Tools:} Automated using \texttt{\href{https://docs.pytest.org/en/stable/}{pytest}} and \href{https://github.com/thaafei/DomainX/actions}{GitHub Actions} performance workflows.
 
-...
+% ------------------------------------------------------
+\subsubsection{Reliability and Fault Tolerance}
+\label{subsubsec:reliability}
+
+\textbf{Goal:} Confirm the system remains stable, consistent, and capable of recovery when services fail or operations are interrupted.
+
+\textbf{Method (Automated + Manual Tests):}
+\begin{itemize}
+  \item Simulate API errors (HTTP 429, 5xx) and verify that the tool uses cached data and displays a warning instead of crashing.
+  \item Interrupt a mid-update transaction to ensure rollback to the last valid state.
+  \item Perform a backup-and-restore test to confirm recovery within one hour.
+  \item Verify that no partial or corrupted records are written during failures.
+\end{itemize}
+
+\textbf{Expected Output:} Concise test log summarizing behaviour under each error type, rollback event, and restore cycle, confirming that data integrity was preserved.
+
+\textbf{Traceability:} PR-RFT1--PR-RFT3, SR-INT5.\\
+\textbf{References:} \href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} --- data loss and API outage risks.
+
+% ------------------------------------------------------
+\subsubsection{Usability Evaluation}
+\label{subsubsec:usability}
+
+\textbf{Goal:} Check that the interface is intuitive, accessible, and that charts and exports are clear and easy to interpret.
+
+\textbf{Method (Manual Test + Survey):}
+\begin{itemize}
+  \item Have a small group of testers perform common tasks (create domain, add libraries, apply filters, export data).
+  \item Record time taken, errors encountered, and number of clicks required per task.
+  \item Ask participants to complete a short usability survey (Appendix~B) rating ease of use, clarity, and navigation flow on a 1--5 scale.
+  \item A mean rating of \(\ge 4.0\) across questions will meet the success criterion.
+\end{itemize}
+
+\textbf{Expected Output:} Average task completion times, click counts, and survey results summarized in a bar chart (Appendix~C).
+
+\textbf{Traceability:} UH-EU1 (primary navigation \(\le 3\) clicks), UH-AR1 (font scalability), LF-AR2 (responsiveness across screens), LF-SR2 (minimalist graph design), UH-UP3 (clear error messages).
+
+% ------------------------------------------------------
+\subsubsection{Computational Accuracy}
+\label{subsubsec:accuracy}
+
+\textbf{Goal:} Ensure that automatically computed AHP ranking results and auto-filled repository metrics are correct within an acceptable tolerance.
+
+\textbf{Method (Automated + Manual Comparison):}
+\begin{itemize}
+  \item Prepare a small AHP matrix and compute expected pairwise weights manually.
+  \item Run the same inputs through the tool and compare outputs.
+  \item For automatically fetched repository data, manually cross-check key fields (creation date, last commit date) against GitHub.
+  \item Calculate relative error (\%) for each metric; flag any deviation \(> 2\%\).
+\end{itemize}
+
+\textbf{Expected Output:} Table comparing manual vs.\ tool-generated values, showing relative-error percentages and confirming compliance with thresholds.
+
+\textbf{Traceability:} PR-PA1 (auto-filled data accuracy) and FR12 (AHP ranking computation).
+
+% ------------------------------------------------------
+\subsubsection{Security and Access Control}
+\label{subsubsec:security}
+
+\textbf{Goal:} Validate that user data, credentials, and permissions are properly secured, and that unauthorized actions are detected and prevented.
+
+\textbf{Method (Static + Dynamic):}
+\begin{itemize}
+  \item Perform a code review of authentication modules to confirm proper password hashing (e.g., \texttt{\href{https://www.npmjs.com/package/bcrypt}{bcrypt}} or \texttt{\href{https://argon2.online/}{Argon2}}) and secure session-token handling.
+  \item Attempt unauthorized actions (e.g., deleting data without sufficient privileges, accessing admin-only routes) and verify they are blocked and logged.
+  \item Review audit-log entries to ensure failed attempts are timestamped and attributed to the correct user.
+  \item Confirm session-timeout and account lockout mechanisms activate after consecutive failed attempts.
+\end{itemize}
+
+\textbf{Expected Output:} Completed security-verification checklist, screenshots/logs of simulated intrusions, and a concise summary of results confirming no critical vulnerabilities.
+
+\textbf{Traceability:} PR-SC1--PR-SC3, SR-AC6, SR-IM1, SR-AU1.\\
+Also aligns with \href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} controls for unauthorized access and data integrity risks.
+
+% ------------------------------------------------------
+\subsubsection{Maintainability}
+\label{subsubsec:maintainability}
+
+\textbf{Goal:} Ensure that the codebase remains clean, modular, and easy to update, with consistent style and adequate automated-test coverage.
+
+\textbf{Method (Static + Automated):}
+\begin{itemize}
+  \item Run Python linters and formatters (\texttt{\href{https://flake8.pycqa.org/en/latest/}{flake8}}, \texttt{\href{https://github.com/psf/black}{black}}) to check for violations of the team’s coding standards.
+  \item Generate test-coverage reports from CI pipeline runs and record the overall percentage (target \(\ge 80\%\)).
+  \item Conduct a brief team code walkthrough to review function naming, modular structure, and documentation completeness.
+  \item Log all findings and proposed improvements in the \href{https://github.com/thaafei/DomainX/issues}{GitHub issue tracker}.
+\end{itemize}
+
+\textbf{Expected Output:} Lint-violation report, CI-coverage summary, and meeting notes capturing reviewer feedback and assigned follow-ups.
+
+\textbf{Traceability:} MS-MR1--MS-MR6 (maintainability standards: style compliance, modularity, testability, documentation). Supports the Development-Plan verification process for maintainability compliance.
+
+% ------------------------------------------------------
+\subsubsection*{Format and Reporting Notes}
+\begin{itemize}
+  \item Accuracy tests use relative-error (\%) instead of pass/fail.
+  \item Performance and usability tests produce tables and graphs (Appendix~C).
+  \item Static reviews (walkthroughs, checklists) record who attended and what was found.
+  \item All outputs are stored in the project’s GitHub repository under \texttt{/test/reports/}.
+\end{itemize}
 
 \subsection{Traceability Between Test Cases and Requirements}
+\label{subsec:traceability}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+
+\begin{longtable}{|p{0.12\textwidth}|p{0.28\textwidth}|p{0.20\textwidth}|p{0.32\textwidth}|}
+\caption{Traceability Between Test Cases and Requirements.}
+\label{tab:traceability}\\
+\hline
+\textbf{Test ID} & \textbf{Requirement IDs (SRS / NFR)} & \textbf{Requirement Category} & \textbf{Rationale / Coverage Summary} \\
+\hline
+\endfirsthead
+
+\multicolumn{4}{l}{\small\emph{Table \thetable\ (continued)}}\\
+\hline
+\textbf{Test ID} & \textbf{Requirement IDs (SRS / NFR)} & \textbf{Requirement Category} & \textbf{Rationale / Coverage Summary} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+\textbf{T--AC--1} & SR--AC1, SR--AC2, FR2, FR3 & Access Control & Verifies account creation and login success paths. \\
+\hline
+\textbf{T--AC--2} & SR--AC5, UH--UP3, LF--AR6 & Access Control / Usability & Confirms invalid logins are rejected securely with user-friendly feedback. \\
+\hline
+\textbf{T--AC--3} & SR--AC4, PR--SC3, FR7 & Access Control / Security & Validates correct role updates and permission-based UI behaviour. \\
+\hline
+\textbf{T--AC--4} & SR--AC6, SR--IM1, SR--AU1 & Access / Integrity / Audit & Ensures unauthorized actions are blocked and properly logged. \\
+\hline
+\textbf{T--AC--5} & FR4, SR--AC5, PR--SC1 & Security / Access Control & Verifies secure password reset and credential hashing. \\
+\hline
+\textbf{T--DM--1} & FR5, SR--INT1, SR--AC3 & Domain Management & Confirms domain creation and persistence with access validation. \\
+\hline
+\textbf{T--DM--2} & FR7, FR10, OE--IA1, SR--INT2, SR--INT3 & Data Collection / Integration & Validates GitHub API metadata retrieval and field accuracy. \\
+\hline
+\textbf{T--DM--3} & FR7, FR12, SR--INT4, SR--IM2 & Integration / Computation & Confirms manual metric edits and AHP ranking updates. \\
+\hline
+\textbf{T--DM--4} & PR--RFT1, PR--RFT2, SR--INT5 & Reliability / Integration & Tests fallback to cached data and recovery under API failure. \\
+\hline
+\textbf{T--DM--5} & FR14, SR--INT7, OE--PR4 & Export / Data Integrity & Checks JSON/Excel export completeness and file integrity. \\
+\hline
+\textbf{T--DM--6} & FR9, SR--INT1, UH--EU2 & Data Validation & Confirms bulk-upload schema enforcement and error reporting. \\
+\hline
+\textbf{T--DM--7} & FR6, OE--PR3, FR14 & Publication / Access & Verifies publishing workflow for completed domains. \\
+\hline
+\textbf{T--VR--1} & FR13, FR12, SR--VIS1, SR--IM1 & Visualization & Validates accuracy and labeling of dashboard graphs. \\
+\hline
+\textbf{T--VR--2} & FR13, SR--VIS2, PR--SL1 & Visualization / Performance & Confirms dynamic filter response within latency threshold. \\
+\hline
+\textbf{T--VR--3} & FR15, OE--PR4, SR--INT7 & Export / Visualization & Verifies exported charts match on-screen visuals. \\
+\hline
+\textbf{T--VR--4} & LF--AR2, LF--SR2, UH--AR1 & Usability / Accessibility & Ensures UI responsiveness and legibility on all screens. \\
+\hline
+\textbf{T--VR--5} & PR--RFT1, SR--INT5 & Reliability & Confirms system handles missing values gracefully. \\
+\hline
+\textbf{T--VR--6} & FR11, UH--LR2, LF--AR3 & Usability / Information & Checks accurate metric definition display and tooltips. \\
+\hline
+\textbf{T--NF1 (Performance \& Scalability)} & PR--SL1 & Performance & Measures response time vs.\ dataset size for dashboards, AHP, and exports. \\
+\hline
+\textbf{T--NF2 (Reliability)} & PR--RFT1--PR--RFT3, SR--INT5 & Reliability / Integration & Evaluates stability, rollback, and recovery from service errors. \\
+\hline
+\textbf{T--NF3 (Usability)} & UH--EU1, LF--AR2, UH--UP3, LF--SR2 & Usability & Assesses task efficiency and average survey rating $\geq 4.0$. \\
+\hline
+\textbf{T--NF4 (Computational Accuracy)} & PR--PA1, FR12 & Accuracy / Computation & Verifies AHP and auto-filled metrics within $\pm2$\% error margin. \\
+\hline
+\textbf{T--NF5 (Security)} & PR--SC1--PR--SC3, SR--AC6, SR--IM1, SR--AU1 & Security / Access Control & Confirms encryption, authorization, audit logging, and lockout enforcement. \\
+\hline
+\textbf{T--NF6 (Maintainability)} & MS--MR1--MS--MR6 & Maintainability & Verifies linting, modular structure, and CI coverage metrics. \\
+\hline
+
+\end{longtable}
+
 
 \section{Unit Test Description}
+N/a
+% \wss{This section should not be filled in until after the MIS (detailed design
+%   document) has been completed.}
 
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
+% \wss{Reference your MIS (detailed design document) and explain your overall
+% philosophy for test case selection.}  
 
-\wss{Reference your MIS (detailed design document) and explain your overall
-philosophy for test case selection.}  
+% \wss{To save space and time, it may be an option to provide less detail in this section.  
+% For the unit tests you can potentially layout your testing strategy here.  That is, you 
+% can explain how tests will be selected for each module.  For instance, your test building 
+% approach could be test cases for each access program, including one test for normal behaviour 
+% and as many tests as needed for edge cases.  Rather than create the details of the input 
+% and output here, you could point to the unit testing code.  For this to work, you code 
+% needs to be well-documented, with meaningful names for all of the tests.}
 
-\wss{To save space and time, it may be an option to provide less detail in this section.  
-For the unit tests you can potentially layout your testing strategy here.  That is, you 
-can explain how tests will be selected for each module.  For instance, your test building 
-approach could be test cases for each access program, including one test for normal behaviour 
-and as many tests as needed for edge cases.  Rather than create the details of the input 
-and output here, you could point to the unit testing code.  For this to work, you code 
-needs to be well-documented, with meaningful names for all of the tests.}
+% \subsection{Unit Testing Scope}
 
-\subsection{Unit Testing Scope}
+% \wss{What modules are outside of the scope.  If there are modules that are
+%   developed by someone else, then you would say here if you aren't planning on
+%   verifying them.  There may also be modules that are part of your software, but
+%   have a lower priority for verification than others.  If this is the case,
+%   explain your rationale for the ranking of module importance.}
 
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
+% \subsection{Tests for Functional Requirements}
 
-\subsection{Tests for Functional Requirements}
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+% \subsubsection{Module 1}
 
-\subsubsection{Module 1}
+% \wss{Include a blurb here to explain why the subsections below cover the module.
+%   References to the MIS would be good.  You will want tests from a black box
+%   perspective and from a white box perspective.  Explain to the reader how the
+%   tests were selected.}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+% \begin{enumerate}
 
-\begin{enumerate}
+% \item{test-id1\\}
 
-\item{test-id1\\}
-
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-Initial State: 
+% Initial State: 
 					
-Input: 
+% Input: 
 					
-Output: \wss{The expected result for the given inputs}
+% Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+% Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+% How test will be performed: 
 					
-\item{test-id2\\}
+% \item{test-id2\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-Initial State: 
+% Initial State: 
 					
-Input: 
+% Input: 
 					
-Output: \wss{The expected result for the given inputs}
+% Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+% Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+% How test will be performed: 
 
-\item{...\\}
+% \item{...\\}
     
-\end{enumerate}
+% \end{enumerate}
 
-\subsubsection{Module 2}
+% \subsubsection{Module 2}
 
-...
+% ...
 
-\subsection{Tests for Nonfunctional Requirements}
+% \subsection{Tests for Nonfunctional Requirements}
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
+% \wss{If there is a module that needs to be independently assessed for
+%   performance, those test cases can go here.  In some projects, planning for
+%   nonfunctional tests of units will not be that relevant.}
 
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
+% \wss{These tests may involve collecting performance data from previously
+%   mentioned functional tests.}
 
-\subsubsection{Module ?}
+% \subsubsection{Module ?}
 		
+% \begin{enumerate}
+
+% \item{test-id1\\}
+
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
+					
+% Initial State: 
+					
+% Input/Condition: 
+					
+% Output/Result: 
+					
+% How test will be performed: 
+					
+% \item{test-id2\\}
+
+% Type: Functional, Dynamic, Manual, Static etc.
+					
+% Initial State: 
+					
+% Input: 
+					
+% Output: 
+					
+% How test will be performed: 
+
+% \end{enumerate}
+
+% \subsubsection{Module ?}
+
+% ...
+
+% \subsection{Traceability Between Test Cases and Modules}
+
+% \wss{Provide evidence that all of the modules have been considered.}
+\section{References}
+
 \begin{enumerate}
+  \item \textbf{V\&V Plan Template (McMaster Capstone, Dr.\ Spencer Smith).}\\
+  Source template defining section structure, verification guidelines, and notes
+  for functional/nonfunctional testing. Used as the basis for all section
+  headings and content organization.
 
-\item{test-id1\\}
+  \item \textbf{\href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} (SRS) -- DomainX.}\\
+  Source of all requirement identifiers (FR, LF, UH, PR, MS, SR). Referenced
+  throughout Sections~3 and~4 for test case traceability.
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  \item \textbf{\href{https://github.com/thaafei/DomainX/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} -- DomainX.}\\
+  Referenced for verification workflow, CI/CD tools (\texttt{PyTest},
+  \texttt{GitHub Actions}), and automation approach used in performance and
+  maintainability testing.
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  \item \textbf{\href{https://github.com/thaafei/DomainX/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} -- DomainX.}\\
+  Used for risk-based test design in reliability and security sections (API
+  outage, rollback, and data-loss scenarios).
 
+  \item \textbf{\href{https://github.com/thaafei/DomainX/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem Statement and Project Objectives} -- DomainX.}\\
+  Referenced for fit criteria in nonfunctional testing (accuracy $\pm$2\%,
+  usability $\geq$ 4/5 score threshold) and for defining project scope
+  (tool computation accuracy $\neq$ ML model accuracy).
 \end{enumerate}
 
-\subsubsection{Module ?}
+% \bibliographystyle{plainnat}
 
-...
-
-\subsection{Traceability Between Test Cases and Modules}
-
-\wss{Provide evidence that all of the modules have been considered.}
-				
-\bibliographystyle{plainnat}
-
-\bibliography{../../refs/References}
+% \bibliography{../../refs/References}
 
 \newpage
 
 \section{Appendix}
 
-This is where you can place additional information.
+% This is where you can place additional information.
 
 \subsection{Symbolic Parameters}
+\label{sec:symbolic-parameters}
 
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+The following symbolic parameters are referenced throughout this document and
+may be updated centrally for consistency across all tests and scripts. Values
+marked as *team targets* are not defined in the SRS but used for validation
+thresholds.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}l X X@{}}
+\toprule
+\textbf{Symbolic Constant} & \textbf{Description} & \textbf{Value / Traceability} \\
+\midrule
+
+\texttt{MAX\_LOGIN\_ATTEMPTS} &
+Number of consecutive failed login attempts before account lockout. &
+\textbf{Team target: 5}.\par
+Linked to \textbf{PR--SC2} (lockout after failed attempts). \\
+
+\texttt{AHP\_ERROR\_THRESHOLD} &
+Maximum acceptable relative error between manual and tool-calculated AHP scores. &
+\textbf{Team target: $\leq$ 2\%}.\par
+Related to \textbf{FR12} (AHP computation). \\
+
+\texttt{USABILITY\_TARGET\_SCORE} &
+Minimum average usability rating required for success. &
+\textbf{Team target: $\geq$ 4.0 / 5.0}.\par
+Based on \textbf{UH--EU1} and \textbf{UH--UP3}. \\
+
+\texttt{PERF\_TEST\_DATASETS} &
+Dataset sizes used for performance benchmarking. &
+\textbf{[5, 10, 20, 40] libraries}.\par
+From \textbf{PR--SL1} (speed/latency). \\
+
+\texttt{CI\_COVERAGE\_TARGET} &
+Minimum required automated test coverage in CI pipeline. &
+\textbf{Team target: $\geq$ 80\%}.\par
+Supports \textbf{MS--MR3}–\textbf{MS--MR4}. \\
+
+\bottomrule
+\end{tabularx}
+\caption{Symbolic constants used in validation and verification tests. Values marked “team target” are not fixed by the \href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{SRS}.}
+\end{table}
 
 \subsection{Usability Survey Questions?}
+\label{sec:usability-survey}
+% \wss{This is a section that would be appropriate for some projects.}
+These are the survey questions referenced in
+Section~4.2.3~(Usability~Evaluation). Each question is rated on a 1–5
+Likert scale (1 = Strongly Disagree, 5 = Strongly Agree).
 
-\wss{This is a section that would be appropriate for some projects.}
+\begin{enumerate}
+  \item The interface layout was intuitive and easy to navigate.
+  \item I could complete all main tasks (create domain, add libraries, export results) without external help.
+  \item The information displayed in charts and tables was clear and easy to understand.
+  \item The tool responded quickly to my actions (no major lag or errors).
+  \item Error messages were clear and helped me understand how to fix issues.
+  \item I found the overall design (colours, font size, contrast) visually comfortable.
+  \item I would feel confident using this tool again for a research project.
+\end{enumerate}
 
 \newpage{}
 \section*{Appendix --- Reflection}
@@ -507,23 +1289,44 @@ Their values are defined in this section for easy maintenance.
 \wss{This section is not required for CAS 741}
 
 The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.
+graduate attribute of Lifelong Learning. 
+
+For the case of the VnVPlan only Awurama Nyarko was in charge of this document
+and so will be the only reflection given.
 
 \input{../Reflection.tex}
 
 \begin{enumerate}
   \item What went well while writing this deliverable? 
+  
+  The document came together clearly and consistently. The structure followed the template well, and referencing between sections was organized and traceable. 
+  As well as referencing SRS requirements.
+  
   \item What pain points did you experience during this deliverable, and how
     did you resolve them?
+     
+  Creating long tables for test cases and mapping all SRS requirements to verification activities was time-consuming and required careful formatting. 
+  Aligning the tables with LaTeX syntax and ensuring traceability across all sections was challenging. 
+  This was resolved by breaking the tables into smaller parts, rechecking references, and using consistent labels and formatting commands.
+  
   \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage, Valgrind etc.  You should look to
-  identify at least one item for each team member.
+    successfully complete the verification and validation of your project?
+    Examples of possible knowledge and skills include dynamic testing knowledge,
+    static testing knowledge, specific tool usage, Valgrind etc.  You should look to
+    identify at least one item for each team member.
+ 
+  Although I was the only person who worked on this document, 
+  the team collectively needs to strengthen our knowledge of automated testing frameworks (e.g., PyTest) and LaTeX documentation for technical reporting. 
+  We also need to deepen our understanding of continuous integration workflows and test coverage tools to support comprehensive verification.
+  
   \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
+    question, what are at least two approaches to acquiring the knowledge or
+    mastering the skill?  Of the identified approaches, which will each team
+    member pursue, and why did they make this choice?
+  
+  For automated testing, the team will use online tutorials, official PyTest documentation, and hands-on practice through the project’s CI pipeline. 
+  For LaTeX and documentation skills, we will review McMaster’s templates, share formatting tips, and collaborate through Overleaf to maintain consistency. 
+  These approaches were chosen because they combine practical application with easily accessible learning resources that directly support the project’s verification and reporting needs.
 \end{enumerate}
 
 \end{document}
