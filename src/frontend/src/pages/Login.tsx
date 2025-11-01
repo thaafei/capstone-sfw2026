@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     setError(null);
     await new Promise((res) => setTimeout(res, 700));
     if (username === 'test' && password === '1234') {
-      navigate('/');
+      navigate('/visualize');
     } else {
       setError('Invalid credentials.');
     }
