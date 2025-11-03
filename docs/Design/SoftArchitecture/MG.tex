@@ -43,13 +43,16 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\begin{table}[hp]
+\caption{Revision History} \label{MgRevHis}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Nov 3, 2025 & Fei & Rev -1\\
 \bottomrule
 \end{tabularx}
+\end{table}
 
 \newpage
 
@@ -72,9 +75,14 @@ This section records information for easy reference.
   R & Requirement\\
   SC & Scientific Computing \\
   SRS & Software Requirements Specification\\
-  \progname & Explanation of program name\\
+  \progname & Software Engineering Capstone\\
   UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
+  AHP & Analytical Hierarchy Process \\ 
+  BWM & Best-Worst Method \\
+  SSB & Skew-Symmetric Bilinear \\ 
+  Domain & Research Software Domain \\
+  Packages & Software Packages \\  
+  API & Application Programming Interface \\
   \bottomrule
 \end{tabular}\\
 
@@ -157,17 +165,16 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+  \item[\refstepcounter{acnum} \actheacnum \label{ac1}:] The metrics used to access the domain's state (e.g. Addition of new metrics, such as code coverage percentage)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac2}:] The method used for user authentication (e.g. Using two-factor authentication on top of username and password)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac3}:] The ranking algorithm used within a domain for packages (e.g. Alternatives to AHP, such as BWM, SSB, etc)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac4}:] The comparison algorithms used between domains 
+  \item[\refstepcounter{acnum} \actheacnum \label{ac5}:] The user access roles available (e.g. Admin, User, Contributor)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] Languages supported (e.g. French, Simplified Chinese)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac8}:] The APIs used to extract repository metrics
+  \item[\refstepcounter{acnum} \actheacnum \label{ac9}:] The visualization libraries used to display and export data
+  \item[\refstepcounter{acnum} \actheacnum \label{ac10}:] Export and import file formats (e.g. CSV, Excel)
 \end{description}
-
-\wss{Anticipated changes relate to changes that would be made in requirements,
-design or implementation choices.  They are not related to changes that are made
-at run-time, like the values of parameters.}
-
 \subsection{Unlikely Changes} \label{SecUchange}
 
 The module design should be as general as possible. However, a general system is
@@ -178,9 +185,10 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc1}:] The schema structure of our domain and metrics systems are designed for long-term use and allows for the addition of new metric types
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc2}:] The platform of the tool will remain as a web application
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc3}:] The development stack of our web application will remain the same (\href{https://react.dev/}{React}, \href{https://www.djangoproject.com/}{Django})
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Input types of existing metrics, as outlined in the \href{https://arxiv.org/pdf/2110.11575}{Methodology paper}
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
