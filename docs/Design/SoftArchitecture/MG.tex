@@ -75,7 +75,7 @@ This section records information for easy reference.
   R & Requirement\\
   SC & Scientific Computing \\
   SRS & Software Requirements Specification\\
-  \progname & Software Engineering Capstone\\
+  \progname & Software Engineering Capstone Project\\
   UC & Unlikely Change \\
   AHP & Analytical Hierarchy Process \\ 
   BWM & Best-Worst Method \\
@@ -83,6 +83,7 @@ This section records information for easy reference.
   Domain & Research Software Domain \\
   Packages & Software Packages \\  
   API & Application Programming Interface \\
+  ADT & Abstract Data Type\\
   \bottomrule
 \end{tabular}\\
 
@@ -165,15 +166,15 @@ adapted here is called design for
 change.
 
 \begin{description}
-  \item[\refstepcounter{acnum} \actheacnum \label{ac1}:] The metrics used to access the domain's state (e.g. Addition of new metrics, such as code coverage percentage)
-  \item[\refstepcounter{acnum} \actheacnum \label{ac2}:] The method used for user authentication (e.g. Using two-factor authentication on top of username and password)
-  \item[\refstepcounter{acnum} \actheacnum \label{ac3}:] The ranking algorithm used within a domain for packages (e.g. Alternatives to AHP, such as BWM, SSB, etc)
-  \item[\refstepcounter{acnum} \actheacnum \label{ac4}:] The comparison algorithms used between domains 
-  \item[\refstepcounter{acnum} \actheacnum \label{ac5}:] The user access roles available (e.g. Admin, User, Contributor)
-  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] Languages supported (e.g. French, Simplified Chinese)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac1}:] The metrics used to assess a domain's state of practice may be updated (e.g. Addition of new metrics, such as code coverage percentage)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac2}:] The system should support extension to user authentication (e.g. Using two-factor authentication on top of username and password)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac3}:] The ranking algorithm used within a domain for packages may be changed (e.g. Alternatives to AHP, such as BWM, SSB, etc)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac4}:] The comparison algorithms used between domains may be changed
+  \item[\refstepcounter{acnum} \actheacnum \label{ac5}:] The user access roles available might be expanded (e.g. Admin, User, Contributor)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] Additional languages might be supported (e.g. French, Simplified Chinese)
   \item[\refstepcounter{acnum} \actheacnum \label{ac8}:] The APIs used to extract repository metrics
   \item[\refstepcounter{acnum} \actheacnum \label{ac9}:] The visualization libraries used to display and export data
-  \item[\refstepcounter{acnum} \actheacnum \label{ac10}:] Export and import file formats (e.g. CSV, Excel)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac10}:] Additional export and import file formatting may be added (e.g. CSV, Excel)
 \end{description}
 \subsection{Unlikely Changes} \label{SecUchange}
 
@@ -189,6 +190,8 @@ decisions will be changed.
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc2}:] The platform of the tool will remain as a web application
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc3}:] The development stack of our web application will remain the same (\href{https://react.dev/}{React}, \href{https://www.djangoproject.com/}{Django})
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Input types of existing metrics, as outlined in the \href{https://arxiv.org/pdf/2110.11575}{Methodology paper}
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Popular browser compatibility is expected to remain unchanged (e.g. Chrome, Firefox, Edge)
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Tool owner, Dr. Spencer Smith, is not expected to change for the duration of the tool's lifespan
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -199,8 +202,23 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mHH1}:] Hardware Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH2}:] Browser Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH1}:] Domain View Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] User Authentication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH3}:] User Role Access Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH4}:] Metrics Storage Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] Package Storage Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Domain Storage Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Visualization Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH8}:] File Import Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH9}:] File Export Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH10}:] Automated Metrics Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD1}:] System API Gateway Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD2}:] AHP Calculation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD3}:] Graphing Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD4}:] File Input Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD5}:] File Export Module
 \end{description}
 
 
@@ -211,22 +229,26 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+{Hardware-Hiding Module} & Browser Module \\
+\midrule
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} &  Domain View Module\\
+& User Authentication Module\\
+& User Role Access Module\\
+& Metrics Storage Module\\
+& Package Storage Module\\
+& Domain Storage Module\\ 
+& Visualization Module\\
+& File Import Module \\
+& File Export Module \\
+& Automated Metrics Module\\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
-\midrule
+\multirow{3}{0.3\textwidth}{Software Decision Module} & {System API Gateway Module}\\
+& AHP Calculation Module\\
+& Graphic Module\\
+& File Input Module\\
+& File Export Module\\
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
 \bottomrule
 
 \end{tabular}
@@ -263,15 +285,21 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash
 (\emph{--}) is shown, this means that the module is not a leaf and will not have
 to be implemented.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
-
+\subsection{Hardware Hiding Modules (\mref{mHH1})}
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
+\item[Secrets:] The data structure and algorithm used to implement the virtual
   hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
+\item[Services:] Serves as a virtual hardware used by the rest of the
   system. This module provides the interface between the hardware and the
   software. So, the system can use it to display outputs or to accept inputs.
 \item[Implemented By:] OS
+\end{description}
+
+\subsubsection{Browser Module (\mref{mHH2})}
+\begin{description}
+\item[Secrets:] The data structure and algorithm used to implement the browser, which is outside of the scope of the project.
+\item[Services:] The browser allows all users of the product to view and retrieve the project through the internet, and displays the contents for use.
+\item[Implemented By:] Web browser
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
@@ -279,29 +307,95 @@ to be implemented.
 \begin{description}
 \item[Secrets:]The contents of the required behaviours.
 \item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
+  the system as specified in the software requirements specification (\href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{SRS})
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
-
+\subsubsection{ Domain View Module (\mref{mBH1})}
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:] 
+\item[Services:] Displays the data of a specific domain.
+\item[Implemented By:] \projname
+\item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{ User Authentication Module (\mref{mBH2})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used to securely store, validate and manage user credentials.
+\item[Services:] Provides user registration, login, and session management services.
+\item[Implemented By:]  \projname
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{ User Role Access Module (\mref{mBH3})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used to store and validate users access level within the system.
+\item[Services:] Provides user role and capabilities related to the role.
+\item[Implemented By:]  \projname
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{ Metrics Storage Module (\mref{mBH4})}
+\begin{description}
+\item[Secrets:] The schema and mechanisms used to store, index, and retrieve package metrics.
+\item[Services:] Manages the storage and retrieval of metrics for a specific package from a specific domain and any associated metadata. Ensures data security and organization to support comparison functionalities.
+\item[Implemented By:]  \projname
+\item[Type of Module:] Record
+\end{description}
+
+\subsubsection{ Package Storage Module (\mref{mBH5})}
+\begin{description}
+\item[Secrets:] The schema and mechanisms used to store, index, and retrieve packages.
+\item[Services:] Manages the storage and retrieval of packages from a specific domain and any associated metadata. Ensures data security and organization to support comparison functionalities.
+\item[Implemented By:]  \projname
+\item[Type of Module:] ADT
+\end{description}
+
+\subsubsection{ Domain Storage Module (\mref{mBH6})}
+\begin{description}
+\item[Secrets:] The schema and mechanisms used to store, index, and retrieve domains.
+\item[Services:] Manages the storage and retrieval of domains and any associated metadata. Ensures data security and organization to support comparison functionalities.
+\item[Implemented By:]  \projname
+\item[Type of Module:] ADT
+\end{description}
+
+\subsubsection{ Visualization Module (\mref{mBH7})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used to display the visualization of the metric data.
+\item[Services:]  Gathers and structure data, generates the visualization based on user request.
+\item[Implemented By:]  \projname
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{ File Import Module (\mref{mBH8})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used to handle the import of data into the system.
+\item[Services:] Validates and verifies provided user input file, and the associated processing to store it in the system. Throws error when issues occur due to the processing of imported file.
+\item[Implemented By:]  \projname
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{ File Export Module (\mref{mBH9})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used to handle the export of system data in user's format.
+\item[Services:] Gathers and structure data that user has requested, and exports it in user's preferred format.
+\item[Implemented By:]  \projname
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{ Automated Metrics Module (\mref{mBH10})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used for retrieving automatable metrics .
+\item[Services:] Uses API Module to retrieve metrics from package's repository and validate and store in system.
+\item[Implemented By:]  \projname
+\item[Type of Module:] Library
+\end{description}
 
 
 \subsection{Software Decision Module}
-
 \begin{description}
 \item[Secrets:] The design decision based on mathematical theorems, physical
   facts, or programming considerations. The secrets of this module are
@@ -313,7 +407,45 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{System API Gateway Module (\mref{mSD1})}
+\begin{description}
+\item[Secrets:] The business logic that coordinates the flow of communication between modules, and the frontend, backend, and database.
+\item[Services:] Manages application state and serves as the central communication hub for the system
+\item[Implemented By:] \href{https://react.dev/}{React}, \href{https://www.djangoproject.com/}{Django}
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{AHP Calculation Module (\mref{mSD2})}
+\begin{description}
+\item[Secrets:] The implementation of the AHP for package comparisons.
+\item[Services:] Provides the resulting ranking of inputted data using the AHP.
+\item[Implemented By:] \href{https://pypi.org/project/AHPy/}{AHPy}
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Graphing Module (\mref{mSD3})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used for graphing data.
+\item[Services:] Provides the functions related to graphing.
+\item[Implemented By:] \href{https://pypi.org/project/matplotlib/}{Matplotlib}
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{File Import Module (\mref{mSD4})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used to import data of varying formats (e.g. Excel, CSV).
+\item[Services:] Facilitates the process of processing a inputted file into data for use by the rest of the system.
+\item[Implemented By:] \href{https://pypi.org/project/pandas/}{pandas}
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{File Export Module (\mref{mSD5})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used to export data in varying formats (e.g. Excel, CSV).
+\item[Services:] Facilitates the process of transforming system data into an exportable format (e.g. Excel, CSV).
+\item[Implemented By:] \href{https://pypi.org/project/pandas/}{pandas}
+\item[Type of Module:] Abstract Object
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
