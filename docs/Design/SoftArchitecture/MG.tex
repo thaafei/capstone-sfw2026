@@ -171,10 +171,10 @@ change.
   \item[\refstepcounter{acnum} \actheacnum \label{ac3}:] The ranking algorithm used within a domain for packages may be changed (e.g. Alternatives to AHP, such as BWM, SSB, etc)
   \item[\refstepcounter{acnum} \actheacnum \label{ac4}:] The comparison algorithms used between domains may be changed
   \item[\refstepcounter{acnum} \actheacnum \label{ac5}:] The user access roles available might be expanded (e.g. Admin, User, Contributor)
-  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] Additional languages might be supported (e.g. French, Simplified Chinese)
-  \item[\refstepcounter{acnum} \actheacnum \label{ac8}:] The APIs used to extract repository metrics
-  \item[\refstepcounter{acnum} \actheacnum \label{ac9}:] The visualization libraries used to display and export data
-  \item[\refstepcounter{acnum} \actheacnum \label{ac10}:] Additional export and import file formatting may be added (e.g. CSV, Excel)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac6}:] Additional languages might be supported (e.g. French, Simplified Chinese)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] The APIs used to extract repository metrics
+  \item[\refstepcounter{acnum} \actheacnum \label{ac8}:] The visualization libraries used to display and export data
+  \item[\refstepcounter{acnum} \actheacnum \label{ac9}:] Additional export and import file formatting may be added (e.g. CSV, Excel)
 \end{description}
 \subsection{Unlikely Changes} \label{SecUchange}
 
@@ -190,8 +190,8 @@ decisions will be changed.
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc2}:] The platform of the tool will remain as a web application
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc3}:] The development stack of our web application will remain the same (\href{https://react.dev/}{React}, \href{https://www.djangoproject.com/}{Django})
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Input types of existing metrics, as outlined in the \href{https://arxiv.org/pdf/2110.11575}{Methodology paper}
-  \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Popular browser compatibility is expected to remain unchanged (e.g. Chrome, Firefox, Edge)
-  \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Tool owner, Dr. Spencer Smith, is not expected to change for the duration of the tool's lifespan
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc5}:] Popular browser compatibility is expected to remain unchanged (e.g. Chrome, Firefox, Edge)
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc6}:] Tool owner, Dr. Spencer Smith, is not expected to change for the duration of the tool's lifespan
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -205,20 +205,21 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mHH1}:] Hardware Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{mHH2}:] Browser Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH1}:] Domain View Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] User Authentication Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH3}:] User Role Access Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH4}:] Metrics Storage Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] Package Storage Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Domain Storage Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Visualization Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH8}:] File Import Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH9}:] File Export Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH10}:] Automated Metrics Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] Data Edit View Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH3}:] User Authentication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH4}:] User Role Access Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] Metrics Storage Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Package Storage Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Domain Storage Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH8}:] Automated Metrics Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH9}:] Localization Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD1}:] System API Gateway Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD2}:] AHP Calculation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD2}:] Ranking Algorithm Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD3}:] Graphing Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD4}:] File Input Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD4}:] File Import Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD5}:] File Export Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD6}:] Repository API Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD7}:] Domain Comparison Module
 \end{description}
 
 
@@ -232,23 +233,23 @@ actually be implemented.
 {Hardware-Hiding Module} & Browser Module \\
 \midrule
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} &  Domain View Module\\
+& Data Edit Module \\
 & User Authentication Module\\
 & User Role Access Module\\
 & Metrics Storage Module\\
 & Package Storage Module\\
 & Domain Storage Module\\ 
-& Visualization Module\\
-& File Import Module \\
-& File Export Module \\
 & Automated Metrics Module\\
+& Localization Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} & {System API Gateway Module}\\
-& AHP Calculation Module\\
+& Ranking Algorithm Module\\
 & Graphic Module\\
 & File Input Module\\
 & File Export Module\\
-
+& Repository API Module\\
+& Domain Comparison Module\\
 \bottomrule
 
 \end{tabular}
@@ -316,13 +317,29 @@ to be implemented.
 
 \subsubsection{ Domain View Module (\mref{mBH1})}
 \begin{description}
-\item[Secrets:] 
-\item[Services:] Displays the data of a specific domain.
+\item[Secrets:] The data structures and algorithms to retrieve and display domain metrics and packages.
+\item[Services:] Handles user inputs and displays the data of a specific domain.
 \item[Implemented By:] \projname
-\item[Type of Module:] Library
+\item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ User Authentication Module (\mref{mBH2})}
+\subsubsection{ Data Edit Module (\mref{mBH2})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms to edit and update metrics of a domain. 
+\item[Services:]  Handles and validates user inputs and displays the user-inputted data.
+\item[Implemented By:] \projname
+\item[Type of Module:] ADT
+\end{description}
+
+\subsubsection{ Data Edit Module (\mref{mBH2})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms to edit and update metrics of a domain. 
+\item[Services:]  Handles and validates user inputs and displays the user-inputted data.
+\item[Implemented By:] \projname
+\item[Type of Module:] ADT
+\end{description}
+
+\subsubsection{ User Authentication Module (\mref{mBH3})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to securely store, validate and manage user credentials.
 \item[Services:] Provides user registration, login, and session management services.
@@ -330,15 +347,15 @@ to be implemented.
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{ User Role Access Module (\mref{mBH3})}
+\subsubsection{ User Role Access Module (\mref{mBH4})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to store and validate users access level within the system.
 \item[Services:] Provides user role and capabilities related to the role.
 \item[Implemented By:]  \projname
-\item[Type of Module:] Library
+\item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Metrics Storage Module (\mref{mBH4})}
+\subsubsection{ Metrics Storage Module (\mref{mBH5})}
 \begin{description}
 \item[Secrets:] The schema and mechanisms used to store, index, and retrieve package metrics.
 \item[Services:] Manages the storage and retrieval of metrics for a specific package from a specific domain and any associated metadata. Ensures data security and organization to support comparison functionalities.
@@ -346,7 +363,7 @@ to be implemented.
 \item[Type of Module:] Record
 \end{description}
 
-\subsubsection{ Package Storage Module (\mref{mBH5})}
+\subsubsection{ Package Storage Module (\mref{mBH6})}
 \begin{description}
 \item[Secrets:] The schema and mechanisms used to store, index, and retrieve packages.
 \item[Services:] Manages the storage and retrieval of packages from a specific domain and any associated metadata. Ensures data security and organization to support comparison functionalities.
@@ -354,7 +371,7 @@ to be implemented.
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Domain Storage Module (\mref{mBH6})}
+\subsubsection{ Domain Storage Module (\mref{mBH7})}
 \begin{description}
 \item[Secrets:] The schema and mechanisms used to store, index, and retrieve domains.
 \item[Services:] Manages the storage and retrieval of domains and any associated metadata. Ensures data security and organization to support comparison functionalities.
@@ -362,31 +379,7 @@ to be implemented.
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Visualization Module (\mref{mBH7})}
-\begin{description}
-\item[Secrets:] The data structures and algorithms used to display the visualization of the metric data.
-\item[Services:]  Gathers and structure data, generates the visualization based on user request.
-\item[Implemented By:]  \projname
-\item[Type of Module:] Library
-\end{description}
-
-\subsubsection{ File Import Module (\mref{mBH8})}
-\begin{description}
-\item[Secrets:] The data structures and algorithms used to handle the import of data into the system.
-\item[Services:] Validates and verifies provided user input file, and the associated processing to store it in the system. Throws error when issues occur due to the processing of imported file.
-\item[Implemented By:]  \projname
-\item[Type of Module:] Library
-\end{description}
-
-\subsubsection{ File Export Module (\mref{mBH9})}
-\begin{description}
-\item[Secrets:] The data structures and algorithms used to handle the export of system data in user's format.
-\item[Services:] Gathers and structure data that user has requested, and exports it in user's preferred format.
-\item[Implemented By:]  \projname
-\item[Type of Module:] Library
-\end{description}
-
-\subsubsection{ Automated Metrics Module (\mref{mBH10})}
+\subsubsection{ Automated Metrics Module (\mref{mBH8})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used for retrieving automatable metrics .
 \item[Services:] Uses API Module to retrieve metrics from package's repository and validate and store in system.
@@ -394,6 +387,14 @@ to be implemented.
 \item[Type of Module:] Library
 \end{description}
 
+
+\subsubsection{Localization Module (\mref{mBH9})}
+\begin{description}
+\item[Secrets:] The language files, translation mappings, and locale formatting mechanisms.
+\item[Services:] Provides translation and formatting of UI text and date/number formats.
+\item[Implemented By:] \href{https://react.i18next.com/}{react-i18next}
+\item[Type of Module:] Library
+\end{description}
 
 \subsection{Software Decision Module}
 \begin{description}
@@ -415,11 +416,12 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{AHP Calculation Module (\mref{mSD2})}
+
+\subsubsection{Ranking Algorithm Module (\mref{mSD2})}
 \begin{description}
-\item[Secrets:] The implementation of the AHP for package comparisons.
-\item[Services:] Provides the resulting ranking of inputted data using the AHP.
-\item[Implemented By:] \href{https://pypi.org/project/AHPy/}{AHPy}
+\item[Secrets:] Ranking algorithms and weights (AHP, BWM, SSB).
+\item[Services:] Computes comparative rankings using configurable methods.
+\item[Implemented By:] \href{https://pypi.org/project/AHPy/}{AHPy}, \projname
 \item[Type of Module:] Abstract Object
 \end{description}
 
@@ -447,6 +449,23 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
+\subsubsection{Repository API Module (\mref{mSD6})}
+\begin{description}
+\item[Secrets:] API endpoints, tokens, and rate limit strategies.
+\item[Services:] Fetches metrics and metadata from external repositories (e.g., GitHub, GitLab).
+\item[Implemented By:] \projname
+\item[Type of Module:] Abstract Object
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Domain Comparison Module (\mref{mSD7})}
+\begin{description}
+\item[Secrets:] The algorithms and parameters used for comparing domains.
+\item[Services:] Computes and visualizes comparisons across multiple domains.
+\item[Implemented By:] \projname
+\item[Type of Module:] Abstract Object
+\end{description}
+
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
@@ -460,20 +479,24 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & \mref{mBH6}\\
+FR2 & \mref{mBH5}, \mref{mBH6}\\
+FR3 & \mref{mBH5}\\
+FR4 & \mref{mBH5}\\
+FR5 & \mref{mBH7}, \mref{mBH3}, \mref{mBH6}  \\
+FR6 & \mref{mBH1}, \mref{mBH3},  \mref{mBH6}  \\
+FR7 & \mref{mBH1}, \mref{mBH2}, \mref{mBH3}, \mref{mBH4}, \mref{mBH5},  \mref{mBH6},   \mref{mSD3} \\
+FR8 & \mref{mBH2}, \mref{mBH3}, \mref{mBH4}, \mref{mBH5},  \mref{mBH6}, \mref{mBH7}\\
+FR9 &  \mref{mBH2}, \mref{mBH3}, \mref{mBH4}, \mref{mBH5},  \mref{mBH6}, \mref{mBH7}, \mref{mSD4}, \mref{mSD5}  \\
+FR10 & \mref{mBH2}, \mref{mBH3}, \mref{mBH4}, \mref{mBH8}\\
+FR11 & \mref{mBH1}, \mref{mBH5}, \mref{mBH6}, \mref{mBH7}\\
+FR12 & \mref{mSD2},   \mref{mBH1}\\
+FR13 & \mref{mSD3}\\
+FR14 & \mref{mSD5}\\
+FR15 & \mref{mSD3}, \mref{mSD5}\\
 \bottomrule
 \end{tabular}
-\caption{Trace Between Requirements and Modules}
+\caption{Trace Between Functional Requirements and Modules}
 \label{TblRT}
 \end{table}
 
@@ -481,25 +504,104 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \centering
 \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
 \toprule
+\textbf{Req.} & \textbf{Modules}\\
+\midrule
+LF-AR1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
+LF-AR2 & \mref{mInput}, \mref{mParams}\\
+LF-AR3 & \mref{mVerify}\\
+LF-AR4 & \mref{mOutput}, \mref{mControl}\\
+LF-AR5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
+LF-AR6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
+LF-SR1 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
+LF-SR2 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
+LF-SR3 & \mref{mVerifyOut}\\
+UH-EU1  & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
+UH-EU2  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-EU3  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-LR1  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-LR2  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-UP1  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-UP2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-UP3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-AR1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-AR2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-SL1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-SC1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-SC2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-SC3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-PA1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-RFT1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-RFT2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-RFT3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-CR1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-CR2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-CR3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-SE1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-SE2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-LR1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+PR-LR2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-EPE1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-EPE2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-EPE3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-WE1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-WE2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-WE3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-IA1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-IA2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-IA3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+OE-IA4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AC1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AC2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AC3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AC4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AC5 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AC6 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-INT1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-INT2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-INT3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-INT4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-INT5 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-INT6 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-INT7 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-P1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-P2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AU1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AU2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-AU3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-IM1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-IM2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-IM3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+SR-IM4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+
+\bottomrule
+\end{tabular}
+\caption{Trace Between Non-Functional Requirements and Modules}
+\label{TblRT}
+\end{table}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+\toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{ac1} & \mref{mBH5}\\
+\acref{ac2} & \mref{mBH3}\\
+\acref{ac3} & \mref{mSD2}\\
+\acref{ac4} & \mref{mSD7}\\
+\acref{ac5} & \mref{mBH4}\\
+\acref{ac6} & \mref{mBH9}\\
+\acref{ac7} & \mref{mSD6}\\
+\acref{ac8} & \mref{mSD3}\\
+\acref{ac9} & \mref{mSD4},  \mref{mSD5}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
 \label{TblACT}
 \end{table}
+
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
