@@ -62,9 +62,63 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation at \href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{SRS Documentation} 
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
+This section records information for easy reference. Additional terms specific to the MIS have been included below.
+
+\begin{table}[H]
+\centering
+\caption{Symbols, Abbreviations, and Acronyms}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Symbol / Acronym} & \textbf{Description} \\
+\midrule
+AC & Anticipated Change. \\
+AHP & Analytic Hierarchy Process — method for pairwise comparison and ranking of libraries. \\
+AI & Artificial Intelligence. \\
+API & Application Programming Interface — mechanism for data retrieval (e.g., GitHub API, PyPI API). \\
+ADT & Abstract Data Type. \\
+BWM & Best–Worst Method. \\
+CAS & Computing and Software Department (McMaster University). \\
+CI/CD & Continuous Integration / Continuous Deployment — automated testing and deployment pipeline used in GitHub Actions. \\
+CSV & Comma–Separated Values — export format for datasets. \\
+DAG & Directed Acyclic Graph. \\
+DB & Database — MySQL instance used for persistent data storage. \\
+Domain & Research Software Domain. \\
+Excel Sheets & Existing manual tools previously used for data collection. \\
+Infrastructure & University–provided resources such as hosting, databases, and servers. \\
+LLM & Large Language Model. \\
+M & Module. \\
+MG & Module Guide. \\
+ML & Machine Learning. \\
+NN & Neural Network. \\
+NNL & Neural Network Libraries. \\
+OS & Operating System. \\
+Packages & Software Packages. \\
+PoC & Proof of Concept — demonstration validating workflow integration. \\
+R & Requirement. \\
+Research Subteam & Student group applying the methodology and writing the research paper. \\
+SC & Scientific Computing. \\
+SFWRENG 4G06 & Capstone Design Process. \\
+SRS & Software Requirements Specification. \\
+SSB & Skew–Symmetric Bilinear. \\
+Stakeholders & All individuals involved in or affected by the project (e.g., supervisor, researchers, domain expert). \\
+Supervisor & Faculty member overseeing the project. \\
+Tool & The software being developed to automate data collection, visualization, and storage. \\
+UI & User Interface — front-end component built with React. \\
+UC & Unlikely Change. \\
+VnV & Verification and Validation — process of ensuring correctness and meeting stakeholder needs. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% Review Note: Confirm that all MG symbols are represented, add any new ones introduced in modules before final submission.
+
+% \wss{Also add any additional symbols, abbreviations or acronyms}
 
 \newpage
 
@@ -76,156 +130,1965 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The following document details the Module Interface Specifications for the
+\textbf{Domain Assessment Tool}, a web-based system that automates data collection,
+analysis, and visualization to evaluate different research domains. The system
+enables users to systematically compare libraries, frameworks, or technologies
+by applying a structured methodology that combines both quantitative metrics and
+qualitative insights.
 
-Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+Complementary documents include the
+\href{https://github.com/thaafei/DomainX/blob/main/docs/SRS/SRS.pdf}{System Requirements Specification (SRS)}
+and the
+\href{https://github.com/thaafei/DomainX/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide (MG)}.
+The full documentation and implementation are maintained in the project’s GitHub repository at:
+\url{https://github.com/thaafei/DomainX/tree/main}.
 
 \section{Notation}
+\label{sec:Notation}
 
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
+The Module Interface Specification (MIS) follows the notation and principles of \citet{HoffmanAndStrooper1995}, with adaptations from \citet{GhezziEtAl2003}. Mathematical conventions align with Chapter~3 of \citet{HoffmanAndStrooper1995}.
 
-The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
-with the addition that template modules have been adapted from
-\cite{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
-\citet{HoffmanAndStrooper1995}.  For instance, the symbol := is used for a
-multiple assignment statement and conditional rules follow the form $(c_1
-\Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
+\paragraph{General Conventions}
+\begin{itemize}
+  \item Assignment: \texttt{x := e}
+  \item Conditional rules: $(c_1 \Rightarrow r_1 \mid c_2 \Rightarrow r_2 \mid \dots \mid c_n \Rightarrow r_n)$
+  \item Parameter modes: \texttt{in} (input), \texttt{out} (output)
+  \item Optional parameter: \texttt{[param]}
+  \item Exceptions: function specs list \emph{ExceptionName} in an “Exceptions” column; raising an exception denotes a partial function on the exceptional domain.
+  \item Pre/postconditions: \textbf{requires} $P$ / \textbf{ensures} $Q$ (used inline where needed)
+  \item Undefined value / error sentinel: $\bot$
+\end{itemize}
 
-The following table summarizes the primitive data types used by \progname. 
+\paragraph{Logic and Set Notation}
+\begin{itemize}
+  \item Logical operators: $\lnot, \land, \lor, \Rightarrow, \Leftrightarrow$
+  \item Quantifiers: $\forall x \in S \cdot P(x)$, $\exists x \in S \cdot P(x)$
+  \item Sets: $\emptyset$, $\{\,x \in S \mid P(x)\,\}$, union $A \cup B$, intersection $A \cap B$, difference $A \setminus B$, cardinality $|S|$
+  \item Sequences/lists: $\langle a_1,\dots,a_n\rangle$; concatenation $s \mathbin{\|} t$; length $|s|$
+  \item Maps/dictionaries: $m : K \to V$; application $m(k)$; update $m[k \mapsto v]$
+  \item Ranges/intervals: $[a,b]$, $[a,b)$ as usual
+  \item Composition: $(g \circ f)(x) = g(f(x))$
+\end{itemize}
 
+\paragraph{Primitive and Derived Types}
 \begin{center}
 \renewcommand{\arraystretch}{1.2}
-\noindent 
-\begin{tabular}{l l p{7.5cm}} 
-\toprule 
-\textbf{Data Type} & \textbf{Notation} & \textbf{Description}\\ 
+\begin{tabular}{l l p{8cm}}
+\toprule
+\textbf{Data Type} & \textbf{Notation} & \textbf{Description} \\
 \midrule
-character & char & a single symbol or digit\\
-integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
-natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
-real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+character & \texttt{char} & Single Unicode character. \\
+integer & $\mathbb{Z}$ & Whole numbers in $(-\infty,\infty)$. \\
+natural number & $\mathbb{N}$ & Non-negative integers ($0,1,2,\dots$). \\
+real & $\mathbb{R}$ & Real numbers. \\
+boolean & \texttt{bool} & \texttt{True} or \texttt{False}. \\
+string & \texttt{string} & Finite sequence of characters. \\
+tuple & \texttt{(T$_1$, \dots, T$_n$)} & Fixed-size, ordered, possibly heterogeneous. \\
+list/sequence & \texttt{list(T)} & Variable-size sequence of \texttt{T}. \\
+set & $\mathcal{P}(T)$ & Finite subset of \texttt{T} (powerset elements). \\
+dictionary/map & \texttt{dict(K,V)} & Finite mapping from \texttt{K} to \texttt{V}. \\
+option & \texttt{Option(T)} & Either \texttt{Some(T)} or \texttt{None} (for optional outputs). \\
 \bottomrule
-\end{tabular} 
+\end{tabular}
 \end{center}
 
+\paragraph{Units and Identifiers}
+\begin{itemize}
+  \item Timestamps use ISO~8601. Durations use explicit units (e.g., \texttt{min}, \texttt{hrs}).
+  \item Identifiers such as \texttt{domainID}, \texttt{metricID}, and \texttt{packageID} are opaque strings unless otherwise specified.
+\end{itemize}
+
 \noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
-tuples. Sequences are lists filled with elements of the same data type. Strings
-are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
-are defined by the data types of their inputs and outputs. Local functions are
-described by giving their type signature followed by their specification.
-
+These conventions are used to define interfaces, state variables, environment variables, and access routines throughout the MIS. Derived structures (lists, maps, sets, tuples) represent collections of domain records, configuration parameters, and API payloads; local functions are described by type signatures, parameter modes, pre/postconditions, and declared exceptions.
 \section{Module Decomposition}
+\label{SecMD}
 
-The following table is taken directly from the Module Guide document for this project.
+This section provides an overview of the module design. Modules are summarized
+in a hierarchy decomposed by secrets in Table~\ref{TblMH}. The modules listed
+below, which are leaves in the hierarchy tree, are the modules that will
+actually be implemented.
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{p{0.35\textwidth} p{0.55\textwidth}}
 \toprule
-\textbf{Level 1} & \textbf{Level 2}\\
+\textbf{Level 1} & \textbf{Level 2} \\
 \midrule
 
-{Hardware-Hiding} & ~ \\
+\multirow{1}{0.35\textwidth}{Hardware-Hiding Module} &
+Browser Module (M2) \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{10}{0.35\textwidth}{Behaviour-Hiding Module} &
+Domain View Module (M3) \\
+& Data Edit Module (M4) \\
+& User Authentication Module (M5) \\
+& User Role Access Module (M6) \\
+& Metrics Storage Module (M7) \\
+& Package Storage Module (M8) \\
+& Domain Storage Module (M9) \\
+& Automated Metrics Module (M10) \\
+& Localization Module (M11) \\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{8}{0.35\textwidth}{Software Decision Module} &
+System API Gateway Module (M12) \\
+& Ranking Algorithm Module (M13) \\
+& Graphing Module (M14) \\
+& File Import Module (M15) \\
+& File Export Module (M16) \\
+& Repository API Module (M17) \\
+& Domain Comparison Module (M18) \\
+& Database Configuration Module (M19) \\
+& Configuration Constants Module (M20) \\
 \bottomrule
-
 \end{tabular}
-\caption{Module Hierarchy}
+\caption{Module Hierarchy for the Domain Assessment Tool}
 \label{TblMH}
 \end{table}
 
-\newpage
-~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{Module Interface Specifications}
+% \section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
+%   cross-referencing}
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+% \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+% \wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
 
-\subsection{Module}
+% \subsection{Module}
 
-\wss{Short name for the module}
+% \wss{Short name for the module}
 
-\subsection{Uses}
+% \subsection{Uses}
 
 
-\subsection{Syntax}
+% \subsection{Syntax}
 
-\subsubsection{Exported Constants}
+% \subsubsection{Exported Constants}
 
-\subsubsection{Exported Access Programs}
+% \subsubsection{Exported Access Programs}
 
+% \begin{center}
+% \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+% \hline
+% \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+% \hline
+% \wss{accessProg} & - & - & - \\
+% \hline
+% \end{tabular}
+% \end{center}
+
+% \subsection{Semantics}
+
+% \subsubsection{State Variables}
+
+% \wss{Not all modules will have state variables.  State variables give the module
+%   a memory.}
+
+% \subsubsection{Environment Variables}
+
+% \wss{This section is not necessary for all modules.  Its purpose is to capture
+%   when the module has external interaction with the environment, such as for a
+%   device driver, screen interface, keyboard, file, etc.}
+
+% \subsubsection{Assumptions}
+
+% \wss{Try to minimize assumptions and anticipate programmer errors via
+%   exceptions, but for practical purposes assumptions are sometimes appropriate.}
+
+% \subsubsection{Access Routine Semantics}
+
+% \noindent \wss{accessProg}():
+% \begin{itemize}
+% \item transition: \wss{if appropriate} 
+% \item output: \wss{if appropriate} 
+% \item exception: \wss{if appropriate} 
+% \end{itemize}
+
+% \wss{A module without environment variables or state variables is unlikely to
+%   have a state transition.  In this case a state transition can only occur if
+%   the module is changing the state of another module.}
+
+% \wss{Modules rarely have both a transition and an output.  In most cases you
+%   will have one or the other.}
+
+% \subsubsection{Local Functions}
+
+% \wss{As appropriate} \wss{These functions are for the purpose of specification.
+%   They are not necessarily something that is going to be implemented
+%   explicitly.  Even if they are implemented, they are not exported; they only
+%   have local scope.}
+\subsection{MIS of Domain View Module}
+\label{mis:DomainView}
+
+\subsubsection{Module}
+Provides the front-end interface for visualizing and retrieving domain-specific metrics.
+Allows users to browse domains, inspect metadata, and trigger analytics visualizations.
+
+\subsubsection{Uses}
+Browser Module (M2)\\
+System API Gateway (M12)\\
+Graphing Module (M14)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{MAX\_DISPLAY\_DOMAINS} = 100
+  \item \textbf{DEFAULT\_CHART\_TYPE} = "bar"
+\end{itemize}
+
+\paragraph{Exported Access Programs}
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\midrule
+loadDomains & filterOptions & domainList & NetworkError\\
+displayDomainDetails & domainID & renderedView & DataNotFound\\
+renderChart & metricData, chartType & chartObject & RenderError\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{selectedDomain}: current domain ID shown in view.  
+  \item \textbf{displayBuffer}: cached metrics for active domain.
+\end{itemize}
+
+\paragraph{Environment Variables}
+Browser window / UI canvas environment.
+
+\paragraph{Assumptions}
+Implemented in the React-based front-end of the Domain Assessment Tool.  
+Assumes network connectivity and valid API response format (JSON).
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{loadDomains}(filterOptions):  
+\begin{itemize}
+  \item transition: fetch domain metadata from API gateway and update displayBuffer.  
+  \item output: list of available domains.  
+  \item exception: NetworkError if API request fails.
+\end{itemize}
+
+\noindent \textbf{displayDomainDetails}(domainID):  
+\begin{itemize}
+  \item transition: updates UI to show metrics and metadata for selected domain.  
+  \item output: rendered domain view.  
+  \item exception: DataNotFound if domain ID is invalid.
+\end{itemize}
+
+\noindent \textbf{renderChart}(metricData, chartType):  
+\begin{itemize}
+  \item transition: invokes Graphing Module to create visualization.  
+  \item output: chart object for UI display.  
+  \item exception: RenderError if chart generation fails.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{formatTooltip()} – constructs metric labels for hover display.  
+  \item \texttt{applyTheme()} – applies current UI theme to chart components.  
+  \item \texttt{paginateDomains()} – handles scroll-based pagination.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Domain View Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Depends on API Gateway and Graphing modules for data and rendering support. & Ensure both dependencies are declared in MG.\\
+Exported programs & Three core UI access points align with MG services. & None.\\
+Environment variables & Browser canvas not explicitly mentioned in MG. & Add note under Hardware-Hiding Modules.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Data Edit Module}
+\label{mis:DataEdit}
+
+\subsubsection{Module}
+Handles modification of existing metric entries, allowing authorized users to add, edit, or remove data related to domains.
+Ensures changes are validated before being committed to persistent storage through the API Gateway.
+
+\subsubsection{Uses}
+Domain View Module (M3)\\
+User Authentication Module (M5)\\
+System API Gateway Module (M12)\\
+Metrics Storage Module (M7)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{MAX\_EDIT\_BATCH} = 50
+  \item \textbf{UNDO\_STACK\_LIMIT} = 10
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{2.8cm} p{4.2cm} p{4.2cm} p{2.2cm}}
 \hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline
-\wss{accessProg} & - & - & - \\
+editMetric & metricID, newValue & successFlag & ValidationError\\
+deleteMetric & metricID & successFlag & NotFoundError\\
+addMetric & metricData & successFlag & SchemaError\\
+undoLastEdit & None & successFlag & StackEmptyError\\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Semantics}
+\subsubsection{Semantics}
 
-\subsubsection{State Variables}
-
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
-
-\subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
-
-\subsubsection{Assumptions}
-
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \wss{accessProg}():
+\paragraph{State Variables}
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+  \item \textbf{editBuffer}: stores pending changes before confirmation.
+  \item \textbf{undoStack}: maintains history of last ten user operations.
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\paragraph{Environment Variables}
+User session context (active login, role, and permissions).
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\paragraph{Assumptions}
+Assumes an active authenticated user session and a stable API connection.
+Changes are only committed after local validation passes and a confirmation is received from the Metrics Storage Module.
 
-\subsubsection{Local Functions}
+\paragraph{Access Routine Semantics}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\noindent \textbf{editMetric}(metricID, newValue):
+\begin{itemize}
+  \item transition: updates metric in \texttt{editBuffer} and requests validation.
+  \item output: successFlag = true if edit applied successfully.
+  \item exception: \texttt{ValidationError} if new value violates schema constraints.
+\end{itemize}
+
+\noindent \textbf{deleteMetric}(metricID):
+\begin{itemize}
+  \item transition: marks metric as deleted and removes from local view.
+  \item output: successFlag = true if deletion confirmed by storage.
+  \item exception: \texttt{NotFoundError} if metric ID is invalid or already deleted.
+\end{itemize}
+
+\noindent \textbf{addMetric}(metricData):
+\begin{itemize}
+  \item transition: sends new metric record to storage after schema validation.
+  \item output: successFlag indicating storage acknowledgement.
+  \item exception: \texttt{SchemaError} for structural mismatches.
+\end{itemize}
+
+\noindent \textbf{undoLastEdit}():
+\begin{itemize}
+  \item transition: reverses most recent edit or deletion.
+  \item output: successFlag = true if operation successfully rolled back.
+  \item exception: \texttt{StackEmptyError} if no operations are available to undo.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{validateMetricSchema()} – checks type and completeness of new metric data.
+  \item \texttt{logEditAction()} – records user edits for audit tracking.
+  \item \texttt{rollbackEdit()} – restores prior state from \texttt{undoStack}.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Data Edit Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Matches dependencies (User Authentication, API Gateway, Metrics Storage). & None required.\\
+Exported programs & CRUD-style access routines consistent with MG services. & None.\\
+Assumptions & Requires authenticated user session — clarify in MG “Services” notes. & Add authentication dependency explicitly.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of User Authentication Module}
+\label{mis:UserAuth}
+
+\subsubsection{Module}
+Manages user authentication processes, including login, logout, and token validation.
+It ensures only authorized users can access or modify domain data and enforces session timeouts.
+
+\subsubsection{Uses}
+Browser Module (M2)\\
+User Role Access Module (M6)\\
+System API Gateway Module (M12)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{TOKEN\_EXPIRY\_MINUTES} = 30
+  \item \textbf{MAX\_LOGIN\_ATTEMPTS} = 5
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{2.8cm} p{4.2cm} p{4.2cm} p{2.2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+loginUser & username, password & sessionToken & AuthError\\
+logoutUser & sessionToken & successFlag & TokenError\\
+validateToken & sessionToken & Boolean & TokenExpiredError\\
+refreshSession & sessionToken & newToken & RefreshError\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{activeSessions}: dictionary mapping tokens to user IDs and expiry timestamps.  
+  \item \textbf{loginAttempts}: counter per user for throttling repeated login failures.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item Secure HTTP session layer provided by the browser.  
+  \item Encrypted credential storage service.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes all credentials are stored in a secure hashed format.  
+Implements OAuth2-style authentication through the System API Gateway.  
+Relies on HTTPS encryption for data transport.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{loginUser}(username, password):
+\begin{itemize}
+  \item transition: verifies credentials and generates session token.  
+  \item output: valid \texttt{sessionToken}.  
+  \item exception: \texttt{AuthError} if credentials are invalid or max attempts exceeded.
+\end{itemize}
+
+\noindent \textbf{logoutUser}(sessionToken):
+\begin{itemize}
+  \item transition: removes token from \texttt{activeSessions}.  
+  \item output: successFlag = true on successful logout.  
+  \item exception: \texttt{TokenError} if token not recognized.
+\end{itemize}
+
+\noindent \textbf{validateToken}(sessionToken):
+\begin{itemize}
+  \item transition: none (read-only check).  
+  \item output: true if token valid and unexpired.  
+  \item exception: \texttt{TokenExpiredError} if expired or revoked.
+\end{itemize}
+
+\noindent \textbf{refreshSession}(sessionToken):
+\begin{itemize}
+  \item transition: invalidates old token and issues a refreshed one.  
+  \item output: \texttt{newToken}.  
+  \item exception: \texttt{RefreshError} if refresh request rejected.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{hashPassword()} – applies SHA-256 or bcrypt hashing to credentials.  
+  \item \texttt{generateToken()} – produces secure signed token with expiry timestamp.  
+  \item \texttt{validateCredentials()} – queries storage to verify user/password pair.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — User Authentication Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Depends on User Role Access and API Gateway for session management. & Explicitly state both dependencies in MG.\\
+Exported programs & Standard authentication routines aligned with MG “Services.” & None.\\
+Assumptions & OAuth2 and HTTPS protocols mentioned here; MG may need a short note. & Add under “Implemented By: DomainX.”\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of User Role Access Module}
+\label{mis:UserRoleAccess}
+
+\subsubsection{Module}
+Defines and enforces role-based permissions within the Domain Assessment Tool.
+Determines the level of access users have to data editing, visualization, and configuration functionalities based on their assigned roles.
+
+\subsubsection{Uses}
+User Authentication Module (M5)\\
+Data Edit Module (M4)\\
+Domain View Module (M3)\\
+System API Gateway (M12)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{ROLE\_HIERARCHY} = ["Viewer", "Editor", "Admin"]
+  \item \textbf{DEFAULT\_ROLE} = "Viewer"
+  \item \textbf{ACCESS\_TIMEOUT\_MIN} = 60
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\midrule
+assignRole & userID, roleType & successFlag & InvalidRoleError\\
+verifyAccess & userID, actionType & Boolean & PermissionError\\
+getUserRole & userID & roleType & NotFoundError\\
+updatePermissions & roleType, permissionsList & successFlag & ConfigError\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{roleMap}: dictionary mapping users to role types.
+  \item \textbf{permissionTable}: maps role types to allowed actions.
+\end{itemize}
+
+\paragraph{Environment Variables}
+User session context provided by Authentication Module.
+
+\paragraph{Assumptions}
+Assumes authentication is successful before role verification.  
+Roles and permission configurations are stored in a secure database accessed via the API Gateway.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{assignRole}(userID, roleType):
+\begin{itemize}
+  \item transition: updates \texttt{roleMap} with new user role.  
+  \item output: successFlag = true upon update confirmation.  
+  \item exception: \texttt{InvalidRoleError} if roleType not in ROLE\_HIERARCHY.
+\end{itemize}
+
+\noindent \textbf{verifyAccess}(userID, actionType):
+\begin{itemize}
+  \item transition: none (read-only verification).  
+  \item output: true if user’s role allows the given actionType.  
+  \item exception: \texttt{PermissionError} if insufficient privilege.
+\end{itemize}
+
+\noindent \textbf{getUserRole}(userID):
+\begin{itemize}
+  \item transition: none.  
+  \item output: returns user’s current roleType.  
+  \item exception: \texttt{NotFoundError} if userID not mapped.
+\end{itemize}
+
+\noindent \textbf{updatePermissions}(roleType, permissionsList):
+\begin{itemize}
+  \item transition: modifies permissionTable for given roleType.  
+  \item output: successFlag = true if update persisted.  
+  \item exception: \texttt{ConfigError} if write operation fails.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{checkRoleHierarchy()} – confirms whether a user’s role outranks another.  
+  \item \texttt{syncPermissionCache()} – refreshes local permissionTable from server.  
+  \item \texttt{sanitizeRoleInput()} – ensures valid string input for roleType.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — User Role Access Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Depends on Authentication and API Gateway; cascades into Data Edit and Domain View. & Ensure hierarchy reflected in MG.\\
+Exported programs & Consistent with access management responsibilities in MG. & None.\\
+Assumptions & Role configuration persistence and secure DB not detailed in MG. & Add note under “Services.”\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Metrics Storage Module}
+\label{mis:MetricsStorage}
+
+\subsubsection{Module}
+Responsible for storing, updating, and retrieving metric data associated with specific domains.
+This module provides a uniform interface between the front-end editing tools and the underlying database, ensuring data consistency and validation before persistence.
+
+\subsubsection{Uses}
+System API Gateway (M12)\\
+Package Storage Module (M8)\\
+Automated Metrics Module (M10)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{METRIC\_TABLE\_NAME} = "metrics"
+  \item \textbf{MAX\_QUERY\_LIMIT} = 1000
+  \item \textbf{CACHE\_EXPIRY\_MINUTES} = 15
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{2.8cm} p{4.2cm} p{4.2cm} p{2.2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+fetchMetrics & domainID, filters & metricSet & QueryError\\
+storeMetric & metricData & successFlag & WriteError\\
+updateMetric & metricID, newValue & successFlag & ValidationError\\
+deleteMetric & metricID & successFlag & NotFoundError\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{metricCache}: temporary cache for recently accessed metric sets.
+  \item \textbf{connectionStatus}: flag indicating live DB connection state.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item Database instance (e.g., PostgreSQL, MySQL).  
+  \item Server filesystem for backup storage.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes the database schema for metrics is predefined and aligned with the data collection format.  
+Assumes all write operations are atomic and transactional (committed via the API Gateway).
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{fetchMetrics}(domainID, filters):
+\begin{itemize}
+  \item transition: queries the database for all metrics that match domainID and filters.  
+  \item output: list of metric objects.  
+  \item exception: \texttt{QueryError} if malformed query or connection lost.
+\end{itemize}
+
+\noindent \textbf{storeMetric}(metricData):
+\begin{itemize}
+  \item transition: validates and inserts new metric record into database.  
+  \item output: successFlag = true if insertion confirmed.  
+  \item exception: \texttt{WriteError} if database write fails.
+\end{itemize}
+
+\noindent \textbf{updateMetric}(metricID, newValue):
+\begin{itemize}
+  \item transition: updates existing metric record with new value.  
+  \item output: successFlag = true on success.  
+  \item exception: \texttt{ValidationError} if schema mismatch detected.
+\end{itemize}
+
+\noindent \textbf{deleteMetric}(metricID):
+\begin{itemize}
+  \item transition: removes metric record from database.  
+  \item output: successFlag = true if deletion confirmed.  
+  \item exception: \texttt{NotFoundError} if record doesn’t exist.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{connectDB()} – establishes or reuses a database connection.  
+  \item \texttt{validateMetricFormat()} – ensures input matches schema requirements.  
+  \item \texttt{updateCache()} – refreshes cached metric entries after modification.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Metrics Storage Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Relies on API Gateway and Automated Metrics; aligns with MG dependencies. & None.\\
+Exported programs & CRUD and query functions match MG “Services” description. & Add cache expiry constant if missing.\\
+Assumptions & Assumes DB transactional integrity; may need to specify DB type in MG. & Add under “Implemented By.”\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Package Storage Module}
+\label{mis:PackageStorage}
+
+\subsubsection{Module}
+Manages persistent storage and retrieval of package metadata, including identifiers,
+versions, dependencies, and descriptions. Provides programmatic access for the Automated
+Metrics and Domain Comparison modules to fetch or update package-related information.
+
+\subsubsection{Uses}
+System API Gateway (M12)\\
+Metrics Storage Module (M7)\\
+Repository API Module (M17)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{PACKAGE\_TABLE\_NAME} = "packages"
+  \item \textbf{MAX\_PACKAGES\_FETCH} = 500
+  \item \textbf{CACHE\_DURATION\_MIN} = 20
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\midrule
+fetchPackage & packageID & packageData & NotFoundError\\
+storePackage & packageData & successFlag & WriteError\\
+updatePackageVersion & packageID, newVersion & successFlag & ValidationError\\
+deletePackage & packageID & successFlag & NotFoundError\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{packageCache}: temporary in-memory cache of recently accessed package data.
+  \item \textbf{lastSyncTimestamp}: record of last synchronization with Repository API.
+\end{itemize}
+
+\paragraph{Environment Variables}
+Database instance and external repository (e.g., GitHub, PyPI).
+
+\paragraph{Assumptions}
+Assumes unique identifiers exist for all packages and versioning follows semantic versioning (e.g., 1.0.0).
+Assumes repository APIs are accessible through the API Gateway and return consistent metadata schemas.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{fetchPackage}(packageID):
+\begin{itemize}
+  \item transition: retrieves package metadata from DB or cache.  
+  \item output: \texttt{packageData} containing fields such as name, version, and dependencies.  
+  \item exception: \texttt{NotFoundError} if record missing or inaccessible.
+\end{itemize}
+
+\noindent \textbf{storePackage}(packageData):
+\begin{itemize}
+  \item transition: validates metadata and inserts new package record into DB.  
+  \item output: successFlag = true upon confirmation.  
+  \item exception: \texttt{WriteError} if write operation fails.
+\end{itemize}
+
+\noindent \textbf{updatePackageVersion}(packageID, newVersion):
+\begin{itemize}
+  \item transition: updates version field of the specified package record.  
+  \item output: successFlag = true on success.  
+  \item exception: \texttt{ValidationError} if version string invalid or outdated.
+\end{itemize}
+
+\noindent \textbf{deletePackage}(packageID):
+\begin{itemize}
+  \item transition: removes specified package record.  
+  \item output: successFlag = true if deletion confirmed.  
+  \item exception: \texttt{NotFoundError} if ID not found.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{validateVersionFormat()} – ensures version string matches semantic versioning (MAJOR.MINOR.PATCH).  
+  \item \texttt{syncWithRepository()} – periodically updates DB entries using external API data.  
+  \item \texttt{updateCache()} – refreshes cached package info after DB updates.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Package Storage Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Matches MG (depends on API Gateway, Metrics Storage, Repository API). & None.\\
+Exported programs & CRUD and sync routines consistent with MG “Services.” & Add cache or sync constants if missing.\\
+Assumptions & Semantic versioning and repository sync not mentioned in MG. & Add under “Services” description.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Domain Storage Module}
+\label{mis:DomainStorage}
+
+\subsubsection{Module}
+Provides persistent storage and retrieval for \emph{domain} metadata (e.g., id, name,
+description, tags, owners, status). Exposes lookup and management routines used by
+view, edit, and comparison workflows.
+
+\subsubsection{Uses}
+System API Gateway (M12)\\
+Metrics Storage Module (M7)\\
+Package Storage Module (M8)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{DOMAIN\_TABLE\_NAME} = ``domains''
+  \item \textbf{MAX\_DOMAIN\_QUERY} = 500
+  \item \textbf{DEFAULT\_PAGE\_SIZE} = 25
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{2.8cm} p{4.2cm} p{4.2cm} p{2.2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+createDomain & domainData & domainID & WriteError \\
+getDomain & domainID & domainRecord & NotFoundError \\
+listDomains & filters, pageSpec & domainList & QueryError \\
+updateDomain & domainID, newData & successFlag & ValidationError \\
+archiveDomain & domainID & successFlag & NotFoundError \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{domainCache}: recent domain records keyed by id.
+  \item \textbf{indexState}: cached pagination cursor/offset for last query.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item Database service (relational or document). 
+  \item Server filesystem (optional) for snapshot/export.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes uniqueness constraint on \texttt{name} or \texttt{(name, owner)} per MG conventions.  
+Assumes all writes are routed through the API Gateway with transactional consistency.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{createDomain}(domainData):
+\begin{itemize}
+  \item transition: validates and inserts new record into \texttt{DOMAIN\_TABLE\_NAME}.
+  \item output: \texttt{domainID} of created record.
+  \item exception: \texttt{WriteError} on DB failure.
+\end{itemize}
+
+\noindent \textbf{getDomain}(domainID):
+\begin{itemize}
+  \item transition: none (read-only); may hydrate \texttt{domainCache}.
+  \item output: \texttt{domainRecord}.
+  \item exception: \texttt{NotFoundError} if id does not exist.
+\end{itemize}
+
+\noindent \textbf{listDomains}(filters, pageSpec):
+\begin{itemize}
+  \item transition: updates \texttt{indexState} with latest cursor/offset.
+  \item output: \texttt{domainList} subject to \texttt{MAX\_DOMAIN\_QUERY}.
+  \item exception: \texttt{QueryError} for malformed filters or connection loss.
+\end{itemize}
+
+\noindent \textbf{updateDomain}(domainID, newData):
+\begin{itemize}
+  \item transition: applies partial/full updates; invalidates relevant cache keys.
+  \item output: \texttt{successFlag}.
+  \item exception: \texttt{ValidationError} if fields violate schema/uniqueness.
+\end{itemize}
+
+\noindent \textbf{archiveDomain}(domainID):
+\begin{itemize}
+  \item transition: flips archival flag; cascades soft-hide in dependent listings.
+  \item output: \texttt{successFlag}.
+  \item exception: \texttt{NotFoundError} if id missing.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{validateDomainSchema()} — checks required fields and name uniqueness.
+  \item \texttt{applyFilters()} — builds query predicates from filter map.
+  \item \texttt{invalidateCacheKeys()} — evicts stale cache entries on write.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Domain Storage Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & References API Gateway, Metrics, Packages for cross-links & Ensure all three are listed under Uses in MG \\
+Exported routines & CRUD + pagination align with storage responsibilities & Add pagination constants to MG if absent \\
+Assumptions & Name/owner uniqueness implied, not explicit & State uniqueness constraint in MG schema notes \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Automated Metrics Module}
+\label{mis:AutomatedMetrics}
+
+\subsubsection{Module}
+Automates the retrieval, validation, and storage of repository metrics for each package or domain.  
+Interacts with the Repository API Module to collect metrics, processes and validates the data, and then stores validated results in the Metrics Storage Module.
+
+\subsubsection{Uses}
+Repository API Module (M17)\\
+Metrics Storage Module (M7)\\
+System API Gateway (M12)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{METRIC\_FETCH\_INTERVAL\_HRS} = 24
+  \item \textbf{SUPPORTED\_METRICS} = [``stars``, ``forks``, ``issues``, ``commits``]
+  \item \textbf{VALIDATION\_THRESHOLD} = 0.05
+\end{itemize}
+
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\midrule
+fetchMetricsFromRepo & packageID & metricsData & APIError\\
+validateMetrics & metricsData & Boolean & ValidationError\\
+storeValidatedMetrics & metricsData & successFlag & WriteError\\
+scheduleAutoUpdate & None & successFlag & SchedulerError\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{lastFetchTimestamp}: stores timestamp of most recent metric retrieval.
+  \item \textbf{pendingQueue}: list of packages awaiting metric updates.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item External network (for repository API requests).
+  \item System scheduler or cron-like service (for automation intervals).
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes repositories are publicly accessible or authenticated through valid tokens.
+Assumes metrics follow consistent response formats across repository platforms (e.g., GitHub, PyPI).
+Relies on stable internet connectivity for scheduled retrieval.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{fetchMetricsFromRepo}(packageID):
+\begin{itemize}
+  \item transition: sends API request to repository, retrieves metrics, and parses response.  
+  \item output: \texttt{metricsData} in standardized schema.  
+  \item exception: \texttt{APIError} if API call fails or response malformed.
+\end{itemize}
+
+\noindent \textbf{validateMetrics}(metricsData):
+\begin{itemize}
+  \item transition: checks each metric for valid ranges, completeness, and data type consistency.  
+  \item output: Boolean indicating validation result.  
+  \item exception: \texttt{ValidationError} if schema mismatch or missing key metrics.
+\end{itemize}
+
+\noindent \textbf{storeValidatedMetrics}(metricsData):
+\begin{itemize}
+  \item transition: passes validated metrics to Metrics Storage Module for persistence.  
+  \item output: successFlag = true if operation succeeds.  
+  \item exception: \texttt{WriteError} if DB operation fails.
+\end{itemize}
+
+\noindent \textbf{scheduleAutoUpdate}():
+\begin{itemize}
+  \item transition: registers background job to periodically invoke \texttt{fetchMetricsFromRepo}.  
+  \item output: successFlag = true if scheduling confirmed.  
+  \item exception: \texttt{SchedulerError} if scheduling service unavailable.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{parseRepositoryResponse()} – converts raw API payloads into unified metric schema.  
+  \item \texttt{filterInvalidEntries()} – removes zero or null metrics before validation.  
+  \item \texttt{enqueuePendingPackage()} – adds package to update queue for later processing.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Automated Metrics Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Consistent with MG (Repository API, Metrics Storage, API Gateway). & None.\\
+Exported programs & Align with MG “Services” (fetch, validate, store). & None.\\
+Assumptions & Adds explicit automation/scheduler assumptions. & Optionally include scheduler note in MG.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Localization Module}
+\label{mis:Localization}
+
+\subsubsection{Module}
+Provides internationalization (i18n) and localization (l10n) support for the Domain Assessment Tool.
+Handles translation of UI labels, formatting of numbers, dates, and times, and region-specific preferences for consistent user experience across locales.
+
+\subsubsection{Uses}
+Domain View Module (M3)\\
+System API Gateway (M12)\\
+Browser Module (M2)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{SUPPORTED\_LANGUAGES} = [``en``, ``fr``, ``es``, ``de``]
+  \item \textbf{DEFAULT\_LANGUAGE} = ``en``
+  \item \textbf{DATE\_FORMAT\_MAP} = \{``en'': ``MM/DD/YYYY``, ``fr'': ``DD/MM/YYYY``\}
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\midrule
+setLanguage & langCode & successFlag & InvalidLangError\\
+translateLabel & labelKey, langCode & localizedText & MissingTranslationError\\
+formatDate & dateValue, langCode & formattedString & FormatError\\
+applyLocalization & userPrefs & successFlag & ConfigError\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{currentLanguage}: active language setting for the current session.
+  \item \textbf{translationCache}: map of label keys to localized text strings.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item Browser locale settings.  
+  \item Server-side translation repository (JSON, YAML, or DB).
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes the translation files are accessible through the API Gateway and cached client-side.
+All translation keys are consistent across supported languages.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{setLanguage}(langCode):
+\begin{itemize}
+  \item transition: updates \texttt{currentLanguage} and reloads translation cache.  
+  \item output: successFlag = true on successful update.  
+  \item exception: \texttt{InvalidLangError} if langCode not in SUPPORTED\_LANGUAGES.
+\end{itemize}
+
+\noindent \textbf{translateLabel}(labelKey, langCode):
+\begin{itemize}
+  \item transition: none.  
+  \item output: localized text for given labelKey.  
+  \item exception: \texttt{MissingTranslationError} if labelKey missing in dictionary.
+\end{itemize}
+
+\noindent \textbf{formatDate}(dateValue, langCode):
+\begin{itemize}
+  \item transition: converts \texttt{dateValue} to locale-specific string.  
+  \item output: formatted date string.  
+  \item exception: \texttt{FormatError} if invalid input date or missing mapping.
+\end{itemize}
+
+\noindent \textbf{applyLocalization}(userPrefs):
+\begin{itemize}
+  \item transition: applies language, region, and timezone settings globally in UI.  
+  \item output: successFlag = true if preferences applied successfully.  
+  \item exception: \texttt{ConfigError} if userPrefs missing required fields.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{loadTranslationFile()} – fetches and parses translation resource by language code.  
+  \item \texttt{detectBrowserLocale()} – determines initial language preference from browser.  
+  \item \texttt{fallbackToDefault()} – returns English label if translation missing.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Localization Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Matches MG (Browser + API Gateway). & None.\\
+Exported programs & Language setting and translation routines align with MG description. & Add supported language constants in MG.\\
+Assumptions & Translation storage and caching implied but not stated. & Include note about translation source format in MG.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+
+\subsection{MIS of System API Gateway Module}
+\label{mis:APIGateway}
+
+\subsubsection{Module}
+Serves as the centralized communication interface between all system components and external services.
+Encapsulates HTTP requests, handles authentication tokens, standardizes API responses, and enforces data validation between the front-end and back-end layers.
+
+\subsubsection{Uses}
+User Authentication Module (M5)\\
+Metrics Storage Module (M7)\\
+Package Storage Module (M8)\\
+Repository API Module (M17)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{BASE\_URL} = ``https://api.domainassessmenttool.ca/v1/``
+  \item \textbf{REQUEST\_TIMEOUT\_SEC} = 30
+  \item \textbf{RETRY\_LIMIT} = 3
+  \item \textbf{CONTENT\_TYPE} = ``application/json``
+\end{itemize}
+
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\midrule
+sendRequest & endpoint, payload, method & responseData & NetworkError\\
+authenticateRequest & sessionToken & authorizedHeader & AuthError\\
+handleResponse & rawResponse & parsedResponse & ParseError\\
+retryRequest & endpoint, payload, attempts & responseData & RetryLimitError\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{authToken}: stores the current session’s authentication token.  
+  \item \textbf{requestLog}: buffer containing recent API call metadata (timestamp, endpoint, status).  
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item Network layer and web server hosting backend APIs.  
+  \item Internet connection availability.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes stable network connectivity and that backend endpoints follow RESTful conventions.  
+Responses are returned as JSON-formatted payloads containing both status codes and data objects.  
+Assumes all sensitive operations require valid authentication headers.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{sendRequest}(endpoint, payload, method):
+\begin{itemize}
+  \item transition: constructs HTTP request, sends to target endpoint, logs metadata.  
+  \item output: parsed JSON response.  
+  \item exception: \texttt{NetworkError} on failed connection or timeout.
+\end{itemize}
+
+\noindent \textbf{authenticateRequest}(sessionToken):
+\begin{itemize}
+  \item transition: verifies token with Authentication Module and embeds in request header.  
+  \item output: authorizedHeader containing bearer token.  
+  \item exception: \texttt{AuthError} if invalid or expired.
+\end{itemize}
+
+\noindent \textbf{handleResponse}(rawResponse):
+\begin{itemize}
+  \item transition: none; parses \texttt{rawResponse} into standardized schema.  
+  \item output: \texttt{parsedResponse}.  
+  \item exception: \texttt{ParseError} for malformed responses.
+\end{itemize}
+
+\noindent \textbf{retryRequest}(endpoint, payload, attempts):
+\begin{itemize}
+  \item transition: resends failed request until success or reaching retry limit.  
+  \item output: responseData.  
+  \item exception: \texttt{RetryLimitError} if retries exhausted.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{buildURL()} — concatenates BASE\_URL and endpoint path.  
+  \item \texttt{serializePayload()} — converts Python/JS objects into JSON strings.  
+  \item \texttt{logRequest()} — appends call details to request log for debugging.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — System API Gateway Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Aligns with MG (Auth, Storage, Repository API). & None.\\
+Exported programs & Covers core request flow: send, authenticate, handle, retry. & None.\\
+Assumptions & Explicitly defines REST/JSON contract and auth dependency. & Add note about retry and timeout behavior.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Ranking Algorithm Module}
+\label{mis:RankingAlgorithm}
+
+\subsubsection{Module}
+Implements the ranking and weighting logic that determines the relative performance or importance of each repository or package.
+Uses the Analytic Hierarchy Process (AHP) and weighted normalization methods to compute comparable ranking scores from both quantitative metrics and user-defined weights.
+
+\subsubsection{Uses}
+Metrics Storage Module (M7)\\
+Automated Metrics Module (M10)\\
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{DEFAULT\_WEIGHTS} = \{``stars'': 0.3, ``forks'': 0.25, ``commits'': 0.25, ``issues'': 0.2\}
+  \item \textbf{MAX\_SCORE} = 100
+  \item \textbf{NORMALIZATION\_METHOD} = ``min-max``
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\midrule
+computeRankScores & metricsTable, userWeights & rankTable & InvalidMetricError \\
+applyAHPWeights & criteriaMatrix & weightedMatrix & MatrixError \\
+normalizeScores & rankTable & normalizedTable & NormalizationError \\
+getTopDomains & normalizedTable, limit & rankedList & None \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{lastRankingResult}: stores the most recent computed rankings for reuse or caching.
+  \item \textbf{criteriaMatrix}: user- or system-defined weighting matrix for the AHP method.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item None directly — computation occurs entirely within software using stored data.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes all required metrics (stars, forks, commits, issues) are present in the input dataset.
+User-provided weights must sum to 1 for valid ranking computations.
+Assumes AHP consistency ratio check has already been performed (if applicable).
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{computeRankScores}(metricsTable, userWeights):
+\begin{itemize}
+  \item transition: applies AHP-derived weights to each repository’s metric values.  
+  \item output: \texttt{rankTable} with composite ranking scores.  
+  \item exception: \texttt{InvalidMetricError} if required metrics missing.
+\end{itemize}
+
+\noindent \textbf{applyAHPWeights}(criteriaMatrix):
+\begin{itemize}
+  \item transition: multiplies metric importance scores by pairwise comparison matrix.  
+  \item output: \texttt{weightedMatrix} with derived weights per criterion.  
+  \item exception: \texttt{MatrixError} if inconsistent or non-square matrix.
+\end{itemize}
+
+\noindent \textbf{normalizeScores}(rankTable):
+\begin{itemize}
+  \item transition: scales raw scores between 0 and 1 (or 0–100).  
+  \item output: \texttt{normalizedTable}.  
+  \item exception: \texttt{NormalizationError} if denominator = 0 or NaN encountered.
+\end{itemize}
+
+\noindent \textbf{getTopDomains}(normalizedTable, limit):
+\begin{itemize}
+  \item transition: sorts and filters \texttt{normalizedTable} by score descending.  
+  \item output: list of top-ranked domains.  
+  \item exception: none.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{calcWeightedSum()} – aggregates weighted metric contributions.  
+  \item \texttt{checkWeightSum()} – ensures weights sum to 1 within tolerance.  
+  \item \texttt{applyConsistencyCheck()} – optional validation for AHP matrix consistency.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Ranking Algorithm Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Matches MG (uses Metrics Storage and Automated Metrics). & None.\\
+Exported programs & Consistent with MG “ranking computation and weighting”. & Clarify AHP as explicit method.\\
+Assumptions & Expanded to specify metric completeness and normalization behavior. & Add note about AHP consistency ratio.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Graphing Module}
+\label{mis:Graphing}
+
+\subsubsection{Module}
+Provides functionality for generating visual representations of the ranking and metric data produced by the system. 
+Supports bar charts, scatter plots, line graphs, and radar charts for comparative analysis of repositories and domains.
+Implements both on-screen rendering and export to file formats.
+
+\subsubsection{Uses}
+Ranking Algorithm Module (M13)\\
+Metrics Storage Module (M7)\\
+System API Gateway (M12)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{SUPPORTED\_PLOTS} = [``bar``, ``scatter``, ``line``, ``radar``]
+  \item \textbf{DEFAULT\_EXPORT\_FORMAT} = ``.png``
+  \item \textbf{MAX\_PLOTS\_PER\_VIEW} = 6
+\end{itemize}
+
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\midrule
+generatePlot & dataFrame, plotType & plotObject & PlotTypeError\\
+displayGraph & plotObject & renderedView & RenderError\\
+exportGraph & plotObject, format & filePath & ExportError\\
+updateGraphData & newData & refreshedPlot & DataError\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{graphCache}: stores recent plot configurations for reuse.
+  \item \textbf{activeTheme}: defines the color palette and layout style.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item Graphics or plotting library (e.g., Matplotlib or Plotly).
+  \item File system for exported graph images.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes normalized and ranked data is provided by Ranking Algorithm Module.
+Assumes required plotting library is available in the environment and can export to image formats.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{generatePlot}(dataFrame, plotType):
+\begin{itemize}
+  \item transition: creates a new plot object according to selected type.  
+  \item output: \texttt{plotObject}.  
+  \item exception: \texttt{PlotTypeError} if plotType unsupported.
+\end{itemize}
+
+\noindent \textbf{displayGraph}(plotObject):
+\begin{itemize}
+  \item transition: renders plot to user interface or output device.  
+  \item output: rendered visual.  
+  \item exception: \texttt{RenderError} on failure.
+\end{itemize}
+
+\noindent \textbf{exportGraph}(plotObject, format):
+\begin{itemize}
+  \item transition: serializes plot into an image file.  
+  \item output: \texttt{filePath}.  
+  \item exception: \texttt{ExportError} if write operation fails.
+\end{itemize}
+
+\noindent \textbf{updateGraphData}(newData):
+\begin{itemize}
+  \item transition: updates existing plot with new dataset.  
+  \item output: refreshed visualization.  
+  \item exception: \texttt{DataError} if invalid input schema.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{applyTheme()} — applies active color palette.
+  \item \texttt{configureAxes()} — sets chart labels and scaling.
+  \item \texttt{validatePlotType()} — ensures requested type is supported.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — Graphing Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Matches MG — depends on Ranking Algorithm, Metrics Storage, and API Gateway. & None.\\
+Exported programs & Aligned with MG’s “Graphing Module” functions. & None.\\
+Assumptions & Matches MG expectations regarding normalized data and export capability. & None.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Assumes required plotting library is available in the environment and can export to image formats. 
+This module does not perform statistical normalization; it expects input already prepared by Ranking Algorithm or upstream data prep.
+
+
+
+
+\subsection{MIS of Data Parser Module}
+\label{mis:DataParser}
+
+\subsubsection{Module}
+Handles extraction, validation, and transformation of input data into the internal data schema used throughout the system.
+Supports multiple input formats including JSON (from APIs), CSV (from manual uploads), and XML (for legacy integrations).
+Ensures field consistency and schema conformance before data is passed to the Metrics Storage Module.
+
+\subsubsection{Uses}
+System API Gateway Module (M12)\\
+Metrics Storage Module (M7)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{SUPPORTED\_FORMATS} = \{``json'', ``csv'', ``xml''\}
+  \item \textbf{REQUIRED\_FIELDS} = \{``repoName'', ``stars'', ``forks'', ``commits'', ``issues''\}
+  \item \textbf{MAX\_FILE\_SIZE\_MB} = 25
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+parseInput & rawData, format & structuredData & UnsupportedFormatError \\
+validateSchema & structuredData & Boolean & SchemaValidationError \\
+transformFields & structuredData & normalizedData & TransformationError \\
+loadToStorage & normalizedData & confirmationMsg & StorageError \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{lastParsedFile}: metadata record of most recent input file parsed.
+  \item \textbf{validationErrors}: list of recent schema or formatting issues detected.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item Local file system or temporary memory buffer for uploads.
+  \item Web browser or API client as input origin.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes all input files are UTF-8 encoded and within the defined file size limit.
+Assumes the schema used across system modules remains consistent (e.g., same metric names and datatypes).
+Assumes no cyclic references in JSON or XML data.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{parseInput}(rawData, format):
+\begin{itemize}
+  \item transition: determines input type and parses accordingly (JSON parser, CSV reader, or XML DOM).
+  \item output: structured data dictionary or DataFrame.
+  \item exception: \texttt{UnsupportedFormatError} if format not recognized.
+\end{itemize}
+
+\noindent \textbf{validateSchema}(structuredData):
+\begin{itemize}
+  \item transition: none.
+  \item output: Boolean flag indicating whether all required fields are present and valid.
+  \item exception: \texttt{SchemaValidationError} if missing or mismatched fields.
+\end{itemize}
+
+\noindent \textbf{transformFields}(structuredData):
+\begin{itemize}
+  \item transition: maps field names and data types to system standard schema.
+  \item output: normalized dataset ready for storage.
+  \item exception: \texttt{TransformationError} for type mismatches.
+\end{itemize}
+
+\noindent \textbf{loadToStorage}(normalizedData):
+\begin{itemize}
+  \item transition: writes normalized data to Metrics Storage Module.
+  \item output: confirmation message or ID.
+  \item exception: \texttt{StorageError} if database write fails.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{detectFormat()} — inspects headers or MIME type to auto-detect format.
+  \item \texttt{convertDataTypes()} — casts strings, integers, and floats to appropriate types.
+  \item \texttt{logParseErrors()} — records issues in validationErrors list.
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\caption{Review Summary — Data Parser Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Uses relation & Matches MG — depends on API Gateway and Metrics Storage. & None.\\
+Exported programs & Reflects parsing, validation, transformation, and load. & Add explicit size limit constant if missing.\\
+Assumptions & UTF-8 and schema consistency clarified. & Note handling of invalid rows (drop vs. fix).\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Repository API Interface}
+\label{mis:RepositoryAPI}
+
+\subsubsection{Module}
+Provides a unified interface to external repository services (e.g., GitHub, PyPI) for retrieving
+package metadata and activity metrics. Handles authentication headers, pagination, and rate limits,
+and returns responses in a normalized internal schema.
+
+\subsubsection{Uses}
+System API Gateway (M12)\\
+Automated Metrics Module (M10)\\
+Package Storage Module (M8)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{BASE\_REPO\_API\_URL} = ``https://api.github.com''
+  \item \textbf{RATE\_LIMIT\_WINDOW\_SEC} = 3600
+  \item \textbf{MAX\_RETRY} = 3
+  \item \textbf{USER\_AGENT} = ``DomainAssessmentTool/1.0''
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\midrule
+setAuthToken & token & successFlag & AuthError \\
+fetchRepoMetadata & packageID & repoData & APIError \\
+fetchRepoMetrics & packageID, metricList & metricsData & APIError \\
+handleRateLimit & responseHeaders & delaySeconds & RateLimitError \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{authToken}: bearer or PAT used for authenticated API access.
+  \item \textbf{lastRateLimitReset}: timestamp of last known rate-limit window reset.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item External repository services reachable over HTTPS.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes network availability and valid credentials for private repositories when required.
+Assumes external APIs return JSON and follow documented pagination and rate-limit headers.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{setAuthToken}(token):
+\begin{itemize}
+  \item transition: stores token and updates default request headers.
+  \item output: successFlag = true upon acceptance.
+  \item exception: \texttt{AuthError} if token format invalid.
+\end{itemize}
+
+\noindent \textbf{fetchRepoMetadata}(packageID):
+\begin{itemize}
+  \item transition: none; issues GET to repository API for package metadata.
+  \item output: \texttt{repoData} (name, description, owner, urls, license).
+  \item exception: \texttt{APIError} on non-2xx or malformed response.
+\end{itemize}
+
+\noindent \textbf{fetchRepoMetrics}(packageID, metricList):
+\begin{itemize}
+  \item transition: none; queries API endpoints for requested metrics (e.g., stars, forks, issues, commits).
+  \item output: \texttt{metricsData} normalized to system schema.
+  \item exception: \texttt{APIError} on failure or schema mismatch.
+\end{itemize}
+
+\noindent \textbf{handleRateLimit}(responseHeaders):
+\begin{itemize}
+  \item transition: computes required backoff from headers and updates \texttt{lastRateLimitReset}.
+  \item output: \texttt{delaySeconds} to wait before retrying.
+  \item exception: \texttt{RateLimitError} if headers missing or inconsistent.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{buildRepoURL()} — constructs endpoint paths from \texttt{BASE\_REPO\_API\_URL} and resource ids.
+  \item \texttt{parsePaginated()} — iterates Link headers to accumulate multi-page results.
+  \item \texttt{normalizeRepoPayload()} — maps external fields to internal schema.
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\caption{Review Summary — Repository API Interface}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update} \\
+\midrule
+Uses relation & Serves M10 and M8 via M12 transport layer & Ensure all three edges shown in MG \\
+Exported programs & Cover auth, metadata, metrics, and rate-limit handling & Note pagination support explicitly \\
+Assumptions & REST+JSON, HTTPS, tokens & Add PAT scope requirements in MG \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{MIS of File Import Module}
+\label{mis:FileImport}
+
+\subsubsection{Module}
+Processes user-provided files (e.g., CSV/Excel) into the system’s internal schema so the rest of the system can use the data. Implemented with \texttt{pandas}.
+
+\subsubsection{Uses}
+Browser Module (M2)\\
+System API Gateway (M12)\\
+Metrics Storage Module (M7)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{SUPPORTED\_FORMATS} = \{``csv'', ``xlsx''\}
+  \item \textbf{MAX\_FILE\_SIZE\_MB} = 25
+  \item \textbf{HEADER\_REQUIRED} = true
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{3.2cm} p{4.2cm} p{4.2cm} p{2.2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+uploadFile & fileBlob, meta & importSessionID & UnsupportedFormatError, SizeLimitError\\
+parseFile & importSessionID & structuredData & ParseError\\
+validateSchema & structuredData & Boolean & SchemaValidationError\\
+mapFields & structuredData, fieldMap & normalizedData & TransformationError\\
+previewSample & normalizedData, n & sampleFrame & None\\
+commitImport & normalizedData, targetSpec & successFlag & StorageError\\
+rollbackImport & importSessionID & successFlag & None\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{currentSession}: identifier and metadata for the active import.
+  \item \textbf{parseLog}: list of warnings/errors (row numbers, messages).
+  \item \textbf{fieldMap}: mapping from source columns to internal schema fields.
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item Temporary file storage/buffer provided by the browser runtime.
+  \item \texttt{pandas} runtime for CSV/XLSX parsing and transformation.
+\end{itemize}
+
+\paragraph{Assumptions}
+Input files are CSV/XLSX within size limits and UTF-8 compatible.  
+Target storage and validation occur via API Gateway and Metrics Storage.  
+This module focuses on importing/processing files for downstream use (as specified in MG).
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{uploadFile}(fileBlob, meta):
+\begin{itemize}
+  \item transition: create \texttt{currentSession}, persist the raw file to temp storage, basic sniffing (delimiter/encoding).
+  \item output: \texttt{importSessionID}.
+  \item exception: \texttt{UnsupportedFormatError} if not in \texttt{SUPPORTED\_FORMATS}; \texttt{SizeLimitError} if exceeds \texttt{MAX\_FILE\_SIZE\_MB}.
+\end{itemize}
+
+\noindent \textbf{parseFile}(importSessionID):
+\begin{itemize}
+  \item transition: read file via \texttt{pandas} into \texttt{structuredData}; update \texttt{parseLog}.
+  \item output: \texttt{structuredData}.
+  \item exception: \texttt{ParseError} on unreadable or corrupted file.
+\end{itemize}
+
+\noindent \textbf{validateSchema}(structuredData):
+\begin{itemize}
+  \item transition: none.
+  \item output: Boolean indicating presence and types of required fields.
+  \item exception: \texttt{SchemaValidationError} if required columns missing/mistyped.
+\end{itemize}
+
+\noindent \textbf{mapFields}(structuredData, fieldMap):
+\begin{itemize}
+  \item transition: rename/cast fields to system schema; coerce dates/numerics; dedupe columns.
+  \item output: \texttt{normalizedData}.
+  \item exception: \texttt{TransformationError} for incompatible casts or ambiguous mappings.
+\end{itemize}
+
+\noindent \textbf{previewSample}(normalizedData, n):
+\begin{itemize}
+  \item transition: none.
+  \item output: first \texttt{n} rows for user confirmation.
+  \item exception: none.
+\end{itemize}
+
+\noindent \textbf{commitImport}(normalizedData, targetSpec):
+\begin{itemize}
+  \item transition: send rows in chunks through (M12) to (M7) for persistence; record result in \texttt{parseLog}.
+  \item output: \texttt{successFlag} = true if all chunks confirmed.
+  \item exception: \texttt{StorageError} if backend write fails.
+\end{itemize}
+
+\noindent \textbf{rollbackImport}(importSessionID):
+\begin{itemize}
+  \item transition: discard temp files and any uncommitted buffers associated with session.
+  \item output: \texttt{successFlag}.
+  \item exception: none.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{sniffFormat()} — detect CSV vs. XLSX; delimiter and header presence.
+  \item \texttt{detectEncoding()} — attempt BOM/UTF-8 detection.
+  \item \texttt{inferDTypes()} — infer/cast numeric, categorical, datetime fields.
+  \item \texttt{chunkedUpsert()} — batch rows and send via (M12) to (M7) with retry.
+  \item \texttt{logIssue()} — append structured warnings/errors to \texttt{parseLog}.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — File Import Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Role in MG & Defined as importing Excel/CSV into system data; implemented by \texttt{pandas}. & None. (Matches MG text.)\\
+Traceability & Appears under FR9 with File Export (M16). & None. (Already traced in MG.)\\
+Uses relation & Uses Browser (upload), API Gateway (transport), Metrics Storage (persistence). & If desired, add Browser→M15 arrow in Use Hierarchy for clarity.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of File Export Module}
+\label{mis:FileExport}
+
+\subsubsection{Module}
+Converts normalized data, rankings, and results within the system into exportable file formats (CSV, XLSX, or JSON).  
+Implements data serialization, column selection, and formatting for downstream reporting and manual review.
+
+\subsubsection{Uses}
+System API Gateway (M12)\\
+Metrics Storage Module (M7)\\
+Graphing Module (M14)
+
+\subsubsection{Syntax}
+
+\paragraph{Exported Constants}
+\begin{itemize}
+  \item \textbf{SUPPORTED\_EXPORTS} = \{``csv'', ``xlsx'', ``json''\}
+  \item \textbf{DEFAULT\_EXPORT\_TYPE} = ``csv''
+  \item \textbf{EXPORT\_TIMESTAMP\_FORMAT} = ``YYYY-MM-DD\_HH-MM-SS``
+  \item \textbf{MAX\_EXPORT\_ROWS} = 100000
+\end{itemize}
+
+\paragraph{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{3.2cm} p{4.2cm} p{4.2cm} p{2.2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+generateExport & dataFrame, format & fileObject & UnsupportedFormatError\\
+selectColumns & dataFrame, columnList & trimmedData & ColumnSelectionError\\
+applyFormatting & trimmedData, styleOpts & formattedData & FormatError\\
+addSummarySheet & formattedData, summaryData & enrichedFile & WriteError\\
+writeToDisk & fileObject, destination & filePath & WriteError\\
+sendToClient & filePath, userContext & successFlag & NetworkError\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Semantics}
+
+\paragraph{State Variables}
+\begin{itemize}
+  \item \textbf{exportSession}: current export session metadata (user, timestamp, format).
+  \item \textbf{exportBuffer}: in-memory representation of file before saving or sending.
+  \item \textbf{summaryData}: optional summary table to embed with export (ranking overview, top libraries, etc.).
+\end{itemize}
+
+\paragraph{Environment Variables}
+\begin{itemize}
+  \item File system access (temporary export directory). 
+  \item \texttt{pandas} or equivalent library for writing CSV/XLSX. 
+  \item Web response handler for initiating download in browser.
+\end{itemize}
+
+\paragraph{Assumptions}
+Assumes data provided by the API Gateway and Metrics Storage is already validated and normalized.  
+Assumes sufficient memory for in-memory buffering of datasets within the export limit.  
+Export process must not modify source data.
+
+\paragraph{Access Routine Semantics}
+
+\noindent \textbf{generateExport}(dataFrame, format):
+\begin{itemize}
+  \item transition: serializes data to in-memory file representation based on specified format.
+  \item output: \texttt{fileObject}.
+  \item exception: \texttt{UnsupportedFormatError} if format not in \texttt{SUPPORTED\_EXPORTS}.
+\end{itemize}
+
+\noindent \textbf{selectColumns}(dataFrame, columnList):
+\begin{itemize}
+  \item transition: filters \texttt{dataFrame} to retain only specified columns.
+  \item output: \texttt{trimmedData}.
+  \item exception: \texttt{ColumnSelectionError} if requested column does not exist.
+\end{itemize}
+
+\noindent \textbf{applyFormatting}(trimmedData, styleOpts):
+\begin{itemize}
+  \item transition: applies styling rules (e.g., bold headers, column widths, numeric precision).
+  \item output: \texttt{formattedData}.
+  \item exception: \texttt{FormatError} if invalid style options.
+\end{itemize}
+
+\noindent \textbf{addSummarySheet}(formattedData, summaryData):
+\begin{itemize}
+  \item transition: inserts optional summary worksheet into export file (e.g., aggregate rankings).
+  \item output: \texttt{enrichedFile}.
+  \item exception: \texttt{WriteError} if sheet cannot be created.
+\end{itemize}
+
+\noindent \textbf{writeToDisk}(fileObject, destination):
+\begin{itemize}
+  \item transition: writes serialized export to disk at given destination path.
+  \item output: \texttt{filePath}.
+  \item exception: \texttt{WriteError} if insufficient permissions or disk failure.
+\end{itemize}
+
+\noindent \textbf{sendToClient}(filePath, userContext):
+\begin{itemize}
+  \item transition: triggers download via browser session; updates export log.
+  \item output: \texttt{successFlag}.
+  \item exception: \texttt{NetworkError} if transmission fails.
+\end{itemize}
+
+\paragraph{Local Functions}
+\begin{itemize}
+  \item \texttt{timestampFileName()} — appends timestamp suffix to exported file.
+  \item \texttt{sanitizeHeaders()} — cleans column names of illegal characters.
+  \item \texttt{applyExcelStyles()} — formats Excel cells for readability.
+  \item \texttt{compressExport()} — zips file for faster transmission if large.
+  \item \texttt{validateDestination()} — ensures path exists and writable.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Review Summary — File Export Module}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspect} & \textbf{Observation} & \textbf{Suggested MG Update}\\
+\midrule
+Role in MG & Described as converting system data to exportable file types for reporting. & None. Matches MG exactly.\\
+Traceability & Listed under FR9 alongside File Import. & None.\\
+Uses relation & Uses API Gateway (for retrieval), Metrics Storage (for source data), and Graphing (for optional visual export). & Add note that exports can include embedded plots.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{MIS of Domain Comparison Module}
+\label{mis:DomainComparison}
+
+\subsubsection{Module}
+Implements algorithms and parameters used for comparing multiple domains within the system.  
+This module facilitates both quantitative and qualitative comparison metrics to determine relationships or relative performance between different research or software domains.
+
+\subsubsection{Uses}
+Ranking Algorithm Module (M13)\\
+Metrics Storage Module (M7)\\
+Graphing Module (M14)
+
+\subsubsection{Secrets}
+The algorithms and parameters used for comparing domains.
+
+\subsubsection{Services}
+Computes and visualizes comparisons across multiple domains.
+
+\subsubsection{Implemented By}
+DomainX
+
+\subsubsection{Type of Module}
+Abstract Object
+
+
+
 
 \newpage
 
