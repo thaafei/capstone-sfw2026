@@ -250,6 +250,8 @@ actually be implemented.
 & File Export Module\\
 & Repository API Module\\
 & Domain Comparison Module\\
+& Database Configuration Module \\
+& Configuration Constants Module \\
 \bottomrule
 
 \end{tabular}
@@ -457,7 +459,13 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\section{Traceability Matrix} \label{SecTM}
+\subsubsection{Database Configuration Module (\mref{mSD8})}
+\begin{description}
+\item[Secrets:] The algorithms and parameters used for interacting with the database.
+\item[Services:] Provides database methods related to updating and querying the stored data.
+\item[Implemented By:] \href{https://www.mysql.com/}{MySQL}
+\item[Type of Module:] Abstract Object
+\end{description}
 
 This section shows two traceability matrices: between the modules and the
 requirements and between the modules and the anticipated changes.
