@@ -205,7 +205,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mHH1}:] Hardware Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{mHH2}:] Browser Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH1}:] Domain View Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] Data Edit View Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] Data Edit Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH3}:] User Authentication Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH4}:] User Role Access Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] Metrics Storage Module
@@ -245,8 +245,8 @@ actually be implemented.
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} & {System API Gateway Module}\\
 & Ranking Algorithm Module\\
-& Graphic Module\\
-& File Input Module\\
+& Graphing Module\\
+& File Import Module\\
 & File Export Module\\
 & Repository API Module\\
 & Domain Comparison Module\\
@@ -331,14 +331,6 @@ to be implemented.
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Data Edit Module (\mref{mBH2})}
-\begin{description}
-\item[Secrets:] The data structures and algorithms to edit and update metrics of a domain. 
-\item[Services:]  Handles and validates user inputs and displays the user-inputted data.
-\item[Implemented By:] \projname
-\item[Type of Module:] ADT
-\end{description}
-
 \subsubsection{ User Authentication Module (\mref{mBH3})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to securely store, validate and manage user credentials.
@@ -381,7 +373,7 @@ to be implemented.
 
 \subsubsection{ Automated Metrics Module (\mref{mBH8})}
 \begin{description}
-\item[Secrets:] The data structures and algorithms used for retrieving automatable metrics .
+\item[Secrets:] The data structures and algorithms used for retrieving automatable metrics.
 \item[Services:] Uses API Module to retrieve metrics from package's repository and validate and store in system.
 \item[Implemented By:]  \projname
 \item[Type of Module:] Library
@@ -455,7 +447,6 @@ to be implemented.
 \item[Services:] Fetches metrics and metadata from external repositories (e.g., GitHub, GitLab).
 \item[Implemented By:] \projname
 \item[Type of Module:] Abstract Object
-\item[Type of Module:] Library
 \end{description}
 
 \subsubsection{Domain Comparison Module (\mref{mSD7})}
