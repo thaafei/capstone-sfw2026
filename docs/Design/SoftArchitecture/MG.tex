@@ -208,11 +208,9 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] Data Edit Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH3}:] User Authentication Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH4}:] User Role Access Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] Metrics Storage Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Package Storage Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Domain Storage Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH8}:] Automated Metrics Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH9}:] Localization Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] Automated Metrics Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Localization Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Domain Management Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD1}:] System API Gateway Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD2}:] Ranking Algorithm Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD3}:] Graphing Module
@@ -220,6 +218,8 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mSD5}:] File Export Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD6}:] Repository API Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD7}:] Domain Comparison Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD8}:] Database Persistence Module
+
 \end{description}
 
 
@@ -230,17 +230,15 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & Browser Module \\
+{Hardware-Hiding Module} & Browser Module\\
 \midrule
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} &  Domain View Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} &  Domain View Module \\
 & Data Edit Module \\
 & User Authentication Module\\
 & User Role Access Module\\
-& Metrics Storage Module\\
-& Package Storage Module\\
-& Domain Storage Module\\ 
 & Automated Metrics Module\\
 & Localization Module\\
+& Domain Management Module \\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} & {System API Gateway Module}\\
@@ -250,8 +248,7 @@ actually be implemented.
 & File Export Module\\
 & Repository API Module\\
 & Domain Comparison Module\\
-& Database Configuration Module \\
-& Configuration Constants Module \\
+& Database Persistence Module \\
 \bottomrule
 
 \end{tabular}
@@ -264,13 +261,6 @@ actually be implemented.
 The design of the system is intended to satisfy the requirements developed in
 the SRS. In this stage, the system is decomposed into modules. The connection
 between requirements and modules is listed in Table~\ref{TblRT}.
-
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -320,7 +310,7 @@ to be implemented.
 \subsubsection{ Domain View Module (\mref{mBH1})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms to retrieve and display domain metrics and packages.
-\item[Services:] Handles user inputs and displays the data of a specific domain.
+\item[Services:] Displays domain content, including it's corresponding packages and metrics. 
 \item[Implemented By:] \projname
 \item[Type of Module:] ADT
 \end{description}
@@ -328,7 +318,7 @@ to be implemented.
 \subsubsection{ Data Edit Module (\mref{mBH2})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms to edit and update metrics of a domain. 
-\item[Services:]  Handles and validates user inputs and displays the user-inputted data.
+\item[Services:]  Handles and validates user inputs of domain/package/metric data. Provides user feedback on errors (invalid type, missing field, etc)
 \item[Implemented By:] \projname
 \item[Type of Module:] ADT
 \end{description}
@@ -349,45 +339,28 @@ to be implemented.
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Metrics Storage Module (\mref{mBH5})}
-\begin{description}
-\item[Secrets:] The schema and mechanisms used to store, index, and retrieve package metrics.
-\item[Services:] Manages the storage and retrieval of metrics for a specific package from a specific domain and any associated metadata. Ensures data security and organization to support comparison functionalities.
-\item[Implemented By:]  \projname
-\item[Type of Module:] Record
-\end{description}
-
-\subsubsection{ Package Storage Module (\mref{mBH6})}
-\begin{description}
-\item[Secrets:] The schema and mechanisms used to store, index, and retrieve packages.
-\item[Services:] Manages the storage and retrieval of packages from a specific domain and any associated metadata. Ensures data security and organization to support comparison functionalities.
-\item[Implemented By:]  \projname
-\item[Type of Module:] ADT
-\end{description}
-
-\subsubsection{ Domain Storage Module (\mref{mBH7})}
-\begin{description}
-\item[Secrets:] The schema and mechanisms used to store, index, and retrieve domains.
-\item[Services:] Manages the storage and retrieval of domains and any associated metadata. Ensures data security and organization to support comparison functionalities.
-\item[Implemented By:]  \projname
-\item[Type of Module:] ADT
-\end{description}
-
-\subsubsection{ Automated Metrics Module (\mref{mBH8})}
+\subsubsection{ Automated Metrics Module (\mref{mBH5})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used for retrieving automatable metrics.
-\item[Services:] Uses API Module to retrieve metrics from package's repository and validate and store in system.
+\item[Services:] Handles any automated data entry into system, uses Repository API module and File Import Module to automate data input.
 \item[Implemented By:]  \projname
 \item[Type of Module:] Library
 \end{description}
 
-
-\subsubsection{Localization Module (\mref{mBH9})}
+\subsubsection{Localization Module (\mref{mBH6})}
 \begin{description}
 \item[Secrets:] The language files, translation mappings, and locale formatting mechanisms.
 \item[Services:] Provides translation and formatting of UI text and date/number formats.
 \item[Implemented By:] \href{https://react.i18next.com/}{react-i18next}
 \item[Type of Module:] Library
+\end{description}
+
+\subsubsection{ Domain Management Module (\mref{mBH7})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms that handles the creation and publication of domains.
+\item[Services:] Provides versioning and publication of completed domains. 
+\item[Implemented By:] \projname
+\item[Type of Module:] ADT
 \end{description}
 
 \subsection{Software Decision Module}
@@ -459,10 +432,10 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{Database Configuration Module (\mref{mSD8})}
+\subsubsection{Database Persistence Module (\mref{mSD8})}
 \begin{description}
 \item[Secrets:] The algorithms and parameters used for interacting with the database.
-\item[Services:] Provides database methods related to updating and querying the stored data.
+\item[Services:] Provides database methods related to updating and querying the stored data. As well as the connection to the database itself.
 \item[Implemented By:] \href{https://www.mysql.com/}{MySQL}
 \item[Type of Module:] Abstract Object
 \end{description}
@@ -478,18 +451,18 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-FR1 & \mref{mBH6}\\
-FR2 & \mref{mBH5}, \mref{mBH6}\\
-FR3 & \mref{mBH5}\\
-FR4 & \mref{mBH5}\\
-FR5 & \mref{mBH7}, \mref{mBH3}, \mref{mBH6}  \\
-FR6 & \mref{mBH1}, \mref{mBH3},  \mref{mBH6}  \\
-FR7 & \mref{mBH1}, \mref{mBH2}, \mref{mBH3}, \mref{mBH4}, \mref{mBH5},  \mref{mBH6},   \mref{mSD3} \\
-FR8 & \mref{mBH2}, \mref{mBH3}, \mref{mBH4}, \mref{mBH5},  \mref{mBH6}, \mref{mBH7}\\
-FR9 &  \mref{mBH2}, \mref{mBH3}, \mref{mBH4}, \mref{mBH5},  \mref{mBH6}, \mref{mBH7}, \mref{mSD4}, \mref{mSD5}  \\
-FR10 & \mref{mBH2}, \mref{mBH3}, \mref{mBH4}, \mref{mBH8}\\
-FR11 & \mref{mBH1}, \mref{mBH5}, \mref{mBH6}, \mref{mBH7}\\
-FR12 & \mref{mSD2},   \mref{mBH1}\\
+FR1 & \mref{mBH4}\\
+FR2 & \mref{mBH3}, \mref{mBH4}\\
+FR3 & \mref{mBH3}\\
+FR4 & \mref{mBH3}\\
+FR5 & \mref{mBH2}, \mref{mSD8}  \\
+FR6 & \mref{mBH7}  \\
+FR7 & \mref{mBH2}, \mref{mBH4}, \mref{mSD8} \\
+FR8 & \mref{mBH2} \\
+FR9 & \mref{mBH2}, \mref{mBH4}, \mref{mBH5}, \mref{mSD4} \\
+FR10 & \mref{mBH5}, \mref{mSD4}, \mref{mSD6} \\
+FR11 & \mref{mBH1}, \mref{mSD8}\\
+FR12 & \mref{mSD2}, \mref{mBH1}\\
 FR13 & \mref{mSD3}\\
 FR14 & \mref{mSD5}\\
 FR15 & \mref{mSD3}, \mref{mSD5}\\
@@ -586,12 +559,12 @@ SR-IM4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{ac1} & \mref{mBH5}\\
+\acref{ac1} & \mref{mBH1}, \mref{mBH2}, \mref{mSD8}\\
 \acref{ac2} & \mref{mBH3}\\
 \acref{ac3} & \mref{mSD2}\\
 \acref{ac4} & \mref{mSD7}\\
 \acref{ac5} & \mref{mBH4}\\
-\acref{ac6} & \mref{mBH9}\\
+\acref{ac6} & \mref{mBH6}\\
 \acref{ac7} & \mref{mSD6}\\
 \acref{ac8} & \mref{mSD3}\\
 \acref{ac9} & \mref{mSD4},  \mref{mSD5}\\
