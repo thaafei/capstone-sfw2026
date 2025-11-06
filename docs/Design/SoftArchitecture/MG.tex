@@ -8,6 +8,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{longtable, booktabs}
+
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -189,7 +191,7 @@ decisions will be changed.
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc1}:] The schema structure of our domain and metrics systems are designed for long-term use and allows for the addition of new metric types
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc2}:] The platform of the tool will remain as a web application
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc3}:] The development stack of our web application will remain the same (\href{https://react.dev/}{React}, \href{https://www.djangoproject.com/}{Django})
-  \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Input types of existing metrics, as outlined in the \href{https://arxiv.org/pdf/2110.11575}{Methodology paper}
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Input types of existing metrics, as outlined in the methodology paper (\citet{MethodologyPaper})
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc5}:] Popular browser compatibility is expected to remain unchanged (e.g. Chrome, Firefox, Edge)
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc6}:] Tool owner, Dr. Spencer Smith, is not expected to change for the duration of the tool's lifespan
 \end{description}
@@ -212,6 +214,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Automated Metrics Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Localization Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH8}:] Domain Management Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH9}:] Notification Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD1}:] System API Gateway Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD2}:] Ranking Algorithm Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD3}:] Graphing Module
@@ -221,6 +224,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mSD7}:] Domain Comparison Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD8}:] Database Persistence Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD9}:] Logging Module
+
 
 \end{description}
 
@@ -235,13 +239,14 @@ actually be implemented.
 {Hardware-Hiding Module} & Browser Module\\
 \midrule
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} &  Domain View Module \\
-& Landing Page Module \\
+& Application Layout Module \\
 & Data Edit Module \\
 & User Authentication Module\\
 & User Role Access Module\\
 & Automated Metrics Module\\
 & Localization Module\\
 & Domain Management Module \\
+& Notification Module \\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} & {System API Gateway Module}\\
@@ -252,6 +257,7 @@ actually be implemented.
 & Repository API Module\\
 & Domain Comparison Module\\
 & Database Persistence Module \\
+& Logging Module \\
 \bottomrule
 
 \end{tabular}
@@ -318,7 +324,7 @@ to be implemented.
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Landing Page Module (\mref{mBH2})}
+\subsubsection{ Application Layout Module (\mref{mBH2})}
 \begin{description}
 \item[Secrets:] The data structures and visual components to retrieve and display system user interface elements.
 \item[Services:] Displays user interface elements such as the buttons, sidebars and non-domain view components.
@@ -330,7 +336,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The data structures and algorithms to edit and update metrics of a domain. 
 \item[Services:]  Handles and validates user inputs of domain/package/metric data. Provides user feedback on errors (invalid type, missing field, etc)
-\item[Implemented By:] \projname
+\item[Implemented By:] \href{https://react.dev/}{React}, \projname
 \item[Type of Module:] ADT
 \end{description}
 
@@ -370,6 +376,14 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The data structures and algorithms that handles the creation and publication of domains.
 \item[Services:] Provides versioning and publication of completed domains. 
+\item[Implemented By:] \projname
+\item[Type of Module:] ADT
+\end{description}
+
+\subsubsection{ Notification Module (\mref{mBH9})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms that handles the internal and external communication with the user.
+\item[Services:] To notify users of the status of automated metrics, and communication with user outside of the application, such as through email. 
 \item[Implemented By:] \projname
 \item[Type of Module:] ADT
 \end{description}
@@ -459,6 +473,9 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
+
+\section{Tableraceability Matrices} \label{SecTM}
+
 This section shows two traceability matrices: between the modules and the
 requirements and between the modules and the anticipated changes.
 
@@ -491,12 +508,17 @@ FR15 & \mref{mSD3}, \mref{mSD5}\\
 \label{TblRT}
 \end{table}
 
-\begin{table}[H]
-\centering
-\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+\begin{longtable}{p{0.2\textwidth} p{0.6\textwidth}}
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
+\endfirsthead
+\toprule
+\textbf{Req.} & \textbf{Modules (continued)}\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
 LF-AR1 & \mref{mBH2}\\
 LF-AR2 & \mref{mHH2}, \mref{mSD1}\\
 LF-AR3 & \mref{mBH1}, \mref{mSD1}\\
@@ -506,68 +528,101 @@ LF-AR6 & \mref{mBH2}\\
 LF-SR1 & \mref{mBH2}\\
 LF-SR2 & \mref{mSD3}\\
 LF-SR3 & \mref{mBH2}\\
-UH-EU1  & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-UH-EU2  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-UH-EU3  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-UH-LR1  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-UH-LR2  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-UH-UP1  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-UH-UP2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-UH-UP3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-UH-AR1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-UH-AR2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-SL1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-SC1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-SC2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-SC3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-PA1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-RFT1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-RFT2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-RFT3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-CR1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-CR2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-CR3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-SE1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-SE2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-LR1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-PR-LR2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-EPE1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-EPE2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-EPE3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-WE1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-WE2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-WE3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-IA1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-IA2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-IA3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-OE-IA4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AC1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AC2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AC3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AC4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AC5 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AC6 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-INT1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-INT2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-INT3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-INT4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-INT5 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-INT6 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-INT7 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-P1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-P2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AU1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AU2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-AU3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-IM1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-IM2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-IM3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-SR-IM4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+UH-EU1 & \mref{mBH2}\\
+UH-EU2 & \mref{mBH1}\\
+UH-EU3 & \mref{mBH1}, \mref{mBH2}\\
+UH-LR1 & \mref{mBH2}\\
+UH-LR2 & \mref{mBH2}\\
+UH-UP1 & \mref{mBH2}\\
+UH-UP2 & \mref{mBH2}\\
+UH-UP3 & \mref{mBH2}\\
+UH-AR1 & \mref{mBH2}\\
+UH-AR2 & \mref{mHH2}, \mref{mBH2}\\
+PR-SL1 & \mref{mSD2}\\
+PR-SC1 & \mref{mBH4}\\
+PR-SC2 & \mref{mBH4}, \mref{mBH9}\\
+PR-SC3 & \mref{mBH3}, \mref{mBH5}\\
+PR-PA1 & \mref{mBH6}\\
+PR-RFT1 & \mref{mSD1}\\
+PR-RFT2 & \mref{mSD8}\\
+PR-RFT3 & \mref{mSD8}\\
+PR-CR1 & \mref{mSD1}\\
+PR-CR2 & \mref{mSD8}\\
+PR-CR3 & \mref{mSD1}, \mref{mSD8}\\
+PR-SE1 & \mref{mBH1}, \mref{mBH3}, \mref{mSD8}\\
+PR-SE2 & \mref{mBH5} \\
+PR-LR1 & \mref{mSD1}, \mref{mSD8}\\
+PR-LR2 & \mref{mSD8}\\
+OE-EPE1 & \mref{mSD1}\\
+OE-EPE2 & \mref{mHH1}, \mref{mHH2}, \mref{mSD1}\\
+OE-EPE3 & \mref{mHH1}, \mref{mHH2}, \mref{mSD1}\\
+OE-WE1 & \mref{mHH2}, \mref{mSD1}, \mref{mSD6}\\
+OE-WE2 & \mref{mHH1}\\
+OE-WE3 & \mref{mHH2}\\
+OE-IA1 & \mref{mSD6}\\
+OE-IA2 & \mref{mSD8}\\
+OE-IA3 & \mref{mSD3}\\
+OE-IA4 & \mref{mSD1}, \mref{mSD6}\\
+OE-PR1 & Not Relevant \\
+OE-PR2 & Not Relevant \\
+OE-PR3 & Not Relevant \\
+OE-PR4 & \mref{mSD5} \\
+OE-RR1 & Not Relevant \\
+OE-RR2 & Not Relevant \\
+OE-RR3 & Not Relevant \\
+OE-RR4 & Not Relevant \\
+MS-MR1 & Not Relevant \\
+MS-MR2 & Not Relevant \\
+MS-MR3 & Not Relevant \\
+MS-MR4 & Not Relevant \\
+MS-MR5 & Not Relevant \\
+MS-MR6 & Not Relevant \\
+MS-MR7 & \mref{mSD9} \\
+MS-MR8 & \mref{mBH1}, \mref{mBH2}, \mref{mSD3}, \mref{mSD7}, \mref{mSD8}\\
+MS-SR1 & Not Relevant \\
+MS-SR2 & Not Relevant \\
+MS-SR3 & \mref{mSD9} \\
+MS-SR4 & Not Relevant \\
+MS-AR1 & \mref{mSD1}\\
+MS-AR2 & \mref{mSD8}, \mref{mBH3}, \mref{mBH1}\\
+MS-AR3 & \mref{mSD2}\\
+MS-AR4 & \mref{mHH1}, \mref{mHH2}, \mref{mSD1}\\
+MS-AR5 & \mref{mBH1}, \mref{mBH2}, \mref{mBH3}, \mref{mSD8}\\
+SR-AC1 & \mref{mBH1}, \mref{mBH2}, \mref{mBH3}, \mref{mBH5}\\
+SR-AC2 & \mref{mBH5}\\
+SR-AC3 & \mref{mBH3}, \mref{mBH5}\\
+SR-AC4 & \mref{mBH5}\\
+SR-AC5 & \mref{mBH2}, \mref{mBH9}\\
+SR-AC6 & \mref{mSD2}, \mref{mSD6}, \mref{mSD8}\\
+SR-INT1 & \mref{mBH3}\\
+SR-INT2 & \mref{mBH3}, \mref{mSD8}\\
+SR-INT3 & \mref{mBH3}, \mref{mSD8}\\
+SR-INT4 & \mref{mBH2}, \mref{mBH3}, \mref{mBH6}, \mref{mSD8}\\
+SR-INT5 & \mref{mSD8}, \mref{mSD9}\\
+SR-INT6 & \mref{mBH3}, \mref{mBH8}, \mref{mSD1}\\
+SR-INT7 & \mref{mSD1}, \mref{mSD5}\\
+SR-P1 & \mref{mSD8}, \mref{mBH4}\\
+SR-P2 & \mref{mSD8}, \mref{mBH4}\\
+SR-AU1 & \mref{mSD8}, \mref{mSD9}\\
+SR-AU2 & \mref{mSD9}\\
+SR-AU3 & \mref{mSD9}, \mref{mBH5}\\
+SR-IM1 & \mref{mSD8}\\
+SR-IM2 & \mref{mBH2}, \mref{mBH3}\\
+SR-IM3 & \mref{mSD6}\\
+SR-IM3 & Not Relevant \\
+CU-CR1 & \mref{mBH7}\\
+CU-CR2 & \mref{mBH7}, \mref{mBH2}\\
+CU-CR3 & \mref{mBH2}\\
+CU-CR4 & Not Relevant \\ 
+CR-LR1 & Not Relevant \\ 
+CR-LR2 & Not Relevant \\ 
+CR-LR3 & Not Relevant \\ 
+
+
 \bottomrule
-\end{tabular}
 \caption{Trace Between Non-Functional Requirements and Modules}
 \label{TblRT}
-\end{table}
+\end{longtable}
 
 
 
