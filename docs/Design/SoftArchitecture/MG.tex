@@ -86,6 +86,7 @@ This section records information for easy reference.
   Packages & Software Packages \\  
   API & Application Programming Interface \\
   ADT & Abstract Data Type\\
+  POC & Proof of Concept\\
   \bottomrule
 \end{tabular}\\
 
@@ -722,9 +723,46 @@ because they use modules from the lower levels.
 N/A
 \section{Timeline}
 
-\wss{Schedule of tasks and who is responsible}
+The following is the timeline for development of the modules, building up from the POC. Issues related to the timeline will be created and tracked through \href{https://github.com/thaafei/DomainX/issues}{Github Issues} and the associated \href{https://github.com/users/thaafei/projects/6}{project board}.
+\begin{longtable}{|p{1.2cm}|p{2.3cm}|p{3cm}|p{8.2cm}|}
+\hline
+\textbf{Week} & \textbf{Dates} & \textbf{Assigned To} & \textbf{Deliverables (Module Focus)} \\ \hline
+\endfirsthead
+\hline
+\textbf{Week} & \textbf{Dates} & \textbf{Assigned To} & \textbf{Deliverables (Module Focus)} \\ \hline
+\endhead
 
-\wss{You can point to GitHub if this information is included there}
+1 & Jan 5 -- Jan 11 & Haniye & Implement \textbf{User Authentication Module (\mref{mBH4})} for secure login, registration, token management, and password encryption. \\ \cline{3-4}
+  &  & Ghena & Implement \textbf{User Role Access Module (\mref{mBH5})} with Admin/Analyst/Viewer roles and middleware for route protection. \\ \hline
+
+2 & Jan 12 -- Jan 18 & Haniye & Extend backend to support \textbf{Database Persistence (\mref{mSD8})}: ORM models, migrations, CRUD operations. \\ \cline{3-4}
+  &  & Ghena & Expand \textbf{System API Gateway (\mref{mSD1})} to integrate Auth \& Repo APIs, include error-handling layer. \\ \cline{3-4}
+  &  & Fei & Write and verify unit/integration tests for authentication, role access, and API gateway routes. \\ \hline
+
+3 & Jan 19 -- Jan 25 & Awurama & Build \textbf{Application Layout Module (\mref{mBH2})} with global navigation, sidebar, responsive design, and state handling. \\ \cline{3-4}
+  &  & Ghena & Implement \textbf{Localization Module (\mref{mBH7})} using \href{https://react.i18next.com/}{i18next}; create English and French string bundles. \\ \hline
+
+4 & Jan 26 -- Feb 1 & Awurama & Implement \textbf{Domain View Module (\mref{mBH1})} to display domains and metrics with integrated backend data. \\ \cline{3-4}
+  &  & Fei & Develop \textbf{File Import Module (\mref{mSD4})} to upload, validate, and parse CSV/XLSX files. \\ \cline{3-4}
+  &  & Fei & Build \textbf{File Export Module (\mref{mSD5})} to export domain data in CSV/XLSX formats. \\ \cline{3-4}
+  &  & Ghena & Finalize \textbf{Repository API Module (\mref{mSD6})}: error handling, caching, and rate-limit retries. \\ \cline{3-4}
+  &  & Haniye & Implement \textbf{Automated Metrics Module (\mref{mBH6})} with background job scheduler and automatic metric retrieval. \\ \hline
+
+5 & Feb 2 -- Feb 8 & Awurama + Fei & Implement \textbf{Data Edit Module (\mref{mBH3})} with React validation, inline feedback, and API integration. \\ \cline{3-4}
+  &  & Awurama + Fei & Conduct accessibility and usability testing for all forms; report improvements. \\ \cline{3-4}
+  &  & Ghena & Implement \textbf{Ranking Algorithm Module (\mref{mSD2})} using AHP/BWM/SSB methods with test coverage. \\ \cline{3-4}
+  &  & Haniye & Develop \textbf{Graphing Module (\mref{mSD3})} for data visualizations using \href{https://pypi.org/project/matplotlib/}{Matplotlib}. \\ \hline
+
+6 & Feb 9 -- Feb 15 & Haniye & Build \textbf{Domain Comparison Module (\mref{mSD7})} for cross-domain analysis, visualization, and reporting. \\ \cline{3-4}
+  &  & Ghena & Optimize query performance, caching, and API latency. \\ \hline
+
+8 & Feb 23 -- Mar 1 & Ghena & Implement \textbf{Domain Management Module (\mref{mBH8})} with versioning and publication workflow. \\ \cline{3-4}
+  &  & Haniye & Develop \textbf{Notification Module (\mref{mBH9})} for email and in-app alerts. \\ \hline
+
+9-11 & Mar 2 -- Mar 23 & Awurama + Fei & Conduct full end-to-end testing; finalize documentation and update traceability links. \\ \cline{3-4}
+&  & All Developers & Code freeze and integration testing; bug fixes, performance optimization, and final release demo. \\ \hline
+
+\end{longtable}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
