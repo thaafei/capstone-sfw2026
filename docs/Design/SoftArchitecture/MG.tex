@@ -205,12 +205,13 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mHH1}:] Hardware Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{mHH2}:] Browser Module
 \item [\refstepcounter{mnum} \mthemnum \label{mBH1}:] Domain View Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] Data Edit Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH3}:] User Authentication Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH4}:] User Role Access Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] Automated Metrics Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Localization Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Domain Management Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] Domain View Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH3}:] Data Edit Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH4}:] User Authentication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] User Role Access Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Automated Metrics Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Localization Module
+\item [\refstepcounter{mnum} \mthemnum \label{mBH8}:] Domain Management Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD1}:] System API Gateway Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD2}:] Ranking Algorithm Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD3}:] Graphing Module
@@ -219,6 +220,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mSD6}:] Repository API Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD7}:] Domain Comparison Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSD8}:] Database Persistence Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSD9}:] Logging Module
 
 \end{description}
 
@@ -233,6 +235,7 @@ actually be implemented.
 {Hardware-Hiding Module} & Browser Module\\
 \midrule
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} &  Domain View Module \\
+& Landing Page Module \\
 & Data Edit Module \\
 & User Authentication Module\\
 & User Role Access Module\\
@@ -310,12 +313,20 @@ to be implemented.
 \subsubsection{ Domain View Module (\mref{mBH1})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms to retrieve and display domain metrics and packages.
-\item[Services:] Displays domain content, including it's corresponding packages and metrics. 
+\item[Services:] Displays domain content, including it's corresponding packages and metrics..
 \item[Implemented By:] \projname
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Data Edit Module (\mref{mBH2})}
+\subsubsection{ Landing Page Module (\mref{mBH2})}
+\begin{description}
+\item[Secrets:] The data structures and visual components to retrieve and display system user interface elements.
+\item[Services:] Displays user interface elements such as the buttons, sidebars and non-domain view components.
+\item[Implemented By:] \href{https://react.dev/}{React}, \projname
+\item[Type of Module:] ADT
+\end{description}
+
+\subsubsection{ Data Edit Module (\mref{mBH3})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms to edit and update metrics of a domain. 
 \item[Services:]  Handles and validates user inputs of domain/package/metric data. Provides user feedback on errors (invalid type, missing field, etc)
@@ -323,7 +334,7 @@ to be implemented.
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ User Authentication Module (\mref{mBH3})}
+\subsubsection{ User Authentication Module (\mref{mBH4})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to securely store, validate and manage user credentials.
 \item[Services:] Provides user registration, login, and session management services.
@@ -331,7 +342,7 @@ to be implemented.
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{ User Role Access Module (\mref{mBH4})}
+\subsubsection{ User Role Access Module (\mref{mBH5})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to store and validate users access level within the system.
 \item[Services:] Provides user role and capabilities related to the role.
@@ -339,7 +350,7 @@ to be implemented.
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Automated Metrics Module (\mref{mBH5})}
+\subsubsection{ Automated Metrics Module (\mref{mBH6})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used for retrieving automatable metrics.
 \item[Services:] Handles any automated data entry into system, uses Repository API module and File Import Module to automate data input.
@@ -347,7 +358,7 @@ to be implemented.
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Localization Module (\mref{mBH6})}
+\subsubsection{Localization Module (\mref{mBH7})}
 \begin{description}
 \item[Secrets:] The language files, translation mappings, and locale formatting mechanisms.
 \item[Services:] Provides translation and formatting of UI text and date/number formats.
@@ -355,7 +366,7 @@ to be implemented.
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{ Domain Management Module (\mref{mBH7})}
+\subsubsection{ Domain Management Module (\mref{mBH8})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms that handles the creation and publication of domains.
 \item[Services:] Provides versioning and publication of completed domains. 
@@ -440,6 +451,14 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
+\subsubsection{Logging Module (\mref{mSD9})}
+\begin{description}
+\item[Secrets:] The algorithms and parameters used for logging all interactions that happens with the system.
+\item[Services:] Provides logging capabilities and logs user actions and system actions, provides a way to retrieve logged details.
+\item[Implemented By:] \href{https://docs.python.org/3/library/logging.html}{Logging (Python)}
+\item[Type of Module:] Abstract Object
+\end{description}
+
 This section shows two traceability matrices: between the modules and the
 requirements and between the modules and the anticipated changes.
 
@@ -451,16 +470,16 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-FR1 & \mref{mBH4}\\
-FR2 & \mref{mBH3}, \mref{mBH4}\\
-FR3 & \mref{mBH3}\\
-FR4 & \mref{mBH3}\\
-FR5 & \mref{mBH2}, \mref{mSD8}  \\
-FR6 & \mref{mBH7}  \\
-FR7 & \mref{mBH2}, \mref{mBH4}, \mref{mSD8} \\
-FR8 & \mref{mBH2} \\
-FR9 & \mref{mBH2}, \mref{mBH4}, \mref{mBH5}, \mref{mSD4} \\
-FR10 & \mref{mBH5}, \mref{mSD4}, \mref{mSD6} \\
+FR1 & \mref{mBH5}\\
+FR2 & \mref{mBH4}, \mref{mBH5}\\
+FR3 & \mref{mBH4}\\
+FR4 & \mref{mBH4}\\
+FR5 & \mref{mBH3}, \mref{mSD8}  \\
+FR6 & \mref{mBH8}  \\
+FR7 & \mref{mBH3}, \mref{mBH5}, \mref{mSD8} \\
+FR8 & \mref{mBH3} \\
+FR9 & \mref{mBH3}, \mref{mBH5}, \mref{mBH6}, \mref{mSD4}, \mref{mSD9} \\
+FR10 & \mref{mBH6}, \mref{mSD4}, \mref{mSD6} \\
 FR11 & \mref{mBH1}, \mref{mSD8}\\
 FR12 & \mref{mSD2}, \mref{mBH1}\\
 FR13 & \mref{mSD3}\\
@@ -478,15 +497,15 @@ FR15 & \mref{mSD3}, \mref{mSD5}\\
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-LF-AR1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-LF-AR2 & \mref{mInput}, \mref{mParams}\\
-LF-AR3 & \mref{mVerify}\\
-LF-AR4 & \mref{mOutput}, \mref{mControl}\\
-LF-AR5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-LF-AR6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-LF-SR1 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-LF-SR2 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-LF-SR3 & \mref{mVerifyOut}\\
+LF-AR1 & \mref{mBH2}\\
+LF-AR2 & \mref{mHH2}, \mref{mSD1}\\
+LF-AR3 & \mref{mBH1}, \mref{mSD1}\\
+LF-AR4 & \mref{mBH2}\\
+LF-AR5 & \mref{mBH2}\\
+LF-AR6 & \mref{mBH2}\\
+LF-SR1 & \mref{mBH2}\\
+LF-SR2 & \mref{mSD3}\\
+LF-SR3 & \mref{mBH2}\\
 UH-EU1  & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
 UH-EU2  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 UH-EU3  & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
@@ -544,7 +563,6 @@ SR-IM1 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 SR-IM2 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 SR-IM3 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 SR-IM4 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-
 \bottomrule
 \end{tabular}
 \caption{Trace Between Non-Functional Requirements and Modules}
