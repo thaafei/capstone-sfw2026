@@ -174,10 +174,9 @@ change.
   \item[\refstepcounter{acnum} \actheacnum \label{ac3}:] The ranking algorithm used within a domain for packages may be changed (e.g. Alternatives to AHP, such as BWM, SSB, etc)
   \item[\refstepcounter{acnum} \actheacnum \label{ac4}:] The comparison algorithms used between domains may be changed
   \item[\refstepcounter{acnum} \actheacnum \label{ac5}:] The user access roles available might be expanded (e.g. Admin, User, Contributor)
-  \item[\refstepcounter{acnum} \actheacnum \label{ac6}:] Additional languages might be supported (e.g. French, Simplified Chinese)
-  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] The APIs used to extract repository metrics
-  \item[\refstepcounter{acnum} \actheacnum \label{ac8}:] The visualization libraries used to display and export data
-  \item[\refstepcounter{acnum} \actheacnum \label{ac9}:] Additional export and import file formatting may be added (e.g. CSV, Excel)
+  \item[\refstepcounter{acnum} \actheacnum \label{ac6}:] The APIs used to extract repository metrics
+  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] The visualization libraries used to display and export data
+  \item[\refstepcounter{acnum} \actheacnum \label{ac8}:] Additional export and import file formatting may be added (e.g. CSV, Excel)
 \end{description}
 \subsection{Unlikely Changes} \label{SecUchange}
 
@@ -193,8 +192,7 @@ decisions will be changed.
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc2}:] The platform of the tool will remain as a web application
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc3}:] The development stack of our web application will remain the same (\href{https://react.dev/}{React}, \href{https://www.djangoproject.com/}{Django})
   \item[\refstepcounter{ucnum} \uctheucnum \label{uc4}:] Input types of existing metrics, as outlined in the methodology paper (\citet{MethodologyPaper})
-  \item[\refstepcounter{ucnum} \uctheucnum \label{uc5}:] Popular browser compatibility is expected to remain unchanged (e.g. Chrome, Firefox, Edge)
-  \item[\refstepcounter{ucnum} \uctheucnum \label{uc6}:] Tool owner, Dr. Spencer Smith, is not expected to change for the duration of the tool's lifespan
+  \item[\refstepcounter{ucnum} \uctheucnum \label{uc5}:] Tool owner, Dr. Spencer Smith, is not expected to change for the duration of the tool's lifespan
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -207,24 +205,23 @@ actually be implemented.
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH1}:] Hardware Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{mHH2}:] Browser Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH1}:] Domain View Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH2}:] Application Layout Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH3}:] Data Edit Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH4}:] User Authentication Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH5}:] User Role Access Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH6}:] Automated Metrics Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH7}:] Localization Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH8}:] Domain Management Module
-\item [\refstepcounter{mnum} \mthemnum \label{mBH9}:] Notification Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD1}:] System API Gateway Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD2}:] Ranking Algorithm Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD3}:] Graphing Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD4}:] File Import Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD5}:] File Export Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD6}:] Repository API Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD7}:] Domain Comparison Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD8}:] Database Persistence Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSD9}:] Logging Module
+\item [\refstepcounter{mnum} \mthemnum \label{mAppUI}:] Application UI Module Module
+\item [\refstepcounter{mnum} \mthemnum \label{mDataEdit}:] Data Edit Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUserAuth}:] User Authentication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUserRole}:] User Role Access Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUserPage}:] User Page Module
+\item [\refstepcounter{mnum} \mthemnum \label{mAutMetrics}:] Automated Metrics
+\item [\refstepcounter{mnum} \mthemnum \label{mDomainsPage}:] Domains Page Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSysApi}:] System API Gateway Module
+\item [\refstepcounter{mnum} \mthemnum \label{mRankAlgo}:] Ranking Algorithm Module
+\item [\refstepcounter{mnum} \mthemnum \label{mGraphing}:] Graphing Module
+\item [\refstepcounter{mnum} \mthemnum \label{mImport}:] File Import Module
+\item [\refstepcounter{mnum} \mthemnum \label{mExport}:] File Export Module
+\item [\refstepcounter{mnum} \mthemnum \label{mRepoAPI}:] Repository API Module
+\item [\refstepcounter{mnum} \mthemnum \label{mCompare}:] Comparison Module
+\item [\refstepcounter{mnum} \mthemnum \label{mDB}:] Database Persistence Module
+\item [\refstepcounter{mnum} \mthemnum \label{mLog}:] Logging Module
+\item [\refstepcounter{mnum} \mthemnum \label{mConf}:] Configuration Module
 
 
 \end{description}
@@ -239,15 +236,15 @@ actually be implemented.
 
 {Hardware-Hiding Module} & Browser Module\\
 \midrule
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} &  Domain View Module \\
-& Application Layout Module \\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} &  Domains Page Module \\
+& Application UI Module \\
 & Data Edit Module \\
 & User Authentication Module\\
 & User Role Access Module\\
+& User Page Module \\
 & Automated Metrics Module\\
-& Localization Module\\
-& Domain Management Module \\
-& Notification Module \\
+& Comparison Module \\
+& Configuration Module \\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} & {System API Gateway Module}\\
@@ -256,7 +253,6 @@ actually be implemented.
 & File Import Module\\
 & File Export Module\\
 & Repository API Module\\
-& Domain Comparison Module\\
 & Database Persistence Module \\
 & Logging Module \\
 \bottomrule
@@ -317,31 +313,24 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{ Domain View Module (\mref{mBH1})}
+
+\subsubsection{ Application UI Module (\mref{mAppUI})}
 \begin{description}
-\item[Secrets:] The data structures and algorithms to retrieve and display domain metrics and packages.
-\item[Services:] Displays domain content, including it's corresponding packages and metrics..
+\item[Secrets:] The data structures and algorithms to display all visuals.
+\item[Services:] Displays and renders the interactive user interface elements.
+\item[Implemented By:] \href{https://react.dev/}{React}
+\item[Type of Module:] ADT
+\end{description}
+
+\subsubsection{ Data Edit Module (\mref{mDataEdit})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms to edit domain data. 
+\item[Services:]  Handles and validates user inputs of domain/package/metric data.
 \item[Implemented By:] \projname
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Application Layout Module (\mref{mBH2})}
-\begin{description}
-\item[Secrets:] The data structures and visual components to retrieve and display system user interface elements.
-\item[Services:] Displays user interface elements such as the buttons, sidebars and non-domain view components.
-\item[Implemented By:] \href{https://react.dev/}{React}, \projname
-\item[Type of Module:] ADT
-\end{description}
-
-\subsubsection{ Data Edit Module (\mref{mBH3})}
-\begin{description}
-\item[Secrets:] The data structures and algorithms to edit and update metrics of a domain. 
-\item[Services:]  Handles and validates user inputs of domain/package/metric data. Provides user feedback on errors (invalid type, missing field, etc)
-\item[Implemented By:] \href{https://react.dev/}{React}, \projname
-\item[Type of Module:] ADT
-\end{description}
-
-\subsubsection{ User Authentication Module (\mref{mBH4})}
+\subsubsection{ User Authentication Module (\mref{mUserAuth})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to securely store, validate and manage user credentials.
 \item[Services:] Provides user registration, login, and session management services.
@@ -349,7 +338,7 @@ to be implemented.
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{ User Role Access Module (\mref{mBH5})}
+\subsubsection{ User Role Access Module (\mref{mUserRole})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to store and validate users access level within the system.
 \item[Services:] Provides user role and capabilities related to the role.
@@ -357,37 +346,46 @@ to be implemented.
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Automated Metrics Module (\mref{mBH6})}
+\subsubsection{User Page Module (\mref{mUserPage})}
 \begin{description}
-\item[Secrets:] The data structures and algorithms used for retrieving automatable metrics.
-\item[Services:] Handles any automated data entry into system, uses Repository API module and File Import Module to automate data input.
+\item[Secrets:] The algorithms and components used to display the interactive user settings page.
+\item[Services:] Displays user settings where user can update their settings and view information related to their account profile.
+\item[Implemented By:] \projname
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{ Automated Metrics Module (\mref{mAutMetrics})}
+\begin{description}
+\item[Secrets:] The data structures and algorithms used for adding automatable metrics.
+\item[Services:] Handles the automated data entry into system using the Repository Api Module \mref{mRepoAPI}.
 \item[Implemented By:]  \projname
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Localization Module (\mref{mBH7})}
+\subsubsection{ Domains Page Module (\mref{mDomainsPage})}
 \begin{description}
-\item[Secrets:] The language files, translation mappings, and locale formatting mechanisms.
-\item[Services:] Provides translation and formatting of UI text and date/number formats.
-\item[Implemented By:] \href{https://react.i18next.com/}{react-i18next}
-\item[Type of Module:] Library
-\end{description}
-
-\subsubsection{ Domain Management Module (\mref{mBH8})}
-\begin{description}
-\item[Secrets:] The data structures and algorithms that handles the creation and publication of domains.
-\item[Services:] Provides versioning and publication of completed domains. 
+\item[Secrets:] The algorithms and components used to display domain management data.
+\item[Services:] Displays available domains and the domain contents, including it's corresponding packages, metrics, description.
 \item[Implemented By:] \projname
 \item[Type of Module:] ADT
 \end{description}
 
-\subsubsection{ Notification Module (\mref{mBH9})}
+\subsubsection{Comparison Module (\mref{mCompare})}
 \begin{description}
-\item[Secrets:] The data structures and algorithms that handles the internal and external communication with the user.
-\item[Services:] To notify users of the status of automated metrics, and communication with user outside of the application, such as through email. 
+\item[Secrets:] The data structures and algorithm that store the package comparison methods.
+\item[Services:] Defines available comparison methods based on user request.
 \item[Implemented By:] \projname
-\item[Type of Module:] ADT
+\item[Type of Module:] Abstract Object
 \end{description}
+
+\subsubsection{Configuration Module (\mref{mConf})}
+\begin{description}
+\item[Secrets:] The data structures and algorithm that stores each individual user.
+\item[Services:] Using the user authentication and provides interface to retrieve and update user information.
+\item[Implemented By:] \projname
+\item[Type of Module:] Abstract Object
+\end{description}
+
 
 \subsection{Software Decision Module}
 \begin{description}
@@ -401,32 +399,32 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{System API Gateway Module (\mref{mSD1})}
+\subsubsection{System API Gateway Module (\mref{mSysApi})}
 \begin{description}
-\item[Secrets:] The business logic that coordinates the flow of communication between modules, and the frontend, backend, and database.
-\item[Services:] Manages application state and serves as the central communication hub for the system
-\item[Implemented By:] \href{https://react.dev/}{React}, \href{https://www.djangoproject.com/}{Django}
+\item[Secrets:] The backend apis that services the flow of business logic.
+\item[Services:] Manages application state and serves as the central communication hub for the system.
+\item[Implemented By:] \href{https://www.djangoproject.com/}{Django}
 \item[Type of Module:] Abstract Object
 \end{description}
 
 
-\subsubsection{Ranking Algorithm Module (\mref{mSD2})}
+\subsubsection{Ranking Algorithm Module (\mref{mRankAlgo})}
 \begin{description}
-\item[Secrets:] Ranking algorithms and weights (AHP, BWM, SSB).
-\item[Services:] Computes comparative rankings using configurable methods.
-\item[Implemented By:] \href{https://pypi.org/project/AHPy/}{AHPy}, \projname
+\item[Secrets:] AHP ranking algorithm used for package comparison.
+\item[Services:] Computes comparative rankings using configurable methods and outputs the result.
+\item[Implemented By:] \href{https://pypi.org/project/AHPy/}{AHPy}
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{Graphing Module (\mref{mSD3})}
+\subsubsection{Graphing Module (\mref{mGraphing})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used for graphing data.
-\item[Services:] Provides the functions related to graphing.
+\item[Services:] Takes metric data as input and outputs requested graphs.
 \item[Implemented By:] \href{https://pypi.org/project/matplotlib/}{Matplotlib}
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{File Import Module (\mref{mSD4})}
+\subsubsection{File Import Module (\mref{mImport})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to import data of varying formats (e.g. Excel, CSV).
 \item[Services:] Facilitates the process of processing a inputted file into data for use by the rest of the system.
@@ -434,7 +432,7 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{File Export Module (\mref{mSD5})}
+\subsubsection{File Export Module (\mref{mExport})}
 \begin{description}
 \item[Secrets:] The data structures and algorithms used to export data in varying formats (e.g. Excel, CSV).
 \item[Services:] Facilitates the process of transforming system data into an exportable format (e.g. Excel, CSV).
@@ -442,31 +440,23 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{Repository API Module (\mref{mSD6})}
+\subsubsection{Repository API Module (\mref{mRepoAPI})}
 \begin{description}
 \item[Secrets:] API endpoints, tokens, and rate limit strategies.
 \item[Services:] Fetches metrics and metadata from external repositories (e.g., GitHub, GitLab).
-\item[Implemented By:] \projname
-\item[Type of Module:] Abstract Object
+\item[Implemented By:] \href{https://docs.github.com/en/rest?apiVersion=2022-11-28}{Github API}
+\item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Domain Comparison Module (\mref{mSD7})}
+\subsubsection{Database Persistence Module (\mref{mDB})}
 \begin{description}
-\item[Secrets:] The algorithms and parameters used for comparing domains.
-\item[Services:] Computes and visualizes comparisons across multiple domains.
-\item[Implemented By:] \projname
-\item[Type of Module:] Abstract Object
-\end{description}
-
-\subsubsection{Database Persistence Module (\mref{mSD8})}
-\begin{description}
-\item[Secrets:] The algorithms and parameters used for interacting with the database.
+\item[Secrets:] The algorithms used for interacting with the database.
 \item[Services:] Provides database methods related to updating and querying the stored data. As well as the connection to the database itself.
 \item[Implemented By:] \href{https://www.mysql.com/}{MySQL}
-\item[Type of Module:] Abstract Object
+\item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Logging Module (\mref{mSD9})}
+\subsubsection{Logging Module (\mref{mLog})}
 \begin{description}
 \item[Secrets:] The algorithms and parameters used for logging all interactions that happens with the system.
 \item[Services:] Provides logging capabilities and logs user actions and system actions, provides a way to retrieve logged details.
@@ -638,10 +628,9 @@ CR-LR3 & Not Relevant \\
 \acref{ac3} & \mref{mSD2}\\
 \acref{ac4} & \mref{mSD7}\\
 \acref{ac5} & \mref{mBH4}\\
-\acref{ac6} & \mref{mBH6}\\
-\acref{ac7} & \mref{mSD6}\\
-\acref{ac8} & \mref{mSD3}\\
-\acref{ac9} & \mref{mSD4},  \mref{mSD5}\\
+\acref{ac6} & \mref{mSD6}\\
+\acref{ac7} & \mref{mSD3}\\
+\acref{ac8} & \mref{mSD4},  \mref{mSD5}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -677,7 +666,7 @@ because they use modules from the lower levels.
 \caption{Main domain summary view page}
 \label{FigUI1}
 \end{figure}
-\ref{FigUI1} shows the main page users of any role can see. This page allows the user to filter published domains, compare domains, and view domain details. The summary view of the domain allows users to quickly view the graphs associated with the data.
+Figure \ref{FigUI1} shows the main page users of any role can see. This page allows the user to filter published domains, compare domains, and view domain details. The summary view of the domain allows users to quickly view the graphs associated with the data.
 
 \begin{figure}[H]
 \centering
@@ -685,7 +674,7 @@ because they use modules from the lower levels.
 \caption{Main domain data view page}
 \label{FigUI2}
 \end{figure}
-\ref{FigUI2} shows the secondary source view of a domain. This allows users to see the underlying metric data used to display the graphs from the summary view.
+Figure \ref{FigUI2} shows the secondary source view of a domain. This allows users to see the underlying metric data used to display the graphs from the summary view.
 
 \begin{figure}[H]
 \centering
@@ -693,7 +682,7 @@ because they use modules from the lower levels.
 \caption{Domain editing}
 \label{FigUI3}
 \end{figure}
-\ref{FigUI3} shows the domain editing view accessible for collaborator roles and above (admin, super admin). This page allows user to enter metric data manually and triggering the automation tool to input data automatically for the selected packages and metrics. Automatable metrics and data are indicated with a different colour.
+Figure \ref{FigUI3} shows the domain editing view accessible for collaborator roles and above (admin, super admin). This page allows user to enter metric data manually and triggering the automation tool to input data automatically for the selected packages and metrics. Automatable metrics and data are indicated with a different colour.
 
 \begin{figure}[H]
 \centering
@@ -701,7 +690,7 @@ because they use modules from the lower levels.
 \caption{Domain management (collaborator role)}
 \label{FigUI4}
 \end{figure}
-\ref{FigUI4} shows the domain management page that a collaborator can see. This page allows them to quickly glance information about the domains they are working on, and the current process of the domains. As well as the option to publish domains.
+Figure \ref{FigUI4} shows the domain management page that a collaborator can see. This page allows them to quickly glance information about the domains they are working on, and the current process of the domains. As well as the option to publish domains.
 
 \begin{figure}[H]
 \centering
@@ -709,7 +698,7 @@ because they use modules from the lower levels.
 \caption{User management (super admin role)}
 \label{FigUI5}
 \end{figure}
-\ref{FigUI5} shows the user management page, this page is visible for admin and super admins. Allows admins to edit the role access level of current users, user information, and sending invites to directly invite users.
+Figure \ref{FigUI5} shows the user management page, this page is visible for admin and super admins. Allows admins to edit the role access level of current users, user information, and sending invites to directly invite users.
 
 \begin{figure}[H]
 \centering
@@ -717,7 +706,7 @@ because they use modules from the lower levels.
 \caption{Main user information page (viewer role)}
 \label{FigUI6}
 \end{figure}
-\ref{FigUI6} shows the main user information page that any users can see. This apge allows users to set their basic information. Additional side columns are added based on the role access level.
+Figure \ref{FigUI6} shows the main user information page that any users can see. This apge allows users to set their basic information. Additional side columns are added based on the role access level.
 
 \section{Design of Communication Protocols}
 N/A
