@@ -175,7 +175,7 @@ change.
   \item[\refstepcounter{acnum} \actheacnum \label{ac4}:] The comparison algorithms used between domains may be changed
   \item[\refstepcounter{acnum} \actheacnum \label{ac5}:] The user access roles available might be expanded (e.g. Admin, User, Contributor)
   \item[\refstepcounter{acnum} \actheacnum \label{ac6}:] The APIs used to extract repository metrics
-  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] The visualization libraries used to display and export data
+  \item[\refstepcounter{acnum} \actheacnum \label{ac7}:] The visualization libraries used to display data
   \item[\refstepcounter{acnum} \actheacnum \label{ac8}:] Additional export and import file formatting may be added (e.g. CSV, Excel)
 \end{description}
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -478,21 +478,21 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-FR1 & \mref{mBH5}\\
-FR2 & \mref{mBH4}, \mref{mBH5}\\
-FR3 & \mref{mBH4}\\
-FR4 & \mref{mBH4}\\
-FR5 & \mref{mBH3}, \mref{mSD8}  \\
-FR6 & \mref{mBH8}  \\
-FR7 & \mref{mBH3}, \mref{mBH5}, \mref{mSD8} \\
-FR8 & \mref{mBH3} \\
-FR9 & \mref{mBH3}, \mref{mBH5}, \mref{mBH6}, \mref{mSD4}, \mref{mSD9} \\
-FR10 & \mref{mBH6}, \mref{mSD4}, \mref{mSD6} \\
-FR11 & \mref{mBH1}, \mref{mSD8}\\
-FR12 & \mref{mSD2}, \mref{mBH1}\\
-FR13 & \mref{mSD3}\\
-FR14 & \mref{mSD5}\\
-FR15 & \mref{mSD3}, \mref{mSD5}\\
+FR1 & \mref{mUserPage}\\
+FR2 & \mref{mUserAuth}, \mref{mUserPage}\\
+FR3 & \mref{mUserAuth}\\
+FR4 & \mref{mConf}\\
+FR5 & \mref{mDomainsPage}, \mref{mUserRole} \\
+FR6 & \mref{mDomainsPage} \\
+FR7 & \mref{mDataEdit}, \mref{mDB}, \mref{mExport} \\
+FR8 & \mref{mDataEdit} \\
+FR9 & \mref{mImport} \\
+FR10 & \mref{mAutMetrics}, \mref{mRepoAPI}\\
+FR11 & \mref{mDomainsPage}\\
+FR12 & \mref{mRankAlgo}, \mref{mCompare}\\
+FR13 & \mref{mGraphing}\\
+FR14 & \mref{mExport}\\
+FR15 & \mref{mGraphing}, \mref{mExport}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Functional Requirements and Modules}
@@ -510,54 +510,54 @@ FR15 & \mref{mSD3}, \mref{mSD5}\\
 \endhead
 \bottomrule
 \endfoot
-LF-AR1 & \mref{mBH2}\\
-LF-AR2 & \mref{mHH2}, \mref{mSD1}\\
-LF-AR3 & \mref{mBH1}, \mref{mSD1}\\
-LF-AR4 & \mref{mBH2}\\
-LF-AR5 & \mref{mBH2}\\
-LF-AR6 & \mref{mBH2}\\
-LF-SR1 & \mref{mBH2}\\
-LF-SR2 & \mref{mSD3}\\
-LF-SR3 & \mref{mBH2}\\
-UH-EU1 & \mref{mBH2}\\
-UH-EU2 & \mref{mBH1}\\
-UH-EU3 & \mref{mBH1}, \mref{mBH2}\\
-UH-LR1 & \mref{mBH2}\\
-UH-LR2 & \mref{mBH2}\\
-UH-UP1 & \mref{mBH2}\\
-UH-UP2 & \mref{mBH2}\\
-UH-UP3 & \mref{mBH2}\\
-UH-AR1 & \mref{mBH2}\\
-UH-AR2 & \mref{mHH2}, \mref{mBH2}\\
-PR-SL1 & \mref{mSD2}\\
-PR-SC1 & \mref{mBH4}\\
-PR-SC2 & \mref{mBH4}, \mref{mBH9}\\
-PR-SC3 & \mref{mBH3}, \mref{mBH5}\\
-PR-PA1 & \mref{mBH6}\\
-PR-RFT1 & \mref{mSD1}\\
-PR-RFT2 & \mref{mSD8}\\
-PR-RFT3 & \mref{mSD8}\\
-PR-CR1 & \mref{mSD1}\\
-PR-CR2 & \mref{mSD8}\\
-PR-CR3 & \mref{mSD1}, \mref{mSD8}\\
-PR-SE1 & \mref{mBH1}, \mref{mBH3}, \mref{mSD8}\\
-PR-SE2 & \mref{mBH5} \\
-PR-LR1 & \mref{mSD1}, \mref{mSD8}\\
-PR-LR2 & \mref{mSD8}\\
-OE-EPE1 & \mref{mSD1}\\
-OE-EPE2 & \mref{mHH1}, \mref{mHH2}, \mref{mSD1}\\
-OE-EPE3 & \mref{mHH1}, \mref{mHH2}, \mref{mSD1}\\
-OE-WE1 & \mref{mHH2}, \mref{mSD1}, \mref{mSD6}\\
+LF-AR1 & \mref{mAppUI}\\
+LF-AR2 & \mref{mHH2}, \mref{mSysApi}\\
+LF-AR3 & \mref{mAppUI}, \mref{mGraphing}, \mref{mSysApi}\\
+LF-AR4 & \mref{mAppUI}, \mref{mDomainsPage}\\
+LF-AR5 & \mref{mAppUI}\\
+LF-AR6 & \mref{mAppUI}\\
+LF-SR1 & \mref{mAppUI}\\
+LF-SR2 & \mref{mGraphing}\\
+LF-SR3 & \mref{mAppUI},\\
+UH-EU1 & \mref{mAppUI}\\
+UH-EU2 & \mref{mAppUI}\\
+UH-EU3 & \mref{mAppUI}\\
+UH-LR1 & \mref{mAppUI}\\
+UH-LR2 & \mref{mAppUI}, \mref{mDomainsPage}\\
+UH-UP1 & \mref{mAppUI}, \mref{mDomainsPage}\\
+UH-UP2 & \mref{mAppUI}, \mref{mDomainsPage}\\
+UH-UP3 & \mref{mAppUI}\\
+UH-AR1 & \mref{mAppUI}\\
+UH-AR2 & \mref{mAppUI}\\
+PR-SL1 & \mref{mCompare}\\
+PR-SC1 & \mref{mUserAuth}\\
+PR-SC2 & \mref{mUserAuth}, \mref{mConf}\\
+PR-SC3 & \mref{mUserRole}, \mref{mDataEdit}\\
+PR-PA1 & \mref{mAutMetrics}\\
+PR-RFT1 & \mref{mSysApi}\\
+PR-RFT2 & \mref{mDB}\\
+PR-RFT3 & \mref{mDB}\\
+PR-CR1 & \mref{mSysApi}\\
+PR-CR2 & \mref{mDB}\\
+PR-CR3 & \mref{mSysApi}, \mref{mDB}\\
+PR-SE1 & \mref{mAppUI}, \mref{mSysApi}, \mref{mDB}\\
+PR-SE2 & \mref{mUserAuth}, \mref{mUserRole} \\
+PR-LR1 & \mref{mSysApi}, \mref{mDB}\\
+PR-LR2 & \mref{mDB}\\
+OE-EPE1 & \mref{mSysApi}\\
+OE-EPE2 & \mref{mHH1}, \mref{mHH2}\\
+OE-EPE3 & \mref{mHH1}\\
+OE-WE1 & \mref{mHH2}, \mref{mSysApi}, \mref{mRepoAPI}\\
 OE-WE2 & \mref{mHH1}\\
 OE-WE3 & \mref{mHH2}\\
-OE-IA1 & \mref{mSD6}\\
-OE-IA2 & \mref{mSD8}\\
-OE-IA3 & \mref{mSD3}\\
-OE-IA4 & \mref{mSD1}, \mref{mSD6}\\
+OE-IA1 & \mref{mRepoAPI}\\
+OE-IA2 & \mref{mDB}\\
+OE-IA3 & \mref{mGraphing}\\
+OE-IA4 & \mref{mSysApi}, \mref{mRepoAPI}\\
 OE-PR1 & Not Relevant \\
 OE-PR2 & Not Relevant \\
 OE-PR3 & Not Relevant \\
-OE-PR4 & \mref{mSD5} \\
+OE-PR4 & \mref{mExport}, \mref{mGraphing} \\
 OE-RR1 & Not Relevant \\
 OE-RR2 & Not Relevant \\
 OE-RR3 & Not Relevant \\
@@ -568,42 +568,42 @@ MS-MR3 & Not Relevant \\
 MS-MR4 & Not Relevant \\
 MS-MR5 & Not Relevant \\
 MS-MR6 & Not Relevant \\
-MS-MR7 & \mref{mSD9} \\
-MS-MR8 & \mref{mBH1}, \mref{mBH2}, \mref{mSD3}, \mref{mSD7}, \mref{mSD8}\\
+MS-MR7 & \mref{mLog}, \mref{mDataEdit} \\
+MS-MR8 & \mref{mAppUI}, \mref{mSysApi}, \mref{mRepoAPI}, \mref{mDB}\\
 MS-SR1 & Not Relevant \\
 MS-SR2 & Not Relevant \\
-MS-SR3 & \mref{mSD9} \\
+MS-SR3 & \mref{mLog} \\
 MS-SR4 & Not Relevant \\
-MS-AR1 & \mref{mSD1}\\
-MS-AR2 & \mref{mSD8}, \mref{mBH3}, \mref{mBH1}\\
-MS-AR3 & \mref{mSD2}\\
-MS-AR4 & \mref{mHH1}, \mref{mHH2}, \mref{mSD1}\\
-MS-AR5 & \mref{mBH1}, \mref{mBH2}, \mref{mBH3}, \mref{mSD8}\\
-SR-AC1 & \mref{mBH1}, \mref{mBH2}, \mref{mBH3}, \mref{mBH5}\\
-SR-AC2 & \mref{mBH5}\\
-SR-AC3 & \mref{mBH3}, \mref{mBH5}\\
-SR-AC4 & \mref{mBH5}\\
-SR-AC5 & \mref{mBH2}, \mref{mBH9}\\
-SR-AC6 & \mref{mSD2}, \mref{mSD6}, \mref{mSD8}\\
-SR-INT1 & \mref{mBH3}\\
-SR-INT2 & \mref{mBH3}, \mref{mSD8}\\
-SR-INT3 & \mref{mBH3}, \mref{mSD8}\\
-SR-INT4 & \mref{mBH2}, \mref{mBH3}, \mref{mBH6}, \mref{mSD8}\\
-SR-INT5 & \mref{mSD8}, \mref{mSD9}\\
-SR-INT6 & \mref{mBH3}, \mref{mBH8}, \mref{mSD1}\\
-SR-INT7 & \mref{mSD1}, \mref{mSD5}\\
-SR-P1 & \mref{mSD8}, \mref{mBH4}\\
-SR-P2 & \mref{mSD8}, \mref{mBH4}\\
-SR-AU1 & \mref{mSD8}, \mref{mSD9}\\
-SR-AU2 & \mref{mSD9}\\
-SR-AU3 & \mref{mSD9}, \mref{mBH5}\\
-SR-IM1 & \mref{mSD8}\\
-SR-IM2 & \mref{mBH2}, \mref{mBH3}\\
-SR-IM3 & \mref{mSD6}\\
+MS-AR1 & \mref{mSysApi}\\
+MS-AR2 & \mref{mDB}\\
+MS-AR3 & \mref{mRepoAPI}\\
+MS-AR4 & \mref{mHH1}, \mref{mHH2}, \mref{mSysApi}\\
+MS-AR5 & \mref{mSysApi}, \mref{mAppUI}, \mref{mDB}\\
+SR-AC1 & \mref{mUserRole}, \mref{mDomainsPage}\\
+SR-AC2 & \mref{mUserRole}\\
+SR-AC3 & \mref{mConf}, \mref{mUserRole}\\
+SR-AC4 & \mref{mUserRole}\\
+SR-AC5 & \mref{mAppUI}\\
+SR-AC6 & \mref{mRepoAPI}, \mref{mDB}\\
+SR-INT1 & \mref{mDataEdit}\\
+SR-INT2 & \mref{mDB}\\
+SR-INT3 & \mref{mDataEdit}, \mref{mDB}\\
+SR-INT4 & \mref{mAppUI}, \mref{mDataEdit}, \mref{mAutMetrics}, \mref{mDB}\\
+SR-INT5 & \mref{mDB}, \mref{mLog}\\
+SR-INT6 & \mref{mDataEdit}\\
+SR-INT7 & \mref{mExport}, \mref{mSysApi}, \mref{mAppUI}\\
+SR-P1 & \mref{mDB}, \mref{mUserAuth}, \mref{mConf}\\
+SR-P2 & \mref{mDB}, \mref{mUserAuth}, \mref{mConf}\\
+SR-AU1 & \mref{mDB}, \mref{mLog}\\
+SR-AU2 & \mref{mLog}\\
+SR-AU3 & \mref{mLog}, \mref{mUserRole}\\
+SR-IM1 & \mref{mDB}\\
+SR-IM2 & \mref{mAppUI}\\
+SR-IM3 & \mref{mRepoAPI}\\
 SR-IM3 & Not Relevant \\
-CU-CR1 & \mref{mBH7}\\
-CU-CR2 & \mref{mBH7}, \mref{mBH2}\\
-CU-CR3 & \mref{mBH2}\\
+CU-CR1 & \mref{mAppUI}\\
+CU-CR2 & \mref{mAppUI}\\
+CU-CR3 & \mref{mAppUI}\\
 CU-CR4 & Not Relevant \\ 
 CR-LR1 & Not Relevant \\ 
 CR-LR2 & Not Relevant \\ 
@@ -623,14 +623,14 @@ CR-LR3 & Not Relevant \\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{ac1} & \mref{mBH1}, \mref{mBH2}, \mref{mSD8}\\
-\acref{ac2} & \mref{mBH3}\\
-\acref{ac3} & \mref{mSD2}\\
-\acref{ac4} & \mref{mSD7}\\
-\acref{ac5} & \mref{mBH4}\\
-\acref{ac6} & \mref{mSD6}\\
-\acref{ac7} & \mref{mSD3}\\
-\acref{ac8} & \mref{mSD4},  \mref{mSD5}\\
+\acref{ac1} & \mref{mDataEdit}, \mref{mDB}\\
+\acref{ac2} & \mref{mUserAuth}\\
+\acref{ac3} & \mref{mRankAlgo}, \mref{mCompare}\\
+\acref{ac4} & \mref{mCompare}\\
+\acref{ac5} & \mref{mUserRole}\\
+\acref{ac6} & \mref{mRepoAPI}\\
+\acref{ac7} & \mref{mGraphing}\\
+\acref{ac8} & \mref{mExport},  \mref{mImport}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -721,32 +721,31 @@ The following is the timeline for development of the modules, building up from t
 \textbf{Week} & \textbf{Dates} & \textbf{Assigned To} & \textbf{Deliverables (Module Focus)} \\ \hline
 \endhead
 
-1 & Jan 5 -- Jan 11 & Haniye & Implement \textbf{User Authentication Module (\mref{mBH4})} for secure login, registration, token management, and password encryption. \\ \cline{3-4}
-  &  & Ghena & Implement \textbf{User Role Access Module (\mref{mBH5})} with Admin/Analyst/Viewer roles and middleware for route protection. \\ \hline
+1 & Jan 5 -- Jan 11 & Haniye & Implement \textbf{User Authentication Module (\mref{mUserAuth})} for secure login, registration, token management, and password encryption. \\ \cline{3-4}
+  &  & Ghena & Implement \textbf{User Role Access Module (\mref{mUserRole})} with Admin/Analyst/Viewer roles and middleware for route protection. \\ \cline{3-4}
+  &  & Fei & Setup Logging Module (\mref{mLog}) \\ \cline{3-4}
+  &  & Fei & Setup testing framework \\ \cline{3-4}
+  &  & Awurama & Build User Page (\mref{mUserPage}) \\ \hline
 
-2 & Jan 12 -- Jan 18 & Haniye & Extend backend to support \textbf{Database Persistence (\mref{mSD8})}: ORM models, migrations, CRUD operations. \\ \cline{3-4}
-  &  & Ghena & Expand \textbf{System API Gateway (\mref{mSD1})} to integrate Auth \& Repo APIs, include error-handling layer. \\ \cline{3-4}
-  &  & Fei & Write and verify unit/integration tests for authentication, role access, and API gateway routes. \\ \hline
+2 & Jan 12 -- Jan 18 & Haniye & Extend backend to support \textbf{Database Persistence (\mref{mDB})}: ORM models, migrations, CRUD operations. \\ \cline{3-4}
+  &  & Ghena & Expand \textbf{System API Gateway (\mref{mSysApi})} to integrate Auth \& Repo APIs, include error-handling layer. \\ \cline{3-4}
+  &  & Awurama & Expand user page with \textbf{configurable functionalities (\mref{mConf})}  based on user role \\ \hline
 
-3 & Jan 19 -- Jan 25 & Awurama & Build \textbf{Application Layout Module (\mref{mBH2})} with global navigation, sidebar, responsive design, and state handling. \\ \cline{3-4}
-  &  & Ghena & Implement \textbf{Localization Module (\mref{mBH7})} using \href{https://react.i18next.com/}{i18next}; create English and French string bundles. \\ \hline
+3 & Jan 19 -- Jan 25 & Awurama & Build \textbf{Application UI Module (\mref{mAppUI})} with global navigation, sidebar, responsive design, and state handling. \\ \cline{3-4}
+  &  & Fei & Implement \textbf{Domains Page Module (\mref{mDomainsPage})} to display domains and metrics with integrated backend data. \\ \cline{3-4}
+  &  & Ghena & Finalize \textbf{Repository API Module (\mref{mRepoAPI})}: error handling, caching, and rate-limit retries. \\ \cline{3-4}
+  &  & Fei & Build \textbf{File Export Module (\mref{mExport})} to export domain data in CSV/XLSX formats. \\ \hline
 
-4 & Jan 26 -- Feb 1 & Awurama & Implement \textbf{Domain View Module (\mref{mBH1})} to display domains and metrics with integrated backend data. \\ \cline{3-4}
-  &  & Fei & Develop \textbf{File Import Module (\mref{mSD4})} to upload, validate, and parse CSV/XLSX files. \\ \cline{3-4}
-  &  & Fei & Build \textbf{File Export Module (\mref{mSD5})} to export domain data in CSV/XLSX formats. \\ \cline{3-4}
-  &  & Ghena & Finalize \textbf{Repository API Module (\mref{mSD6})}: error handling, caching, and rate-limit retries. \\ \cline{3-4}
-  &  & Haniye & Implement \textbf{Automated Metrics Module (\mref{mBH6})} with background job scheduler and automatic metric retrieval. \\ \hline
+4 & Jan 26 -- Feb 1 & Awurama & Develop \textbf{File Import Module (\mref{mImport})} to upload, validate, and parse CSV/XLSX files. \\ \cline{3-4}
+  &  & Haniye & Implement \textbf{Automated Metrics Module (\mref{mAutMetrics})} with background job scheduler and automatic metric retrieval. \\ \hline
 
-5 & Feb 2 -- Feb 8 & Awurama + Fei & Implement \textbf{Data Edit Module (\mref{mBH3})} with React validation, inline feedback, and API integration. \\ \cline{3-4}
-  &  & Awurama + Fei & Conduct accessibility and usability testing for all forms; report improvements. \\ \cline{3-4}
-  &  & Ghena & Implement \textbf{Ranking Algorithm Module (\mref{mSD2})} using AHP/BWM/SSB methods with test coverage. \\ \cline{3-4}
-  &  & Haniye & Develop \textbf{Graphing Module (\mref{mSD3})} for data visualizations using \href{https://pypi.org/project/matplotlib/}{Matplotlib}. \\ \hline
 
-6 & Feb 9 -- Feb 15 & Haniye & Build \textbf{Domain Comparison Module (\mref{mSD7})} for cross-domain analysis, visualization, and reporting. \\ \cline{3-4}
-  &  & Ghena & Optimize query performance, caching, and API latency. \\ \hline
+5 & Feb 2 -- Feb 8 & Awurama + Fei & Implement \textbf{Data Edit Module (\mref{mDataEdit})} with React validation, inline feedback, and API integration. \\ \cline{3-4}
+  &  & Ghena & Implement \textbf{Ranking Algorithm Module (\mref{mRankAlgo})} using AHP/BWM/SSB methods with test coverage. \\ \cline{3-4}
+  &  & Haniye & Develop \textbf{Graphing Module (\mref{mGraphing})} for data visualizations using \href{https://pypi.org/project/matplotlib/}{Matplotlib}. \\ \hline
 
-8 & Feb 23 -- Mar 1 & Ghena & Implement \textbf{Domain Management Module (\mref{mBH8})} with versioning and publication workflow. \\ \cline{3-4}
-  &  & Haniye & Develop \textbf{Notification Module (\mref{mBH9})} for email and in-app alerts. \\ \hline
+6 & Feb 9 -- Feb 15 & Ghena + Haniye & Build \textbf{Comparison Module (\mref{mCompare})} for cross-domain and in-domain analysis, visualization, and reporting. \\ \cline{3-4}
+  &  & Awurama + Fei & Conduct accessibility and usability testing. \\ \hline
 
 9-11 & Mar 2 -- Mar 23 & Awurama + Fei & Conduct full end-to-end testing; finalize documentation and update traceability links. \\ \cline{3-4}
 &  & All Developers & Code freeze and integration testing; bug fixes, performance optimization, and final release demo. \\ \hline
