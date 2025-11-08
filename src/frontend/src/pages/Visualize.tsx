@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './Home.css'; // reuse your existing styles
+import axios, { AxiosResponse } from 'axios';
+import './Home.css'; // reuse existing styles
 
 
 const parseGitHubRepo = (value: string): { owner: string; repo: string } | null => {
@@ -12,10 +13,6 @@ const parseGitHubRepo = (value: string): { owner: string; repo: string } | null 
   return { owner, repo };
 };
 
-const sampleStarsFor = (_key: string): number => {
-  return Math.floor(Math.random() * 3) + 3; // 3..5
-};
-
 const Visualize: React.FC = () => {
   const [inputs, setInputs] = useState<string[]>(['https://github.com/pytorch/pytorch', 'https://github.com/tensorflow/tensorflow']);
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +23,7 @@ const Visualize: React.FC = () => {
   const removeField = (index: number) => setInputs((s) => s.filter((_, i) => i !== index));
   const updateField = (index: number, value: string) => setInputs((s) => s.map((v, i) => (i === index ? value : v)));
 
-  const handleVisualize = () => {
+  const handleVisualize = async () => {
     setError(null);
     setChartData(null);
 
@@ -35,41 +32,44 @@ const Visualize: React.FC = () => {
       .filter((v) => v.length > 0)
       .map((v) => {
         const p = parseGitHubRepo(v);
-        return p ? { normalized: `https://github.com/${p.owner}/${p.repo}`, owner: p.owner, repo: p.repo } : null;
+        return p ? { owner: p.owner, repo: p.repo } : null;
       });
 
-    // Check validity
+
     const badIndex = parsed.findIndex((p) => p === null);
     if (badIndex !== -1) {
       setError(`Invalid GitHub repo URL at input #${badIndex + 1}. Use: github.com/owner/repo`);
       return;
     }
 
-    const valid = (parsed as { normalized: string; owner: string; repo: string }[]).map((p) => ({
-      label: `${p.owner}/${p.repo}`,
-      url: p.normalized,
-    }));
+    const validReposFullNames = (parsed as { owner: string; repo: string }[]).map(
+        (p) => `${p.owner}/${p.repo}`
+    );
 
-    const uniqueMap = new Map<string, { label: string; url: string }>();
-    valid.forEach((v) => uniqueMap.set(v.url.toLowerCase(), v));
-    const unique = Array.from(uniqueMap.values());
+    const uniqueRepos = Array.from(new Set(validReposFullNames));
 
-    if (unique.length < 2) {
+    if (uniqueRepos.length < 2) {
       setError('Please provide at least two unique GitHub repo URLs.');
       return;
     }
 
     setLoading(true);
 
-    const data = unique.map((u) => ({
-      label: u.label,
-      stars: sampleStarsFor(u.url),
-    }));
+    try {
 
-    setTimeout(() => {
-      setChartData(data);
-      setLoading(false);
-    }, 300);
+        const response = await axios.post('/api/github/stars/', {
+            repos: uniqueRepos
+        });
+
+        setChartData(response.data);
+
+    } catch (err) {
+        console.error('API Fetch Error:', err);
+        setError('Error connecting to the backend API. Please check the network connection and server status.');
+    } finally {
+        setLoading(false);
+    }
+
   };
 
   const reset = () => {
