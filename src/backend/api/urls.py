@@ -1,6 +1,7 @@
-from django.urls import path
-from .views import status_view
+from django.urls import path, include
+from .views import status_views
 
 urlpatterns = [
-    path('status/', status_view, name='status'),
+    path('status/', status_views.status_view, name='api_status'),
+    path('github/', include('api.github_urls', namespace='github')),
 ]
