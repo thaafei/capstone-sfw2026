@@ -84,13 +84,57 @@ const Main: React.FC = () => {
         <h1 style={{ color: "var(--accent)", marginTop: 0 }}>{selectedDomain.name}</h1>
 
         <div className="dx-card" style={{ marginBottom: 20, padding: 18 }}>
-          <h3 style={{ color: "var(--accent)" }}>Package Rankings (Overall)</h3>
-          <div className="dx-chart-placeholder" />
-        </div>
+          <div style={{ marginTop: 18 }}>
+              <h3 className="dx-vis-title" style={{ textAlign: "center" }}>Package Rankings (Overall)</h3>
+
+              <div className="dx-chart-area center-charts">
+                <div className="dx-chart-bar-wrap">
+                  <div className="dx-chart-bar bar-pytorch" style={{ height: '210px' }} />
+                  <div className="dx-chart-name">PyTorch</div>
+                </div>
+
+                <div className="dx-chart-bar-wrap">
+                  <div className="dx-chart-bar bar-tensorflow" style={{ height: '260px' }} />
+                  <div className="dx-chart-name">TensorFlow</div>
+                </div>
+
+                <div className="dx-chart-bar-wrap">
+                  <div className="dx-chart-bar bar-jax" style={{ height: '180px' }} />
+                  <div className="dx-chart-name">JAX</div>
+                </div>
+              </div>
+         </div>
+      </div>
 
         <div className="dx-card" style={{ padding: 18 }}>
-          <h3 style={{ color: "var(--accent)" }}>Category Rankings</h3>
-          <div className="dx-chart-placeholder" />
+
+          <div style={{ marginTop: 40 }}>
+              <h3 className="dx-vis-title" style={{ textAlign: "center" }}>Category Rankings</h3>
+
+              <div className="dx-chart-area center-charts">
+                <div className="dx-chart-bar-wrap">
+                  <div className="dx-chart-bar bar-cyan" style={{ height: '130px' }} />
+                  <div className="dx-chart-name">Usability</div>
+                </div>
+
+                <div className="dx-chart-bar-wrap">
+                  <div className="dx-chart-bar bar-purple" style={{ height: '210px' }} />
+                  <div className="dx-chart-name">Maintainability</div>
+                </div>
+
+                <div className="dx-chart-bar-wrap">
+                  <div className="dx-chart-bar bar-blue" style={{ height: '260px' }} />
+                  <div className="dx-chart-name">Reproducibility</div>
+                </div>
+
+                <div className="dx-chart-bar-wrap">
+                  <div className="dx-chart-bar bar-green" style={{ height: '160px' }} />
+                  <div className="dx-chart-name">Transparency</div>
+                </div>
+              </div>
+            </div>
+
+
         </div>
       </div>
 
@@ -121,7 +165,7 @@ const Main: React.FC = () => {
           </p>
         </div>
         <div className="dx-info-field">
-          <strong>Link:</strong> <a href="#" style={{ color: "var(--accent)" }}>Not available</a>
+          <strong>Link:</strong> <a href="#" style={{ color: "var(--accent)" }}>Research Paper</a>
         </div>
       </div>
     </div>

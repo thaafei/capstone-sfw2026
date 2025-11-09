@@ -411,3 +411,55 @@ html, body, #root {
 .dx-info-field {
   margin-bottom: 14px;
 }
+
+
+
+.center-charts {
+  justify-content: center;
+}
+
+
+.dx-chart-bar {
+  width: 65px;
+  border-radius: 14px;
+  transition: 0.25s ease;
+  box-shadow: 0px 0px 18px rgba(125,211,252,0.22);
+}
+.dx-chart-bar:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 0px 28px rgba(125,211,252,0.45);
+}
+
+
+.bar-pytorch {
+  background: linear-gradient(180deg, #ef4444, #b91c1c);
+}
+.bar-tensorflow {
+  background: linear-gradient(180deg, #fb923c, #ea580c);
+}
+.bar-jax {
+  background: linear-gradient(180deg, #38bdf8, #1e40af);
+}
+
+.bar-cyan {
+  background: linear-gradient(180deg, #7dd3fc, #2563eb);
+}
+.bar-purple {
+  background: linear-gradient(180deg, #c084fc, #6d28d9);
+}
+.bar-blue {
+  background: linear-gradient(180deg, #60a5fa, #1d4ed8);
+}
+.bar-green {
+  background: linear-gradient(180deg, #6ee7b7, #047857);
+}
+
+
+.dx-chart-name {
+  margin-top: 8px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  width: 80px;
+  text-align: center;
+  white-space: nowrap;
+}
