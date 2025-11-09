@@ -16,7 +16,7 @@ const Login: React.FC = () => {
     await new Promise((res) => setTimeout(res, 700));
 
     if (username === 'test' && password === '1234') {
-      navigate('/visualize');
+      navigate('/main');
     } else {
       setError('Invalid credentials.');
     }
@@ -26,21 +26,14 @@ const Login: React.FC = () => {
 
   return (
     <div className="home-bg dx-auth-bg">
-      {/* Stars Layer */}
       <div className="stars"></div>
-
-      {/* Center Layout */}
       <div className="dx-auth-grid">
-
-        {/* Hero Text Left Side */}
         <div className="dx-auth-hero">
           <h1 className="dx-hero-title">Welcome to DomainX</h1>
           <p className="dx-hero-desc">
             Sign in to access your workspace and evaluation tools.
           </p>
         </div>
-
-        {/* Login Panel */}
         <div className="dx-auth-card">
           <div className="dx-card dx-card-auth" role="main" aria-label="Login form">
 
