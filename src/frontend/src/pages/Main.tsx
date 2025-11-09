@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./Home2.css"; // ادامه استفاده از همان تم
+import "./Home2.css";
 import { useNavigate } from "react-router-dom";
 
 const domains = [
-  { name: "Domain X", version: "v1.0" },
-  { name: "Domain Y", version: "v2.1" },
-  { name: "Domain Z", version: "v3.0" },
+  { name: "Neural Networks", version: "v1.0" },
+  { name: "Domain X", version: "v2.1" },
+  { name: "Domain Y", version: "v3.0" },
 ];
 
 const Main: React.FC = () => {
@@ -15,8 +15,7 @@ const Main: React.FC = () => {
 
   return (
     <div className="dx-bg" style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
-      
-      {/* ========== SIDEBAR ========== */}
+
       <div
         className="dx-card"
         style={{
@@ -26,10 +25,11 @@ const Main: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           gap: 14,
+          color: "var(--text-main)"
         }}
       >
         <div
-          style={{ cursor: "pointer", fontSize: 24 }}
+          style={{ cursor: "pointer", fontSize: 24, color: "var(--accent)" }}
           onClick={() => setSidebarOpen(!sidebarOpen)}
         >
           {sidebarOpen ? "⟨" : "⟩"}
@@ -54,6 +54,7 @@ const Main: React.FC = () => {
                 cursor: "pointer",
                 color: d.name === selectedDomain.name ? "var(--accent)" : "var(--text-main)",
                 fontWeight: d.name === selectedDomain.name ? 600 : 400,
+                transition: "0.25s"
               }}
             >
               {sidebarOpen ? (
@@ -72,43 +73,40 @@ const Main: React.FC = () => {
           <button
             className="dx-btn dx-btn-outline"
             onClick={() => navigate("/visualize")}
+            style={{ display: "flex", alignItems: "center", gap: 8 }}
           >
-            Compare Domains
+            <span style={{ fontSize: 15 }}>⚖️</span> Comparison Tool
           </button>
         )}
       </div>
 
-      {/* ========== MAIN CENTER CONTENT ========== */}
-      <div style={{ flex: 1, padding: "28px 34px", overflowY: "auto" }}>
+      <div style={{ flex: 1, padding: "28px 34px", overflowY: "auto", color: "var(--text-main)" }}>
         <h1 style={{ color: "var(--accent)", marginTop: 0 }}>{selectedDomain.name}</h1>
 
         <div className="dx-card" style={{ marginBottom: 20, padding: 18 }}>
-          <h3>Package Rankings (Overall)</h3>
+          <h3 style={{ color: "var(--accent)" }}>Package Rankings (Overall)</h3>
           <div className="dx-chart-placeholder" />
         </div>
 
         <div className="dx-card" style={{ padding: 18 }}>
-          <h3>Category Rankings</h3>
+          <h3 style={{ color: "var(--accent)" }}>Category Rankings</h3>
           <div className="dx-chart-placeholder" />
         </div>
       </div>
 
-      {/* ========== RIGHT INFO PANEL ========== */}
       <div
         className="dx-card"
         style={{
           width: 260,
           padding: 18,
           borderLeft: "1px solid rgba(255,255,255,0.08)",
+          color: "var(--text-main)"
         }}
       >
-        <h3 style={{ marginTop: 0 }}>Details</h3>
-        <div className="dx-info-field">
-          <strong>Name:</strong> {selectedDomain.name}
-        </div>
-        <div className="dx-info-field">
-          <strong>Version:</strong> {selectedDomain.version}
-        </div>
+        <h3 style={{ marginTop: 0, color: "var(--accent)" }}>Details</h3>
+
+        <div className="dx-info-field"><strong>Name:</strong> {selectedDomain.name}</div>
+        <div className="dx-info-field"><strong>Version:</strong> {selectedDomain.version}</div>
         <div className="dx-info-field">
           <strong>Authors:</strong>
           <ul style={{ margin: "6px 0 0 16px" }}>
@@ -123,7 +121,7 @@ const Main: React.FC = () => {
           </p>
         </div>
         <div className="dx-info-field">
-          <strong>Link:</strong> <a href="#">Not available</a>
+          <strong>Link:</strong> <a href="#" style={{ color: "var(--accent)" }}>Not available</a>
         </div>
       </div>
     </div>
