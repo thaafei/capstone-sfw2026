@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
+import './Home2.css'; // using the same style system as Home
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -14,27 +14,40 @@ const Login: React.FC = () => {
     setLoading(true);
     setError(null);
     await new Promise((res) => setTimeout(res, 700));
+
     if (username === 'test' && password === '1234') {
       navigate('/visualize');
     } else {
       setError('Invalid credentials.');
     }
+
     setLoading(false);
   };
 
   return (
-    <div className="dx-bg dx-auth-bg">
+    <div className="home-bg dx-auth-bg">
+      {/* Stars Layer */}
+      <div className="stars"></div>
+
+      {/* Center Layout */}
       <div className="dx-auth-grid">
+
+        {/* Hero Text Left Side */}
         <div className="dx-auth-hero">
           <h1 className="dx-hero-title">Welcome to DomainX</h1>
-          <p className="dx-hero-desc">Sign in to access the app.</p>
+          <p className="dx-hero-desc">
+            Sign in to access your workspace and evaluation tools.
+          </p>
         </div>
 
+        {/* Login Panel */}
         <div className="dx-auth-card">
           <div className="dx-card dx-card-auth" role="main" aria-label="Login form">
-            <h3 style={{ marginTop: 0 }}>Sign in</h3>
 
-            <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 10 }}>
+            <h3 style={{ marginTop: 0, marginBottom: '1.2rem' }}>Sign in</h3>
+
+            <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 14 }}>
+
               <label className="dx-label">
                 Username
                 <input
@@ -60,7 +73,7 @@ const Login: React.FC = () => {
 
               {error && <div className="dx-error">{error}</div>}
 
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: '0.5rem' }}>
                 <button
                   type="button"
                   className="dx-btn dx-btn-outline"
@@ -75,9 +88,9 @@ const Login: React.FC = () => {
               </div>
             </form>
 
-
           </div>
         </div>
+
       </div>
     </div>
   );
