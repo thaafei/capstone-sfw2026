@@ -62,31 +62,27 @@ return (
   <div className="dx-bg" style={{ display: "flex", height: "100vh" }}>
 
     <div
-      className="dx-card"
-      style={{
-        width: 70,
-        padding: "18px 10px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 20,
-        borderRight: "1px solid rgba(255,255,255,0.08)"
-      }}
-      onClick={() => (window.location.href = "/main")}
-    >
-      <div
-        style={{
-          cursor: "pointer",
-          fontSize: 22,
-          color: "var(--accent)",
-          transition: "0.2s"
-        }}
-      >
-        ⟨
-      </div>
+          className="dx-card"
+          style={{
+            width: 160,
+            padding: "22px 14px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            gap: 18,
+            borderRight: "1px solid rgba(255,255,255,0.08)"
+          }}
+        >
+          <button
+            className="dx-btn dx-btn-outline"
+            style={{ width: "100%", fontSize: "1rem", textAlign: "center" }}
+            onClick={() => (window.location.href = "/main")}
+          >
+            ← Back
+          </button>
     </div>
 
-    {/* MAIN CONTENT GRID */}
+
     <div
       style={{
         flex: 1,
@@ -101,7 +97,6 @@ return (
 
       <div className="dx-vis-container">
 
-        {/* LEFT INPUT PANEL */}
         <div className="dx-vis-left dx-card">
           <h2 className="dx-vis-title">Repositories</h2>
           <p className="dx-vis-sub">Enter GitHub repos to compare popularity.</p>
@@ -133,7 +128,6 @@ return (
           </div>
         </div>
 
-        {/* RIGHT CHART PANEL */}
         <div className="dx-vis-right dx-card">
           <h3 className="dx-vis-title">Star Comparison</h3>
 
