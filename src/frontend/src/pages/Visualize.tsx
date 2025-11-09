@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import './Home.css'; // reuse existing styles
-
+import axios from 'axios';
+import './Home2.css'; // same design system as home/login
 
 const parseGitHubRepo = (value: string): { owner: string; repo: string } | null => {
   const v = value.trim();
@@ -14,167 +13,131 @@ const parseGitHubRepo = (value: string): { owner: string; repo: string } | null 
 };
 
 const Visualize: React.FC = () => {
-  const [inputs, setInputs] = useState<string[]>(['https://github.com/pytorch/pytorch', 'https://github.com/tensorflow/tensorflow']);
+  const [inputs, setInputs] = useState<string[]>([
+    'https://github.com/pytorch/pytorch',
+    'https://github.com/tensorflow/tensorflow'
+  ]);
+
   const [error, setError] = useState<string | null>(null);
   const [chartData, setChartData] = useState<{ label: string; stars: number }[] | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const addField = () => setInputs((s) => [...s, '']);
-  const removeField = (index: number) => setInputs((s) => s.filter((_, i) => i !== index));
-  const updateField = (index: number, value: string) => setInputs((s) => s.map((v, i) => (i === index ? value : v)));
+  const addField = () => setInputs([...inputs, '']);
+  const removeField = (i: number) => setInputs(inputs.filter((_, idx) => idx !== i));
+  const updateField = (i: number, value: string) => setInputs(inputs.map((v, idx) => (idx === i ? value : v)));
 
   const handleVisualize = async () => {
     setError(null);
     setChartData(null);
 
-    const parsed = inputs
-      .map((v) => v.trim())
-      .filter((v) => v.length > 0)
-      .map((v) => {
-        const p = parseGitHubRepo(v);
-        return p ? { owner: p.owner, repo: p.repo } : null;
-      });
-
-
-    const badIndex = parsed.findIndex((p) => p === null);
-    if (badIndex !== -1) {
-      setError(`Invalid GitHub repo URL at input #${badIndex + 1}. Use: github.com/owner/repo`);
+    const parsed = inputs.map(v => parseGitHubRepo(v.trim()));
+    const bad = parsed.findIndex(p => p === null);
+    if (bad !== -1) {
+      setError(`Invalid GitHub repo URL at input #${bad + 1}`);
       return;
     }
 
-    const validReposFullNames = (parsed as { owner: string; repo: string }[]).map(
-        (p) => `${p.owner}/${p.repo}`
-    );
-
-    const uniqueRepos = Array.from(new Set(validReposFullNames));
-
+    const uniqueRepos = Array.from(new Set(parsed.map(p => `${p!.owner}/${p!.repo}`)));
     if (uniqueRepos.length < 2) {
-      setError('Please provide at least two unique GitHub repo URLs.');
+      setError('Please provide at least two unique GitHub repos.');
       return;
     }
 
     setLoading(true);
 
     try {
-
-        const response = await axios.post('/api/github/stars/', {
-            repos: uniqueRepos
-        });
-
-        setChartData(response.data);
-
+      const response = await axios.post('/api/github/stars/', { repos: uniqueRepos });
+      setChartData(response.data);
     } catch (err) {
-        console.error('API Fetch Error:', err);
-        setError('Error connecting to the backend API. Please check the network connection and server status.');
+      console.error(err);
+      setError('Could not reach backend API.');
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-
   };
 
-  const reset = () => {
-    setInputs(['', '']);
-    setChartData(null);
-    setError(null);
-  };
-
-  const maxStars = chartData && chartData.length ? Math.max(...chartData.map((d) => d.stars)) : 1;
+  const maxStars = chartData?.length ? Math.max(...chartData.map(d => d.stars)) : 1;
 
   return (
-    <div className="dx-bg" style={{ padding: 28 }}>
-      <div style={{ width: '100%', maxWidth: 1100, margin: '0 auto' }}>
-        <div className="dx-card" style={{ marginBottom: 18 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
-            <div>
-              <h2 style={{ margin: 0 }}>Visualize GitHub Repo Stars (sample)</h2>
-              <div style={{ color: 'rgba(255,255,255,0.75)', marginTop: 6 }}>
-                Enter two or more GitHub repo URLs and click Visualize.
-              </div>
-            </div>
+  <div className="home-bg dx-visualize-page">
+    <div className="stars"></div>
 
-            <div style={{ display: 'flex', gap: 8 }}>
-              <button className="dx-btn dx-btn-outline" onClick={reset}>Reset</button>
-              <button className="dx-btn dx-btn-primary" onClick={handleVisualize} disabled={loading}>
-                {loading ? 'Working...' : 'Visualize'}
+    <div className="dx-vis-container">
+
+      {/* LEFT PANEL: INPUTS */}
+      <div className="dx-vis-left dx-card">
+        <h2 className="dx-vis-title">Repositories</h2>
+        <p className="dx-vis-sub">
+          Enter GitHub repos to compare popularity.
+        </p>
+
+        <div className="dx-vis-input-list">
+          {inputs.map((val, idx) => (
+            <div key={idx} className="dx-vis-input-row">
+              <input
+                value={val}
+                onChange={(e) => updateField(idx, e.target.value)}
+                className="dx-input"
+                placeholder="github.com/owner/repo"
+              />
+              <button className="dx-btn dx-btn-outline" onClick={() => removeField(idx)}>
+                x
               </button>
             </div>
-          </div>
-        </div>
+          ))}
 
-        <div className="dx-card" style={{ marginBottom: 18 }}>
-          <div style={{ display: 'grid', gap: 10 }}>
-            {inputs.map((val, idx) => (
-              <div key={idx} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                <input
-                  value={val}
-                  onChange={(e) => updateField(idx, e.target.value)}
-                  className="dx-input"
-                  placeholder={idx === 0 ? 'Primary GitHub repo URL (owner/repo)' : 'Enter GitHub repo URL (owner/repo)'}
-                  style={{ flex: 1 }}
-                />
-                <button
-                  className="dx-btn dx-btn-outline"
-                  onClick={() => removeField(idx)}
-                  aria-label="Remove URL"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
+          <button className="dx-btn dx-btn-outline" onClick={addField}>
+            + Add
+          </button>
 
-            <div style={{ display: 'flex', gap: 8 }}>
-              <button className="dx-btn dx-btn-outline" onClick={addField}>Add URL</button>
-            </div>
+          {error && <div className="dx-error">{error}</div>}
 
-            {error && <div className="dx-error">{error}</div>}
-          </div>
-        </div>
-
-        <div className="dx-card" style={{ padding: 18 }}>
-          <h3 style={{ marginTop: 0 }}>Stars Comparison (vertical bars)</h3>
-
-          {!chartData && <div style={{ color: 'var(--muted)' }}>No chart yet — enter repos and click Visualize.</div>}
-
-          {chartData && (
-            <div style={{ marginTop: 16 }}>
-              <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, height: 320, padding: '12px 8px' }}>
-                {chartData.map((d, i) => {
-                  const heightPercent = Math.round((d.stars / maxStars) * 100);
-                  return (
-                    <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 80 }}>
-                      <div
-                        title={`${d.stars} stars`}
-                        style={{
-                          height: `${(heightPercent / 100) * 240}px`, // map 100% -> 240px
-                          width: '100%',
-                          background: 'linear-gradient(180deg,#06b6d4,#2563eb)',
-                          borderRadius: 8,
-                          display: 'flex',
-                          alignItems: 'flex-end',
-                          justifyContent: 'center',
-                          color: 'white',
-                          fontWeight: 700,
-                          boxShadow: '0 6px 14px rgba(6,99,173,0.15)',
-                        }}
-                      >
-                        <div style={{ padding: '6px 4px', fontSize: 13 }}>{d.stars}</div>
-                      </div>
-
-                      <div style={{ marginTop: 8, fontSize: 13, textAlign: 'center', wordBreak: 'break-word' }}>
-                        <div style={{ fontWeight: 600 }}>{d.label}</div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-
-            </div>
-          )}
+          <button
+            className="dx-btn dx-btn-primary"
+            onClick={handleVisualize}
+            disabled={loading}
+            style={{ marginTop: '1rem' }}
+          >
+            {loading ? 'Working...' : 'Visualize'}
+          </button>
         </div>
       </div>
+
+      {/* RIGHT PANEL: CHART */}
+      <div className="dx-vis-right dx-card">
+        <h3 className="dx-vis-title">Star Comparison</h3>
+
+        {!chartData && (
+          <div className="dx-vis-placeholder">
+            Enter 2+ repos and click Visualize.
+          </div>
+        )}
+
+        {chartData && (
+          <div className="dx-chart-area">
+            {chartData.map((d, i) => {
+              const heightPercent = d.stars / maxStars;
+              return (
+                <div key={i} className="dx-chart-bar-wrap">
+                  <div
+                    className="dx-chart-bar"
+                    style={{
+                      height: `${heightPercent * 200}px`
+                    }}
+                  >
+                    <span className="dx-chart-label">{d.stars}</span>
+                  </div>
+                  <div className="dx-chart-name">{d.label}</div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default Visualize;
