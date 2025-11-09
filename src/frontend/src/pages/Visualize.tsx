@@ -58,85 +58,112 @@ const Visualize: React.FC = () => {
 
   const maxStars = chartData?.length ? Math.max(...chartData.map(d => d.stars)) : 1;
 
-  return (
-  <div className="home-bg dx-visualize-page">
-    <div className="stars"></div>
+return (
+  <div className="dx-bg" style={{ display: "flex", height: "100vh" }}>
 
-    <div className="dx-vis-container">
-
-      {/* LEFT PANEL: INPUTS */}
-      <div className="dx-vis-left dx-card">
-        <h2 className="dx-vis-title">Repositories</h2>
-        <p className="dx-vis-sub">
-          Enter GitHub repos to compare popularity.
-        </p>
-
-        <div className="dx-vis-input-list">
-          {inputs.map((val, idx) => (
-            <div key={idx} className="dx-vis-input-row">
-              <input
-                value={val}
-                onChange={(e) => updateField(idx, e.target.value)}
-                className="dx-input"
-                placeholder="github.com/owner/repo"
-              />
-              <button className="dx-btn dx-btn-outline" onClick={() => removeField(idx)}>
-                x
-              </button>
-            </div>
-          ))}
-
-          <button className="dx-btn dx-btn-outline" onClick={addField}>
-            + Add
-          </button>
-
-          {error && <div className="dx-error">{error}</div>}
-
-          <button
-            className="dx-btn dx-btn-primary"
-            onClick={handleVisualize}
-            disabled={loading}
-            style={{ marginTop: '1rem' }}
-          >
-            {loading ? 'Working...' : 'Visualize'}
-          </button>
-        </div>
+    <div
+      className="dx-card"
+      style={{
+        width: 70,
+        padding: "18px 10px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 20,
+        borderRight: "1px solid rgba(255,255,255,0.08)"
+      }}
+      onClick={() => (window.location.href = "/main")}
+    >
+      <div
+        style={{
+          cursor: "pointer",
+          fontSize: 22,
+          color: "var(--accent)",
+          transition: "0.2s"
+        }}
+      >
+        ⟨
       </div>
+    </div>
 
-      {/* RIGHT PANEL: CHART */}
-      <div className="dx-vis-right dx-card">
-        <h3 className="dx-vis-title">Star Comparison</h3>
+    {/* MAIN CONTENT GRID */}
+    <div
+      style={{
+        flex: 1,
+        padding: "40px 60px",
+        display: "grid",
+        gridTemplateColumns: "420px 1fr",
+        gap: "60px",
+        position: "relative"
+      }}
+    >
+      <div className="stars"></div>
 
-        {!chartData && (
-          <div className="dx-vis-placeholder">
-            Enter 2+ repos and click Visualize.
+      <div className="dx-vis-container">
+
+        {/* LEFT INPUT PANEL */}
+        <div className="dx-vis-left dx-card">
+          <h2 className="dx-vis-title">Repositories</h2>
+          <p className="dx-vis-sub">Enter GitHub repos to compare popularity.</p>
+
+          <div className="dx-vis-input-list">
+            {inputs.map((val, idx) => (
+              <div key={idx} className="dx-vis-input-row">
+                <input
+                  value={val}
+                  onChange={(e) => updateField(idx, e.target.value)}
+                  className="dx-input"
+                  placeholder="github.com/owner/repo"
+                />
+                <button className="dx-btn dx-btn-outline" onClick={() => removeField(idx)}>x</button>
+              </div>
+            ))}
+
+            <button className="dx-btn dx-btn-outline" onClick={addField}>+ Add</button>
+            {error && <div className="dx-error">{error}</div>}
+
+            <button
+              className="dx-btn dx-btn-primary"
+              onClick={handleVisualize}
+              disabled={loading}
+              style={{ marginTop: '1rem' }}
+            >
+              {loading ? 'Working...' : 'Visualize'}
+            </button>
           </div>
-        )}
+        </div>
 
-        {chartData && (
-          <div className="dx-chart-area">
-            {chartData.map((d, i) => {
-              const heightPercent = d.stars / maxStars;
-              return (
-                <div key={i} className="dx-chart-bar-wrap">
-                  <div
-                    className="dx-chart-bar"
-                    style={{
-                      height: `${heightPercent * 200}px`
-                    }}
-                  >
-                    <span className="dx-chart-label">{d.stars}</span>
+        {/* RIGHT CHART PANEL */}
+        <div className="dx-vis-right dx-card">
+          <h3 className="dx-vis-title">Star Comparison</h3>
+
+          {!chartData && <div className="dx-vis-placeholder">Enter 2+ repos and click Visualize.</div>}
+
+          {chartData && (
+            <div className="dx-chart-area">
+              {chartData.map((d, i) => {
+                const heightPercent = d.stars / maxStars;
+                return (
+                  <div key={i} className="dx-chart-bar-wrap">
+                    <div
+                      className="dx-chart-bar"
+                      style={{ height: `${heightPercent * 200}px` }}
+                    >
+                      <span className="dx-chart-label">{d.stars}</span>
+                    </div>
+                    <div className="dx-chart-name">{d.label.split('/').slice(-1)[0]}</div>
                   </div>
-                  <div className="dx-chart-name">{d.label}</div>
-                </div>
-              );
-            })}
-          </div>
-        )}
+                );
+              })}
+            </div>
+          )}
+        </div>
+
       </div>
     </div>
   </div>
 );
+
 
 };
 

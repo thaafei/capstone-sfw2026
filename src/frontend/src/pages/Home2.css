@@ -417,6 +417,54 @@ html, body, #root {
 .center-charts {
   justify-content: center;
 }
+/* Apply only inside Visualize charts */
+.dx-vis-right .dx-chart-bar {
+  width: 70px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #7dd3fc, #2563eb);
+  box-shadow: 0 0 18px rgba(125,211,252,0.25);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transition: 0.28s ease;
+}
+
+.dx-vis-right .dx-chart-bar:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 32px rgba(125,211,252,0.45);
+}
+
+.dx-vis-right .dx-chart-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3.2rem;
+  height: 240px;
+  margin-top: 2rem;
+}
+
+.dx-vis-right .dx-chart-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dx-vis-right .dx-chart-label {
+  padding-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.dx-vis-right .dx-chart-name {
+  margin-top: 10px;
+  max-width: 120px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.88;
+  font-size: 0.95rem;
+}
 
 
 .dx-chart-bar {
@@ -455,11 +503,43 @@ html, body, #root {
 }
 
 
-.dx-chart-name {
-  margin-top: 8px;
-  color: var(--text-main);
-  font-size: 0.9rem;
-  width: 80px;
-  text-align: center;
-  white-space: nowrap;
+
+
+
+
+
+/* keep bars aligned regardless of label length */
+.dx-chart-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 110px;            /* consistent column width */
 }
+
+/* the bar lives inside a fixed-height slot */
+.dx-bar-slot {
+  height: 240px;           /* same as your chart area height */
+  display: flex;
+  align-items: flex-end;   /* bars sit on the same baseline */
+  justify-content: center;
+  width: 100%;
+}
+
+/* labels may wrap but won’t affect bar baseline */
+.dx-chart-name {
+  margin-top: 10px;
+  max-width: 110px;
+  text-align: center;
+  white-space: normal;     /* allow wrap */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
+  height: 2.4em;           /* ~two lines fixed */
+  opacity: 0.88;
+  font-size: 0.95rem;
+}
+
+
+
+
+
