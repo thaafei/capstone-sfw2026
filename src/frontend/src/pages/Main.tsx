@@ -89,17 +89,23 @@ const Main: React.FC = () => {
 
               <div className="dx-chart-area center-charts">
                 <div className="dx-chart-bar-wrap">
-                  <div className="dx-chart-bar bar-pytorch" style={{ height: '210px' }} />
+                  <div className="dx-bar-slot">
+                    <div className="dx-chart-bar bar-pytorch" style={{ height: '210px' }} />
+                  </div>
                   <div className="dx-chart-name">PyTorch</div>
                 </div>
 
                 <div className="dx-chart-bar-wrap">
-                  <div className="dx-chart-bar bar-tensorflow" style={{ height: '260px' }} />
+                  <div className="dx-bar-slot">
+                     <div className="dx-chart-bar bar-tensorflow" style={{ height: '260px' }} />
+                  </div>
                   <div className="dx-chart-name">TensorFlow</div>
                 </div>
 
                 <div className="dx-chart-bar-wrap">
-                  <div className="dx-chart-bar bar-jax" style={{ height: '180px' }} />
+                  <div className="dx-bar-slot">
+                    <div className="dx-chart-bar bar-jax" style={{ height: '180px' }} />
+                  </div>
                   <div className="dx-chart-name">JAX</div>
                 </div>
               </div>
@@ -113,22 +119,30 @@ const Main: React.FC = () => {
 
               <div className="dx-chart-area center-charts">
                 <div className="dx-chart-bar-wrap">
-                  <div className="dx-chart-bar bar-cyan" style={{ height: '130px' }} />
+                  <div className="dx-bar-slot">
+                    <div className="dx-chart-bar bar-cyan" style={{ height: '130px' }} />
+                  </div>
                   <div className="dx-chart-name">Usability</div>
                 </div>
 
                 <div className="dx-chart-bar-wrap">
-                  <div className="dx-chart-bar bar-purple" style={{ height: '210px' }} />
+                  <div className="dx-bar-slot">
+                    <div className="dx-chart-bar bar-purple" style={{ height: '210px' }} />
+                  </div>
                   <div className="dx-chart-name">Maintainability</div>
                 </div>
 
                 <div className="dx-chart-bar-wrap">
-                  <div className="dx-chart-bar bar-blue" style={{ height: '260px' }} />
+                  <div className="dx-bar-slot">
+                    <div className="dx-chart-bar bar-blue" style={{ height: '260px' }} />
+                  </div>
                   <div className="dx-chart-name">Reproducibility</div>
                 </div>
 
                 <div className="dx-chart-bar-wrap">
-                  <div className="dx-chart-bar bar-green" style={{ height: '160px' }} />
+                  <div className="dx-bar-slot">
+                    <div className="dx-chart-bar bar-green" style={{ height: '160px' }} />
+                  </div>
                   <div className="dx-chart-name">Transparency</div>
                 </div>
               </div>
