@@ -70,14 +70,31 @@ const Main: React.FC = () => {
         </div>
 
         {sidebarOpen && (
-          <button
-            className="dx-btn dx-btn-outline"
-            onClick={() => navigate("/visualize")}
-            style={{ display: "flex", alignItems: "center", gap: 8 }}
-          >
-            <span style={{ fontSize: 15 }}>⚖️</span> Comparison Tool
-          </button>
+          <>
+            <button
+              className="dx-btn dx-btn-outline"
+              onClick={() => navigate("/visualize")}
+              style={{ display: "flex", alignItems: "center", gap: 8 }}
+            >
+              <span style={{ fontSize: 15 }}>⚖️</span> Comparison Tool
+            </button>
+
+            <button
+              className="dx-btn dx-btn-outline"
+              onClick={() => navigate("/login")}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 8,
+                opacity: 0.85
+              }}
+            >
+              Logout
+            </button>
+          </>
         )}
+
       </div>
 
       <div style={{ flex: 1, padding: "28px 34px", overflowY: "auto", color: "var(--text-main)" }}>
