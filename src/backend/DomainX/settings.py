@@ -39,15 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'users',
     'api.apps.ApiConfig',
 ]
+AUTH_USER_MODEL = 'users.CustomUser'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
 AUTHENTICATION_BACKENDS = [
-    'api.auth_backend.EmailBackend',
+    'users.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 MIDDLEWARE = [

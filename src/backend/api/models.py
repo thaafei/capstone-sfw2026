@@ -1,18 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 import uuid
-
-class Role(models.Model):
-    Role_ID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    Role_Name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.Role_Name
-
-
-class UserProfile(models.Model):
-    User = models.OneToOneField(User, on_delete=models.CASCADE)
-    Role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
 
 
@@ -21,7 +9,7 @@ class Domain(models.Model):
     Domain_Name = models.CharField(max_length=100)
     Description = models.CharField(max_length=255, blank=True)
     Created_At = models.DateTimeField(auto_now_add=True)
-    Created_By = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    Created_By = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.Domain_Name
@@ -62,7 +50,7 @@ class LibraryMetricValue(models.Model):
     Library = models.ForeignKey(Library, on_delete=models.CASCADE)
     Metric = models.ForeignKey(Metric, on_delete=models.CASCADE)
     Value = models.TextField()
-    Collected_By = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    Collected_By = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     Last_Modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
