@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Home2.css";
+import "./GeneralTheme.css";
 import { useNavigate } from "react-router-dom";
 
 const domains = [

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home2.css'; // using the same style system as Home
+import './GeneralTheme.css'; // using the same style system as Home
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
