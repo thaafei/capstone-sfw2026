@@ -4,6 +4,11 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Visualize from './pages/Visualize';
 import Main from "./pages/Main";
+import "./styles/base.css";
+import "./styles/theme.css";
+import "./styles/auth.css";
+import "./styles/components.css";
+import "./styles/visualize.css";
 
 const App: React.FC = () => {
   return (

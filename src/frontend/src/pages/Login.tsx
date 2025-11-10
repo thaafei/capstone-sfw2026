@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './GeneralTheme.css'; // using the same style system as Home
+import { useAuthStore } from "../store/useAuthStore";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -8,21 +8,32 @@ const Login: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { setUser } = useAuthStore();
+    const handleSubmit = async (e?: React.FormEvent) => {
+      if (e) e.preventDefault();
+      setLoading(true);
+      setError(null);
 
-  const handleSubmit = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    setLoading(true);
-    setError(null);
-    await new Promise((res) => setTimeout(res, 700));
+      try {
+        const response = await fetch("http://127.0.0.1:8000/login/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ login: username, password }),
+        });
 
-    if (username === 'test' && password === '1234') {
-      navigate('/main');
-    } else {
-      setError('Invalid credentials.');
-    }
+        const data = await response.json();
 
-    setLoading(false);
-  };
+        if (!response.ok) throw new Error(data.error || "Login failed");
+
+        setUser(data.user);
+        navigate("/main");
+      } catch (err: any) {
+        setError(err.message);
+      }
+
+      setLoading(false);
+    };
 
   return (
     <div className="home-bg dx-auth-bg">

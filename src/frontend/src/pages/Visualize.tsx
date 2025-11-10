@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './GeneralTheme.css'; // same design system as home/login
+
 
 const parseGitHubRepo = (value: string): { owner: string; repo: string } | null => {
   const v = value.trim();

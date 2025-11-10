@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './GeneralTheme.css';
+
 
 const Home: React.FC = () => {
     const navigate = useNavigate();

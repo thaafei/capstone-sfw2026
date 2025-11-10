@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./GeneralTheme.css";
 import { useNavigate } from "react-router-dom";
 
 const domains = [
