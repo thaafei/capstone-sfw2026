@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const { setUser } = useAuthStore();
-    const handleSubmit = async (e?: React.FormEvent) => {
+  const handleSubmit = async (e?: React.FormEvent) => {
       if (e) e.preventDefault();
       setLoading(true);
       setError(null);
@@ -33,7 +33,7 @@ const Login: React.FC = () => {
       }
 
       setLoading(false);
-    };
+  };
 
   return (
     <div className="home-bg dx-auth-bg">

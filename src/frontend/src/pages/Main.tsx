@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useAuthStore } from "../store/useAuthStore";
 const domains = [
   { name: "Neural Networks", version: "v1.0" },
   { name: "Domain X", version: "v2.1" },
@@ -11,7 +11,20 @@ const Main: React.FC = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedDomain, setSelectedDomain] = useState(domains[0]);
-
+  const { logout } = useAuthStore();
+  const handleLogout = async () => {
+      try {
+          await fetch("http://127.0.0.1:8000/logout/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        });
+        logout();
+        navigate("/login");
+      } catch (err: any) {
+        console.error(err);
+      }
+  };
   return (
     <div className="dx-bg" style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
 
@@ -80,7 +93,7 @@ const Main: React.FC = () => {
 
             <button
               className="dx-btn dx-btn-outline"
-              onClick={() => navigate("/login")}
+              onClick={() => handleLogout()}
               style={{
                 display: "flex",
                 alignItems: "center",
