@@ -469,9 +469,6 @@ to be implemented.
 
 This section shows two traceability matrices: between the modules and the
 requirements and between the modules and the anticipated changes.
-
-% the table should use mref, the requirements should be named, use something
-% like fref
 \begin{table}[H]
 \centering
 \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
@@ -496,8 +493,10 @@ FR15 & \mref{mGraphing}, \mref{mExport}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Functional Requirements and Modules}
-\label{TblRT}
+\label{tb_fr_modules}
 \end{table}
+
+Table \ref{tb_fr_modules} shows the traceability between the functional requirements and the modules. Note that \mref{mAppUI}, \mref{mSysApi} and \mref{mLog} is applicable to all, since they facilitate the information flow and user interaction for all the listed functional requirements and all functional requirements interactions will be logged.
 
 \begin{longtable}{p{0.2\textwidth} p{0.6\textwidth}}
 \toprule
@@ -608,14 +607,11 @@ CU-CR4 & Not Relevant \\
 CR-LR1 & Not Relevant \\ 
 CR-LR2 & Not Relevant \\ 
 CR-LR3 & Not Relevant \\ 
-
-
 \bottomrule
 \caption{Trace Between Non-Functional Requirements and Modules}
-\label{TblRT}
+\label{tnf_modules}
 \end{longtable}
-
-
+Table \ref{tnf_modules} shows the traceability between the non-functional requirements and the modules.
 
 \begin{table}[H]
 \centering
@@ -623,12 +619,12 @@ CR-LR3 & Not Relevant \\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{ac1} & \mref{mDataEdit}, \mref{mDB}\\
+\acref{ac1} & \mref{mDataEdit}, \mref{mDB}, \mref{mDomainsPage}\\
 \acref{ac2} & \mref{mUserAuth}\\
-\acref{ac3} & \mref{mRankAlgo}, \mref{mCompare}\\
+\acref{ac3} & \mref{mRankAlgo}\\
 \acref{ac4} & \mref{mCompare}\\
-\acref{ac5} & \mref{mUserRole}\\
-\acref{ac6} & \mref{mRepoAPI}\\
+\acref{ac5} & \mref{mUserRole}, \mref{mUserPage}, \mref{mConf}\\
+\acref{ac6} & \mref{mRepoAPI}, \mref{mAutMetrics}\\
 \acref{ac7} & \mref{mGraphing}\\
 \acref{ac8} & \mref{mExport},  \mref{mImport}\\
 \bottomrule
@@ -636,6 +632,13 @@ CR-LR3 & Not Relevant \\
 \caption{Trace Between Anticipated Changes and Modules}
 \label{TblACT}
 \end{table}
+Table \ref{TblACT} shows the traceability between the anticipated changes and the modules. \\
+Note that \mref{mAppUI} and \mref{mSysApi} is applicable to all the anticipated changes, since they cover the data flow and user interface for the system.
+\mref{mLog} is also applicable to all, since changes to the underlying modules could impact the logging module.
+\\ Since \acref{ac1} can result in additional metrics, the main page that would display the domain would have to change (\mref{mDomainsPage}), the underlying methods involved in updating the data (\mref{mDataEdit}) and database itself (\mref{mDB}).
+\\ \acref{ac5} touches on what the user can see, if additional roles are added, the user page UI must be updated (\mref{mUserPage}). The configuration to store each user's preference (\mref{mConf}) and role will also be updated (\mref{mUserRole}).
+\\ To account for \acref{ac6}, the underlying API will need to be updated (\mref{mRepoAPI}), and the data retrieved from the new API might differ (\mref{mAutMetrics}).
+
 
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
