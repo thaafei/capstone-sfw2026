@@ -9,6 +9,9 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 import django
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 SETTINGS_MODULE = 'DomainX.settings'
 BACKEND_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(BACKEND_ROOT))
@@ -38,6 +41,9 @@ def fetch_and_process_stars(repo_list: list) -> list:
     return results
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+
+if not GITHUB_TOKEN:
+    print("FATAL ERROR: GITHUB_TOKEN environment variable not set.")
 
 GITHUB_URLS_TO_ANALYZE = [
     "https://github.com/tensorflow/tensorflow",
