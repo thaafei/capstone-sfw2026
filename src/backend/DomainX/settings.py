@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'api.apps.ApiConfig',
+
+    'api.database.libraries.apps.LibrariesConfig',
+    'api.database.metrics.apps.MetricsConfig',
+    'api.database.library_metric_values.apps.LibraryMetricValuesConfig',
+
 ]
 
 MIDDLEWARE = [
